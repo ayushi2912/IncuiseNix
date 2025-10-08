@@ -1,0 +1,148 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+  .dashboard-row {
+    min-height: 100%;
+  }
+  .sidebar {
+    padding-top: 1rem;
+    border-right: 1px solid #dee2e6;
+  }
+  .sidebar-sticky {
+    position: sticky;
+    top: 72px; 
+    height: calc(100vh - 72px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: #343a40;
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: .25rem;
+    margin: 0.2rem 0;
+  }
+  .sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background-color: #e9ecef;
+  }
+</style>
+
+<div class="container-fluid">
+    <div class="row dashboard-row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar" style="background-color: #D1D0D3;">
+            <div class="sidebar-sticky px-3">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-dark text-uppercase">
+                    <span>My Courses</span>
+                </h6>
+                <ul id="course-list" class="nav flex-column mb-2">
+                    {% if enrolled_courses %}
+                        {% for course in enrolled_courses %}
+                        <li class="nav-item">
+                            <a class="nav-link course-link" href="#" data-course-id="{{ course.id }}">
+                                {{ course.title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="nav-item px-3">
+                            <p class="text-muted small">You are not enrolled in any courses yet.</p>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <hr class="text-muted">
+
+                <div class="px-3">
+                    <div class="d-grid">
+                        <a href="{% url 'courses_list' %}" class="btn btn-primary">Enroll in New Course</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 2rem;">
+            <div class="card shadow-sm border-0 mb-4 d-inline-block">
+                <div class="card-body p-3">
+                    <h1 class="h2 mb-0">Dashboard</h1>
+                </div>
+            </div>
+
+            <div id="welcome-message-container" class="row justify-content-center align-items-center" style="min-height: 60vh;">
+                <div class="col-lg-8">
+                    <div class="card shadow border-0 text-center">
+                        <div class="card-body p-5">
+                            <h2 class="display-5 fw-bold">Welcome, {{ user.username }}!</h2>
+                            <p class="lead text-muted mt-3">Select a course from your sidebar to view its roadmap.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="roadmap-container" style="display: none;">
+                </div>
+        </main>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const courseLinks = document.querySelectorAll('.course-link');
+    const welcomeContainer = document.getElementById('welcome-message-container');
+    const roadmapContainer = document.getElementById('roadmap-container');
+    
+    // The event listener for the title card has been removed.
+
+    courseLinks.forEach(link => {
+        link.addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            courseLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+
+            const courseId = this.getAttribute('data-course-id');
+
+            welcomeContainer.style.display = 'none';
+            roadmapContainer.style.display = 'block';
+            roadmapContainer.innerHTML = `
+                <div class="d-flex justify-content-center p-5">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(`/roadmap/${courseId}/`);
+                if (!response.ok) {
+                    throw new Error('Failed to load course data.');
+                }
+                const data = await response.json();
+                
+                const firstVideoUrl = `/course/${courseId}/`;
+                let roadmapHTML = `
+                    <div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+                        <div class="col-lg-8">
+                            <div class="card shadow border-0 text-center">
+                                <div class="card-body p-5">
+                                    <h2 class="display-5 fw-bold">Roadmap to ${data.title}</h2>
+                                    <p class="lead text-muted mt-3">Your learning journey for this course is ready. Press the button below to begin.</p>
+                                    <a href="${firstVideoUrl}" class="btn btn-primary btn-lg mt-4">Start Learning</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                roadmapContainer.innerHTML = roadmapHTML;
+
+            } catch (error) {
+                console.error('Error fetching roadmap:', error);
+                roadmapContainer.innerHTML = '<div class="alert alert-danger">Could not load the course roadmap. Please try again.</div>';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

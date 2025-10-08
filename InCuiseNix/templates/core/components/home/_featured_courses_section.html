@@ -1,0 +1,56 @@
+{% load static %}
+<section class="py-5 fade-in-section" style="background-color: #f8f9fa;">
+  <div class="container">
+    <h2 class="text-center section-title">Explore Our Popular Courses</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <a href="{% url 'courses_list' %}" class="course-card-link">
+          <div class="card course-card shadow-sm h-100">
+            <img src="https://placehold.co/600x400/000000/FFFFFF?text=Python" class="card-img-top" alt="Python Course">
+            <div class="card-body p-4 d-flex flex-column">
+              <h5 class="card-title fw-bold">Python for Beginners</h5>
+              <p class="card-text text-muted">A comprehensive introduction to the Python programming language.</p>
+              <div class="course-rating mt-auto">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span class="rating-text fw-bold">4.8</span>
+                <span class="rating-text text-muted">(1,250 ratings)</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="{% url 'courses_list' %}" class="course-card-link">
+          <div class="card course-card shadow-sm h-100">
+            <img src="https://placehold.co/600x400/228B22/FFFFFF?text=Django" class="card-img-top" alt="Django Course">
+            <div class="card-body p-4 d-flex flex-column">
+              <h5 class="card-title fw-bold">Django Web Development</h5>
+              <p class="card-text text-muted">Build powerful web applications with the Django framework.</p>
+              <div class="course-rating mt-auto">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span class="rating-text fw-bold">4.9</span>
+                <span class="rating-text text-muted">(980 ratings)</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="{% url 'courses_list' %}" class="course-card-link">
+          <div class="card course-card shadow-sm h-100">
+            <img src="https://placehold.co/600x400/6f42c1/FFFFFF?text=React" class="card-img-top" alt="React Course">
+            <div class="card-body p-4 d-flex flex-column">
+              <h5 class="card-title fw-bold">Modern Frontend with React</h5>
+              <p class="card-text text-muted">Create interactive user interfaces with the React.js library.</p>
+              <div class="course-rating mt-auto">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                <span class="rating-text fw-bold">4.7</span>
+                <span class="rating-text text-muted">(1,500 ratings)</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

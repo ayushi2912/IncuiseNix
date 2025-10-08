@@ -1,0 +1,60 @@
+[
+  {
+    "course_id": "py-basics",
+    "title": "Python for Beginners",
+    "description": "A comprehensive introduction to the Python programming language.",
+    "image_url": "https://placehold.co/600x400/000000/FFFFFF?text=Python",
+    "videos": [
+      { "video_id": "py01", "title": "Lecture 1: Introduction to CS and Programming Using Python", "video_url": "https://www.youtube.com/embed/xAcTmDO6NTI" },
+      { "video_id": "py02", "title": "Lecture 2: Strings, Input/Output, and Branching", "video_url": "https://www.youtube.com/embed/UdEX0E9lIQM" },
+      { "video_id": "py03", "title": "Lecture 3: Iteration", "video_url": "https://www.youtube.com/embed/lzYrMcI92kw" },
+      { "video_id": "py04", "title": "Lecture 4: Loops over Strings, Guess-and-Check, and Binary", "video_url": "https://www.youtube.com/embed/fWNZAw5Bmco" },
+      { "video_id": "py05", "title": "Lecture 5: Floats and Approximation Methods", "video_url": "https://www.youtube.com/embed/OF2sr5e7PrY" },
+      { "video_id": "py06", "title": "Lecture 6: Bisection Search", "video_url": "https://www.youtube.com/embed/PJ_5VNvJGtA" },
+      { "video_id": "py07", "title": "Lecture 7: Decomposition,Abstraction,and Functions", "video_url": "https://www.youtube.com/embed/Qf6OVR8MLnU" },
+      { "video_id": "py08", "title": "Lecture 8: Functions as Objects", "video_url": "https://www.youtube.com/embed/0fEJFRKJN4U" },
+      { "video_id": "py09", "title": "Lecture 9: Lambda Functions, Tuples, and Lists", "video_url": "https://www.youtube.com/embed/h5abkZ_Ch6c" },
+      { "video_id": "py10", "title": "Lecture 10: Lists and Mutability", "video_url": "https://www.youtube.com/embed/Z4bm7xzYpKM" },
+      { "video_id": "py11", "title": "Lecture 11: Aliasing and Cloning", "video_url": "https://www.youtube.com/embed/hpsp-LQurco" },
+      { "video_id": "py12", "title": "Lecture 12: List Comprehension, Functions as Objects , Testing and Debugging", "video_url": "https://www.youtube.com/embed/AZBxs3OvFrY" },
+      { "video_id": "py13", "title": "Lecture 13: Exceptions and Assertions", "video_url": "https://www.youtube.com/embed/qT3_7FMuv-U" },
+      { "video_id": "py14", "title": "Lecture 14: Dictonaries", "video_url": "https://www.youtube.com/embed/lTgLOuaQsvk" },
+      { "video_id": "py15", "title": "Lecture 15: Recursion", "video_url": "https://www.youtube.com/embed/Bbyp4VRbmyY" },
+      { "video_id": "py16", "title": "Lecture 16: Recursion on Non-numerics", "video_url": "https://www.youtube.com/embed/2XxGplWqXVQ" },
+      { "video_id": "py17", "title": "Lecture 17: Python Classes", "video_url": "https://www.youtube.com/embed/tsMrUdynbQQ" },
+      { "video_id": "py18", "title": "Lecture 18: More Python Class Methods", "video_url": "https://www.youtube.com/embed/gLnCmUkgUQk" },
+      { "video_id": "py19", "title": "Lecture 19: Inheritance", "video_url": "https://www.youtube.com/embed/rgM7Z9BNm1s"},
+      { "video_id": "py20", "title": "Lecture 20: Fitness Tracker Object-Oriented Programming Example", "video_url": "https://www.youtube.com/embed/rgM7Z9BNm1s" },
+      { "video_id": "py21", "title": "Lecture 21: Timings Programs and Counting Operations", "video_url": "https://www.youtube.com/embed/lvp4NfED6K4" },
+      { "video_id": "py22", "title": "Lecture 22: Big Oh and Theta", "video_url": "https://www.youtube.com/embed/RJhoT5PEf_0" },
+      { "video_id": "py23", "title": "Lecture 23: Complexity Classes Example", "video_url": "https://www.youtube.com/embed/loX34ct0hxs" },
+      { "video_id": "py24", "title": "Lecture 24: Sorting Algorithms", "video_url": "https://www.youtube.com/embed/R8Rw9mIa7JQ" },
+      { "video_id": "py25", "title": "Lecture 25: Plotting", "video_url": "https://www.youtube.com/embed/Jov7G7IpuLo" },
+      { "video_id": "py26", "title": "Lecture 26: List Access,Hashing,Simulations,and Wrap-Up", "video_url": "https://www.youtube.com/embed/4H0GXzQ41t0" }
+    ]
+  },
+  {
+    "course_id": "django-web",
+    "title": "Django Web Development",
+    "description": "Build powerful web applications with the Django framework.",
+    "image_url": "https://placehold.co/600x400/228B22/FFFFFF?text=Django",
+    
+  "videos": [
+    
+    { "video_id": "dj01", "title": "Introduction", "video_url": "https://www.youtube.com/embed/3EzKBFc9_MQ" },
+    { "video_id": "dj02", "title": "Setup and installation", "video_url": "https://www.youtube.com/embed/aAACOgAHg90" },
+    { "video_id": "dj03", "title": "Django Basics", "video_url": "https://www.youtube.com/embed/6Ctsv9VB8L8" },
+    { "video_id": "dj04", "title": "Database Setup", "video_url": "https://www.youtube.com/embed/DZVFgMSyRXI" },
+    { "video_id": "dj05", "title": "Adding Database Records", "video_url": "https://www.youtube.com/embed/qQPKqClSDbg" },
+    { "video_id": "dj06", "title": "Displaying Records", "video_url": "https://www.youtube.com/embed/RozHfswVZYE" },
+    { "video_id": "dj07", "title": "Admin Dashboard", "video_url": "https://www.youtube.com/embed/xc363xZGxXI" },
+    { "video_id": "dj08", "title": "Static Assets", "video_url": "https://www.youtube.com/embed/kJJx77PYMFA" },
+    { "video_id": "dj09", "title": "Forms", "video_url": "https://www.youtube.com/embed/WQISlkg_IZk" },
+    { "video_id": "dj10", "title": "Authentication", "video_url": "https://www.youtube.com/embed/0gAFW4UxsZg" },
+    { "video_id": "dj11", "title": "App Build(Part 1)", "video_url": "https://www.youtube.com/embed/wQPaXedytlg" },
+    { "video_id": "dj11", "title": "App Build(Part 2)", "video_url": "https://www.youtube.com/embed/jyjytSjqII4" },
+    { "video_id": "dj12", "title": "App Build(Part 3)", "video_url": "https://www.youtube.com/embed/ZpKl3U-arN8" }
+  ]
+
+  }
+]

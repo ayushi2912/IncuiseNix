@@ -1,0 +1,84 @@
+/* static/css/video_player.css */
+
+/* --- START: Player and Layout Styles --- */
+.plyr-container {
+    width: 100%;
+    max-width: 90%;
+    height: 75vh;
+    margin: 0 auto;
+}
+
+.plyr-container .plyr {
+    width: 100%;
+    height: 100%;
+}
+
+.plyr--video .plyr__controls .plyr__control svg {
+    color: #ffffff;
+    fill: #ffffff;
+}
+/* --- END: Player and Layout Styles --- */
+
+
+/* --- START: Force Hide YouTube Overlays --- */
+.plyr--youtube .ytp-pause-overlay,
+.plyr--youtube .ytp-endscreen-content {
+    display: none !important;
+}
+/* --- END: Force Hide YouTube Overlays --- */
+
+
+/* --- START: Toggleable Section Styles (Transcript/Assistant) --- */
+.toggleable-section {
+  display: none;
+  padding: 1.5rem;
+  background-color: #111;
+  border: 1px solid #30363d;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.toggleable-section.show {
+  display: block;
+}
+
+#assistant-chat {
+  position: relative !important;
+  transform: none !important;
+  transition: none !important;
+  display: none;
+  margin-top: 1rem;
+  border: 1px solid #30363d;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  bottom: auto;
+  right: auto;
+}
+
+#assistant-chat.show {
+  display: block;
+}
+/* --- END: Toggleable Section Styles --- */
+
+
+/* --- START: Custom Button Styles (Under Video) --- */
+.btn-video-options {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #e9ecef;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-video-options:hover {
+  background-color: #d6dbe1;
+  border-color: #c8ced5;
+  color: #212529;
+}
+/* --- END: Custom Button Styles --- */

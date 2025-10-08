@@ -1,0 +1,6 @@
+/* Add this new style to the bottom of the file */
+
+.transcript-line.active-transcript-line {
+    background-color: #d1e7fd; /* A light blue color */
+    color: #0c5460;
+}

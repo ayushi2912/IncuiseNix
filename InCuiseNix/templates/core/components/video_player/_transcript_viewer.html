@@ -1,0 +1,19 @@
+<aside id="transcript-section" class="transcript-terminal">
+    <div class="terminal-header">
+        <h5 class="terminal-header-title">Transcript</h5>
+        <button class="btn-close btn-close-white" aria-label="Close"></button>
+    </div>
+
+    <div class="terminal-body" id="transcript-container">
+        {% if transcript_lines %}
+            {% for line in transcript_lines %}
+                <p class="transcript-line" data-start="{{ line.start_time }}">
+                    <span class="timestamp">[{{ line.formatted_time }}]</span>
+                    <span class="text-content">{{ line.text }}</span>
+                </p>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">Transcript is not available for this video.</p>
+        {% endif %}
+    </div>
+</aside>

@@ -1,0 +1,71 @@
+<div class="container-fluid mt-4 pb-5" id="player-data-container"
+     data-video-id="{% if current_video %}{{ current_video.id }}{% endif %}"
+     data-csrf-token="{{ csrf_token }}">
+
+    <div class="row">
+        <div class="col-lg-3">
+            <h4 class="mb-3">Course Playlist</h4>
+            <div class="video-list-container">
+                {% for video in all_videos %}
+                    <a href="{% url 'video_player' course.id %}?vid={{ video.id }}" class="card-link">
+                        <div class="card {% if current_video and video.id == current_video.id %}current-video{% endif %}">
+                            <p class="tip" title="{{ video.title }}">{{ video.title }}</p>
+                            <p class="second-text">Lecture {{ forloop.counter }}</p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p>No videos available for this course.</p>
+                {% endfor %}
+            </div>
+            </div>
+
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-12">
+                     <h2 class="mb-4">{{ course.title }}</h2>
+                </div>
+            </div>
+
+            {% if current_video %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="video-section-wrapper shadow-sm rounded border p-3 mb-4">
+                        <div class="plyr-container">
+                            <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{ current_video.video_url|slice:"-11:" }}"></div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <h4 class="mb-0">{{ current_video.title }}</h4>
+                        </div>
+
+                        <div class="video-actions-toolbar d-flex flex-wrap gap-2 mt-3">
+                            <button type="button" class="btn btn-video-options" data-bs-toggle="modal" data-bs-target="#addNoteModal">
+                                <i class="fas fa-plus"></i> Add Note
+                            </button>
+                            <button type="button" class="btn btn-video-options" data-bs-toggle="offcanvas" data-bs-target="#notesOffcanvas">
+                                <i class="fas fa-list-ul"></i> View Notes
+                            </button>
+                            <button id="toggle-transcript-btn" class="btn btn-video-options" title="Show Transcript">
+                                <i class="far fa-file-alt"></i> Transcript
+                            </button>
+                            <button id="toggle-assistant-btn" class="btn btn-video-options" title="Toggle AI Assistant">
+                                <i class="fas fa-robot"></i> AI Assistant
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                  {% include 'core/components/video_player/_transcript_viewer.html' %}
+                  {% include 'core/components/video_player/_assistant_chat.html' %}
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <p class="mb-0">Please select a video from the playlist to begin.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

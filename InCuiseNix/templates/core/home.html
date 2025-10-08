@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% include 'core/components/home/_hero_section.html' %}
+
+{% include 'core/components/home/_status_section.html' %}
+
+{% include 'core/components/home/_featured_courses_section.html' %}
+
+{% include 'core/components/home/_faq_section.html' %}
+
+{% include 'core/components/home/_testimonials_section.html' %}
+
+{% include 'core/components/home/_about_section.html' %}
+
+{% include 'core/components/home/_social_follow_section.html' %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/animations.js' %}" defer></script>
+<script src="{% static 'js/home.js' %}" defer></script>
+{% endblock %}
+
+{% block footer %}
+  {% include 'core/components/_footer.html' %}
+{% endblock footer %}

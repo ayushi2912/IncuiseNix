@@ -1,0 +1,66 @@
+/* static/css/assistant.css */
+
+.ai-assistant-wrapper {
+    background-color: #ffffff;
+}
+
+.chat-box {
+    height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.chat-message {
+    padding: 0.75rem 1rem;
+    border-radius: 1.25rem;
+    max-width: 80%;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.chat-message.user {
+    background-color: #0d6efd;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.chat-message.assistant {
+    background-color: #e9ecef;
+    color: #212529;
+    align-self: flex-start;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.chat-message.loading {
+    align-self: flex-start;
+    color: #6c757d;
+}
+
+/* --- START: New Styles for Formatted Content --- */
+
+/* Add styles for lists, headings, etc. inside a chat message */
+.chat-message.assistant h1,
+.chat-message.assistant h2,
+.chat-message.assistant h3,
+.chat-message.assistant h4 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.chat-message.assistant ul,
+.chat-message.assistant ol {
+    padding-left: 1.5em;
+    margin-bottom: 0;
+}
+
+.chat-message.assistant p {
+    margin-bottom: 0.5em;
+}
+
+.chat-message.assistant p:last-child {
+    margin-bottom: 0;
+}
+/* --- END: New Styles for Formatted Content --- */

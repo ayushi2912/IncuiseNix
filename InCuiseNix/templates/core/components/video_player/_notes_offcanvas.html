@@ -1,0 +1,38 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="notesOffcanvas">
+  <div class="offcanvas-header">
+    <h5 id="notesOffcanvasLabel">My Notes for "{{ current_video.title }}"</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body" id="notes-list-container">
+    {% for note in notes %}
+    <div class="card mb-3 note-card" 
+         data-note-id="{{ note.id }}"
+         data-full-content="{{ note.content }}"
+         data-meta-info="Timestamp: {{ note.video_timestamp }}s &mdash; Added on: {{ note.created_at|date:'d M Y, H:i' }}">
+        
+        <div class="card-body">
+            <div class="note-status-indicator"></div>
+            <div class="note-text-wrapper">
+                <p class="card-text text-truncate">{{ note.content }}</p>
+                <p class="note-timestamp" data-seconds="{{ note.video_timestamp }}">
+                    Timestamp: {{ note.video_timestamp }}s
+                </p>
+            </div>
+            <div class="note-actions">
+                <button class="note-btn note-btn-edit btn-edit-note"
+                        data-note-id="{{ note.id }}"
+                        data-note-content="{{ note.content }}">
+                    Edit <i class="fas fa-pen-to-square ms-1"></i>
+                </button>
+                <button class="note-btn note-btn-delete btn-delete-note"
+                        data-note-id="{{ note.id }}">
+                    <i class="fas fa-trash-can"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p class="text-muted" id="no-notes-message">You have no notes for this video yet.</p>
+    {% endfor %}
+  </div>
+</div>

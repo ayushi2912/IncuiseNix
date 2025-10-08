@@ -1,0 +1,16 @@
+{% extends 'core/auth_base.html' %}
+
+{% block auth_title %}Create an Account{% endblock %}
+
+{% block form_content %}
+  {% for field in form %}
+    {{ field.errors }}
+    <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="input" placeholder="{{ field.label }}" id="{{ field.id_for_label }}">
+  {% endfor %}
+{% endblock %}
+
+{% block button_text %}Sign Up{% endblock %}
+
+{% block auth_footer %}
+  Already have an account?<a href="{% url 'login' %}" class="sign-up-link">Log in</a>
+{% endblock %}

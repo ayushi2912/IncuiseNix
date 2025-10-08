@@ -1,0 +1,293 @@
+/* --- Global Style Enhancements --- */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.section-title {
+  font-weight: 700;
+  margin-bottom: 4rem;
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  background-color: #f8f9fa;
+  padding: 6rem 0;
+}
+
+.hero-text-container {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.hero-image-container {
+  perspective: 1500px;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.hero-image {
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: rotateY(-15deg) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+
+.hero-image-container:hover .hero-image {
+  transform: rotateY(0) rotateX(0deg);
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+
+/* --- Status Section --- */
+.status-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.status-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 1.5rem rgba(0,0,0,0.1) !important;
+}
+
+/* --- Featured Courses Section --- */
+.course-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 1.5rem rgba(0,0,0,0.1);
+}
+
+.course-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* BUGFIX: Forcefully remove underline from the link wrapper */
+.course-card-link, .course-card-link:hover {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Style for the title itself */
+.course-card-link .card-title {
+  color: #212529; 
+  transition: color 0.2s ease-in-out;
+}
+
+/* Adds a nice hover effect to the title */
+.course-card-link:hover .card-title {
+  color: #663F83; 
+}
+
+
+.course-rating {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #ffc107;
+}
+
+.course-rating .rating-text {
+  color: #6c757d;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+
+
+/* --- Testimonials Section --- */
+.testimonials-section {
+  background-color: #f1f3f5;
+  padding: 6rem 0;
+}
+
+.testimonial-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.testimonial-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-name {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-role {
+  color: #6c757d;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #663F83;
+}
+
+/* Styles for FAQ Hover Effect */
+.accordion-button {
+  cursor: default;
+}
+
+/* --- Social Follow Section --- */
+.social-follow-section {
+  padding: 4rem 0;
+}
+
+.social-icon {
+  font-size: 1.75rem;
+  color: #343a40;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  color: #663F83;
+}
+
+
+/* --- New FAQ Hover Styles --- */
+
+/* Keep the button pointer for better UX, but disable Bootstrap's click event */
+.accordion-button {
+  pointer-events: none;
+  font-weight: 700;
+  background-color: #f9f7f9;
+  
+}
+.accordion-item {
+  cursor: pointer;
+}
+
+/* On hover, make the button white and the text colored */
+.accordion-item:hover .accordion-button {
+  background-color: #663F83;
+  color: #E7E3E3;
+}
+
+/* Hide the content area by default */
+.accordion-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out;
+}
+
+/* On hover, expand the content area */
+.accordion-item:hover .accordion-collapse {
+  max-height: 200px; /* Adjust if your answers are longer */
+  opacity: 1;
+}
+
+/* Animate the arrow icon on hover */
+.accordion-item:hover .accordion-button.collapsed::after {
+  transform: rotate(-180deg);
+}
+
+
+/* --- Team Section Card Styles --- */
+
+.team-card {
+  position: relative; /* Required for the text overlay */
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+  height: 100%;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 1.5rem rgba(0,0,0,0.2);
+}
+
+.team-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will cover the area, you can change to 'contain' if you want to see the whole image */
+  display: block;
+}
+
+.team-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 20%, transparent);
+}
+
+.team-card-overlay h5, .team-card-overlay p {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.team-card-overlay p {
+  color: #ddd; /* Lighter color for the role text */
+  margin-bottom: 0;
+}
+
+/* --- Final 3D Hero Button --- */
+.btn-hero-wrapper {
+  text-decoration: none; /* Removes underline from the link wrapper */
+}
+
+.btn-hero-final {
+  --c: #fff;
+  /* text color */
+  background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
+    #663F83; /* Original violet color */
+  color: #0000;
+  border: none;
+  transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
+  text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0 var(--c),
+    calc(var(--_i,-1)*-0.08em) .01em 2px #0004;
+  outline-offset: .1em;
+  transition: 0.3s;
+  border-radius: 8px; /* Rounded corners */
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 1.25rem; /* Adjusted size */
+  margin: 0;
+  cursor: pointer;
+  padding: .5em 1em; /* Adjusted size */
+}
+
+.btn-hero-final:hover,
+.btn-hero-final:focus-visible {
+  --_p: 0%;
+  --_i: 1;
+}
+
+.btn-hero-final:active {
+  text-shadow: none;
+  color: var(--c);
+  box-shadow: inset 0 0 9e9q #0005;
+  transition: 0s;
+}
