@@ -1,0 +1,714 @@
+Start Time,End Time,Text
+0.0,16.44,"So today, we're going to wrap up talking about functions by talking about these things"
+16.44,20.84,called lambda functions as a way for us to create anonymous functions.
+20.84,27.72,And that will pretty much finish our exploration into creating functions.
+27.72,33.56,"And the last part of the lecture, we're going to introduce new object types, tuples and lists."
+33.56,38.28,So let's remember what we did last time.
+38.28,39.8,We ended with this example.
+39.8,42.04,We created a function.
+42.04,45.56,"You guys wrote it for me, and then we kind of wrote it and debugged it together."
+45.56,48.32,But we created this function called apply.
+48.32,55.32,"So what was interesting about this function is that one of its parameters was a function,"
+55.32,57.32,and the other one was an integer.
+57.32,62.84,"And that seemed a little strange at first, but not when we realized that functions in Python"
+62.84,65.08,are actually just objects.
+65.08,70.0,"And so they have a name, which means that anywhere where we use other kinds of objects,"
+70.0,73.64,"like integers, floats, we can use them as parameters to functions."
+73.64,79.12,We can use other functions as parameters to functions as well.
+79.12,85.4,"So here criteria, we had just used it as a variable name, assuming that the type of criteria"
+85.4,92.12,"as a function, according to this documentation, we assume that it takes in a number and returns"
+92.12,93.12,a Boolean.
+93.12,97.12,"So we just wrote the body of the function, assuming that that is true."
+97.12,102.32000000000001,So right here is where we used this function named criteria.
+102.32000000000001,104.36000000000001,We assumed that it takes in an integer.
+104.36000000000001,109.44,"So we passed in the loop variable i as an integer, and we assumed it returns a Boolean."
+109.44,114.96000000000001,"So we were able to use the return of criteria, parentheses i, just as a Boolean inside my,"
+114.96000000000001,117.28,as my condition for this if statement.
+117.28,121.56,So hopefully you got a chance to look through this example from last lecture.
+121.56,125.64000000000001,So that's the definition of this function that takes in another function as a parameter.
+125.64000000000001,129.16,And then the way we use the function is down here.
+129.16,132.48000000000002,So apply is us making our function call.
+132.48000000000002,137.24,"And then the first parameter is the name of a function, and the second parameter is an integer."
+137.24,144.28,So the name of the function we're running is this object that we defined over here.
+144.28,147.08,Hopefully this is just review.
+147.08,153.52,"Now what's interesting about this example is that this is even function is pretty simple,"
+153.52,154.52,right?
+154.52,156.12,It's basically a one-liner.
+156.12,159.72,It doesn't do any computations inside the function body.
+159.72,166.96,"It basically just takes in a value, an input, and returns something."
+166.96,173.12,"And so we didn't really need to create a function, a full-fledged function definition just"
+173.20000000000002,175.6,to do this really simple task.
+175.6,178.16,"And in fact, that's what a Lambda function is."
+178.16,182.96,"It's basically a way for us to create an anonymous function, a function that does something"
+182.96,187.88,"really simple, but we just don't give it a name."
+187.88,193.8,And so here is the function that we created with an actual definition up here.
+193.8,197.96,We can create an equivalent anonymous function that looks like this.
+197.96,202.88,So this is a much more concise way for us to create a really simple function that we
+202.88,205.32,only need to use one time.
+205.32,211.84,"So here is, I'm going to just map out one by one the important pieces of the Lambda function."
+211.84,218.28,So the Lambda keyword starts out the anonymous function and it tells Python that we're creating
+218.28,220.07999999999998,this anonymous function.
+220.07999999999998,222.0,So Lambda is not the name of the function.
+222.0,227.56,It just tells Python we're going to create this function in one line that is nameless.
+227.56,231.2,X is going to be any parameters that we expect this function to take.
+231.20000000000002,236.24,"So if we have more than one we just separate them with commas, colon is again the same."
+236.24,241.88000000000002,"And then the body of the function, if you can write it in one liner that's not too complicated,"
+241.88000000000002,243.56,you can make a Lambda function out of it.
+243.56,248.92000000000002,So here notice we don't actually have a return keyword when we're creating the Lambda function.
+248.92000000000002,254.60000000000002,We're just doing the operation that we wish to return the value from.
+254.60000000000002,260.36,So that's percent two equal to zero is basically the body of my Lambda function over here.
+260.36,264.48,So the key thing about Lambda functions is that it allows you to create a really quick
+264.48,268.0,function object that you basically want to use only one time.
+268.0,270.48,And so we're not giving it a name.
+270.48,272.32,So let's look at the code.
+272.32,276.24,So here is my apply function that we've seen before.
+276.24,281.28000000000003,"Here is us, I showed you this last time I created another definition for another simple"
+281.28000000000003,284.36,function that takes in an integer and returns a Boolean.
+284.36,289.56,In this case this function just tells me whether that input is equal to five.
+289.56,295.84,And this is kind of where we left off last time we ran apply with this is five function.
+295.84,299.16,So that prints apply with is five is one.
+299.16,307.04,There's only one integer between zero and ten where applying this returns true.
+307.04,311.32,Now with an anonymous function just to show you how we would write a Lambda function for this
+311.32,314.08,"is underscore five, it would look like this."
+314.08,316.8,So again we tell Python we're creating an anonymous function.
+316.8,322.52000000000004,"It has just the one input x, colon, no return, and just the body of the function is going"
+322.52000000000004,327.64,to be the thing that we would like to return x equal five.
+327.64,331.32,So again this notice we're not actually passing in the name.
+331.32,336.0,"There is no name for this anonymous function, but it works in the exact same way as if we"
+336.0,340.64,had created this function over here.
+340.64,345.8,"And just to sort of bring that, and I can run it again, and you can see it apply with"
+345.8,352.8,"the function name is one, and obviously apply with this anonymous function also returns one."
+352.8,359.04,So just to bring the point home I want to show you one other way to think of these anonymous
+359.04,360.04,functions.
+360.04,367.44,So here is me calling my is even function with a parameter eight.
+367.44,373.88,"Now in order for me to actually run it, run this line here I had to have the function definition"
+373.92,375.56,way up here.
+375.56,379.48,But again it's a really simple function if I only want to use it one time.
+379.48,389.12,"I can create a lambda function, and this over here is equivalent to this function definition"
+389.12,396.64,and a function definition over here.
+396.64,401.32,"So you can think of this line over here, so the part that I've highlighted as sort of"
+401.32,406.28,"creating the definition all in one line, not giving it a name."
+406.28,412.24,And then the parentheses here is us calling those lines of code for that function definition
+412.24,415.71999999999997,with that parameter eight.
+415.71999999999997,420.0,And so the usefulness of lambda functions is when you want to create these really quick
+420.0,423.0,functions that you don't want to reuse.
+423.0,430.64,"Obviously if we wanted to reuse the functionality of the is even, but we created it using a lambda"
+430.64,436.0,"function, we would have to basically copy this line and paste it all over again."
+436.0,442.71999999999997,"So we'd have to take this, copy it, paste it, and give it another input."
+442.71999999999997,447.68,Because this lambda function does not actually create it in memory with a name.
+447.68,456.71999999999997,There's no way for us to access the body because it's nameless.
+456.72,464.20000000000005,"So when we, so just to finish how we call lambda functions, so basically when we called"
+464.20000000000005,473.08000000000004,"apply is even 10, the equivalent to calling that function name but with a lambda function"
+473.08000000000004,478.04,is basically putting in the entire body of the lambda function inside this other function
+478.04,479.04,call.
+479.04,484.52000000000004,"So here we're both defining and telling, and then telling Python that this is my input to"
+484.52,490.0,the function.
+490.0,495.12,"So I know this is a U-triot, but I thought that we would actually run through it together"
+495.12,498.91999999999996,step by step on the next few slides.
+498.91999999999996,501.0,So let's try to understand what this is doing.
+501.0,504.35999999999996,I've got a function definition named due twice.
+504.35999999999996,507.96,"It takes in one input, another input."
+507.96,513.68,"But if we look at the body here, this Fn, that's the input, is actually being called like"
+513.6800000000001,518.08,a function inside the body.
+518.08,524.48,So we can immediately tell that Fn is going to be a function when we actually make the call
+524.48,526.0000000000001,to due twice.
+526.0000000000001,532.36,"And indeed, when we make the call to due twice down here, N is mapped to three and the"
+532.36,539.7600000000001,second parameter Fn is mapped to this anonymous lambda function.
+539.76,544.84,"So let's step through a little by little in the same manner that we learned last lecture,"
+544.84,550.4399999999999,"so creating actual environments, whatever we see a function call, mapping parameters, actual"
+550.4399999999999,557.2,"parameters to formal parameters, and following through on what exactly happens within each"
+557.2,559.4399999999999,function body.
+559.4399999999999,564.0,"So when we first make the function call, right, or sorry, when we first run this program"
+564.0,571.08,"if it has these sort of three lines of code inside it, Python creates our global environment."
+571.08,574.24,"Inside the environment, we've got one function definition here."
+574.24,577.64,So this is going to be this function object.
+577.64,584.56,"And then I've got the thing that actually kicks off my function calls, my program."
+584.56,589.28,So I've got a print statement that will print the result of doing something.
+589.28,594.04,"So the first thing I can see here is that I've got a function called to due twice, right,"
+594.04,595.88,so I'm going left to right.
+595.88,601.24,The first thing I do when I have a function call is I create a new environment.
+601.24,606.1999999999999,"Inside this environment of due twice, I have to see what it takes in, what are its formal"
+606.1999999999999,607.1999999999999,parameters?
+607.1999999999999,610.72,There's one called N and one called Fn.
+610.72,613.8399999999999,So there's one parameter N and the other one Fn.
+613.84,620.52,And now I basically map one by one the formal parameter to the actual parameter.
+620.52,624.6,So the N gets mapped to the three because that's the first parameter of due twice.
+624.6,628.9200000000001,"And the Fn gets mapped to this function object here, right."
+628.9200000000001,634.6,So the Fn gets mapped to this lambda function here.
+634.6,636.2800000000001,"Okay, that's exactly what I said."
+636.2800000000001,638.08,So we've done the mapping.
+638.08,641.76,"And now that we've done the mapping, we can do the body of due twice."
+641.76,644.6,So the body of due twice says return.
+644.6,652.48,And then I have to replace everywhere I see Fn with this lambda function.
+652.48,658.04,And everywhere I see N with this three.
+658.04,661.88,"Well, Fn is going to be a function call, right."
+661.88,665.72,"Whenever we see a function call, we need to create a function scope."
+665.72,671.52,"So before I can do the return, before this due twice can terminate, can return its value,"
+671.68,673.68,it sees a function call.
+673.68,676.8,"So when there's a function call, we need to create another scope, right."
+676.8,677.64,Another environment.
+679.64,686.48,"This environment belongs to the function call of lambda x, colon x squared, right."
+686.48,688.76,"Now this function, of course, doesn't have a name."
+688.76,692.16,"Normally, I would say, you know, this is the F environment or"
+692.16,694.68,this is the G environment or that is even environment.
+694.68,696.4,But there's no name for this one.
+696.4,699.64,So I'm just going to write up here the body of that function.
+700.64,701.4399999999999,All right.
+701.4399999999999,705.8,"Well, in this function, again, following sort of the rules one by one,"
+705.8,711.08,what we need to do is figure out what are the parameters of this function.
+711.08,714.12,"Well, there's one called x."
+714.12,716.3199999999999,So here's my parameter x.
+716.3199999999999,720.52,And then I need to figure out what does this map to.
+720.52,726.16,"Well, what it maps to is the parameter inside it."
+726.16,729.68,But the parameter inside it is fn parenthesis n.
+731.7199999999999,733.7199999999999,Do we have a return value for this yet?
+734.9599999999999,735.88,"No, right?"
+735.88,738.92,Because this is another function call.
+738.92,745.24,"So what ends up happening is this environment gets put on hold as well,"
+745.24,749.56,because we can't figure out what parameter this lambda function takes it.
+749.56,751.1999999999999,What is its value?
+751.2,756.1600000000001,"So we create another scope, another environment."
+756.1600000000001,763.44,"And in this particular case, this one is going to belong to this inside bit here,"
+763.44,764.6400000000001,fn parenthesis n.
+766.36,771.2800000000001,"So this lambda xx squared is going to be the exact same function again,"
+771.2800000000001,772.88,being called again.
+772.88,777.4000000000001,"And in this particular environment, we need to map x to its input."
+777.4,784.24,So the input to x squared is going to be n.
+784.24,786.84,"Well, this environment doesn't know about n."
+786.84,788.64,So we pop up one level.
+788.64,790.28,This environment knows about n.
+790.28,791.16,It's three.
+791.16,798.68,So it passes that value along down to this lambda call.
+798.68,805.92,So now that this inner sort of highlight yellow over here knows what it needs to do.
+805.9200000000001,808.6800000000001,It needs to take in this x and return x squared.
+808.6800000000001,813.96,"So it calculates 9, and then returns 9 to whoever called it."
+813.96,822.6400000000001,That 9 gets replaced now as the input to this outer fn.
+822.6400000000001,824.7600000000001,"So just to show you exactly what gets replaced,"
+824.7600000000001,830.5200000000001,that entire function call there gets replaced with 9.
+830.5200000000001,834.7600000000001,"As soon as we've done the return, that environment goes away."
+834.76,840.04,"And at this point, this call to lambda xx squared can terminate as well,"
+840.04,845.4,"because it takes in the number 9, and it returns 9 squared."
+845.4,847.52,So this one returns 81.
+847.52,851.96,So this entire function call is 81.
+851.96,855.24,"And as soon as it returns, that environment goes away."
+855.24,860.56,"And now, do twice can finally finish its job and return 81."
+860.56,863.68,It just basically passes this value along backup.
+863.6800000000001,865.7600000000001,So that returns 81.
+865.7600000000001,869.6400000000001,So this entire due twice call is going to be 81.
+869.6400000000001,875.1200000000001,"Why does lambda, why would there two come again?"
+875.1200000000001,880.0400000000001,"There were two of them, because this outer fn calls an inner fn."
+880.0400000000001,886.1200000000001,"So we, yeah, okay."
+886.1200000000001,889.4000000000001,So that wraps up our discussion on functions.
+889.4000000000001,893.36,And there's a couple exercises in the Python file associate with this lecture
+893.36,898.32,"with lambda functions, just so you can give it a try with those."
+898.32,899.32,"Yeah, question."
+899.32,905.5600000000001,"Lambda functions, we use frames that were applied, you can do a few slides back."
+905.5600000000001,908.08,"Well, apply was just a function that I wrote."
+908.08,915.36,"So in this new example, I was just printing the result of calling that function."
+915.36,917.52,Yeah.
+917.52,921.36,"So again, this kind of trace of what happens throughout the program is really,"
+921.36,922.2,really useful.
+922.2,926.4000000000001,"So if you have some time to try to get that down,"
+926.4000000000001,931.44,"it will be very, very helpful as you trace through some programs."
+931.44,936.2,"Okay, so that ends our discussion on functions."
+936.2,940.0,"And really, the only syntax we've introduced in the past couple lectures"
+940.0,944.12,were just about how to wrap code we've already been using in a function.
+944.12,949.76,"So not much new syntax, but today we're going to introduce some new syntax"
+949.76,952.36,along with the introduction of two new data types.
+952.36,956.6,One is called a two-pole and the other one is called a list.
+956.6,959.2,So what are the data types we've seen so far?
+959.2,962.68,"We've seen integers, floats, basically numbers."
+962.68,964.68,We've seen Booleans's truth values.
+964.68,968.76,"We've seen this none type, type which has one value none."
+968.76,972.12,"And we actually also saw the string data type, right?"
+972.12,975.68,"We could think of the string data type as sort of a compound data type,"
+975.68,978.64,like a sequence of single characters.
+978.64,982.08,"And in fact, we were using that string in that way"
+982.08,986.92,"because we were able to index into the string to grab the character at index zero,"
+986.92,991.1999999999999,"a sort of slice the substring, right, to get the length of the string."
+991.1999999999999,993.88,"Today, we're going to introduce two more compound data types."
+993.88,996.84,So these things called two-poles and these things called lists.
+996.84,1002.1999999999999,"And throughout the lecture, you should really think about how it's very,"
+1002.1999999999999,1006.88,very similar to the strings that we've already seen.
+1006.88,1011.12,"So a lot of the operations I'm actually going to skip,"
+1011.12,1017.08,"aside from sort of the syntax of how we denote a two-pole or a list,"
+1017.08,1019.4399999999999,really the operations that we do with two-poles in lists
+1019.4399999999999,1023.04,"are going to be exactly the same as the ones that we did with strings, right?"
+1023.04,1027.24,"So if you understand indexing and slicing and getting the length of the string,"
+1027.24,1032.24,"all that stuff, you'll understand how to do that for two-poles in lists."
+1032.24,1036.28,"All right, so two-poles are indexable ordered sequences of objects."
+1036.28,1039.76,"That's kind of a lot, so we can break that down."
+1039.76,1041.72,"So first of all, it's a sequence of objects."
+1041.72,1046.08,"Just like a string was a sequence of single characters,"
+1046.08,1049.8,"a two-pole is going to be a sequence of not just characters,"
+1049.8,1052.48,but any kind of object.
+1052.48,1056.52,Ordered sequence means that there will be an order to this sequence.
+1056.52,1060.28,"So there's going to be an object at the first position in my two-pole,"
+1060.28,1062.56,an object at the second position in my two-pole.
+1062.56,1065.0,"And so on, just like there was a character at the first position,"
+1065.0,1067.4,"character at the second position, and so on."
+1067.4,1072.2,"And indexable ordered sequence means that we can index into this object,"
+1072.2,1076.2,"so we can grab the element at index zero, grab the element index one,"
+1076.2,1079.36,and so on and so on.
+1079.36,1083.24,So how do we create these two-poles?
+1083.24,1085.44,"I should note that some people call them tuples,"
+1085.44,1089.2,"because they're just kind of like an end-tuple kind of thing,"
+1089.2,1093.12,"so you can call them two-poles or tuples, however you'd like."
+1093.2800000000002,1097.4,So how do we create these two-pole objects?
+1097.4,1104.4,"Well, we can create a tuple object that's empty using just open and close parentheses."
+1104.4,1109.72,So we could create strings using just sort of the open and closed quotation marks.
+1109.72,1113.4,We create an empty tuple by doing open and closed parentheses.
+1113.4,1116.2800000000002,"Now, this is different than functions, right?"
+1116.2800000000002,1120.0400000000002,"This is a little bit similar, or might be, but confusing because we use parentheses"
+1120.0400000000002,1121.8000000000002,to make function calls.
+1121.8,1124.76,"But notice, it's just the parentheses by themselves, right?"
+1124.76,1128.36,"There's no function name, nothing preceding the parentheses."
+1128.36,1133.52,"So to Python, it's not going to be confusing when you just do this."
+1133.52,1136.3999999999999,You can create a tuple with one element in it
+1136.3999999999999,1141.9199999999998,by putting open closed parentheses that element that you want to add to your tuple
+1141.9199999999998,1144.56,and then a comma right after it.
+1144.56,1151.52,"Now, the comma's there to differentiate a tuple"
+1151.52,1158.2,with one element from sort of using parentheses as precedents over an operation.
+1158.2,1164.28,"So just as an example, if I create a is equal to five, like this, right?"
+1164.28,1166.96,I'm using parentheses around an integer.
+1166.96,1170.52,But the type of a is still an integer.
+1170.52,1172.76,"I'm basically just using the parentheses to say,"
+1172.76,1177.72,I want to do this five before doing anything else.
+1177.72,1179.44,Which is a little strange to do.
+1179.44,1182.44,And the value of a is five.
+1182.44,1187.24,"But if I do b is equal to the tuple for comma,"
+1187.24,1190.76,"this tells Python that this is now a sequence of objects,"
+1190.76,1193.68,but there's just one object in my sequence.
+1193.68,1200.92,"So the type of b is a tuple, not an integer, right?"
+1200.92,1205.72,"And if I say ask what b is, you can see it's for comma, right, in parentheses."
+1205.72,1213.56,"So it's an object, it's a tuple with one object in it."
+1213.56,1216.76,"OK, so to create a tuple with many objects in it,"
+1216.76,1220.76,"we basically put in parentheses all the objects I want to add in my tuple,"
+1220.76,1221.92,separated by commas.
+1221.92,1226.6000000000001,"So here, I've got my first element in my tuple, integer 2,"
+1226.6000000000001,1229.1200000000001,"second element in the tuple, the string of my t,"
+1229.1200000000001,1232.4,and the third element in my tuple being the integer 3.
+1232.4,1235.08,"And notice, we can mix and match now objects"
+1235.08,1237.8,of different types within my tuple object.
+1237.8,1241.36,"So here, I've got integers and strings and integers."
+1241.36,1244.8,"I can even add floats and booleans and whatever object types I'd like,"
+1244.8,1247.96,"I can make them elements to my tuple, which is pretty cool, right?"
+1247.96,1255.48,"Different than strings in that respect, but still in order within my tuple."
+1255.48,1258.52,And so the rest of this is actually operations
+1258.52,1260.76,that we've already seen on strings.
+1260.76,1263.76,So I'm not going to go through them in too much detail.
+1263.76,1266.72,"We can use the square bracket to index into the tuple,"
+1266.72,1269.72,"so to grab the element at a particular index,"
+1269.72,1272.48,"again, indexing starts from 0."
+1272.48,1276.4,We can use a plus operator to concatenate two tuples together
+1276.4,1281.6,to create one larger tuple with all those elements in a row.
+1281.6,1284.4,We can slice down here.
+1284.4,1285.92,"We can get the length of the tuple,"
+1285.92,1290.4,"which tells us how many elements are in it, so three elements."
+1290.4,1294.8000000000002,"We can use the max, min, sum, things like that"
+1294.8000000000002,1297.6000000000001,"to grab the maximum element and minimum element,"
+1297.6000000000001,1300.64,"sum all the elements of my tuple, and things like that."
+1300.64,1305.0400000000002,"Notice that here, I've got parentheses for the max function call,"
+1305.0400000000002,1308.24,and then another set of parentheses here
+1308.24,1311.6000000000001,to denote that I have one tuple object I'd like to grab the max of.
+1314.96,1317.4,And then the last bit here is something
+1317.4,1319.5600000000002,that we're going to see that's different with lists
+1319.5600000000002,1322.16,"in the next lecture, not today."
+1322.16,1326.44,"But basically, you might think that once you create this tuple"
+1326.44,1331.1200000000001,"object in memory, that has two MIT3 as its three elements in it,"
+1331.1200000000001,1334.48,you can go into memory and modify one of the elements.
+1334.48,1336.24,"If I don't want the middle one to be a string,"
+1336.24,1337.64,"I want it to be a common integer, you"
+1337.64,1340.8400000000001,might think that you should be able to change it.
+1340.8400000000001,1343.64,"You can with lists, as we'll see in the next lecture,"
+1343.64,1346.1200000000001,but you cannot do this with tuples.
+1346.1200000000001,1351.0000000000002,"Just like once we created an integer five inside memory,"
+1351.0000000000002,1353.5600000000002,we can't go into memory and tell Python
+1353.5600000000002,1355.5200000000002,to change this five to a six.
+1355.5200000000002,1356.96,It's just not allowed.
+1356.96,1359.0400000000002,"Or once we created a string, ABC, and memory,"
+1359.0400000000002,1362.3200000000002,you can't go into memory and change the string.
+1362.3200000000002,1366.24,"You can certainly create new objects that are based on this string,"
+1366.24,1369.92,but you can't go in and modify that object once it's created.
+1369.92,1372.0400000000002,"So once you've made your sequence of tuples,"
+1372.04,1376.48,you cannot go in and change it.
+1376.48,1377.48,So yeah.
+1377.48,1378.28,I have a question.
+1378.28,1381.8,"So if you just re-wrote like t equals,"
+1381.8,1385.36,"and then it goes to different, it would be like an error."
+1385.36,1387.8,"If you wrote t equals, and then something different."
+1387.8,1390.2,So you can't block that one thing.
+1390.2,1392.96,"Yeah, that's a good question."
+1392.96,1395.8,"So the variable t, so the name t,"
+1395.8,1399.24,and the object it's bound to are two different things.
+1399.24,1402.32,So the object it's bound to will still sit in memory.
+1402.32,1404.2,We're just going to lose the binding from it.
+1404.2,1406.92,"So that t initially points to this one,"
+1406.92,1409.76,"but then if you say t equals something else later on,"
+1409.76,1411.68,"this one still stays there, but that t"
+1411.68,1414.4,is going to point to this new thing.
+1414.4,1416.72,So the object itself is still in memory.
+1416.72,1418.56,We've just lost the binding to it.
+1418.56,1421.2,And that's something we did sort of way back in the first
+1421.2,1424.68,early lectures where we kind of rebound variables.
+1424.68,1426.0,Yeah.
+1426.0,1430.8,So it's the same idea.
+1430.8,1433.28,"One interesting thing that we can do now with tuples,"
+1433.28,1436.88,"that we couldn't with strings, is to have"
+1436.88,1441.0,elements of a tuple be another tuple.
+1441.0,1443.28,"And that's what this example is going to show, OK?"
+1443.28,1447.08,So here I've got an integer 2 as my first element.
+1447.08,1448.84,My second element is the string a.
+1448.84,1451.32,My third element is my integer 4.
+1451.32,1455.6,And my fourth element is a tuple object that just happens
+1455.6000000000001,1459.3200000000002,to have two elements inside it.
+1459.3200000000002,1464.96,But this tuple object that I'm referencing by a cq
+1464.96,1468.16,seek only has four elements in it.
+1468.16,1471.44,"It just so happens that the last one is a tuple,"
+1471.44,1474.5600000000002,but I'm not going to dive further down to figure out
+1474.5600000000002,1476.6000000000001,if I have tuples that have subtuples
+1476.6000000000001,1478.2800000000002,that have subtuples and so on.
+1478.2800000000002,1483.3200000000002,"Only top level, I care about how many elements I have."
+1483.3200000000002,1485.2400000000002,"And so when I print the length of seek,"
+1485.72,1488.56,"it's going to be four, because I have one, two, three."
+1488.56,1493.04,And then this last object is just one object that takes up one slot.
+1493.04,1497.56,It happens to have elements within it.
+1497.56,1499.64,And so the rest of these are basically
+1499.64,1503.68,what we've seen with strings except for this one here.
+1503.68,1509.68,"If we were to index into the last element here of seek 1,2,"
+1509.68,1511.56,"well, this is another tuple, right?"
+1511.56,1515.8,So it should follow that I can then take that tuple
+1515.8,1518.28,and further index into it.
+1518.28,1521.8799999999999,And so that's what this line here is doing.
+1521.8799999999999,1524.72,"When we read an expression, we go left to right."
+1524.72,1529.6799999999998,"So basically seek at index three grabs for me the 1,2."
+1529.6799999999998,1533.84,"And then if I further index into 1,2 at index zero,"
+1533.84,1537.24,I'm going to grab the number one.
+1537.24,1541.36,So I'm basically chaining all these indices indexing operations together.
+1545.2,1549.68,"And then this is, again, very similar to what we've seen from strings."
+1549.68,1553.36,So it's just slicing instead of indexing into the tuple.
+1553.36,1556.44,"I'm not going to go through it today,"
+1556.44,1561.36,but I encourage you to type them in and type in some other things
+1561.36,1564.72,as you might have done with the strings.
+1564.72,1568.44,One thing that I do want to mention is
+1568.44,1574.0,that we can iterate over a tuple just like we could iterate over a string.
+1574.0,1578.1200000000001,"I don't mean over indices, but I mean over the elements directly."
+1578.1200000000001,1580.16,"So when we iterate it over a string directly,"
+1580.16,1588.2,"we were able to grab in our loop variable the characters at each index, right?"
+1588.2,1593.4,"Similarly, we can iterate over a tuple to grab the elements at each index directly."
+1593.4,1597.0400000000002,"So here, I've got 4e in seek,"
+1597.0400000000002,1603.88,is going to make my loop variable e take on each element of the tuple directly.
+1603.88,1605.72,"Not the index, but each element."
+1605.72,1609.52,"So as I'm looping through, e will first have a value 2,"
+1609.52,1612.8000000000002,"then it'll have a value a, then it'll have a value 4,"
+1612.8000000000002,1615.88,"and lastly, it'll have this value 1,2."
+1615.88,1620.0800000000002,"And so if I just print that out directly, you'll see these values print it out."
+1624.4,1628.6000000000001,"So very, very similar to some of the operations we've done with strings,"
+1628.6000000000001,1631.0800000000002,"the only differences we just now have to be careful,"
+1631.0800000000002,1635.2800000000002,that our tuples can have elements that are other tuples
+1635.2800000000002,1639.2800000000002,or basically any object in Python.
+1639.2800000000002,1641.4,So what do we use tuples for?
+1641.4,1647.76,"Well, there was this one example we did way back at the beginning of 600L,"
+1647.76,1649.52,"where we tried to swap variables,"
+1649.52,1651.84,"and we basically said that this way did it work,"
+1651.84,1654.52,because we overwrote the variable.
+1654.52,1659.6399999999999,"We overwrote the variable, and then we weren't able to get back to the value that was over it."
+1659.6399999999999,1663.24,So our solution was to create this temporary variable
+1663.24,1665.96,"to save the value before we overwrote it,"
+1665.96,1672.72,"then overwrite the variable, and then use the temporary variable to grab that saved value."
+1672.72,1677.28,"Well, turns out tuples actually allow us to do these three lines of code"
+1677.28,1680.16,in one line of code here.
+1680.16,1685.72,"So we can say x, y equals y, x."
+1685.72,1688.32,"So this is an assignment, and it's allowed,"
+1688.32,1695.92,because the left-hand side is basically a set of variables in sequence.
+1695.92,1698.8,"And the right-hand side gets evaluated first,"
+1698.8,1701.08,as we would an assignment statement.
+1701.08,1704.3999999999999,"So y gets the value 2, because that's what it is up here,"
+1704.3999999999999,1706.04,and x gets the value 1.
+1706.04,1709.6399999999999,So y is 2x is 1 over here on the right-hand side.
+1709.6399999999999,1714.96,"And then Python 1 at a time matches the values on the right to the values on the left,"
+1714.96,1716.72,separated by commas.
+1716.72,1721.6,"So basically, what we have here is x is equal to 2, y is equal to 1,"
+1721.6,1727.04,and then the values have been rebounded.
+1727.04,1733.84,"So very, very, very useful, very good use of tuples here."
+1733.8400000000001,1738.8400000000001,"Now, this idea can actually be taken one step further,"
+1738.8400000000001,1745.2,and we can use tuples to return more than one value from a function.
+1745.2,1748.96,"Now, I know in the past couple lectures,"
+1748.96,1754.6000000000001,"I said, basically, you can't return more than one thing from a function."
+1754.6000000000001,1756.2800000000002,The function returns only one thing.
+1756.2800000000002,1758.4800000000002,"As soon as it sees a return statement,"
+1758.4800000000002,1761.2400000000002,"it takes the value associated with that return,"
+1761.24,1764.92,and returns it back to whoever called it.
+1764.92,1768.04,But tuples are one object.
+1768.04,1772.92,They just so happen to have elements that can have different values.
+1772.92,1774.68,You can have a tuple with 10 elements in it.
+1774.68,1777.8,You can have a tuple with two elements in it.
+1777.8,1783.64,"Using a tuple, we can actually return one object, the tuple itself."
+1783.64,1786.4,It just so happens to have a whole bunch of values
+1786.4,1789.48,that my function might calculate.
+1789.48,1791.44,"And so by way of the tuple, I'm actually"
+1791.44,1795.32,able to return a whole bunch of different values
+1795.32,1797.4,through this one object tuple.
+1797.4,1800.28,"And so in this particular example, I have a function"
+1800.28,1802.28,that calculates the quotient and the remainder
+1802.28,1803.56,when x is divided by y.
+1806.84,1813.68,So the function itself uses integer division to find the quotient
+1813.68,1816.88,and uses the remainder operator to find the remainder.
+1816.88,1821.3600000000001,"And then it returns that q calculation, some number,"
+1821.3600000000001,1825.5200000000002,"and that our calculation, another number as elements to a tuple."
+1825.5200000000002,1831.7600000000002,"And Python returns this one tuple object using this line here,"
+1831.7600000000002,1834.16,returning this object.
+1834.16,1838.0,And so when I make this function call to quotient and remainder
+1838.0,1840.8400000000001,"10 comma 3, it's going to go in."
+1840.8400000000001,1844.5600000000002,"It's going to calculate the quotient to be 3, the remainder to be 1."
+1844.56,1848.6799999999998,And it's going to return 1 object 3 comma 1.
+1848.6799999999998,1852.0,"And then that gets assigned to this variable, both,"
+1852.0,1853.8799999999999,that I named both in this particular case.
+1857.12,1859.8,"If I wanted to access the quotient part of both,"
+1859.8,1861.8799999999999,I would do both square bracket 0.
+1861.8799999999999,1865.1599999999999,"And the remainder part of both would be both square bracket 1,"
+1865.1599999999999,1869.24,accessing the 0th element and the first element of the return.
+1869.24,1872.8,"Now, if I wanted to explicitly save the quotient and remainder"
+1872.8,1876.32,"as variables after they got returned,"
+1876.32,1880.12,I can actually do the trick we saw in the previous slide.
+1880.12,1883.08,The trick we saw in the previous slide was x comma y equals
+1883.08,1884.84,some other tuple.
+1884.84,1886.6,"Well, that's what I'm doing here."
+1886.6,1890.0,I'm making a function called a quotient and remainder 5 comma 2.
+1890.0,1893.1599999999999,That's going to return 2 comma 1.
+1893.1599999999999,1898.08,"And then I'm going to have, quote, comma rem, equals 2 comma 1."
+1898.08,1902.08,So Python 1 at a time is going to map the quote to 2
+1902.08,1904.72,and the rem to 1.
+1904.72,1907.12,And so what that means for us in terms of the code
+1907.12,1912.24,is we can then do whatever we'd like in the remaining part
+1912.24,1913.04,of the code.
+1913.04,1917.1599999999999,Code assuming that quote and rem are just regular variables.
+1917.1599999999999,1920.12,"So here, I'm just showing that you can print them out"
+1920.12,1921.6399999999999,in these print statements.
+1921.6399999999999,1925.08,"So here, I have quotient is 2 and remainder is 1"
+1925.08,1927.0,as these two lines of code here.
+1933.08,1937.1999999999998,"OK, so the big idea of tuples, the reason why we use them"
+1937.1999999999998,1945.1999999999998,is you can use them to return more than 1 value via this 1
+1945.1999999999998,1947.48,tuple object from a function.
+1947.48,1949.52,"And so in this way, we can have a function that"
+1949.52,1954.4399999999998,does a whole bunch of calculations returns this 1 object
+1954.4399999999998,1956.6,that might contain all of these different values
+1956.6,1960.24,as the elements to this tuple object.
+1960.28,1964.08,So let's have you work on this for a couple minutes.
+1964.08,1966.1200000000001,Write a function that meets the specification.
+1966.1200000000001,1968.44,So it's called char counts.
+1968.44,1972.48,"I've got an input that is a string S, lowercase characters."
+1972.48,1975.1200000000001,Assume it's just got vowels and consonants.
+1975.1200000000001,1978.16,Return for me a tuple where the first element in the tuple
+1978.16,1980.6,is how many vowels are in S. And the second element
+1980.6,1983.64,of the tuple is how many consonants are in S.
+1983.64,1986.28,So it should be pretty straightforward.
+1986.28,1988.52,"A hint I have here, if you don't remember,"
+1988.52,1991.36,that will make your life easier as try to remember
+1991.36,1994.6399999999999,how to check if a character is in a string.
+1994.6399999999999,1999.28,"So using the special in keyword, right?"
+1999.28,2001.8799999999999,We saw an example of this probably back
+2001.8799999999999,2003.04,when we learned about strings.
+2006.92,2011.76,"So you can try to write your code around line 65-ish,"
+2011.76,2012.92,and then we can write it together.
+2013.3600000000001,2016.6000000000001,All right.
+2016.6000000000001,2019.4,So how would you approach this problem?
+2022.6000000000001,2024.16,So what's the first step here?
+2029.48,2033.0800000000002,"Yep, we can make a string that contains all the vowels."
+2033.0800000000002,2038.6000000000001,"Vowels equals a-o-u, and lowercase, because, yep."
+2038.6000000000001,2039.1200000000001,Nice.
+2042.92,2043.76,Next.
+2046.88,2047.88,Yeah.
+2047.88,2052.88,"So if the car is in that list, then we could like have"
+2056.76,2059.7200000000003,where we can track like plus equals?
+2059.7200000000003,2060.52,Yep.
+2060.52,2061.36,Yep.
+2061.36,2063.52,Vowels plus equals one.
+2065.08,2067.16,"And else, we know it's not a vowel,"
+2067.16,2071.6800000000003,so we'll keep a consonants count plus equals one.
+2072.48,2075.9199999999996,"So this is the consonant count, and this is the vowel's count."
+2081.7999999999997,2084.7599999999998,"What is char, in this case, though?"
+2089.2799999999997,2090.2,"Yeah, exactly."
+2090.2,2094.52,We have to loop so for char in S.
+2094.52,2098.48,So we need to look at every character inside S.
+2098.48,2101.52,"And this is where, now that we're dealing with, you know,"
+2101.52,2106.72,"things that might be non-interiors in my four loops,"
+2106.72,2108.4,we can write little notes for ourselves.
+2108.4,2114.2,"That's something like char is a, then b, then c,"
+2114.2,2115.04,or something like that.
+2115.04,2118.84,"To remind us, that char is not the index,"
+2118.84,2122.56,but it's an actual thing.
+2122.56,2125.8,And then what else we need to do?
+2132.04,2133.88,"Yeah, we can initiate C and V0."
+2133.88,2139.08,"We can use the trick where you do C comma V equals 0 comma 0,"
+2139.08,2143.6,"or we can just do it on separate lines, all good."
+2143.6,2146.8,"And then lastly, this does the work for us,"
+2146.8,2151.6,but the function needs to have something to show for it.
+2151.6,2158.84,"Yeah, after the loop, we'll return the tuple C comma V."
+2158.84,2163.36,"So sorry, V comma C, probably."
+2163.36,2168.4,"And if we run it, it matches what we expected."
+2168.4,2170.48,"So 1, 3, and 0, 5."
+2170.48,2173.04,And you can imagine adding a couple more test cases.
+2173.04,2175.0,"Maybe something with an empty string,"
+2175.0,2178.6400000000003,"that should return 0, 0, and maybe something with all vowels,"
+2178.6400000000003,2181.1200000000003,which should return some number comma 0.
+2182.12,2190.6,"OK, so one other thing we can do with tuples"
+2190.6,2192.92,is to create these functions that take
+2192.92,2196.7999999999997,a variable number of arguments is in as a parameter.
+2196.7999999999997,2198.64,"So remember when we define functions,"
+2198.64,2203.3599999999997,we basically tell Python how many parameter we expected to take.
+2203.3599999999997,2205.64,"But it's possible to have some functions,"
+2205.64,2210.08,"for example, max or min, that can take in two parameters here."
+2210.08,2212.88,Notice there's no extra parentheses.
+2212.88,2216.12,"Or we can just add as many numbers as we'd like,"
+2216.12,2219.88,and it will still work to take the max of all of these sets
+2219.88,2220.4,of numbers.
+2220.4,2224.56,"And again, we didn't make this inner thing a tuple,"
+2224.56,2229.04,although it works even with the tuple as an object.
+2229.04,2231.56,But our goal here is to try to write a function
+2231.56,2235.96,"that can take in a variable number of arguments, either 2"
+2235.96,2239.84,"or 3, or 10, or 20, and it should still work."
+2239.84,2242.48,And the way we do that is using a parameter
+2242.48,2245.48,that's defined using the star notation.
+2245.48,2248.44,"So as soon as you create a function,"
+2248.44,2252.28,"and its parameter is star, and then the name of your input,"
+2252.28,2256.4,Python basically takes that input and assigns it to a tuple
+2256.4,2259.92,"behind the scenes, so you don't have to."
+2259.92,2263.8,"And so in this particular case, we're not writing our own max"
+2263.8,2268.4,"or min or some, we're writing our own mean function."
+2268.4,2271.84,And this mean function will take in a variable number
+2271.84,2274.6800000000003,"of arguments, and it's going to figure out"
+2274.6800000000003,2276.96,the mean of all of these values.
+2276.96,2279.4,The way it does that is pretty simple.
+2279.4,2281.92,Now that we know that we can just treat args
+2281.92,2285.8,as a tuple of a bunch of numbers.
+2285.8,2289.48,So we just loop through all of the elements in args.
+2289.48,2292.52,"We add up this running total, and at the end,"
+2292.52,2296.28,we return the total divided by how many arguments were given.
+2296.28,2299.48,So return total divided by the length of the args.
+2299.48,2302.1600000000003,And then when we make a function call to the function we just
+2302.1600000000003,2307.2000000000003,"wrote mean here, args will take in, sorry, args"
+2307.2000000000003,2313.32,will become a tuple that's all of the parameters inside there.
+2313.32,2316.36,"And so here's that example, which means"
+2316.36,2321.96,"that we can use our function to get the mean of 1, 2, 3, 4, 5, 6."
+2321.96,2323.96,But we can use the exact same function
+2323.96,2326.56,"to get the mean of 609, for example."
+2326.56,2329.76,"So first case, I have six parameters as my input."
+2329.76,2332.4,"But in the second case, I've got only three parameters"
+2332.4,2333.48,as my input.
+2333.48,2340.84,And that little star in my arguments allows me to do this.
+2340.84,2345.32,Now I did write a version of this mean for you guys down here
+2345.32,2350.52,where I'm assuming that mean doesn't have the star.
+2350.52,2353.44,So assuming that args is a tuple itself.
+2353.44,2357.6,"And in that case, you would have to call the mean function"
+2357.6,2361.88,by explicitly passing in only one argument that is a tuple.
+2361.88,2366.16,So this extra set of parentheses makes my argument the tuple.
+2366.16,2369.64,So take a closer look at that if you're interested.
+2372.36,2376.16,So I want to introduce lists today.
+2376.16,2379.56,And a lot of the slides here are basically
+2379.56,2382.96,copy and paste from the tuple slides.
+2382.96,2385.0,The only difference in these slides
+2385.0,2390.2,that I have regarding lists is the way we define a list.
+2390.2,2393.68,"So in terms of defining a list or defining a tuple,"
+2393.68,2395.92,we were using parentheses.
+2395.92,2399.96,"But to define a list, we use open-close square brackets."
+2399.96,2402.2,"But otherwise, a lot of the operations"
+2402.2,2406.64,are exactly the same as tuples and as strings.
+2406.64,2409.8,We're not going to look at what it means for lists
+2409.8,2411.12,to be mutable this lecture.
+2411.12,2414.68,But next lecture will be all about mutability.
+2414.68,2419.2799999999997,"But today, I just want to give you a sense of what a list is."
+2419.2799999999997,2423.52,"So as I said, this is copy and paste from the tuple slide."
+2423.52,2427.56,"When I create a list, I just use open-close square brackets."
+2427.56,2431.44,This creates a list for me with no elements within it.
+2431.44,2433.04,Creating a list with one element in it
+2433.04,2435.48,doesn't need that extra comma because there's
+2435.48,2440.2799999999997,no confusion with operation precedence with square brackets.
+2440.28,2442.1200000000003,So there's no need for that.
+2442.1200000000003,2445.6800000000003,"But otherwise, everything else here is exactly the same"
+2445.6800000000003,2446.6000000000004,as with tuples.
+2446.6000000000004,2450.96,We're just using square brackets instead of parentheses.
+2450.96,2454.8,"So remember, strings and tuples, it's the same."
+2454.8,2458.0,What I do want to mention and talk a little bit about now
+2458.0,2459.96,that we've introduced tuples and lists
+2459.96,2464.36,is the idea of having our loops iterate over elements
+2464.36,2465.88,of tuples and lists directly.
+2465.88,2468.52,And I'm going to basically write these slides in the context
+2468.52,2470.84,"of lists, but the exact same thing"
+2470.84,2473.64,is applicable to tuples as well.
+2473.64,2477.7599999999998,So here is an example of us wanting
+2477.7599999999998,2480.2,to find the sum of the elements in a list.
+2480.2,2483.72,The code on the left is a little bit hard to parse.
+2483.72,2488.2,We've got loop variable going through range length n.
+2488.2,2490.96,"And then I have to keep my running total,"
+2490.96,2495.0,but I have to index into the list at that index here.
+2495.0,2496.56,And it's really hard to tell what's
+2496.56,2498.88,going on at a quick glance.
+2498.88,2501.84,"And so luckily for us, the way that we were able to iterate"
+2501.84,2504.32,"over string characters directly, we"
+2504.32,2508.16,can iterate over tuple and list elements directly.
+2508.16,2512.68,So the right hand side here is code
+2512.68,2515.7999999999997,"that does exactly the same thing as the one on the left,"
+2515.7999999999997,2519.12,except that our loop variable i in this particular case
+2519.12,2526.24,will take on the values of my list directly.
+2526.2400000000002,2529.6800000000003,"And so if we take that code, yes,"
+2529.6800000000003,2531.76,"I guess we call this version more pathonic,"
+2531.76,2533.8,because it's a lot easier to read.
+2533.8,2538.48,So if we take that code and wrap it around a function
+2538.48,2541.1200000000003,to make this piece of code be something
+2541.1200000000003,2543.28,that we can reuse in a whole bunch of places
+2543.28,2546.36,"to grab the sum of all the elements of a list, right?"
+2546.36,2547.4,We can do that.
+2547.4,2550.84,So here I've taken the code that does the work.
+2550.84,2552.76,I've plopped it inside this function.
+2552.76,2554.2400000000002,I've named list sum.
+2554.2400000000002,2556.2000000000003,I've taken a list as a parameter.
+2556.2000000000003,2557.9600000000005,"And instead of printing the total,"
+2557.9600000000005,2560.2000000000003,I'm returning the total.
+2560.2000000000003,2563.4800000000005,So very useful function now.
+2563.4800000000005,2568.84,"This loop variable i will take on the values 8, then 3, then 5,"
+2568.84,2572.44,if that's the list I called this function with.
+2572.44,2576.1200000000003,So a lot nicer than iterating over the index
+2576.1200000000003,2578.8,and then indexing into the list with the square brackets
+2578.8,2581.6400000000003,at that index.
+2581.6400000000003,2584.84,What I do want to mention is something when you're writing code
+2584.84,2588.1600000000003,and this is something that I sort of used to do
+2588.1600000000003,2591.1200000000003,when I first started out is to write a little comment
+2591.1200000000003,2593.44,for yourself right underneath the for loop.
+2593.44,2596.6000000000004,"Now I know it's a little tedious,"
+2596.6000000000004,2599.1200000000003,"but it does help you keep track of, especially"
+2599.1200000000003,2602.28,if now that we're iterating over tuples or over lists
+2602.28,2605.44,"or over string elements directly or even over the indices,"
+2605.44,2608.8,it helps you keep track of what this loop variable is value
+2608.8,2610.1600000000003,"is going to be, right?"
+2610.1600000000003,2612.0,And then you don't have to keep track of it in your mind.
+2612.0,2613.8,It's on paper and you can use your mind
+2613.8,2615.6800000000003,to keep track of other things.
+2615.6800000000003,2618.2000000000003,"So if you just write a little comment for yourself there,"
+2618.2000000000003,2622.1200000000003,it helps you debug along the way.
+2622.1200000000003,2626.96,"So once we iterate over list elements directly,"
+2626.96,2630.36,it makes code that we write really easy to read.
+2630.36,2633.1200000000003,So here the code on the left is going to iterate over
+2633.1200000000003,2636.8,the elements directly and get the running total.
+2636.8,2640.48,But we can make a really small change to the input list.
+2640.48,2643.8,"Let's say our input list no longer takes in just numbers,"
+2643.8,2649.08,but it can take in strings.
+2649.08,2654.84,We can make one small change to our loop body.
+2654.84,2658.48,Our loop variable still iterates over all the elements
+2658.48,2661.88,in the list L. And then if we write the note for ourselves
+2661.88,2666.04,"that S is going to be AB, then D, F, then G,"
+2666.04,2668.68,if we wanted to write code that grabbed the sum
+2668.68,2672.44,"of all of the lengths of the list,"
+2672.44,2676.48,the total plus equals E on the left hand side becomes total plus
+2676.48,2679.68,equal length of S on the right hand side.
+2679.68,2683.44,"So length of S, one at a time, will take on the value 2"
+2683.44,2685.6,because AB has length 2.
+2685.6,2688.52,"And then 3 because D, F, has length 3."
+2688.52,2691.7999999999997,And then 1 because G has length 1.
+2691.7999999999997,2694.52,"So the code looks very similar, but they have different"
+2694.52,2697.52,functionalities depending on what we want to do.
+2700.52,2705.04,"OK, we don't have time to go through this, you try it,"
+2705.04,2709.0,but definitely try it on your own at home.
+2709.0,2711.72,It's very useful plus a whole bunch of other functions
+2711.72,2713.88,that I've put in this Python file for you
+2713.88,2717.12,to get a lot of experience with tuples and lists.

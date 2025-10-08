@@ -1,0 +1,402 @@
+Start Time,End Time,Text
+0.0,18.3,"Okay. So let's get started. Today's lecture, we're going to do a little bit of a recap"
+18.3,24.46,"of the last lecture. We had begun talking about binary numbers, and then we're going"
+24.46,32.22,"to dive into our second algorithm of the class, the approximation method algorithm. So let's"
+32.22,37.38,"remember the motivation we had for even talking about binary numbers, and how numbers are"
+37.38,42.58,represented in the computer in the first place. And the motivation was this piece of code.
+42.58,49.18,"So it's very simple. We have an initial x is 0, and then we have a loop that just adds"
+49.18,58.94,"0.1 to itself 10 times, and then we printed whether that sum equals 1. And what we saw was"
+58.94,65.38,that it was false. Printing x equivalent to 1 was false. So then we printed what the
+65.38,72.5,"actual value of x was after adding 0.1 to itself many 10 times, and we saw that that summation"
+72.5,79.46,"was actually 0.999999. And of course, to Python 0.9999 is not equal to 1, so that's"
+79.46,86.12,"why we had printed false for x equivalent to 1, right? That expression. And so this"
+86.12,91.74000000000001,"is our motivation. Why in the world does this happen in programming and Python, and something"
+91.74000000000001,95.42,"like this could really screw us up, right? If we're not even able to compare floating"
+95.44,105.14,"point numbers. So last lecture, we ended with this piece of code. It was a way for us to get"
+105.14,110.34,"the binary representation of a number in base 10, right? So given some number, we followed"
+110.34,116.98,"a really simple recipe, a really simple algorithm to convert that number into base 2."
+116.98,122.26,"The stuff that's in boxes, let's not worry about it for now, but let's look at just this"
+122.34,127.94,part right here. So the stuff that's in between the two boxes. And this is the part that does
+127.94,134.98000000000002,"most of the work for us, or all of the work even for us. It basically creates a string, initially"
+134.98000000000002,143.74,"empty. And the idea was that we were going to prepend either 0 or 1 to that string, depending"
+143.74,149.94,"on whether the number we had was odd or even. So for a number like 19, if we wanted to convert"
+149.94,156.94,"19 base 10 into base 2, what the algorithm was doing is over here in the loop. It says"
+158.78,165.7,"while the num, this num, whatever it is, initially 19 is still greater than 0. Let's get the"
+165.7,171.14,remainder when we divide the number by 2. So that's what this num percent 2 is doing. It's
+171.14,179.34,"either getting a 0 or 1. So 19, the remainder when we divide 19 by 2 is 1. And we're going"
+179.34,185.78,"to prepend, so we're casting this one integer to a string and prepending it to this result,"
+185.78,191.86,"which is initially empty. So that's what this line is doing, result equals this thing here."
+191.86,196.18,And then we're going to take our number and integer divided by 2. So we're going to take
+196.18,201.78,"the number 19 and divide it by 2. So that's going to be 9.5, but we're only interested"
+201.78,209.18,"in the integer portion of it, so 9. And then the loop does the check again, is 9 still"
+209.18,214.3,greater than 0? It is. So then we're going to say what's the remainder when we divide 9
+214.3,220.54000000000002,by 2? It's another one. So we're going to prepend it that remainder to the string that we're
+220.54000000000002,226.94,"building up. And again, we're going to divide this number by 2. So now we have 4.5, and we only"
+226.94,233.86,"grab the integer portion of it. 4. And again, we ask, what is the remainder when we divide"
+233.86,242.82000000000002,"4 by 2? It's a 0. So we prepend the 0 to this binary string we're building up. Again,"
+242.82000000000002,249.18,we divided by 2. It's a 2. The remainder when we divide 2 by 2 is 0. It's an even number.
+249.18,260.18,"Again, we divide 2 by 2. It's a 1. And the remainder when we divide 1 by 2 is a 1. And so this"
+260.18,268.22,"is the string that we had eventually systematically, iteratively, built up with this loop here. And"
+268.22,275.38,"num, after we divide this, is going to be 0, and then we break out of the loop. So the"
+275.38,285.1,"binary representation of 19 was 1, 0, 0, 1, 1, base 2. We just kept it as a string. The parts"
+285.1,292.94,that are in red boxes is us dealing with a negative number. So if the user wanted to convert
+292.94,300.14000000000004,"negative 19 to a binary representation, this, if else, up here, says, is the number less than"
+300.14000000000004,307.34000000000003,"0? If yes, let's set a negative flag to true. And let's just assume the user gave us a positive"
+307.34000000000003,312.94,"number. So we convert that negative 19 to the absolute value of itself, positive 19. This"
+312.94,319.66,"code goes through as if the user had given us a positive number. And then at the end, we would get"
+319.66,326.46,"the same number as before, except that we're going to prepend a negative sign. So the negative,"
+326.46,335.1,"so the binary representation of negative 19 is just negative the same thing. Okay. So that's,"
+335.1,340.46,"that was where we ended up. We talked about these integers. But now what about fractions, right?"
+340.46,346.46,"Integers seems really easy. There's a really easy, simple procedure algorithm, right? Recipe for"
+346.46,351.58,"us to follow to get the binary representation. But what about these fractions? Oh, yeah, sorry."
+352.29999999999995,357.41999999999996,"So how does the negative write? Everything's going to be a 0, 1. So how does it read the negative?"
+359.34,364.94,"Here. Oh, we just, it doesn't read it. We just pretend like we were given a positive number."
+365.65999999999997,368.46,And then we just do the same process over again.
+369.26,375.73999999999995,"Okay, so the computer doesn't understand it. I mean, it, for the purposes of the algorithm,"
+375.73999999999995,381.41999999999996,it doesn't need to know because the number will come out the same. We just flag it as being a negative
+381.41999999999996,386.06,"number. And then at the end, we say, hey, we were actually given a negative number. So let's just"
+386.06,391.5,pop this negative sign right in front of it. Okay. And then when we talk about like the powers that
+391.5,398.14,"like two is, but two, like are we like going left to right like descending powers or ascending powers?"
+399.1,404.38,We are actually doing ascending when we're building up the string because we're going right to left.
+405.1,413.34,"So we're, yeah, yeah, exactly. So this is 2 to the 0 and this is 2 to the 4. Yeah."
+415.42,420.3,"So in terms of fractions, if we're thinking about what it means to talk about a fraction in"
+420.3,426.7,"human readable base 10, right? So number 0 through 9, when we have 0.abc, we're basically saying"
+426.7,433.58000000000004,"that's a divided by 10 plus b divided by 100 plus c divided by 1000 and so on. And in base 2,"
+433.58000000000004,438.94,we're going to have the same sort of thing going on. If we're talking about a base 2 representation
+438.94,447.74,"of a number, 0.abc, where now a, a, b or c is just 0 or 1 instead of 0 through 9, it's going to be"
+447.74,453.58,the same thing. So we would have a divided by 2 plus b divided by 4 plus c divided by 8 and so on.
+453.58,460.38,"So we're now we're dealing with powers of 2 instead of powers of 10, right? Because our base is now 2"
+460.38,467.42,instead of 10. So that means the binary representation of a decimal fraction basically means can we find
+467.42,475.82,"some sort of combination of these values, 0.5 times a 0 or 1 plus 0.25 times a 0 or 1 plus 0.125 times"
+475.82,482.78,0 or 1 and so on and so on. So these are all the powers of 2. So I'll give you the recipe for how
+482.78,488.78,"we can actually find the, the, the representation of a fraction. And this is not something that we expect"
+488.78,493.9,you to come up just like the recipe for this is not something we expect you to come up with. But given
+493.9,500.06,"the recipe, you should be able to sort of intuitively figure out what is the code that actually, you know,"
+500.06,508.54,"performs this, this, this, this action, right? That does this recipe. So the idea to convert a decimal"
+508.54,518.54,"number to a, a decimal fraction in base 10 to a fraction, sorry, to a binary fraction, right in base 2"
+518.54,526.46,"is as follows. So let's look at the decimal number 3 divided by 8, just as an example. So that's 0.375,"
+526.46,535.98,"right? But we know it's 3 over 8 in base 10. So using numbers, you know, numbers 0 through 9,"
+535.98,542.3000000000001,"we end up saying it's 3 over 10 plus 7 over 100 plus 5 over 1000, right? That's just base 10. But we"
+542.3000000000001,548.7,need to come up with a way to convert this into base 2. And so the trick here is to basically say
+549.58,559.34,"what is the biggest multiple of 2 that I can multiply my number, my decimal number with such that I"
+559.34,565.98,"end up getting a whole number, an integer. That's sort of the trick to this whole thing. Can I"
+565.98,574.62,multiply my 0.375 or whatever fraction I'm interested in calculating and changing to base 2 by some power of
+574.62,580.38,"2 big enough, such that I'm going to get a whole number out of this, out of the multiplication."
+580.38,586.54,"And it has to be a power of 2 because we're converting it to binary, right, 0s and 1s. So in this simple"
+586.54,595.26,"example, 0.375 is 3 divided by 8, so that means that the smallest power of 2 I can multiply"
+595.98,604.14,"3 over 8 by to give me a whole number is 8, right? That's 2 to the power of 3. So if I multiply 0.375"
+604.14,613.74,"by 8, 3 over 8 times 8 gives me 3 in base 10. And now this whole number I know how to convert to"
+613.74,618.78,"binary. I have a recipe, right? We've done it on the board here. We have the code on the previous slide."
+619.5,626.6999999999999,"So all we have to do now is convert the number 3 to binary, which is just 1, 1, base 2."
+626.7,636.94,"But this 1, 1 is a representation of the number 3. So in order to get back to 0.375, I need to divide my"
+636.94,647.1,"3 by 2 to the power of 3. So I need to divide my 1, 1 by 2 to the power of 3. And in binary, dividing by"
+647.1,654.5400000000001,"some power of 2 just means shifting the decimal point over. Just like in base 10, dividing by 10 means"
+654.54,661.8199999999999,"shifting the decimal point over. So if number 3 is 1, 1, and I multiply by 2 to the 3 to get this"
+661.8199999999999,668.4599999999999,"value, to divide by 2 to the 3, I just need to move the decimal point from just after the 1, 1 over 1,"
+668.4599999999999,677.5,"2, and then add another 0. So the representation of the 0.375 becomes 0.011, right? I just shifted"
+677.5,681.18,"this decimal point over by 3, because now we're dealing in base 2."
+683.98,691.82,"OK, so that's the system. That's the recipe for getting this binary representation out of a decimal"
+691.82,698.94,"number. But there's a problem, right? This is all relying on the fact that I can find this magical"
+698.94,705.42,"power of 2, right? That if it's big enough, right? I can find such a power of 2 that when I multiply"
+705.5,711.66,"with my decimal number, I get a whole number out of it. And that's not always the case. Sometimes that"
+711.66,718.78,"power of 2 is going to be really, really big, or it might not even exist, OK? And so if it's really"
+718.78,723.9799999999999,"bigger, if it doesn't exist, that's where we run into problems, as we're going to see in a little bit,"
+723.9799999999999,730.54,OK? So this is all relying on the fact that I can find this power of 2. So here's the code to actually
+730.54,735.98,"do this recipe that I had on the previous slide. Finding the power of 2, doing the conversion,"
+735.98,740.62,"and then shifting the decimal point over. So I'm going to do a quick overview of the pieces,"
+740.62,745.02,and then we can run the Python tutor just to show you exactly step by step what's going on.
+745.66,752.3,"So let's say I want to do 0.625, and convert that to a power of 2. So I've got my x initialized up"
+752.3,760.2199999999999,"there. This bit here, so this big box here, is the part that finds this magical power of 2 for me."
+760.78,768.62,"OK? It's just a loop that keeps incrementing the p, the power, such that 2 to the power of p multiplied"
+768.62,777.0999999999999,by x. This percent 1 just gives me the decimal bit out of that multiplication is 0. So I'm going to
+777.0999999999999,786.78,"keep multiplying 2 to some power of p by x, as long as I still have a decimal piece to my number."
+786.86,792.54,"As soon as this percentage percent 1 becomes 0, that means that the number I end up with is"
+792.54,799.74,"some number dot 0. There is no more decimal part to it. At that point, I break out of the loop,"
+799.74,808.06,"and I found my power of p, or my power p. This is going to be the integer, so I'm multiplying x by"
+808.06,815.8199999999999,"that special power, by 2 to the power of that special power. And now I have this number. So on"
+815.82,822.86,"the previous slide, it's the number 3 and base 10. And then this box here is exactly the same"
+822.86,828.3000000000001,"as two slides ago. It's this procedure here. It's taking my number, whatever it may be,"
+828.86,836.3000000000001,"and getting the binary representation of it. And after that, we need to figure out how many"
+836.3000000000001,842.3000000000001,spaces to move the decimal point backward. So what is the power of p we multiplied that number by?
+842.3000000000001,847.2600000000001,"And now we need to work our way backward and say, well, that dot is here. Let me move the dot back"
+847.9000000000001,856.7,p steps. And that's what this is doing. So it's iterating through p minus however long this thing is
+857.58,863.34,"to pad the front with zeros. Because sometimes this is going to be a really small number,"
+863.34,869.2600000000001,"so I need to add some leading zeros before I put my decimal point. And then I put my decimal point,"
+869.26,876.3,and that's all this line is doing. And then I print my result. So Python tutor.
+883.8199999999999,888.14,"All right, so step through. So this is 0.625 just like in the slides."
+888.9399999999999,893.8199999999999,p is initially zero. So now this loop is just incrementing p1 by 1 to find
+895.02,897.9,the point where I have a remainder of zero.
+899.66,904.78,"So here I'm actually also printing the remainder. So here we still have a non-zero remainder,"
+904.78,911.74,"right? So it's 0.625 as a remainder, 0.25 as a remainder, 0.5 as a remainder. And then at some point,"
+911.74,918.38,"I had multiplied it by 2 to the power of 3 because p is 3, and I had a zero remainder. So now I've"
+918.38,924.54,"broken out of that loop, and I know num is equal to 5. I multiplied by 2 to the power of 3 times"
+925.3399999999999,933.42,"0.6 to 5 to give me 5. So now I need to convert num, which is 5 using this process we did here"
+933.42,940.06,"into binary. That's what this code is doing, and this is exactly this process we had here."
+940.06,945.8199999999999,"So I'm creating this result string, and then pre-pending a 0 or 1, whether the number is"
+946.4599999999999,952.54,"divisible by 2 or not. So the number 5 in binary is 1, 0, 1."
+955.02,962.14,"So that means I have 1, 0, 1 dot as my binary representation of 5, and now the code is going to"
+962.14,967.74,"go through this loop, which means it's going to move the decimal point to the left 3 slots,"
+967.74,976.06,because I have to multiply by 2 to the power of 3 to get the 5. So you can see it's going to go
+976.62,984.86,"loop through 3 slots, right? So here it is, it made the 0.101, and then, sorry, this bit, which I"
+984.86,991.2600000000001,"skipped over, applies the dot, right? So it puts the dot in front of it, and then the last step is to"
+991.2600000000001,995.82,just print the representation. So the binary representation of 0.65 is 0.101.
+995.82,1019.0200000000001,"So here's the code, and we can run it. So 0.5, the representation is 0.1, 0.625, which is"
+1019.0200000000001,1023.74,"what we had just done. The representation is 0.101, right? And we can play around with a bunch of"
+1023.74,1030.54,"these values, but then, when we do something like 0.1, what is the representation of 0.1,"
+1031.66,1035.42,right? Because now we can use this code to get the representation of whatever decimal we'd like.
+1036.3,1042.94,"0.1 was this troublesome decimal, so let's see exactly what happened. Well, it had to do a whole lot"
+1042.94,1050.22,"of divisions, right? It had to test a whole bunch of powers of 2 before it actually got to a whole"
+1050.22,1057.26,"number, right? In fact, about 50 of them, and we know that because there's about 50 of these"
+1057.26,1063.1000000000001,"0s and 1s here, right? So it was approximately 2 to the power of 50 that it had to multiply 0.1 by"
+1063.1000000000001,1079.42,before it got to a whole number. So what that means for us is a number that's kind of a linear
+1079.42,1087.3400000000001,"combination of powers of 2 is really easy and fast to compute, right? Something like this one"
+1087.3400000000001,1096.22,"here, 1 times 2 to the negative 3 is 0.001. But something like 0.1, which isn't as easy to see what"
+1096.22,1102.0600000000002,"the linear combination of all these powers of 2 are, is not so easy to compute, right? And in fact,"
+1102.0600000000002,1108.6200000000001,"we had to use our program to figure out exactly what it is. And it, for us, it was about 50 of these"
+1108.6200000000001,1114.7,"digits long, which was pretty long, right? And some of these numbers could be even longer, potentially infinite."
+1116.3000000000002,1122.5400000000002,"So the point here is that everything in computer memory is represented in terms of bits, right? 0s and"
+1122.5400000000002,1129.5800000000002,1s. The reason we went through this whole computation is because there are some numbers that are just
+1129.5800000000002,1137.18,"going to be way too big to fit inside the computer hardware, inside these representations, okay?"
+1137.18,1143.98,"So for integers, it's straightforward to deal with. We had a really fast way to compute the base"
+1143.98,1149.74,"to representation. But for fractions, it's a lot harder, and those numbers can be really, really big."
+1151.02,1155.3400000000001,"So now, how are these numbers actually represented inside computer memory? So they're actually being"
+1155.3400000000001,1165.74,"represented in two pieces. One piece is the significant digit, and the other piece is the power of 2."
+1167.5,1176.14,"So if we had the representation 1,1 inside computer memory, basically the significant digit is 1,"
+1177.02,1182.6200000000001,and the power of 2 is 1. So that means we're going to take this 1 dot and give it the power of 2. So
+1182.6200000000001,1188.46,we're going to add a 0 after it. So this is the binary 2 representation. We basically just move the dot
+1188.46,1195.18,"from here to here. And then the number 1, 0, and base 2 is 2.0, right? That's what we have on the first"
+1195.18,1201.1000000000001,"line. One comma negative 1, that representation means I'm going to take the significant digit 1,"
+1201.98,1207.42,and the power of 2 is negative 1. So I'm going to take this decimal point and move it to the left one.
+1207.42,1217.98,"So this is going to be 0.1, right? That's this number, 0.1, which is 0.5. This is base 2, this is base 10."
+1217.98,1231.66,"And just to bring the point home, 125 is going to be 125 as a significant digit, and 2 to the negative 2."
+1232.78,1237.98,"How is this going to work? Well, we're going to take the 125 and convert it to a power of 2. So it's"
+1238.06,1248.94,"what is this? I'm not going to remember what is 1, 1, 1, 1, 1, 0, 1. This is what 125 is in base 2,"
+1249.66,1256.78,"but the exponent here tells me it's negative 2. So instead of putting the dot here, I'm going to move it"
+1256.78,1263.34,"1, 2 over. So this is the actual number I'm representing in memory. And now I can just convert the two"
+1263.34,1273.74,"pieces separately. So this is going to be 31. What is this? 2, 5, right? So this is how computers actually"
+1273.74,1281.58,"represent numbers inside memory. And we call this the object type, which is decimal a real number,"
+1282.22,1285.8999999999999,a float because this decimal point kind of floats around.
+1285.9,1292.8600000000001,5 or 31.25 for number base 10.
+1292.8600000000001,1303.3400000000001,"Base 10 is 31.25, and 125 is how it's represented inside memory. So it's a base 10 sort of thing, and then what is the power of 2?"
+1303.34,1317.1799999999998,"So there's a couple conversions being done here. We're representing the 125 is base 10,"
+1317.8999999999999,1322.86,"and how much we need to move the decimal point, but first we need to make the conversion of 125 to"
+1322.86,1328.22,"binary, which is this long thing here, not counting this decimal point. The negative 2 does this,"
+1328.22,1333.02,"we need to move the decimal point over, and then we have the actual number we're trying to store,"
+1333.02,1338.46,right? And the reason we're doing this is because we're mostly just storing numbers as whole numbers
+1338.46,1345.34,"inside the memory. We're not storing fractions, right? Yeah, you know, because you want all that"
+1345.34,1351.74,"travel to convert the decimal to, oh, I know, but that was for fraction. That was for fraction, it's exactly"
+1351.74,1362.62,"yeah. Yeah. Okay, so in the end, we did all that because we're trying to figure out the error, right?"
+1362.62,1369.8999999999999,"Why do we get this error inside our programs? Well, in the end, it's because computers have a finite"
+1369.9,1378.14,"number of bits to store data. Most modern computers maybe have 32, maybe 64 bits to represent significant"
+1378.14,1387.42,"digits, right? So if we have 32 slots in order to put these significant digits, if our number based"
+1387.42,1394.94,"two representation was 50 digits long, then we're going to truncate at 32. We can't store those extra"
+1394.94,1401.5800000000002,"bits, right? And so a number like point one ends up actually being an approximation in base two"
+1401.5800000000002,1407.18,"inside computer memory. We're not able to store that number exactly, perfectly. So it becomes an"
+1407.18,1412.78,"approximation, right? And the approximation actually ends up being at the 32nd bit, right? That either"
+1412.78,1419.1000000000001,"will be zero or one, you know, depending on how we decide to truncate. And so the error is actually"
+1419.1000000000001,1425.5000000000002,"2 to the 2 to the negative 32, right? Which is on the order of 2 times 10 to the negative 10,"
+1425.5000000000002,1432.7,"which seems pretty small, right? It's a very small error. But we just saw that that error accumulates"
+1432.7,1439.2600000000002,"really, really quickly, right? So while point one has an error at the 2 to the negative 32 slot,"
+1439.9800000000002,1447.1000000000001,if we take that error and we just kind of accumulated over 10 increments as we had this loop that
+1447.1000000000001,1453.5800000000002,"went through 10 times, we see that that error ends up becoming a big problem, right? We see that it"
+1453.5800000000002,1461.42,"actually, at the negative 16th slot or something like that, it starts to round to the wrong thing."
+1461.42,1466.7800000000002,"And so we see things like this, right? We expect it to be one, but it's not one."
+1470.38,1476.38,"Okay, so the more of the story is we don't want to use equivalents, right? The equivalent operator,"
+1476.38,1483.98,"the equi-equ operator, when we're comparing floats. Because of errors like this, the errors can"
+1483.98,1488.5400000000002,accumulate and then we start getting the wrong answer and then your programs end up not doing what
+1488.5400000000002,1494.7800000000002,"you expect them to do, okay? So we always want to test whether some float is within some epsilon of"
+1494.7800000000002,1501.66,another float. And so that brings us to the approximation method. Last lecture we saw the guess
+1501.66,1506.78,and check method as a really simple algorithm for solving problems. We have a set number of solutions
+1506.78,1512.38,that we can check and then we check each one by one and then at some point we either find the solution
+1512.38,1517.5,"or we've checked all that we can check and we haven't found the solution, right? It's usually an"
+1517.5,1522.22,"integer, what we're kind of, the things that we're checking, but as long as you have some finite set of"
+1522.22,1530.38,"values you can check for a solution through, guess and check is totally applicable, okay? But the problem"
+1530.38,1535.3400000000001,"is it's a little bit limiting, right? It doesn't give us an actual approximation to the square root."
+1535.3400000000001,1539.9,"If you remember the code we wrote last time, it didn't actually say I'm approximating the square root"
+1540.7800000000002,1549.1000000000001,"of, you know, five to be 1.4 something or whatever it is or 2.0 something, right? It was just able to"
+1549.1000000000001,1555.1000000000001,tell me the square root of a perfect square or that the number you gave me is not a perfect square.
+1555.1000000000001,1559.42,"And so it's a really limiting algorithm. But the approximation method, the one we're going to see"
+1559.42,1564.94,"today actually is going to be able to give us an approximation to the square root of any number, okay?"
+1564.94,1570.46,"So it's better than guess and check because we don't just want the correct answer or nothing,"
+1570.46,1576.6200000000001,"it's not an all or nothing kind of situation, it's that we can approximate the answer to some degree."
+1578.22,1583.5,"So we're going to use guess and check when the exact answer that we want might not be accessible,"
+1583.5,1589.5,right? We need some way to find an answer that's just good enough. And approximation methods will
+1589.5,1595.74,not always and not usually actually most of the time will not give us the right answer. They'll usually
+1595.74,1602.46,"give us an approximation that's good enough, okay? And approximation methods they came about because"
+1602.46,1608.38,"of the exhaustive enumeration limitation, right? We're not able to test all the possible values to find"
+1608.38,1615.0200000000002,"exact square root of enum, right? Because those values are all infinite. So floating points come"
+1615.0200000000002,1621.5800000000002,"into play here, the whole thing we've been talking about at the beginning of this lecture and last time,"
+1622.38,1627.3400000000001,flowing points come into play here because they're very important to this method. Now that we're
+1627.3400000000001,1632.6200000000001,"comparing floats, we're going to have to be careful about how we actually do the comparison."
+1633.5800000000002,1638.8600000000001,"So how can we approximate the square root? Well, instead of looking at just whole numbers and"
+1638.8600000000001,1644.3000000000002,"saying whether we found the root or not, what we're going to do is have smaller increments. So no"
+1644.3000000000002,1653.0200000000002,"longer are we doing just integer guess and check? We can do 0.1, 0.2, 0.3, 0.4 and so on until we get"
+1653.0200000000002,1660.22,"to a guess that's close enough to x, right? So we say that 2.1 or whatever is good enough to the"
+1660.22,1666.7,"square root of 5. What does it mean to be good enough, right? Suppose we wanted to find this"
+1666.7,1671.42,"approximation to the square root, right? The guess and check was not able to do this for us, but"
+1671.42,1678.6200000000001,"the approximation method can. So what we're asking for, can we find a root such that that root times"
+1678.6200000000001,1687.02,"that root times itself is equal to x, right? And we're going to do this such that we have a good enough"
+1687.02,1695.74,approximation. So that means that root that we're going to find minus x is going to be less than
+1695.74,1702.78,"some epsilon or the absolute value of that subtraction is going to be less than epsilon, right? So in"
+1703.5,1708.94,"where we did incremental step by step, we're going to go through as long as we are within or until"
+1708.94,1715.98,"we are within some epsilon of x, okay? So the algorithm will be as follows. We're going to start with a"
+1715.98,1721.02,"guess that we know is too small. So for the square root of a number, we let's start with 0. And then"
+1721.02,1725.34,"we're going to increment it by a really small value. With guess and check, we incremented it by integers"
+1725.34,1732.94,"with this particular method. We can incremented by 0.5s or 0.1s or 0.001, whatever we'd like, okay?"
+1733.58,1738.8600000000001,That new increment gives us a new guess. We're going to check whether this new guess is now close
+1738.8600000000001,1743.34,"enough to x. If it is, we're good. And if it's not, we're just going to keep incrementing the guess"
+1743.3400000000001,1751.5000000000002,"until we get close enough to the actual answer, okay? So we are, we have two parameters we actually"
+1751.5000000000002,1758.14,need to set in the approximation algorithm. The first is an epsilon. So this is down here. How close do
+1758.14,1763.7400000000002,we want to be to the final answer? What's the leeway? We're going to allow. And second is the
+1763.7400000000002,1771.8200000000002,increment. So how much do we want to change our guess by? The way the algorithm performs depends
+1771.82,1778.22,"on the values we choose for these. Obviously, if our guess is smaller, right, if we decrease the"
+1778.22,1787.82,"increment, we're going to get a much more accurate approximation, right? If we increase the epsilon,"
+1787.82,1793.1799999999998,"how close we want to be to x, our program is going to be a faster because we're going to enter that"
+1793.1799999999998,1799.5,"plus minus epsilon boundary faster. But it's going to be less accurate because at some point,"
+1799.5,1802.54,we're going to enter the boundary. I'm going to say good enough. I'm not going to get any
+1802.54,1808.14,"closer to x because there's no need to. I'm already with an epsilon. So here, the guess, you know, good"
+1808.14,1812.78,"enough guess was to the square root of five was one point something. But on the previous slide,"
+1812.78,1816.54,"right, when we had a smaller epsilon, the good enough guess was two point something."
+1820.94,1825.42,"So the approximation algorithm is like guess and check, except that we have some small increment."
+1825.42,1830.38,We change by a small amount and we stop when we're close enough. So we're going to check that
+1830.38,1839.18,the absolute value of this solution minus the actual answer is with an epsilon. So here's some code
+1839.18,1845.5800000000002,where we can implement what finding the square root of a number with approximation method.
+1847.26,1853.74,We have some stuff here that we're initializing. So this is the thing you want to find the square
+1853.74,1858.94,root of. This is how close we want to be to the final answer. And this is our increment.
+1859.9,1864.86,Num guesses is just to keep track of how many actual guesses we're doing. And we're going to start
+1864.86,1872.78,with a guess that we know is too small. Zero. This is the loop that does all of the work for us.
+1875.1,1881.02,"So the way we would say it in English is says basically while our guess is not with an epsilon,"
+1881.02,1887.5,keep making new guesses. So while what does it mean for the guess to not be within plus or minus
+1887.5,1896.54,"epsilon? Well, the absolute value of our guess squared minus x is greater or equal to epsilon. So while"
+1896.54,1904.94,"we're still too far away, let's make a new guess. So we increment our guess by the increment value."
+1905.74,1912.38,"So originally we were zero, then we're 0.001. Then we're going to be 0.002 and so on."
+1913.5800000000002,1918.46,This num guesses again is just for us to keep track of how many times we've actually gone through
+1918.46,1921.8200000000002,"this loop. And at the end, we can print how many guesses we've done."
+1922.62,1938.3,So here's the code. And 36. So we could run it. What do we see? Here's our approximation to the
+1938.3,1945.74,"squared of 36. Now we know it's six. And of course, if we kept going, we could have found probably"
+1945.74,1952.46,exactly six. But notice this approximation algorithm stops as soon as you enter that plus minus
+1952.46,1960.14,epsilon boundary. Yes. Do four loops always increase in integer amounts? Do four loops always increase
+1960.14,1965.82,"in integer amounts? Yes, the step has to be an integer, positive or negative, yeah. So exactly"
+1965.82,1972.46,"a four loop would not have worked here, right? So here we stopped this algorithm as soon as we entered"
+1972.46,1979.74,"that plus minus a boundary of epsilon, right? And so 5.9991 is close enough to the square root of"
+1979.74,1987.42,six. And that's what we're reporting. The number of guesses here was about 59992000. And that's
+1987.42,1995.26,"makes sense because our increment is 0.001. And we went all the way up to 5.99, right? So with each time"
+1995.34,2001.9,"through the loop, we incremented pi 0.001. So that's just this times 10,000. That makes sense."
+2002.78,2009.98,"So let's try it with a couple of other values. So here it is with 24, right? 4.89. Again,"
+2009.98,2016.3799999999999,"we're seeing these floating point errors pop into play, right? Whenever we see this weird like 0.00000"
+2016.3799999999999,2021.74,"and some small amount at the end, that's these floating point errors just given the numbers we're working"
+2021.74,2029.74,"with adding up. Here's the square root of two, right? 1.41 again, floating point error, but this time"
+2029.74,2038.7,"on the other side, 0.999912345, run it. It took a second, right? There was a little pause and then"
+2038.7,2046.06,"it gave us the answer just because it has to loop through about what is this 100123? 1 million times,"
+2046.06,2054.06,"right? So did that loop 1 million times to get us the answer? And then we can try one more,"
+2054.06,2064.2999999999997,"5.4321. This should take about five times as long, right? Because 12,345 took about one second. This"
+2064.2999999999997,2071.82,"one should take about five seconds, but it's not. I'm pretty sure I was talking for more than five"
+2071.82,2078.54,"seconds, and this program is not ending. So something's gone wrong. I'm going to stop it. Remember,"
+2078.54,2084.06,"you can stop it by clicking the shell, hitting Ctrl C, or the little square here in the corner."
+2086.94,2095.7400000000002,"So what went wrong? Oh, yes. My question is, will this loop always terminate? And 5.4321 was an"
+2095.7400000000002,2105.1800000000003,"example of the loop not terminating? So what happened, right? We did all this. Let's try to debug"
+2105.1800000000003,2109.82,"what exactly happened, because clearly what we have in code right now is not really giving us much"
+2109.82,2116.6200000000003,"information. So let's add some print statements. The print statements I'm adding is just in here,"
+2116.6200000000003,2121.9,so everything else that's not boxed is the same as on the previous slide. The only thing I'm adding
+2121.9,2134.54,"new is this if statement here. So every 100,000 guesses, so every time I've gone through this loop 100,000"
+2134.54,2141.58,"times, I'm going to print what the current guesses and what the guess squared minus x is. So how far"
+2141.58,2150.62,"away I am from x? Not the epsilon, but how far away I am from x. So let's run that code."
+2152.86,2160.14,"It's down here. I added a little bit of extra thing, which is just it's not printing the whole time."
+2160.14,2165.6600000000003,It's just going to pause for me just to talk about what's going on. So here I have the code run.
+2166.7000000000003,2172.7000000000003,"Has run. So my first 100,000 times through the loop, I have my guess being about 10."
+2173.58,2181.6600000000003,"And how far I am from x is about 54,000. So I want to be 0.01 away from x, right? Because that's"
+2181.66,2186.94,"what my epsilon is. And so here I'm 54,000 away from x. So clearly that's too much."
+2190.46,2197.58,"Let's continue. So then we make more guesses. And then here when my guess is 100, I am about 44,000"
+2197.58,2207.74,"away from x, from 54. So looking good, let's continue. So with 120, I'm 39,000 away from x. With 200,"
+2207.7400000000002,2214.5400000000004,"I'm 14,000 away from x. So it's looking much better, right? I'm getting closer and closer to getting"
+2214.5400000000004,2223.7400000000002,"that difference, you know, being 0 or 0.01. Continue. With 210, I'm 10,000 away from x. And then I'm"
+2223.7400000000002,2233.1800000000003,"almost 6,000 away from x. And then I'm 1,000 away from x. And then from 230, as my guess, which brought"
+2233.18,2241.4199999999996,"me 1,400 away from x, the next time I have 240, right? The next printout I have brings me to 3,000 away"
+2241.4199999999996,2250.54,"from x. So I was 1,000, but now I'm 3,000. And then from there on, things break down really quickly"
+2250.54,2256.7799999999997,"because I just get now farther and farther away from x, right? So here I am continuing the program for"
+2256.78,2262.5400000000004,"a little bit, and then I just keep making guesses, right? Because I was never within that epsilon. So"
+2262.5400000000004,2269.1800000000003,"here's 500, and now I'm almost 200,000 away from x. And so now you see what's happening. This program"
+2269.1800000000003,2276.46,is just going to keep getting further and further away from where I need to be. So let's visualize
+2276.46,2288.7,"what exactly happened. This is our x, 5,454,321. And this is our epsilon. Let's say it's 0.01. Obviously,"
+2288.7,2295.82,"not to scale. Blue is going to be representing one guess. So here's a guess, and then we have the"
+2295.82,2302.06,"guess squared, a green. So let's just for visualization purposes, let's say this is our guess, and this is our"
+2302.06,2308.54,"guess squared. Okay, we're far away from x. We're definitely outside the epsilon boundary. We make"
+2308.54,2314.62,another guess by incrementing it a little bit. This is the guess squared. We make another guess by
+2314.62,2318.62,incrementing it a little bit because we're still far away from that plus minus epsilon. This is our
+2318.62,2324.86,guess squared. We make another guess. This is our guess squared. We're pretty darn close to that plus
+2324.86,2331.74,"minus epsilon boundary, right? We want to be within that plus minus epsilon. So one more guess should"
+2331.7400000000002,2340.7000000000003,"make it right. This is our next guess, but now the guess squared is on the other side. Okay, this is"
+2340.7000000000003,2349.0200000000004,"the big reveal you guys. So what happened? What happens now? The program says, keep guessing because we're"
+2349.0200000000004,2356.46,not within epsilon. So it's going to make another guess. Guess squared. And it's just going to keep
+2356.46,2362.38,guessing. And then our guess squared is just going to keep getting bigger and bigger. So we basically
+2362.38,2367.82,"overshot the epsilon, right? We've overshot our little plus minus boundary that we were interested in"
+2367.82,2377.02,"being within, right? We didn't account for that when we wrote the loop, right? All we wanted to do"
+2377.02,2384.78,was be within epsilon and our program would end. So let's fix that. One addition will fix that.
+2385.5,2390.86,"And it's something that we had been doing in guess and check anyway, right? In guess and check,"
+2390.86,2397.42,"we would say something like if we've passed the reasonable guess, when we know that guess squared"
+2397.42,2404.0600000000004,"from here on out is definitely too big, just stop. Stop guessing, right? Just stop. And so we can"
+2404.0600000000004,2410.2200000000003,add that same thing here as just another ending condition. So everything in this code is the same as
+2410.2200000000003,2417.9800000000005,"before, except for this red box. We're adding another stopping condition. That basically says, keep"
+2417.9800000000005,2425.5000000000005,"guessing while we're still guessing something reasonable, right? But when we've guessed something that's"
+2425.5000000000005,2431.5000000000005,"not reasonable, right? Which is when the guess squared is greater than x, right? We're way past it."
+2431.5000000000005,2438.2200000000003,"Stop guessing as well. So whichever one of these conditions, either this one or this one being"
+2438.2200000000003,2445.26,"within epsilon is true, we break out of the loop. And then we have an if else kind of the same sort of"
+2445.26,2451.0200000000004,"thing we've been doing so far in the guess and check, why did we break the loop? Did we break it because"
+2451.0200000000004,2458.94,"we were within epsilon? That is the else clause here, right? If we did, then we say this is close"
+2458.94,2464.5400000000004,"to the square root of x. But if we broke it because we've passed reasonable number of guesses,"
+2465.18,2470.22,"then we know we fail to find the square root, right? Because if we overshot the mark or whatever."
+2471.98,2481.98,"So here is the code with 5, 4, 3, 2, 1. But now we have that extra condition here, guess squared less than"
+2482.46,2493.1,"x. So we see that we've done some number of guesses, right? 2,300,000. And the message we get is we fail"
+2493.18,2499.02,"to find the square root. Makes sense, right? Because we knew we would fail. And we're also reporting what"
+2499.02,2504.06,"the last guess was and the last guess squared, just in case the user wants to use that information for"
+2504.06,2510.2999999999997,"anything. What are some solutions to fix this, right? If we don't want to fail, what are what can we do?"
+2511.74,2517.9,"Well, I gave you a hint right here. We can decrement our increment, or we can decrease our increment."
+2518.78,2527.98,"If instead of adding 0.001 every time through the loop, let's add 0.001. So let's make it"
+2528.94,2534.62,"make a guess 10 times as many guesses. We're going to have to wait a little bit, maybe about 10 seconds."
+2535.26,2540.54,"But the program will end. It's taking this long obviously because it's making all of these extra guesses,"
+2540.54,2544.86,"right? For every one guess we had with the program that failed, we're now making 10 guesses,"
+2544.86,2551.7400000000002,"right? Because we decreased our increment by 10. Okay, so it ended. And we see exactly that"
+2551.7400000000002,2558.3,idea and the number of guesses. So here we had 2.3 million guesses when our increment was 0.001.
+2558.3,2565.1,"But when our increment was 0.001, right? For zeros, we had 23 million guesses. So obviously,"
+2565.1,2571.26,"we had 10 times as many guesses, which made our program be 10 times as slow. But now we didn't fail"
+2571.98,2581.98,"because we were able to go within that epsilon. So we found that 233.068.064, which is pretty close to"
+2581.98,2591.34,"what we had before, is within 0.01 of epsilon. Right, so with approximation methods it's possible"
+2591.34,2596.5400000000004,"to overshoot the epsilon, right? We have to be a little bit more careful now about what our end"
+2596.54,2601.2599999999998,"condition is. Yes, we can check that we are with an epsilon, but we have to also use a little"
+2601.2599999999998,2605.9,"bit of common sense, maybe algebra something like that, to figure out is there a way we can overshoot"
+2605.9,2612.54,"the epsilon? And how else can we stop the program without it running into an infinite loop, right?"
+2612.54,2618.7799999999997,"Because that would be bad. So I think I already went over this, right? What are some observations"
+2618.7799999999997,2626.22,"about running it? Yes, it reported failure, so we reset the increment down to 10 times smaller"
+2626.2200000000003,2631.82,than what it was before. The program was slower because we had more values to check through.
+2633.9800000000005,2638.46,So the big idea here is we want to be careful when comparing floats. If we were using something
+2638.46,2643.7400000000002,"like equal equal sign, right? That would have been a complete disaster. That we might have never"
+2643.7400000000002,2651.5000000000005,"been with an epsilon or something like that, okay? Yes, so what are some lessons we learned in"
+2651.5,2657.02,"approximation, right? So we can't use double equal sign to check for exit conditions. We always have"
+2657.02,2664.14,to check whether we are within plus or minus some epsilon of the actual answer. We have to be careful
+2664.14,2670.86,"that the exit condition being plus or minus within some epsilon doesn't jump over our exit test,"
+2670.86,2676.78,"as we just saw, right? In that case we add some extra condition. And then we saw that we actually"
+2676.86,2682.46,"have a trade-off, right? We can have a program that does terminate and reports a correct answer,"
+2682.46,2687.9,"right? It doesn't say we failed, but it does report a correct answer. But that could be a program"
+2687.9,2693.34,"that's a lot slower, right? It's a lot slower because we had to decrease our increment."
+2694.1400000000003,2699.1800000000003,"Alternatively, we could have increased our epsilon boundary, right? Our plus minus epsilon that we"
+2699.1800000000003,2704.38,"allowed to be within could have been bigger, but then we would give up on some accuracy as well."
+2704.38,2710.86,So there's always this trade-off of speed versus accuracy to get the program to actually give
+2710.86,2715.5,"you an answer or to do what you'd like, right? And depending on the application, you might want"
+2715.5,2725.82,"accuracy versus speed or vice versa, okay? So this approximation algorithm is really slow, right?"
+2725.82,2734.1400000000003,"To get an answer for the square root of 54,321, we had to decrease our increment to something"
+2734.14,2742.06,"like .0001. And we ran it and that program took maybe 10 seconds to run, right, on my computer,"
+2742.06,2747.42,"because we started from zero and we were just painfully incrementing that increment one at a time,"
+2747.42,2754.14,"even though we knew sort of from what the number actually was, 554,000, that the square root of it"
+2754.14,2759.02,"could not really be that low. But that's just the algorithm we had, right? We had to start from"
+2759.02,2764.78,"something zero, just in case the user gave it other numbers, which didn't make sense to start"
+2764.78,2770.06,"higher than that. And so the approximation algorithm, as you saw, can be really slow. The question I"
+2770.06,2775.98,"have is, is there a faster way that still gets good answers? And the answer, of course, is yes,"
+2775.98,2783.02,"and we're going to see this particular algorithm in the next lecture, okay? So in quick summary,"
+2783.02,2787.98,we saw floating points. We did a lot of calculations with binary numbers. You don't need to know how
+2787.98,2793.7400000000002,"to do those calculations, but again, given a recipe or an algorithm, can you take that and put it"
+2793.7400000000002,2798.54,"into code, right? Floating point numbers introduced a little bit of challenge for us in comparing them,"
+2798.54,2803.1,because of the way they're stored in memory. We can't represent some of these numbers exactly in
+2803.1,2809.1,"memory, so that's a problem. Because they're not represented exactly in memory, we might"
+2809.1,2814.86,"magnify some errors, right, as we saw with that loop. And the approximation methods use floats,"
+2814.86,2818.94,"unfortunately, or fortunately, right? They need to use floats, because we need to have a small"
+2818.94,2823.58,"increment, and we have to be mindful of these issues when using them. Okay."

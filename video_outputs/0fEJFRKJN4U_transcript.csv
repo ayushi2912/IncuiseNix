@@ -1,0 +1,641 @@
+Start Time,End Time,Text
+0.0,15.4,"All right, everyone, so let's get started."
+15.4,22.16,Last lecture we introduced functions and we saw some syntax around how to create functions
+22.16,27.0,but mostly we were interested in kind of motivating functions as a way for us to start writing
+27.0,32.84,"really clean code, code that's easy to debug and code that's easy to read in the future."
+32.84,40.44,Today we will continue our fun adventure with functions and we'll see what it means
+40.44,43.519999999999996,to treat functions as objects.
+43.519999999999996,47.760000000000005,So let's recall the example we talked about last lecture.
+47.760000000000005,51.760000000000005,We created this function is even.
+51.76,58.519999999999996,So the syntax for creating a function is basically the keyword df tells Python we're defining
+58.519999999999996,59.839999999999996,a function.
+59.839999999999996,64.92,"We decide what name to give our function, parentheses tells Python in here we're going"
+64.92,68.8,"to name all the arguments, all the inputs to the function."
+68.8,72.24,The colon starts the body of the function.
+72.24,79.96,"The first part, it's not required but should always kind of be in there as a way for us to"
+79.96000000000001,83.12,implement abstraction is called the doc string.
+83.12,87.4,"So this in green is the doc string, triple quotes starts our doc string and triple quotes"
+87.4,89.48,ends the doc string.
+89.48,96.48,And you think of the doc string also known as a specification as just a really long comment.
+96.48,101.52000000000001,And in it it's and the doc string is kind of I called it a contract between the person
+101.52000000000001,105.80000000000001,who writes the function and a person who uses the function.
+105.8,110.47999999999999,"And in the contract, the person who writes the function basically says this function is"
+110.47999999999999,115.92,going to take these inputs and I guarantee this function to work correctly when you give
+115.92,121.16,"me these inputs of these types and these restrictions on them, things like that."
+121.16,126.72,And then you also state what the function is going to do and then you also state what the
+126.72,129.32,function will return.
+129.32,135.24,"In this particular function we have only one line, this is the body of the function, but"
+135.24,139.4,you've hopefully seen functions that are a little bit longer as you did the practice from
+139.4,141.76000000000002,last lecture.
+141.76000000000002,145.72,"And the body of the function itself, so the lines of code are basically lines of code that"
+145.72,147.56,we've seen before.
+147.56,154.0,There's nothing sort of special about that except for lines that start with a return.
+154.0,160.04000000000002,So lines that start with a return basically tell Python that as soon as I see this line
+160.04,166.88,"with a return hit in when I'm executing my function, I need to stop executing this function,"
+166.88,173.32,take the value associated with this return and pass it back to whoever called me.
+173.32,176.68,A function always returns something.
+176.68,181.51999999999998,"In this particular case, the function will return either true or false, a Boolean, but you"
+181.51999999999998,188.95999999999998,"can write functions, I return integers, floats, strings, things like that."
+188.96,191.12,"In this case, yeah, this is what is returned."
+191.12,195.64000000000001,It is possible and we actually saw this in one of the utriots as we were writing our code.
+195.64000000000001,200.96,It is possible to write a function that doesn't actually return anything explicitly.
+200.96,206.76000000000002,"So here is even function and inside the body, the only change I've made is I've eliminated"
+206.76000000000002,211.12,"the little return keyword, but otherwise the work that is done is the same."
+211.12,215.56,So here I'm just calculating whether the remainder is zero or not.
+215.56,222.24,So this line of code when the function is executed is replaced with either true or false.
+222.24,226.88,"Notice this function doesn't have a return keyword, but all functions return something."
+226.88,232.72,"So while function is being executed because of a function call, if the function reaches"
+232.72,239.36,"the end of all of these indented lines here, everything that's indented, if it reaches the"
+239.36,245.24,"end and no return statement has been hit, then Python automatically returns none."
+245.24,247.28,So this is the line without a return statement.
+247.28,252.4,"You can think of this code as basically behind the scenes, Python putting this little line"
+252.4,255.60000000000002,at the bottom that says return none.
+255.60000000000002,258.88,Now this is not something that we would ever write.
+258.88,263.44,"You just do the operations, maybe you print some stuff out, and then you just omit the return"
+263.44,267.32,keyword if you want to return none from the function.
+267.32,273.56,"And none is this none type, is a value that is of type none type."
+273.56,277.76,"We talked about it back in maybe lecture one or two, and we haven't really used it that"
+277.76,283.44,"much since, but basically you think of it as just having the type none type, and there's"
+283.44,286.44,"just one value associated with it, none."
+286.44,292.08,And usually we use this value to represent the absence of a value in our code.
+292.08,297.48,"So let me just run some code first, just to show you exactly some of the kind of things you"
+297.48,302.2,might observe when you write code that doesn't have a return statement.
+302.2,307.24,"So here, I promise this is the last time we're going to see is even."
+307.24,310.56,So here I have two versions of the is even function.
+310.56,315.88,"So I have one that I named is even with return, and I have one that is named is even without"
+315.88,318.36,return.
+318.36,320.03999999999996,They do very similar things.
+320.03999999999996,325.32,The difference is that this one has a return statement where I return whether the remainder
+325.32,331.44,"is equal to zero, and this one has no return statement, but it just prints whether the"
+332.16,334.76,remainder is equal to zero.
+334.76,342.64,"So let's look at running the code is even with return, and as we're doing so, this first"
+342.64,347.28,"function will be a recap of last lecture, kind of tracing through what happens when we make"
+347.28,349.4,a function call.
+349.4,356.0,"So I've uncommented this line, and now I'm running line 13."
+356.0,361.12,"So when Python sees this file, it basically sees this function definition, and this is"
+361.12,363.24,"not code that runs yet, right?"
+363.24,367.4,It's just telling Python that I've created this function inside memory.
+367.4,373.92,"When I have this line being run, that's when the function is actually being called, and"
+373.92,375.96,actually being run.
+375.96,383.76,"So I is replaced with a parameter three, and at this point, the body of the function is"
+383.76,384.76,executed.
+384.76,389.92,So the first thing that we tell the function to do is print the string with return.
+389.92,393.6,"So if I run it, you'll see it prints with return."
+393.6,398.52000000000004,"Then it calculates this variable remainder, which is going to be one, right, because three percent"
+398.52000000000004,403.88,"two equals one, and then I'm going to return whether one equal to zero."
+403.88,405.36,So that's going to be false.
+405.36,410.56,"So as soon as we see this return statement, Python returns out of this function call and"
+410.56,415.36,replaces the function call entirely with the return value.
+415.36,420.64,So this entire line after the function call is executed is replaced with false.
+420.64,423.24,So I've just noted that here.
+423.24,425.6,"We're not doing anything with this return, right?"
+425.6,433.64,"All we're doing is making the function call, and it just kind of sits on line 13."
+433.64,440.40000000000003,"In order to see the result of the function call, we saw last lecture that we actually wrap"
+440.40000000000003,443.56,the function call around a print statement.
+443.56,447.36,"And function calls, in that sense, are kind of just expressions, right?"
+447.36,452.56,"They do some work, Python evaluates them to some value, and then replaces that function"
+452.56,454.0,call with the value.
+454.0,459.8,"So if we wrap is even with return three, this function call around with a print statement,"
+459.8,466.44,"Python does the whole thing again, I use three, it returns false, and this line effectively"
+466.44,469.96,"becomes print parentheses false, and we know what that does, right?"
+469.96,472.88,It just prints false to the screen.
+472.88,474.64,"And there it goes, right?"
+474.64,479.64,"Notice we still did this print statement because as part of the function body, we tell it to"
+479.64,482.04,do this print.
+482.04,486.84,Everyone okay so far?
+486.84,493.44,"So now, let's see what happens when we run this function is even without return."
+493.44,499.71999999999997,"So very similar, I've just created an extra parameter here or variable here just to show"
+499.71999999999997,501.88,you that you can.
+501.88,510.6,"So this function is even without return three is being run on line 27, so I is three."
+510.6,517.36,"This function will print without return, and then it calculates remainder to be one, and"
+517.36,521.56,"then has rem will be false, right?"
+521.56,525.2,So the variable has rem will have a value of false.
+525.2,531.8,"And then as part of the function body, we're going to print the value of has rem, which is false."
+531.8,541.8,"So this line here will actually print for me without return, and then this thing false."
+541.8,546.3599999999999,And then the function has no return statement explicitly in there.
+546.3599999999999,553.0,"So you think about it like Python, and implicitly adds this return none at the end of the function"
+553.0,554.0,call.
+554.0,555.0,We don't add this.
+555.0,558.68,I just wrote it there just to show you that Python would add a line such as this when it
+558.6800000000001,562.9200000000001,"reaches the end of the function, but you would never add it."
+562.9200000000001,570.08,So that means that the entire function call is replaced with none.
+570.08,571.08,Okay.
+571.08,578.96,"What happens when you put print in the definition, what happens when you put return in the"
+578.96,583.24,definition versus around the function call?
+583.24,585.5200000000001,Versus that when you put return in the definition.
+585.5200000000001,587.1600000000001,Versus when you put return in the definition.
+587.1600000000001,588.36,So that's the next line.
+588.36,594.8000000000001,"So in the next one, if we were to do what we did before, which is let's print the result"
+594.8000000000001,599.96,"of the function call, well, Python will do everything we just did, right?"
+599.96,606.52,"So it'll print without return, it'll print false, but then it'll additionally print the"
+606.52,609.6,return from the function call.
+609.6,616.04,"So if the return is none, this line effectively becomes print none."
+616.04,619.68,"So what we end up seeing, or what the user would end up seeing, if they actually run"
+619.68,624.92,"this program, is they'll see without return, they see false, and then they see this extraneous"
+624.92,627.98,"none in the console, right?"
+627.98,631.1999999999999,So you'll see probably this in problem set two.
+631.1999999999999,635.0799999999999,You'll probably encounter an error such as this and maybe problem set three.
+635.0799999999999,636.68,But don't be scared.
+636.68,640.88,"Whenever you see a none out in the console, it just means you have to be careful about the"
+640.88,642.88,"function that was called, right?"
+642.88,648.6,"You probably forgot to return something, and instead we're just printing the correct value"
+648.6,651.88,"within the function, but just never returned it."
+651.88,655.24,So that's just something to be wary of.
+655.24,660.96,"Yeah, so that's a good question, should you always use return?"
+660.96,663.16,It depends on what you want in the function to do.
+663.16,667.56,"Most functions are useful because they go off on their own, they do a task, and they get"
+667.56,671.8,"a value at the end, and they pass the value back to whoever called it."
+671.8000000000001,674.6400000000001,And then you can use that function with many different inputs to give you many different
+674.6400000000001,675.6400000000001,outputs.
+675.6400000000001,679.5200000000001,So usually you'd want to make functions that return something that you can then do something
+679.5200000000001,684.6,else with in another part of the program.
+684.6,691.8000000000001,"The prints within the functions should usually be maybe for debugging, or for the status"
+691.8000000000001,695.8800000000001,"of the function, what part is it's executing or something like that."
+695.88,702.88,"And then when you run the function that it will give you the return, if you want to print"
+702.88,704.88,"in the function, that's what does it know."
+704.88,705.88,Exactly.
+705.88,709.24,"If the function is not returning anything, then it'll do ill-print none."
+709.24,713.84,"But if the function is returning something, it will print, right, this, if you wrap it with"
+713.84,721.32,"a print, it'll print whatever got returned."
+721.32,724.52,So let's have you work on this.
+724.52,727.52,"There's nothing to write, but think about it."
+727.52,730.28,So I've got four lines of code here.
+730.28,735.4399999999999,"Add 1,2, print, wrap that around the print statement, multiple three comma four, and then add that"
+735.4399999999999,736.64,around a print statement.
+736.64,745.0,"So try to trace through and tell me what outputs each function call will give me, right."
+745.0,748.52,"So add 1,2, what happens, what do you think the output of this function is?"
+748.52,756.52,What gets printed to the screen?
+756.52,761.52,What is it?
+761.52,763.52,Am I telling it to print anything?
+763.52,764.52,That's the question.
+764.52,765.52,Yeah.
+765.52,768.52,"So nothing is actually printed to the screen, right."
+768.52,774.52,"Because in the function call add comma 2, right, we basically map the parameters one at a time."
+774.52,776.52,"X is 1, Y is 2."
+776.52,777.52,That was good.
+777.52,779.52,Return 3.
+779.52,785.52,And so this entire function call is replaced with 3.
+785.52,789.52,"But we never told that line of code to print that result, right."
+789.52,791.52,So there's nothing printed in this case.
+791.52,802.52,"Well, what if we wrap this in a print statement?"
+802.52,804.52,Is anything printed in this case?
+804.52,805.52,Yes.
+805.52,806.52,What is printed?
+806.52,807.52,"Yeah, exactly, right."
+807.52,810.52,The add itself gives me 5.
+810.52,813.52,And so I'm telling it to print 5.
+813.52,815.52,What about the next one?
+815.52,816.52,Multi.
+816.52,817.52,What is that?
+817.52,819.52,"4, 3, 4."
+819.52,826.52,Is anything printed as a result of running this line?
+826.52,829.52,"I heard some yes, some no."
+829.52,831.52,"Yeah, the print is in the function, exactly."
+831.52,837.52,"So just because it's a function call doesn't mean we don't print anything, right."
+837.52,840.52,We need to check out what the function is actually doing.
+840.52,845.52,"So in molt, X gets mapped to 3, Y gets mapped to 4."
+845.52,849.52,And the function body itself says to print to the result.
+849.52,863.52,"So this will print as a part of the body, right, prints the 12th."
+863.52,866.52,"Anything else, the prints?"
+866.52,868.52,No.
+868.52,878.52,"And lastly, what if we put a print statement around the molt, 4, 5, what will that print?"
+879.52,881.52,"Yeah, exactly, 20 than none."
+881.52,889.52,"So the molt itself is going to print same as there, it prints the 20."
+889.52,895.52,So the function call returns none.
+895.52,901.52,So this entire function call basically is replaced with none and the line then becomes a print none.
+901.52,905.52,So this will print the none to the screen.
+905.52,911.52,"So there's actually four print outs generated from these four lines, right."
+911.52,918.52,The first one generates nothing but the last one generates two lines of print outs.
+918.52,920.52,Any questions about this example?
+920.52,921.52,Yes.
+921.52,924.52,This one here?
+924.52,928.52,"Yes, so the molt, check out what it's doing."
+928.52,933.52,"It's doing a print statement, so that 20 gets printed out to the console."
+933.52,938.52,But what's the return value of molt?
+938.52,940.52,"There is no return, right?"
+940.52,943.52,"So if there's no return, Python adds the none, right."
+943.52,945.52,That's just something that's implicitly done.
+945.52,949.52,"So the return from molt, because it doesn't actually have an explicit return, is none."
+949.52,954.52,"So we're asking it to print the return, which is none."
+954.52,956.52,Okay.
+956.52,959.52,So a couple words on return versus print.
+959.52,964.52,So the return only has a meaning inside a function.
+964.52,974.52,"So as an example, if I just have this file open and I have returned five, just randomly that's not within a function definition."
+974.52,976.52,Already I'm in trouble.
+976.52,977.52,You see that red X.
+977.52,980.52,"And if I run that code, Python gives me a syntax here."
+980.52,982.52,This one's pretty easy to debug.
+982.52,984.52,There's a return outside of a function.
+984.52,985.52,Yep.
+985.52,987.52,There it is.
+987.52,990.52,So return only has a meaning inside a function.
+990.52,995.52,"It basically says this function has done some work for me, and it's returning back this value."
+995.52,998.52,Print statements can be put wherever you'd like.
+998.52,1003.52,"Inside functions, outside functions, wherever you'd like, and they all get executed."
+1003.52,1010.52,"You can have many return statements inside a function, like if you have a function that returned zero if some condition applies,"
+1010.52,1015.52,"or one if some other condition applies, then you can have those two return statements."
+1016.52,1027.52,"But as soon as Python during execution hits one return statement, it immediately ends the function, takes that return value, and pops it back to whoever called it."
+1027.52,1032.52,So it's not going to run more than one return statement.
+1032.52,1037.52,"Print on the other hand, you can run as many print statements as you'd like inside the program."
+1037.52,1047.52,"You can all be hit, and they can all generate some sort of output to the console."
+1047.52,1051.52,So the return statement has a value associated with it.
+1051.52,1056.52,"So return five, return, we had remainder equal equals zero, whatever."
+1056.52,1059.52,There's the associated value with that return statement.
+1059.52,1063.52,That value is what gets passed back to whoever called the function.
+1063.52,1067.52,The print statement also you can think of it as having a value associated with it.
+1067.52,1070.52,That's the thing that gets put out to the console.
+1070.52,1077.52,But that value associated with the print statement is just something that's outputted to the console.
+1077.52,1080.52,It's not being passed around through the program at all.
+1080.52,1083.52,"It's just kind of static, it gets put to the console, and then that's it."
+1083.52,1090.52,"Nobody else can really use that value, you know, unless it's a variable, and then you're just using a regular variable."
+1090.52,1093.52,"The last thing I want to show you, this is kind of cool."
+1093.52,1103.52,"So if we have a print statement, right, just in here, and we run it, obviously that prints that to the console."
+1103.52,1107.52,"But what is this print? It's a function, right?"
+1107.52,1110.52,It has all the telltale signs of a function.
+1110.52,1118.52,"The name is print, the parentheses are there, and I'm giving it one parameter five."
+1118.52,1139.52,"So if I print the return of the print function, so if I wrap my print function in another print function, what do you think this is going to output?"
+1139.52,1142.52,I'll run it.
+1143.52,1152.52,"So the first five is due to this, this shows up on the console, but print being a function, it doesn't actually return anything, right?"
+1152.52,1161.52,"It does something useful, like take whatever you want and show it on the console, but it doesn't return anything back to whoever called it."
+1161.52,1170.52,"And so if I wrap my print function around another print function, I'm basically printing the return of the print function, which is not."
+1170.52,1174.52,So that's where the second none comes in.
+1174.52,1197.52,"So thought of another way, you can make a variable A equals print five, and if I print A, basically we're saying the return of that first print function is just none."
+1197.52,1204.52,"So I'm going to have you work on this code for a little bit, nothing to write, but there is something to fix."
+1204.52,1212.52,"So here's a function called is triangular, it takes in one parameter and it's a number, an integer greater than zero."
+1212.52,1217.52,I want this function to return true if N is triangular and false otherwise.
+1217.52,1227.52,So triangular just means it's a whole number such that it's equal to one plus two plus three plus some summation like that.
+1227.52,1234.52,"So one is triangular, three is triangular, six is triangular, and so on and so on."
+1234.52,1237.52,So take a look at this code.
+1237.52,1252.52,"It's online around 49 ish, so start by running it, seeing what you get, and I'll give you about a minute or so to see if you can try to fix it."
+1252.52,1258.52,So make sure it runs with all these test cases here.
+1258.52,1264.52,"Okay, what's the first thing you should do when you're asked to fix some code that's buggy?"
+1264.52,1268.52,Yes.
+1268.52,1274.52,"We can do that, but first let's run it with something, right?"
+1274.52,1281.52,"So let's run it with the first one. Print is triangular four, so we know the answer should be false."
+1281.52,1285.52,"I mean, I told you so that's good."
+1285.52,1294.52,"Yes, it does give me false, which is good, but it also prints out a none."
+1294.52,1298.52,What does that mean for us?
+1298.52,1304.52,Yes.
+1304.52,1306.52,"Yeah, exactly, perfect."
+1306.52,1308.52,"So there's no actual return statement, right?"
+1308.52,1315.52,"Like I mentioned with this is even example, if you're seeing some nuns show up in places, check your returns."
+1315.52,1318.52,So is this function actually returning something?
+1318.52,1324.52,"No, it's just printing the result, so it's printing the right thing in this case, right?"
+1324.52,1330.52,So let's start by changing the prints to returns.
+1330.52,1335.52,Yeah.
+1335.52,1338.52,Or this one?
+1338.52,1343.52,"Oh, remember, I think I just ran into it."
+1343.52,1346.52,"Okay. All right, let's run it."
+1346.52,1352.52,"Perfect. Yeah, so that seems to have fixed it."
+1352.52,1357.52,What should we do next?
+1357.52,1362.52,Yes.
+1362.52,1366.52,Yes.
+1366.52,1370.52,"Yes, exactly. Let's check the rest of the print statements."
+1370.52,1375.52,"So the second one is triangular, so that prints true."
+1375.52,1380.52,"And last one, as you mentioned, is going to fail on us."
+1380.52,1385.52,"It prints false, but one is triangular, right, because one is just the sum of one."
+1385.52,1390.52,So do you know what a fix could be?
+1390.52,1394.52,"Yeah, exactly. So you've spotted it. The range should be n plus one."
+1394.52,1402.52,"If you didn't spot that right away, as I think somebody mentioned there, the first thing we should do is just start putting some print statements."
+1402.52,1405.52,And inside the loop is a great place to put a print statement.
+1405.52,1409.52,"We can see what thing we're iterating over, right?"
+1410.52,1418.52,"And so if this was still n, and we didn't manage to fix it, and we run it, we see that we've iterated when i is zero, right?"
+1418.52,1423.52,Right here. And we never actually hit hit one.
+1423.52,1427.52,"So the fix for that is make sure we go up to n, including n."
+1427.52,1437.52,"And now if we run it, and remove this print statement, because it might be a little confusing, that now gives me the correct answer."
+1437.52,1444.52,"This step should probably be to run the other two cases again, just in case my fix broke something else, and it didn't."
+1444.52,1449.52,So the other two cases are still the same.
+1449.52,1459.52,Questions about this code? Does it make sense?
+1459.52,1466.52,"Okay, so now last lecture, I mentioned that once we write functions it's really easy to include these functions in larger pieces of code."
+1467.52,1471.52,And it makes those larger pieces of code very nicely readable.
+1471.52,1475.52,So let's try to do the same with a slightly more complex example.
+1475.52,1487.52,"Let's try to do to create, take our bisection root code, right, and make it into a function, and then there's going to be an exercise in a couple of slides where you get to use this function."
+1487.52,1496.52,So the inside of this function here is basically what we had like three lectures ago.
+1496.52,1499.52,It's just the bisection spare root code.
+1499.52,1503.52,The only thing I've done is I wrapped it around a function definition.
+1503.52,1510.52,"So DEF, I gave it a name, bisection root is a pretty nice name, and figured out what input this function should take."
+1510.52,1515.52,So the input should be the X. I would like to approximate the square root of.
+1515.52,1521.52,"One thing I didn't do is put a doc string on this, so that's my bad."
+1521.52,1532.52,"But the doc string would say X is a positive integer greater than 1, and returns the approximation to the square root of X or something like that."
+1532.52,1536.52,"Okay, so here we're hard coding epsilon to be 0.01."
+1536.52,1542.52,"We've got our low and high end points, right, just remembering what the bisection root does."
+1542.52,1548.52,And we're starting out with a guess that's right in between the low and high.
+1548.52,1552.52,The while loop here is going to do the work for us.
+1552.52,1562.52,"So the while loop condition is while the difference, the absolute value, right, the difference between our guess squared and the actual X."
+1562.52,1570.52,"We're trying to find the square root of is bigger than epsilon, so while we're still farther away than epsilon, we have more guesses to make."
+1570.52,1577.52,"The guess is by updating the low end point or the high end point, right, depending on whether our guess was too low or too high."
+1577.52,1579.52,This should be review hopefully.
+1579.52,1588.52,"And then after we've decided on which end point to update, we update our new guess to be whatever high plus low is divided by 2 again."
+1588.52,1595.52,"So the midpoint of those where either high or low would have just changed, right, because of this if else."
+1595.52,1607.52,"And this loop will just keep going over and over and over again, making better and better approximations until we come within plus or minus epsilon of the squared effects of X."
+1607.52,1615.52,The difference between this code and what we wrote a few lectures ago is this part down here.
+1615.52,1624.52,"So a few lectures ago we all we could do really was write a print statement where we took our guess that we ended up with, right?"
+1624.52,1632.52,"And we printed it along with, you know, that guess is close to the root of our original X."
+1632.52,1640.52,"But instead since we're writing a function, I would like to take the result, right, my approximation to X and return it."
+1640.52,1651.52,"So somebody can call this function many, many, many times with different values of X and figure out a bunch of different approximations for all of these different X's."
+1651.52,1658.52,"So here I have the function calls, right, so I've got bisection root with 4 and bisection root with 123."
+1658.52,1661.52,And then I can just print the results of these.
+1661.52,1665.52,So here is the bisection root function.
+1665.52,1670.52,I've got my printout commented out because I don't actually need it.
+1670.52,1674.52,"The rest of the code will do something useful with the approximations, right?"
+1674.52,1690.52,"So in this case, bisection root of 4 was, gave me 2.0, so that's the approximation and the bisection root of 123 was approximated to 11.09."
+1690.52,1703.52,"So what I would like you to do, and this is going to be a little bit involved code, it'll require some thinking, is to write a function called count the numbers with the square root close to."
+1703.52,1707.52,n plus or minus epsilon.
+1707.52,1714.52,"And I'll help you out by drawing something on the board, but I would like you to do the code for it."
+1714.52,1723.52,"So the idea here is that you have some n that's given as an input, and you have an epsilon that's also given as an input."
+1723.52,1735.52,What you'd like to find out is how many whole numbers have their square root within plus or minus epsilon of n.
+1735.52,1744.52,"So this is kind of hard to wrap your mind around without actually drawing a picture, so this is also something you should try to do in quiz situations,"
+1744.52,1751.52,"p-sets, things like that. Don't code right away. Try to draw a picture, kind of depicting what we're asking for here."
+1751.52,1760.52,"So here, we'll start with a line. This is our number line because we're doing the square root."
+1760.52,1764.52,We want to know how many integers have a square root with an epsilon of n.
+1764.52,1779.52,"So let's start with an n, right, and we have something plus or minus epsilon, right, so this is epsilon, and this is also epsilon."
+1779.52,1786.52,"In the end, we want to know how many integers have a square root of i."
+1786.52,1798.52,This square root of i is equal to somewhere in this range. Does that make sense so far? That's what we're trying to figure out.
+1798.52,1807.52,The square root of i is somewhere in this range. So that means i is going to be some giant number out here.
+1807.52,1819.52,"So this line can go further out. So in the example here, I've got n is equal to 10."
+1819.52,1826.52,"So I know for sure that an i of 100, just kind of us as humans, would work."
+1826.52,1832.52,Because the square root of 100 is probably going to be approximated to pretty darn close to 10.
+1832.52,1837.52,So I know that value will be within plus or minus epsilon of 10.
+1837.52,1844.52,"But there's probably a couple numbers around 100 that also match this criteria, right?"
+1844.52,1854.52,"If I take the square root of 99, according to this example, that approximation puts me within plus or minus epsilon of 10."
+1854.52,1861.52,"So it's going to be, you know, square root of 99 is going to be like 9. Whatever is here, 9.5."
+1861.52,1870.52,"So that's within plus or minus epsilon. And similarly, square root of 101 and 102 also work."
+1870.52,1879.52,"Because if I take the square root of these guys, that will also put me within plus or minus epsilon of 10."
+1879.52,1885.52,"So the goal here is basically to figure out these numbers, 99, 101 and 102."
+1885.52,1893.52,"You should use the power of computation and computers being able to do a task really, really quickly to basically say,"
+1893.52,1907.52,"I'm just going to brute force my way through this problem and say, I'm going to test each number one at a time all the way up to some pretty large number."
+1907.52,1914.52,"So you want to make sure you hit 99, 101 and 102, maybe going up to maybe n cubed."
+1914.52,1922.52,"If you go and take the square root of some i cubed, you know you're going to hit all these values within plus or minus epsilon."
+1922.52,1936.52,"So you're just going to brute force, look at all the integers between 0 and n cubed, and figure out if their square root, the approximation of the square root, is within plus or minus epsilon of n."
+1936.52,1942.52,"If it is, keep a counter and increment it, and if it's not, ignore it."
+1942.52,1948.52,And that's the idea to this question.
+1948.52,1953.52,Loop and a check.
+1953.52,1960.52,And you can definitely feel free to make use of the bisection root function that we wrote in our code.
+1960.52,1964.52,You should definitely use it because it's very helpful.
+1964.52,1974.52,Now in line 96 is where you can write your code.
+1974.52,1981.52,"All right, does anyone have a start for writing this code, or how would you think about it?"
+1981.52,1995.52,"For i for i in range n cubed, yet we can do that."
+1995.52,2002.52,"All right, so this will give me number 0 through n cubed."
+2002.52,2005.52,"Perfect, so I've generated basically this sequence now."
+2005.52,2008.52,What do I want to do once I have i?
+2008.52,2014.52,"And you can always write a little comment for yourself, or what you want to do once you have i."
+2014.52,2020.52,"So in English, what would you want to do once you have a number like this?"
+2020.52,2026.52,"Take the square root, yeah, take the square root of i."
+2026.52,2031.52,How do you want to take the square root of i?
+2031.52,2036.52,"We can, shall we use our bisection root?"
+2036.52,2040.52,We can too.
+2040.52,2042.52,"Yep, we can do both."
+2042.52,2045.52,So let's use the function we just wrote.
+2045.52,2052.52,"So bisection root of i, this gives me square root."
+2052.52,2058.52,"So now sqrt is going to be some value here, right?"
+2058.52,2063.52,"It could be 10, it could be 99.5, it could be 99.7."
+2063.52,2074.52,What do I do with this number now?
+2074.52,2077.52,Yes.
+2078.52,2080.52,"Yes, exactly, let's use an if statement."
+2080.52,2086.52,"So if, and there's many ways we can, if use the if statement, we could do absolute value, right?"
+2086.52,2088.52,That's what we've been doing already.
+2088.52,2097.52,"So if we take n minus the square root, right?"
+2097.52,2105.52,So n minus this value we just calculated is less than epsilon.
+2105.52,2118.52,"All right, so here we know that square root is within epsilon."
+2118.52,2127.52,And what do we want to do once we know that the square root is within epsilon?
+2127.52,2131.52,"Well, if we don't know, we can look at the doc string."
+2131.52,2137.52,So we need to return how many integers have that square root with an epsilon of n?
+2137.52,2140.52,"Yeah, exactly, keep count of it, right?"
+2140.52,2146.52,So count plus equals one.
+2146.52,2152.52,"Yes, and I do have to initialize count equals zero, right before women."
+2152.52,2159.52,"Okay, anything else?"
+2159.52,2161.52,"Yeah, we do need to return."
+2161.52,2168.52,"So at the end of the loop, we can return our count."
+2168.52,2171.52,"Okay, run it."
+2171.52,2172.52,What is this from?
+2172.52,2176.52,"Oh, this is from the other two lines here."
+2176.52,2177.52,So four.
+2177.52,2182.52,"I think that works because from the example, there were four numbers that work."
+2182.52,2191.52,"To double check, we can, or if, you know, something went wrong and the number you got was what you were expecting."
+2191.52,2193.52,"Again, print statements, very useful."
+2193.52,2196.52,So we could print the value of i.
+2196.52,2199.52,"So this thing here, we're trying to find the square root of."
+2199.52,2202.52,"And we can print the square root of that value, right?"
+2202.52,2208.52,"And so if we actually add it to the code here, we see the four values that we grabbed."
+2208.52,2212.52,"99, 100, 101, 102."
+2212.52,2218.52,"And now that we wrote this code, we can actually make really simple changes to it."
+2218.52,2220.52,"And we have some pretty useful code, right?"
+2220.52,2228.52,"So if we make our boundary bigger, 10 plus or minus 1, we're going to get more values that match this criteria, right?"
+2228.52,2236.52,"So in fact, we got 40 of them, right, all the way from 81, all the way up to 120."
+2236.52,2250.52,"They all match the criteria, which is when you take the square root of that value, it's plus or minus 9 to 11."
+2250.52,2252.52,Any questions about this example?
+2252.52,2259.52,"I know it's kind of involved, but I hope that actually drawing a picture helped explain what we were trying to get at."
+2259.52,2265.52,"And at that point, it should have been pretty easy to figure out the structure of the code itself."
+2265.52,2266.52,Any questions?
+2266.52,2267.52,Yes.
+2267.52,2276.52,It could be smaller.
+2276.52,2277.52,It could be smaller.
+2277.52,2281.52,"Yeah, I mean, we could have done n to the power of four."
+2281.52,2290.52,"We just couldn't do n squared, because then we would definitely miss 101 and 102 in that particular example."
+2290.52,2302.52,"And in fact, if our epsilon is really big, we might, actually, I'm not sure about the math, but if our epsilon is really big, we might actually need to go bigger than n cubed as well."
+2302.52,2304.52,I'd have to think about that.
+2304.52,2316.52,"But we just, it's okay. I mean, it's fine to make it big. It doesn't take that much longer to compute, because running the function is very quick to Python anyway."
+2316.52,2317.52,"Yeah, there's a question."
+2317.52,2323.52,I had a similar question. So is there reason why we chose n cubed as like a arbitrary number that's big enough?
+2323.52,2326.52,"Yeah, arbitrary number that's big enough."
+2326.52,2345.52,"What we could have also done just along those lines is we could have done something a little bit smarter in here, where once we find this a number that actually works, like once we start incrementing our count, we could have some sort of flag that keeps track of as long as we're incrementing the count, right?"
+2345.52,2352.52,"Keep going, but at some point you know you're going to reach a number that's too big, and at that point you can just end the function early, right?"
+2352.52,2359.52,"You can just break out of the loop, and you don't need to keep looking at, you know, all the way up to n cubed."
+2359.52,2369.52,So we could have done something a little bit smarter to make the function just a little faster with flags.
+2369.52,2374.52,"What you can try, so see if you can have the program stop as soon as you hit 103, right?"
+2374.52,2385.52,"See if you can write the program that uses a flag to trigger that event, and then when that event is true, just break out of the loop or return immediately or something like that."
+2385.52,2390.52,Other questions?
+2391.52,2395.52,"Okay, so let's zoom out a little bit on functions."
+2395.52,2402.52,We did this a little bit last lecture. This is a function that we actually wrote last lecture. It was some of odd numbers between A and B.
+2402.52,2407.52,"This was essentially our black box, right? Remember that now we're writing functions."
+2407.52,2412.52,"We are kind of separating ourselves as a programmer who writes a function, right?"
+2412.52,2418.52,You basically make this nice modular piece of code that can be reused over and over again.
+2418.52,2422.52,So we're separating that aspect from somebody who's using a function.
+2422.52,2426.52,"So once there's a function already written for you, you just use it in code, right?"
+2426.52,2434.52,"Like we use the bisection route here, right? I know we wrote it, but I guess technically I wrote it, but here we just kind of used it, right?"
+2434.52,2439.52,"And we used it to write this nicer, more complex piece of code."
+2439.52,2449.52,"And so this is what we do. We basically create this black box, and once you know the specification or the dox string of the black box, you don't need to know how it's implemented in order to use it."
+2449.52,2461.52,But what I wanted to mention is something I mentioned last lecture is the function definition is just creating a function object inside the memory.
+2461.52,2478.52,"And the name of this function object is the name of the function. So if we're thinking about the program there is the orange box, we have an object that just happens to be a function which has some code associated with it, whose name is some odd."
+2478.52,2485.52,"And kind of drawing a parallel to that is when we create just a variable as we have been so far, right?"
+2485.52,2499.52,Here we're creating an object to whose name is low. So in that same way that black box is basically saying I am creating a function object that has some code associated with it whose name is some odd.
+2499.52,2513.52,"So in this case, I've got some odd, low, and high as three sort of objects inside my program. And then only when I make a function call does the code associated with the function object run."
+2513.52,2524.52,"So up when I'm defining the function, it does not run. It just stays inside computer memory as an object that exists. And when I make my function call is when I use that object."
+2524.52,2544.52,So the function call basically takes my variables and matches them to the function definition. So A gets matched to low and B gets matched to high. And low and high in the function call have actual values associated with them two and seven.
+2545.52,2556.52,"And so that function will then go ahead and do the work. And at the end, it's going to return something either an actual value or none. And then that actual value replaces the entire function call."
+2556.52,2567.52,"So in my program, the variable my sum here is going to be equal to the right here. Just a little recap, but hopefully this kind of keeps bringing that point home."
+2567.52,2579.52,"So now we're going to talk about in more detail what exactly happens when we make a function call. So when we make a function call, you can think of the program as sort of taking a pause."
+2579.52,2596.52,"I've got my main program and in my main program, I have a function call. That main program will just pause for a bit. And that function call, you can treat it as sort of a little mini program that needs to run and terminate return of value before the main program can resume executing."
+2597.52,2605.52,"So that little mini program, that function call basically creates its own little environment that it lives in."
+2605.52,2617.52,"So in that little environment, it can create variables, just like we would in a regular program, it can modify variables, it can print things, it can do all this work within its body."
+2617.52,2625.52,"And at some point, it'll finish its job, finish its task, and it'll have some value that's the result of all that work that it did."
+2625.52,2635.52,And that value is what it hopefully returns back to the main program and then the main program can finish its job.
+2635.52,2646.52,"So what's key here is that every time you make a function call, you basically create a new environment. And that environment is completely separate from the main program environment."
+2647.52,2659.52,"As soon as the function call terminates, that function call environment disappears. So any variables that were created within that environment of the function call will also disappear."
+2659.52,2672.52,"So all we're left with is just what's in the main program. So now we're going to talk a little bit about environments. And if you understand this, you'll understand 80% of functions and what to do with them."
+2672.52,2685.52,"So basically, when you first run your program, the program enters what we call the global environment, the main program environment. And any time you make a function call, we're creating this new environment."
+2685.52,2693.52,So what exactly happens when we do these function calls? How do these environments interact?
+2693.52,2704.52,And the answer is they don't actually interfere with each other that much. They only interfere with each other through passing in parameters and through returning values.
+2704.52,2717.52,"But beyond that, these two different environments, the main program environment and a function call environment can actually have variables that have the same name, but don't interfere with each other because they exist in different environments."
+2717.52,2731.52,"So we're going to look at this example to showcase that. So here's a function. It's pretty simple. It does not do much. It takes in one parameter, probably a number, and adds one to it."
+2731.52,2747.52,"So it takes in an x and does x plus one, reassigns x to it. And then it does this print statement, and then returns the new value of x. So it added one to whatever you passed into it, and it returns that new value."
+2747.52,2755.52,"So that's the definition. Again, this just sits in Python memory. It doesn't actually get run until we make a function call."
+2755.52,2776.52,"So parameters here when we wrote our function are called formal parameters because there's no actual value associated with them. We're writing this function assuming that at some point we're going to get a value for x, but at the time we're writing the function, there's no value for x. It's just this abstract variable."
+2776.52,2788.52,"So we're using that variable x within the function body, assuming that at some point we're going to get an initial value for x. So x is equal to three, and at which point the body can then execute."
+2788.52,2805.52,"Now, when you make a function call in the main program scope, that's when you make a function call with an actual parameter. So here you'll notice I'm using the same name x, but this x inside the main program is different than the x that's this formal parameter of the function."
+2805.52,2819.52,"This actual parameter, when we make the function call, is mapped to the formal parameter. So at that point the formal parameter can get the value of the function call, which is three."
+2819.52,2842.52,"And in fact, it doesn't actually matter what we name this variable out here. We can name x is equal to three and make the function call f of x, but we can also have y is equal to three and we make the exact same function call f of y, because we want to pass in three as a parameter to this function call."
+2843.52,2851.52,"So this x out here is different than this x over here. So the re, oh yeah, go ahead."
+2852.52,2863.52,"The formal is the one from the function definition. We say it's formal because there's no value associated with it when you first write the function. You write the function first, there's nothing going on here."
+2864.52,2870.52,And then you have some code that actually now is taking on some values and you can run.
+2871.52,2883.52,"So let's trace through this code little by little to see exactly what environments get created as we make function calls. Again, this is my black box. It's a function."
+2884.52,2891.52,"When I first run the program, we finish the function definition. So we're at this point in our program right before we do x is equal to three."
+2891.52,2898.52,"Inside my sort of computer Python memory, what I have is one environment created and that's the environment of the main program."
+2899.52,2908.52,"The only thing I have in this environment is my f, right, because at this point in the program where the red arrow is, I just had a function definition."
+2909.52,2919.52,"So again, it's a definition. It's a function whose name is f and it's an object, right, it's not being run quite yet. It's an object that contains some code."
+2920.52,2929.52,Now we have x is equal to three. So that's pretty easy inside my main program environment. I've got a variable name x whose values three.
+2930.52,2938.52,"And then I have my function call. So as soon as Python sees a function call, it creates a new environment."
+2939.52,2944.52,"And the current environment where the call is being made from, so the main program one will be put on hold."
+2945.52,2957.52,"So here I'm calling function f. So now I'm creating this new environment that, think of it like this mini program, this little task that needs to get done before the main program can continue executing."
+2958.52,2963.52,"So I need to figure out what's going on in this mini program, right, in this function call to f."
+2964.52,2971.52,"All right, so here's my new environment, the scope of f. The first thing that we need to do is figure out what are the parameters of f."
+2972.52,2983.52,So we look at the function definition and we see it has one parameter named x. So we're going to take that x and the first thing we're going to do is map the formal parameter to the actual parameter.
+2984.52,2998.52,"So we're going to make the formal parameter of f named x, take on the value three. That's kind of what we've been doing already, but now this is getting down to sort of details, just details."
+2999.52,3011.52,"We've mapped all the parameters, the body of the function executes. I've, again, kind of blurred out this one because we're not in this global scope. We're trying to figure out what f is doing."
+3012.52,3024.52,"So the body of f says take x, add one to it, and reassign it to x. So what's x inside my function? It's three, we add one to it, and we make x before."
+3025.52,3033.52,"I skipped one thing, which is if in my main program I had y is equal to three and f of y, nothing really would have changed."
+3034.52,3043.52,"My formal parameter of f is still x, and I'm still mapping x to the value that's in my here, in the actual parameter."
+3044.52,3052.52,"Okay, so in my scope of f, I've got x is three, I incremented by one, it gives me four, and I resave it back into x."
+3053.52,3065.52,"And again, there's no collision here, right, in terms of naming because the scope of f, the environment at f, has a variable named x, and I'm just doing stuff with the x that f knows."
+3066.52,3072.52,"I do have another x inside my global scope, but that one's put on hold for now."
+3073.52,3084.52,"All right, so I've done x equals x plus one, then I do the print statement, so in f of x, x equals four, that gets printed out, and then I return x, so the thing that gets returned is the value of x, so four."
+3085.52,3093.52,"And this, again, replaces the function call, so this gets returned back to whoever called me, and the environment that called me was just by main program."
+3094.52,3098.52,"And here I'm going to return four, and this is going to replace that with four."
+3099.52,3107.52,"As soon as the function sees the return, and returns that value back, it goes away, so notice that x that we had created is gone."
+3108.52,3122.52,"Now we're in the main program, there's no confusion, right, my main program has its own x, that other x that was part of the execution of f is gone, because that function finished its job, and it doesn't need its environment anymore."
+3123.52,3128.52,"So now the return of the function replaces f of x, and we see z is equal to four."
+3129.52,3148.52,"Okay, that was super detailed, but that's kind of what happens step by step when we make a function call with the new environments being created, so if you can understand that, it should be pretty straightforward, and you won't get confused when you see an x out here."
+3148.52,3155.52,"You have f of x, you know, as one function, and then maybe another function that has g of x, and so on."
+3157.52,3169.52,"So in order to know the scope that you're in, the environment that you in, you need to know what expression you're evaluating, right, so here we were evaluating this function call, so that means that we were inside the environment of f."
+3170.52,3189.52,"Another example, and this one's a little bit weird, it shows some of the nuances of Python, and these aren't necessarily true in other languages, so I'm just going to do the drawing of the scopes out here, so let's start with the one on the left."
+3190.52,3205.52,"So you can see here I've got one function, f of y, and I've got the main program that creates x is equal to five, and then a call to y, so inside my main program I've got x is equal to five, and then I have a function call to f."
+3206.52,3214.52,"Function call means we need to create a new scope, so this one's put on hold for now until we figure out what f parentheses x is right here."
+3215.52,3231.52,"So the first thing we need to do is grab f and take all the formal parameters of f, there's one, its name is y, and map them to the actual parameters, so I'm calling f with five, so I'm going to map y to five."
+3232.52,3259.52,"This function is going to take the body of its function, x is equal to one, so it creates also an x whose value is one, just within its scope, it adds one to x, so this becomes two, and then it prints x, so it's going to print two, and then the function terminates, it returns none, there's no return statement."
+3259.52,3283.52,"And the function is done, so this line has now finished, and the last thing that the function does, after it's done the return is the scope goes away, and the last thing we need to do now is print x, so this will print the value of x in the global scope, which is five, so the output of this, a little piece of code on the left side here is two and five."
+3289.52,3318.52,"What about the middle code? Similarly, I've got a function definition, and then I create x is equal to five, and then I make a call to g, x is five, so as soon as I see a function call, I need to create a new scope, and I need to map all the formal parameters of g, it has one formal parameter, its name is y, that one will be mapped to whatever I made the function call with."
+3319.52,3348.52,"So that gets mapped to five, what is this function going to do? Well, it prints x, what's x inside the scope of g? Do I have a g inside x inside g? No, so this is something that Python does, it says, well, if your environment doesn't have a variable named x in this case,"
+3349.52,3377.52,"look further out and see who called you, well, which environment called this g? The main one, right? Does your bigger environment, the one who called you have a variable named x? It does, right? It's five, so Python grabs the value associated with that larger environment, and if that larger environment didn't have one, it would look further out until it doesn't have an environment to look at."
+3377.52,3402.52,"So g is going to print the value of x, which is five, and then it's going to print x plus one, which is six, and then it's done. It returns none, and then as soon as it returns none, this scope goes away, and what we're left with is the global program, and we print x, which is still five."
+3403.52,3418.52,"What I want you to notice is that that function g printed x plus one, but never modified x, right? We never said, you know, something like x is equal to x plus one or something like that. We just figured out what x plus one was and printed it."
+3418.52,3447.52,"Okay. One more example, and this one will actually end up in an error. So here I've got x is equal to five, just like before, and then I have a function called to h. So again, a function called means a new scope is created. I've got one variable y. That's my formal parameter. It gets mapped to whatever I call the function with five."
+3447.52,3464.52,And then what is this function doing that line x plus equals one is x is equal to x plus one.
+3464.52,3477.52,"This is actually an error. Python doesn't let you do that. And the error gives you is actually what it says there, so unbounded local error. Local variable x is referenced before an assignment."
+3477.52,3492.52,"So it doesn't actually grab the value from the outer scope, like we did in the middle bit. It doesn't grab it because it thinks you're trying to create a variable named x inside h."
+3492.52,3507.52,And you're trying to add one to x. But you never had a line that said x is equal to something originally inside h.
+3507.52,3520.52,"And so when you're trying to say x is equal to x plus one, it's trying to look for an x inside the scope of h. But it doesn't have one. And so that's where we get that error from."
+3520.52,3534.52,"And this is not some, I mean, it's just a nuance of Python, but it's kind of important to understand that you can access variables, but you can't change variables outside of your scope."
+3534.52,3544.52,So the middle one just accesses a variable adds one to it and prints it. But we never said x is equal to this value.
+3544.52,3554.52,"And it's kind of like, I guess the error you get is kind of like if you made this be something completely different, like z, you would get the same error."
+3554.52,3559.52,"It would be error variable z, reference before assignment."
+3559.52,3571.52,"It's like you can grab x plus one, but I don't know what z is."
+3571.52,3594.52,"So if you want to explicitly say that you're taking it from outside, there's a keyword called global that you need to write that explicitly says, hey, I'm grabbing this variable that is not part of me."
+3594.52,3601.52,"It's part of the main program, the global scope."
+3601.52,3607.52,"Okay, the last thing I want to talk about is using functions as arguments to other functions."
+3607.52,3622.52,"So the way I've sort of been explaining a function definition is basically saying that when we define a function, Python essentially puts some code in memory whose name is the function name."
+3622.52,3629.52,So basically the function name creates for me an object inside memory that happens to be a function object.
+3629.52,3635.52,"And just to show you sort of what that means is we have a function is even, we've definitely created it."
+3635.52,3641.52,"If we say the type of is even, it's function."
+3641.52,3647.52,So the function is even actually has a type and its type is a function in Python.
+3647.52,3660.52,"So functions are basically just objects, just like an integer is an object, a Boolean is an object, a float is an object, right, a function, it's an object, it just looks different."
+3660.52,3663.52,It has a bunch of code associated with it.
+3663.52,3671.52,"So if a function is an object, what that means is we can use an assignment operator on a function name."
+3671.52,3676.52,So we can have two names that functions that point to the same function code.
+3676.52,3685.52,"We can use a function as an argument to another function, like a parameter to a function, or we can return a function from another function."
+3685.52,3688.52,"Okay, so here's an example."
+3688.52,3693.52,Pretend that this is our code file. We've got the memory.
+3693.52,3699.52,"The first line of code here, the definition, basically creates this function object for me in memory."
+3699.52,3710.52,"It's kind of like a variable, right, is underscore even is the name of this function object, and this variable is bound to my function object with some code associated with it."
+3710.52,3715.52,So you think of the function as just an object.
+3715.52,3723.52,"And similarly, when we write r is equal to two, I think of that as the same thing, right, r is the name, and I've got an integer object whose value is two."
+3723.52,3727.52,That's exactly what happens when we create a function definition.
+3727.52,3736.52,"Similarly, pi is equal to 22 over seven, right, pi is the name associated with a float object that has that value."
+3736.52,3744.52,"So what we can do, right, now that we've established that a function is basically an object with a name, we can say a line like this."
+3744.52,3749.52,MyFunk equals to is even.
+3749.52,3761.52,"The right-hand side here is just the name of my function. It's not a function call, right, notice there's no parentheses after is even, there's no parameter, none of that."
+3761.52,3765.52,It's literally the name of my function.
+3765.52,3777.52,"So inside memory, what I've ended up doing is I have two names, myFunk, and is even that both point to the exact same function object."
+3777.52,3786.52,"So that means that that function object, so this is even function, can be referenced by both of these names."
+3786.52,3795.52,"So on the next two lines here, a equals this and b equals this, I'm running the same code just referenced by different names, right?"
+3795.52,3804.52,"So then a is going to be bound to false and b is bound to true, because I'm accessing the same code fundamentally by different names."
+3804.52,3807.52,Does that make sense?
+3807.52,3813.52,"So everything in Python is an object, including functions, it's strange to think, but there you have it."
+3813.52,3816.52,So let's look at this code.
+3816.52,3825.52,"I've got three function definitions, and only one function call."
+3825.52,3837.52,"What are the functions, function definitions? One, I have named Calc, it takes in three parameters. One, I have add, it takes in two parameters, and one, I have div, it takes in two parameters."
+3837.52,3848.52,"Add does something pretty simple, div has maybe a print statement, but also does something pretty simple. Calc is the one that's really strange, right?"
+3848.52,3862.52,"Because it takes in these three parameters, but what's the thing it's doing in here? It's kind of treating one of the parameters, OP, operation, as a function."
+3862.52,3868.52,"Okay, that's what's strange about Calc, so now let's trace through the code to see exactly what that means for us."
+3868.52,3886.52,"So when I first run my program, I have three function definitions, so I'm creating three function objects inside memory. Calc, a function object that has some code, add a function object that has some code, and div, a function object that has some code."
+3886.52,3902.52,"And then we get to the good stuff, res equals the function call. So res is going to be a variable that's going to have a value. What value? We need to figure that out. Calc is a function call."
+3902.52,3913.52,"Every time we have a function call, we need to create a new environment. So now we are creating our Calc environment."
+3913.52,3919.52,"So we've put aside the main program scope for now, and we're focusing on what Calc is going to do."
+3919.52,3927.52,"First thing we need to do is take every single one of our parameters and map it to the actual parameters, right?"
+3927.52,3945.52,So the first parameter is op. It gets mapped to add. The next parameter is x gets mapped to 2. The last parameter is y gets mapped to 3. Is everyone okay so far? Yes.
+3945.52,3950.52,"Okay, I've literally just matched names, a formal parameter to actual parameter."
+3950.52,3960.52,"Okay, so now we finished mapping the parameters. Next we get to run the body of the function. Return, what is this?"
+3960.52,3971.52,"Let's replace op x and y with the actual values. This basically becomes return a function call, add 2,3."
+3971.52,3989.52,"I've just replaced the names. That's it. What's add 2,3? It's another function call, right? So Calc is going to have to be put on hold because I have to figure out what add is going to return."
+3989.52,4003.52,"Okay, so what's add going to return for me? Well, add 2,3 is what I'm trying to figure out. So I'm going to map a to 2, b to 3. It's going to do 5 as the return."
+4003.52,4016.52,"So returns 5 to whoever called it and whoever called it was Calc right here. So this expression here op x, y which was add 2,3 is replaced with 5."
+4016.52,4033.52,"Okay, so far. Awesome. Okay, and then Calc can now finish, right? Notice add finished its job, so it went away. Now Calc can finally return its value. So it can finish as well. So this one will return 5 to whoever called it, which was the main program."
+4033.52,4051.52,"And finally, Calc has finished its job and it returned 5. So step by step, we just kind of trace through the code, you know, functions out to in and replacing variables wherever needed. So it's your turn."
+4051.52,4064.52,Tell me what's the value of res given this function called a Calc and what's going to get printed.
+4064.52,4069.52,So we can even write our functions.
+4069.52,4080.52,"So in the main program, what do I have?"
+4080.52,4100.52,"Calc and div are my functions. Which one? Yeah, res will be the result. Yep. And there is we will have a question mark because we don't know what it is yet. And what's the first thing I need to do?"
+4100.52,4118.52,"Yeah, make a new scope, exactly. So that's the scope of Calc and we're going to map up to div. What do I have X and Y to 2 and 0. Thank you."
+4118.52,4144.52,"What's up going to do? Yes, exactly. We make another scope for div. A is 2 and B is 0. So we're kind of two scopes deep. What's div going to do?"
+4144.52,4168.52,So div prints out the thing. Denon was 0. And what's div returning? None. Perfect. So div returns none here to Calc. And then div is gone. And then none gets returned from Calc here.
+4168.52,4180.52,"And then Calc is gone. And all I'm left with is res equals none, exactly. The return of Calc."
+4180.52,4195.52,One more example showing scope. I'm just kind of showcasing these sort of the same idea. So I've got three functions here. Funk A. Funk B and Funk C. Funk A takes in. You can see no parameters.
+4195.52,4206.52,"Funk B takes in one parameter, Funk C takes in two parameters. And if we scan the code, we see that one of them is weirdly doing something. So it's actually going to be a function."
+4206.52,4214.52,Because you see we're calling it like a function inside here. So we know F is going to have to be a function.
+4214.52,4229.52,"So if we run this program, first three function definitions basically put some code for us in the memory. When we make Funk A call, this creates a new scope."
+4229.52,4240.52,A has no parameter or Funk A has no parameters. So there's nothing to bind. All this function is going to do is print inside Funk A. And then return none.
+4240.52,4252.52,So that whole thing is going to print none. Next Funk B is going to be another function call right here. So it creates a function scope right here.
+4252.52,4270.52,We map the formal parameter Y to 2. And then we finished mapping all the parameters. And what we need to do next is do the body. So we print inside Funk B. And it just returns the value you passed into it. So not a very smart or interesting function.
+4270.52,4281.52,So it prints that and returns to back to whoever called it. Whoever called it was here. So this print statement becomes print 5 plus 2. The return.
+4281.52,4295.52,"So that's going to print stuff into the console. And lastly the interesting one is going to be Funk C. So Funk C notice I'm calling it with an actual function I have in hand. Funk B, right? One of these that I've defined here."
+4295.52,4309.52,So Funk C is a function call. So there's my scope. I am mapping formal parameter F to Funk B and Z to three. So just mapping one by one.
+4309.52,4319.52,And then I'm doing the body of Funk C. So the body says now print this and return this. So we print the statement.
+4319.52,4334.52,"And then the return basically says, well, what's F function call F Z. We have to figure out what the actual values are. And it's Funk B parentheses three."
+4334.52,4347.52,"So that's another function call which means another function scope. Again, not a very smart or interesting function is Funk B. It just takes in the three. It prints inside Funk B. And it returns the three back to whoever called it."
+4347.52,4358.52,So that function is done. And then the Funk C can terminate and return three to whoever called it which was out here.
+4358.52,4372.52,"And notice as soon as a function called terminates and does a return, it immediately, you know, all of its variables, everything that got created inside that environment, go away. They get wiped out."
+4372.52,4382.52,Okay. Give you about a minute to try this. So write a function that meets the following specifications. So I have a function named Apply.
+4382.52,4391.52,"Criteria is a formal parameter. Right. So at some point you're going to have a function that does this. It takes an integer, a number, an integer and returns a Boolean."
+4391.52,4411.52,"So however a function does that, that's what's going to be passed in. And then an integer. And what I want you to do is tell me how many numbers from zero to N match that criteria. So when I apply the function criteria to numbers zero through N, how many of those actually return true on that function."
+4411.52,4418.52,"So just to show you something, you know, what this means concretely, here's my function apply."
+4418.52,4426.52,"Here's a function that I could call the apply with is even. Sorry, I lied. I guess we are seeing is even a few part times in this lecture."
+4426.52,4440.52,So here's a function is even. And basically I run apply by saying I want to run function apply with the name is even. Right. So here I'm mapping name to numbers zero through 10.
+4440.52,4455.52,I'll give you about a minute to try it out. And then I can write it just so we have some. So we finish on time. Does anyone have a start.
+4455.52,4469.52,So we know we want to touch each number zero through through N. To see whether this criteria applies to them. Right. So what's the start to get that going.
+4469.52,4486.52,For I and range and plus one because we want to include N. How do we apply the function criteria to each one of these values.
+4486.52,4496.52,"Yeah, exactly. We just say criteria and this name will be replaced with whatever function we're going to call apply with I."
+4496.52,4508.52,Right. And this criteria I will basically be the return of criteria. What did I say criteria returns. It takes in a number and returns a Boolean.
+4508.52,4518.52,So we know that this is a Boolean. What do I want to do with this Boolean?
+4518.52,4531.52,"If it's true, I want to count it. If it's not, I don't. So if criteria I count plus equals one. Right."
+4531.52,4544.52,"Put this up here. And let's remember to initialize our count. And then that's it. Right. If it doesn't match, then I don't care about doing anything with it."
+4544.52,4555.52,So then we just return count. So notice I'm using my function here. That's just the parameter kind of like a placeholder for any other function.
+4555.52,4562.52,So this is even function when it's a parameter to apply.
+4562.52,4573.52,"It will tell me six, right? Zero, two, four, six, eight, ten. That's six values that match this criteria. And what's cool is that I can actually create any function."
+4573.52,4583.52,"So if I want a function that's called is five, for example, right. It takes in a number and returns true if that number is equal to five."
+4583.52,4594.52,It's still a function that takes in an integer and returns a Boolean. All I need to do then is run this apply with the function is five.
+4594.52,4608.52,"So I just changed that here. And then if I run it, it should just give me one value. Right. The five, of course, is one that matches this is five criteria between zero and ten."
+4608.52,4618.52,So that's basically it. So we saw some function a lot more. You can do with functions. They're basically objects in Python. So they can be manipulated just like you would any other object.
+4618.52,4629.52,"You can have them be parameters to a function. You can have them be returned from a function. You can assign another name to this function body, things like that."
+4629.52,4639.52,"I showed you how to think about environments, right. So that the naming doesn't get confusing, right. As soon as a function call is made, that means another environment is created."
+4639.52,4647.52,So variables created within that environment have no influence on other variables created in other environments.
+4647.52,4656.52,"And functions are very nice, a very nice way for us to write code that can be easily built up on."
+4656.52,4658.52,That's it. Thank you.

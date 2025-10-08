@@ -1,0 +1,416 @@
+Start Time,End Time,Text
+0.0,18.96,"Okay, so let's get started on today's lecture. Last lecture I left you off with the promise"
+18.96,23.36,"of bigger and better algorithms to do what we've been trying to do, which is to approximate"
+23.36,28.88,square roots and things like that. So today we'll be the introduction of our last algorithm
+28.88,34.0,"for a bit before we'll start talking about more Python syntax, but today we're going to introduce"
+34.0,39.44,"the bisections search algorithm. Okay, but before we get into that, let's try to remember where we"
+39.44,46.239999999999995,left off last time. So last time we talked about floating point numbers and then we talked about
+46.239999999999995,52.879999999999995,"approximation algorithms, right? So the reason why we talked about floating point numbers is because"
+52.879999999999995,57.28,"we wanted to come up with an algorithm that was better than guess and check, right? guess and check"
+57.28,63.6,"was really limiting. We were basically limited to some exhaustive number of potential solutions,"
+64.32000000000001,70.0,but we didn't just want to have an exhaustive set to look through for a solution. We wanted to be
+70.0,76.0,"able to actually come up with an approximation to solve our problems, right? And so we talked about"
+76.0,80.88,"floating point numbers because we said, well, instead of having, for example, integer increments when"
+80.88,88.32,"we searched for square roots of values, let's try to have smaller increments. Okay? And so if we"
+88.32,93.6,"have smaller increments than an integer, well, we were starting to look at incrementing by point"
+93.6,100.88,"one or point two five or point zero zero one, whatever we want. And so then since we started talking about"
+100.88,105.12,"these floating point numbers, it was important to kind of understand what happens behind the scenes."
+105.12,109.84,"And we saw that these floating point numbers can't actually be represented in memory directly,"
+109.84,115.92,"exactly, right? There's always for the majority of the numbers, there's going to be some sort of"
+115.92,121.52000000000001,rounding that happens when that number is stored in memory. And the rounding is very small. It's
+121.52000000000001,128.64000000000001,"something like 10 to the negative 10, or sorry, 10 to, 2 to the negative 32, which is approximately 10"
+128.64000000000001,134.24,"to the negative 10, which seems small, but we saw even with just a loop that added point one to itself"
+134.32000000000002,141.36,"10 times, we were already getting very surprising results, right? So the approximation method"
+142.56,147.60000000000002,"introduced the idea of yes, we can't get an approximation for the square root of a number,"
+147.60000000000002,154.4,"but we can't check for equality. We can't say I'm going to come up with this, this approximation,"
+154.4,159.20000000000002,"such that, you know, this approximation squared or whatever problem we're trying to solve is exactly"
+159.20000000000002,163.60000000000002,equal to the number we're looking for. So we had to have a little wiggle room and that wiggle room
+163.6,170.72,"came in the form of an epsilon, right? So we were approximating a solution by basically saying does"
+170.72,178.16,"this solution come within plus or minus epsilon of my desired value? So we came up with a nice algorithm,"
+178.16,183.12,"the approximation algorithm, and we tested on a bunch of different values, right? We were incrementing"
+183.12,188.95999999999998,"a small increment a little bit at a time, and for the problem where we're trying to find approximate"
+188.96,193.92000000000002,"the square root of some value x, we were saying, well, I'm going to keep making these small"
+193.92000000000002,199.84,"incremental changes to my guess until I come within plus or minus epsilon of my actual value, right?"
+199.84,206.64000000000001,"The guess squared was within plus or minus epsilon of my x. And this was the nice slide that we,"
+206.64000000000001,213.28,"that was kind of the, you know, the big bang of last lecture where we said, we have to be careful"
+213.36,218.96,about the way we write these approximation algorithms because we might overshoot our epsilon.
+219.68,227.28,"So if this is our guess, and this is a guess squared, the blue arrow increments normally,"
+227.28,233.2,"right? Whatever increment we choose, but then it's possible that at some point the guess squared comes"
+233.2,240.48,"just short of the epsilon, right? The lower the x minus epsilon. And with the following increment,"
+240.48000000000002,247.84000000000003,"the guess squared becomes just past x plus epsilon. And so the code that we ended up writing,"
+247.84000000000003,252.08,"right, which was, it made sense, right? When we wrote it, actually ended up giving us an infinite"
+252.08,257.68,"loop because it never stopped. We would never were within that plus minus epsilon, and so we would"
+257.68,262.96000000000004,"just keep making guesses from there on out, okay? So we ended up getting an infinite loop for our"
+262.96,272.08,"program. The solution was to take a little bit of code from guess and check and said, let's add"
+272.08,278.56,"an additional little sanity check stopping condition, right? And so everything, except for this box,"
+278.56,283.91999999999996,was the approximation algorithm. And we added the thing that I've boxed here as our sanity check
+283.91999999999996,288.71999999999997,"that we grabbed from the guess and check algorithm. That basically said, if we've made a guess,"
+289.28000000000003,298.72,that's just passed the reasonable guess. We know that all the guesses from here on out will also
+298.72,305.04,"be unreasonable. And so there's no need to keep searching, and that condition will cause us to stop"
+306.16,312.48,"our infinite loop, our potential infinite loop, okay? So this guess squared is less than or equal to"
+312.48,318.96000000000004,"x. Basically, it says stop when we go past the last reasonable guess. And that condition plus"
+318.96000000000004,325.12,"the regular condition from an approximation algorithm, which says I want my guess squared to be plus or"
+325.12,333.92,"minus epsilon of the actual x. Those two conditions together made up my algorithm, and that's the"
+333.92,339.28000000000003,"algorithm. It's just this loop right here, this y loop with this increment, okay? So it looks really,"
+339.28000000000003,344.88000000000005,"really simple. And so what we ended up having is these two conditions, right? So I want to be within"
+344.88000000000005,351.52000000000004,"epsilon and I want to still be making reasonable guesses to be, sorry, I want to be, sorry, outside"
+351.52000000000004,356.96000000000004,"of the bounds of epsilon and still be making reasonable guesses, that's the condition that causes me to keep"
+356.96000000000004,363.12,"making more guesses. And when either one of these becomes false, I'm going to stop making guesses."
+364.08,370.0,And that's what the if else down here says. It says one of these conditions became false.
+370.0,375.52,"Either this one, I'm making unreasonable guesses now, or I've come within plus or minus epsilon."
+375.52,382.64,"So which one is it? So here, I'm making unreasonable guesses. So I've exited the loop because I've"
+382.64,390.32,"gone too far, in which case I print, I failed to find the square root. And otherwise, I've exited because"
+390.32,396.64,I am now within plus or minus epsilon. So let me just run the code to remind ourselves what it
+396.64,406.0,"looked like. So here, we're trying to find of 54,321, was this troublesome value, being within plus"
+406.0,414.48,"or minus 0.01, right? Our guess squared to be plus minus 0.01 of 54,321. Our increment was"
+414.48,425.04,"seemed really small, 0.001. But when we ran it, took a couple seconds, and we made about 2.3"
+425.04,431.36,"million guesses, and the code says we failed to find the square root. And we're also reporting what"
+431.36,438.40000000000003,"the last guess was, and what the last guess squared was as well. So what's the solution to this, right?"
+438.48,446.08000000000004,"The solution was, well, we can make our epsilon bigger, right? So if we made our epsilon B1, so if we"
+446.08000000000004,455.68000000000006,"wanted to be within plus or minus 1 of 54,321, yeah, that code works, right? It didn't fail. It made"
+455.68000000000006,460.8,"still about 2.3 million guesses, and it came up with this estimate. So as soon as we came with an"
+460.8,466.72,"epsilon, that boundary, we stopped the program, right? It didn't try to do better. It didn't try to get"
+466.72,474.0,"closer to x. The other solution, if we were unhappy with the fact that we failed, was to make our"
+474.0,480.0,step smaller. But what's the problem if we make our step smaller? You guys remember when I run the
+480.0,487.44000000000005,"program? Yeah, it takes longer, and can you approximate how much longer it'll take?"
+490.72,496.48,"I decreased my step size by 10. So every one step I made last run, I'm now going to take 10"
+496.48,503.44,"steps, right? So I'm waiting basically, what, 15, 20 seconds here if the last run took two seconds"
+503.44,511.20000000000005,"to run? And now, I've also doubled the number of guesses, right? Sorry, not doubled. I'm making 10"
+511.20000000000005,518.8000000000001,"times the number of guesses, 23 million as opposed to 2.3 million. But the code didn't fail, right? It"
+518.8,528.8,"found something that's pretty close to the square root of 54,231. Okay. So that's where we left"
+528.8,534.8,"off. And I don't know about you, but I don't want to wait 20 seconds to figure out what the square"
+534.8,541.76,"root of 54,000 is. That seems like an unreasonably long amount of time to come up with an approximation,"
+541.76,546.4799999999999,right? And we don't wait that long when we do it on the computer or when we do it on the calculator.
+547.2,552.96,And so that leads me to the bisection search algorithm. It's going to be a better way for us to solve
+552.96,561.2,"certain types of problems much faster, but only certain types of problems. So to motivate the bisection"
+561.2,565.36,"search, before we even look at code, I just want to give you a bit of motivation with a few different"
+565.36,572.64,"examples, okay? The first one is I'm going to give you guys a chance to win some money, okay? So"
+572.64,580.24,"suppose I put a $100 bill at one page in this book, okay? This is actually the last edition,"
+580.24,586.64,"not the edition we're using this year, but I don't have this year's edition unfortunately in my office."
+586.64,593.92,"So this book is 448 pages long, okay? And I put some money in this book. And if you can guess"
+594.56,600.3199999999999,"where the money is and eight or fewer guesses, I will give you the money. And if you fail, you get"
+600.32,609.5200000000001,"enough. Not really. Is this a game anyone would want to play? That's what I thought. And in fact,"
+609.5200000000001,616.88,"your chances of winning are about one in 56, okay? And I don't want to play that game either."
+617.5200000000001,622.96,"But now let's say I give you some additional information, okay? With each guess you make,"
+623.76,631.84,"I will tell you whether you are correct, too low, or too high, okay? So I give you some additional"
+631.84,637.2,information. Is this a game that now you would want to play? Would anyone like to play the game with me?
+638.64,643.52,"You want to play the game? Okay, all right. So you're up, okay?"
+646.08,650.72,"All right, so I'm going to write down your guesses because you only have eight, all right? You"
+650.72,653.84,"remember that. There's only eight guesses. All right, so what's your first guess? There's"
+653.84,661.6800000000001,"448 pages. So between, yeah, you pick 1 to 448. What's your first guess?"
+663.52,668.88,"224? All right, smack in the middle right there. All right, 224. Don't look."
+669.04,681.52,"All right. No money. All right, so but now I give you extra information. The guess is too high."
+682.08,685.28,"My guess was too high. Yes, your guess was too high, so not 224."
+686.8,688.32,112. So you want to go here?
+689.12,693.12,"112. All right, that's two guesses now."
+699.28,709.6,Nope. The guess is too high as well. Still too high.
+715.6,723.52,"56? Okay, so here somewhere. Okay. All right, 56."
+723.68,734.0799999999999,The guess is too high. Still too high.
+739.04,746.48,"28? All right, 28. I'm going to start writing up here. 28. You have 1, 2, 3, you're at 4 guesses"
+746.48,761.6800000000001,"now. 28, okay. It is. No. Wait, I now have to remember where I put it. It's too high."
+761.6800000000001,769.04,"It's too high, sorry. Still too high. 14? Okay, 14. All right, there."
+769.04,780.0799999999999,"Okay, now 14. Now it's too low. Now that I remembered, now that I remember where I actually put it,"
+780.0799999999999,789.28,"it's too low. Turns out it's not 48. Between, yeah, 14 and 28. So now you know, it's, yeah."
+790.56,794.4,"21? Okay, so right there, 21. Okay, let's see."
+799.8399999999999,815.4399999999999,"Guys, I'm shaking. It's not 100, but there is a 1 and a 0 in it, so there you go. All right,"
+815.4399999999999,823.68,"that was awesome. So yes, I'm really glad you played, and actually you only took seven guesses to"
+823.6800000000001,828.8800000000001,"get it. So I could have probably rigged it a little bit better, because your chances of winning"
+828.8800000000001,836.72,"this game are about 1 and 3. Okay, and you did a really good job. So what was your thought process,"
+836.72,841.7600000000001,"basically? And I think once you did a couple of them, anyone who maybe didn't think about this way"
+842.4000000000001,848.0000000000001,"and figured it out, you were basically guessing the halfway point, right? Each time I told you"
+848.0,856.08,to hire too low. And so by section search is a method that you can use to solve problems where there's
+856.08,865.12,"some sort of order to the thing you're trying to search, right? So let's say we know our interval."
+865.12,872.8,"In this case, in the book, we knew that we had page 1 to 448, right? So we had this low point,"
+872.8000000000001,878.8800000000001,"the page 1, and this high point, 448. And we know that our answer lies within this interval,"
+878.8800000000001,884.5600000000001,"and it can be integers like in this book, or it can be, you know, fractional pieces as well."
+885.2800000000001,889.5200000000001,And the idea is you're just guessing the midpoint between this interval. It's as good as guess is
+889.5200000000001,894.8800000000001,"anything, right? But based on the answer that I give you, because now I give you extra information if"
+894.8800000000001,901.7600000000001,"it's too high too low, you can basically eliminate half of the search space, right? So with the guess"
+901.76,909.92,"224, what ended up happening is you eliminated this entire half of the book, right? So it's like I take"
+909.92,918.08,"this original book, 448 pages, get the midpoint, rip it in half, throw away these upper pages. And now"
+918.08,923.28,"you kind of think of it like having this skinnier book. And this is now the book you're searching through,"
+924.08,930.16,"right? And then you're repeating the process all over again. The low end point is still page 1,"
+930.9599999999999,937.04,"right? Because I have no information about how low I need to go, but my high end point becomes"
+937.04,945.92,"the guess that I had just made, right? 224, right? And now I make another guess, midpoint in this"
+945.92,952.8,skinnier book. And so this should kind of trigger something in your brain about computation and
+952.8,957.8399999999999,"things that we've learned. As soon as we're saying, I'm repeating this process, right? Of now just"
+957.84,964.96,"doing the guess again with this smaller version of a book, we're basically, we have a loop, right?"
+964.96,969.52,That's something that you should be thinking about. And this loop is going to be something that is
+969.52,974.32,going to be something that just repeats the same process over and over again. Once I've eliminated
+974.32,979.36,"this upper half of the book, now I'm looking through this lower half, midpoint based on the answer"
+979.36,984.72,"I give you, you can rip the book again in half where you are now and now you're searching this skinnier"
+984.72,991.2,"version of the book, right? So we're basically cutting the number of things we need to search for"
+991.2,998.88,"in half every time we make a guess, which is really powerful, right? With guess and check or with"
+998.88,1004.08,"bind or with approximation method, if we're going to do guess and check on this book, we'd be asking,"
+1004.08,1008.88,"is it page 1, is it page 2, is it page 3, is it page 4? And that's tedious, right? We're not"
+1009.4399999999999,1014.56,"doing, we're not limiting half the book with each guess, we're just eliminating one page with each"
+1014.56,1022.8,"guess, okay? So this idea of logarithmic growth, which is what happens when you eliminate the search"
+1022.8,1027.36,"space in half each, with each stage is logarithmic growth. And we'll come back to this idea again"
+1027.36,1033.68,towards the last few weeks of lecture when we talk about comparing algorithms in this class. And
+1033.68,1037.84,what does it mean for one algorithm to be more efficient than another algorithm? What does it mean to
+1037.84,1044.6399999999999,run faster? Okay? So that's just something I mentioned. When we do guess and check where we ask
+1044.6399999999999,1050.24,"one page at a time, that's linear growth, because if the book, if I give you now a book that's double"
+1050.24,1055.6799999999998,"the size, and just by bad luck, I put the money away at the end, if I put the money at the end in"
+1055.6799999999998,1061.36,"this book that's twice as big, then you're going to have to ask me twice as many questions until you"
+1061.36,1067.6799999999998,"get to the answer. But with logarithmic growth, if I still put the money in this book that's double"
+1067.68,1073.04,"the size, somewhere, all you need to do is make one extra guess, not 400 extra guesses,"
+1073.04,1078.16,"to figure out which interval it's in, right? You take from this double book, make your first guess,"
+1078.16,1085.6000000000001,"and all of a sudden we are at this book again, okay? All right, so let's do another analogy just so"
+1086.48,1091.2,"we get kind of the sense of where this is going. So suppose that, you know, we don't just need to work"
+1091.2,1096.48,"with numbers, we can also work with anything that has an ordering property to it. So suppose when"
+1096.48,1103.28,"you came in, I asked you to sit alphabetically, right? Front left is last name A, back right is"
+1103.28,1110.08,"last name Z, and then I'm looking for a particular person, right? For me, the by section search algorithm"
+1110.08,1116.56,"could be basically ask the person in the middle of the class, what is their last name, right? If they,"
+1116.56,1123.76,"if you know, they say what it is, and depending on what they say, right? I can basically dismiss"
+1123.76,1128.08,half of the people. If their last name starts with a letter later than the one I'm looking for in
+1128.08,1134.0,"the alphabet, I dismiss the upper half, and vice versa, right? And then I have this only half of the"
+1134.0,1139.36,"people to search there, and I keep repeating this process until I have only one person left,"
+1139.36,1144.32,"and either that person is the one I'm looking for, in which case I've decreased by half the size of"
+1144.32,1151.28,"the class with each guess, and I have one person left to ask. So when I'm looking for or that person"
+1151.36,1160.8799999999999,"just isn't here, okay? So let's try to apply the same idea of by section search to programming,"
+1160.8799999999999,1166.08,and specifically let's do the problem we've been trying to solve kind of as a common thread throughout
+1166.08,1171.28,"these algorithms, figuring out the square root of a number. Not exact, actually we're still going"
+1171.28,1178.08,to be looking only for an approximation to the square root of a number. So the idea here is that our
+1178.08,1183.1999999999998,"interval is, if we're trying to find the square root of x is going to be between zero and x,"
+1184.08,1192.8,"right? So basically I can just reuse this number line here, right? And I have my interval for the"
+1192.8,1202.6399999999999,"square root is zero and x, okay? So like that. So with approximation method we would start at zero"
+1202.64,1210.48,and painstakingly make our way little by little. But with by section search we're making our initial
+1210.48,1216.16,"guess to be the halfway point, okay? Again we're working with numbers so the ordering properties"
+1216.16,1221.92,"is very intuitive. We ask at this halfway point what is with this guess at the halfway point,"
+1221.92,1231.6000000000001,"what is the guess squared? Okay? So if the guess squared is up here, right? So g squared is up here,"
+1232.4800000000002,1239.6000000000001,"then I know this guess is too big. So I know I do not need to make any further guesses up here,"
+1240.2400000000002,1249.3600000000001,"right? So that's this case here. If I know this guess is too big, then my interval now becomes this"
+1249.3600000000001,1254.64,"is going to be the low still, but now this is going to be my high point, right? And this is kind of this"
+1254.64,1260.0000000000002,"new interval I'm looking through. But if you think about it, it's the exact same problem I started"
+1260.0,1265.28,"with when my interval was larger, right? I still have an interval with a low and a high,"
+1265.28,1270.88,"I'm still going to make a guess halfway. This new g here and I'm going to ask again,"
+1270.88,1279.68,is this new guess squared less than or greater than x? Let's say this case it's less than. So if the
+1279.68,1286.88,"new guess new g is less than x, the new g squared is less than x, then I know this is new g,"
+1286.88,1295.0400000000002,then I know that anything lower than this is definitely not going to be closer to the answer I'm
+1295.0400000000002,1301.68,looking for. So now I'm eliminating this half of this search space. And then I keep making the same
+1302.64,1309.92,"guesses. Next g, g, latest g, this is like when you guys name your files, remember? And you know,"
+1309.92,1316.3200000000002,"you've got new file, final file, latest file, version two, all that stuff. That's basically what I"
+1316.32,1322.3999999999999,"did. So anyway, I have this latest g here, which is my new midpoint and I keep making these guesses"
+1322.3999999999999,1328.24,and asking the question whether this guess squared is greater than or equal or less than x. And I adjust
+1328.24,1336.8,"my boundaries accordingly. So at each stage, the number of values I have to search through are just"
+1336.8,1345.6799999999998,half of what I had to search through last guess. So the bisection search takes advantage of two
+1345.68,1349.92,"properties. And you can only use it when you have these properties in hand, right? There's some"
+1349.92,1355.1200000000001,"sort of ordering to the thing you're searching. So you know, last names are alphabetical, you know,"
+1355.1200000000001,1363.52,you have this range of values. And you have some sort of feedback. The feedback tells you whether
+1363.52,1369.28,the guess that you made was too low or too high or exact or approximate whatever you want.
+1369.28,1378.08,Okay. So think about this for a second and answer the question. So you're guessing a four digit pin
+1378.08,1384.6399999999999,"code, right, on a phone or whatever. And the feedback the phone tells you is whether the guess is correct"
+1384.6399999999999,1390.72,or not. Can you use bisection search in this situation to quickly and correctly guess the code?
+1390.72,1400.08,No. Why is that? What are we missing? It doesn't tell you if it's too big or too small. Yeah.
+1400.08,1404.72,"So guessing, Rand, I mean, you could use bisection search and you could choose which have to look through"
+1404.72,1410.08,"but then basically, you just have to search through all the values anyway in worst case, right? And"
+1410.08,1415.52,"then you might as well have just gone from, you know, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, just have gone"
+1416.08,1424.72,incrementally upward. Okay. So how about this extreme guessing game? All right. So you have a
+1424.72,1431.76,friend and you would like to play this extreme guessing game where you want to guess a number exactly.
+1433.68,1440.96,So your friend has a decimal number in mind so it can be with a decimal point like any real number
+1441.04,1447.44,"from 0 to 10. Let's say including 0, including 10 to any precision in mind. So the feedback your"
+1447.44,1452.72,friend gives you when you play this extreme guessing game is whether your guess was correct to lower
+1452.72,1457.8400000000001,"too high. In this case, can you use bisection search to quickly and correctly guess the number?"
+1461.3600000000001,1469.6000000000001,The number might be really long instead of one time. Yeah. Yeah. So I included this word exactly
+1469.6000000000001,1475.92,"here, right? If I didn't include that, I think the answer could be yes because you could play the"
+1475.92,1482.96,game to a round or approximation to decimal places or something like that. But I guess if your friend
+1482.96,1490.64,"wants to flex with pi, right, in your extreme guessing game, then bisection search wouldn't work."
+1490.64,1497.3600000000001,"Because if you're trying to find that number exactly, then you'll never get to it, right? So yeah,"
+1497.3600000000001,1501.68,"you're using bisection search, but it's going to basically be an infinite algorithm, right? It"
+1501.68,1513.92,won't terminate. Okay. So this is the same slide I had at the beginning of lecture just to remind
+1513.92,1520.2400000000002,"ourselves what the code looks like when we use the approximation algorithm. In nothing new here,"
+1520.2400000000002,1526.4,"so we had our, the thing that basically did the work was this while loop, right? While we were still"
+1526.4,1533.3600000000001,"farther away from epsilon, and we were still making reasonable guesses, increment our guess by 0.0001."
+1534.96,1540.88,"Now let's write the code for the, finding, approximating the square root of a number, but with bisection"
+1540.88,1545.44,"search. So we're going to follow the same kind of procedure we did here, and we're actually going to"
+1545.44,1549.44,sort of write it together on the slides. And I'm going to explain sort of the thought process that
+1549.44,1556.96,goes behind the each step. Okay. So the first thing we're doing is we're initializing some stuff
+1556.96,1563.04,"up here. So the thing we want to find the square root of, right? Let's, why not do the same number? That"
+1563.04,1568.4,"gave us trouble last time. And we still want to be within some plus and minus epsilon, again,"
+1568.4,1575.76,"because we do not want to be comparing floats, right? And this num guesses is going to keep track of"
+1575.76,1580.0,"how many guesses we've made. Basically, when we played the guessing game, how many guesses"
+1580.0,1588.64,"did you do to get to the, to the, to the money? All right. Good. And then at the bottom here,"
+1588.64,1597.68,"we're going to print out the, the number of guesses and what the guess was that brought us close to"
+1597.68,1604.8799999999999,"the, plus or minus epsilon. Okay. So the first thing we do is we notice there was a repetition."
+1605.76,1611.92,And the while loop here is exactly the same as the while loop for the approximation method. Okay.
+1612.72,1618.48,"While we're still farther than epsilon away, right? While I, while our guess squared"
+1620.64,1629.04,"is plus or minus epsilon away from x, right? So absolute value of guess squared minus x is greater"
+1629.04,1636.6399999999999,"or equal to epsilon. I guess the, this could just be greater than details. Let's keep making guesses."
+1638.24,1642.3999999999999,"Now the guesses are, we're not incrementing anything, right? This isn't the approximation method."
+1642.3999999999999,1649.44,We need to make the guesses in a smart way. Okay. So we're going to initialize some stuff for
+1649.44,1658.0,"algorithm to work like original endpoints. And then we're going to do some stuff inside the loop,"
+1658.0,1662.24,"whatever is repeated, whatever we noted, right? When we were talking about the algorithm,"
+1662.24,1667.52,what did we note that gets repeated every time? Okay. Let's talk about the initializations.
+1669.92,1674.08,"We need to initialize our two endpoints, right? We need the, for the bisection search to work,"
+1674.08,1679.28,we need to know what our endpoints are. So the low is going to be zero. So for trying to find
+1679.28,1685.44,"the square root of x, we might as well make our low zero. And let's make our high point x."
+1685.44,1692.0,"Our high point can be 2x, it could be 3x, whatever we want, but that's too big. We know if using"
+1692.0,1696.0800000000002,algebra that definitely it won't be that big. So we can just make our high point x.
+1698.3200000000002,1705.28,And then we just kick off this algorithm with our initial guess. It's going to be the midpoint
+1705.28,1711.68,of low and high. So high plus low divided by 2. Okay. So that brings us to just before the while loop
+1711.76,1720.4,"here, right here. Okay. And now we're going to repeat some stuff while we're still far farther than"
+1720.4,1729.6000000000001,epsilon away from our answer. So the thing that we're repeating is going to be checking if we are
+1729.6000000000001,1735.92,"too low or too high, right? Like we have a guess in hand now, this midpoint here. And now with this"
+1735.92,1741.1200000000001,"guess in hand, that kind of kicked off our algorithm, we're going to say is this guess too low or"
+1741.1200000000001,1749.6000000000001,"too high, right? That's what the algorithm means. So that's an if else, a little conditional here,"
+1750.3200000000002,1759.44,"if the guess squared is less than x, then the guess is too low. Okay. So if this is this guess"
+1759.44,1767.92,"squared, brings us to somewhere here, right? Then we know this guess is too low. What do I do in"
+1767.92,1782.96,this case? What does the algorithm say to do? Yes. Other way around. Yes. So this is too low. So I
+1782.96,1789.1200000000001,definitely don't want anything lower than here. Exactly. So we're going to set our low end point. If the
+1789.1200000000001,1794.72,"guess is too low, let's set our low end point to be whatever guess we just made because we know this"
+1794.72,1800.0800000000002,is too low. Anything lower than this is definitely too low. So I don't care about these.
+1802.48,1809.1200000000001,"Else, we don't need an L if because we know the else is the other way around. Else, our guess was too"
+1809.1200000000001,1814.5600000000002,"high, right? So if the next time around, we make a guess here or something like that, then we know we're"
+1814.56,1823.04,too high. And then we need to set our high end point to be the guess. Is everyone okay with that so far?
+1824.72,1832.48,"Okay. What remains? So I've changed one of my boundaries, either my low or my high boundary to be"
+1832.48,1839.12,whatever guess I just made. What is the next step? What is this algorithm do or this loop do as is?
+1839.1200000000001,1850.8000000000002,It finished doing whatever is inside and it goes back and uses the guess and check whether the guess
+1850.8000000000002,1858.4,squared minus x is greater or equal to epsilon. Have I changed my guess inside this loop yet? No.
+1859.2800000000002,1866.16,So that's the last step that remains. Make the guess be the new midpoint
+1867.1200000000001,1875.68,"using either the changed high or the changed low. So each time through my loop, I'm either"
+1876.48,1881.52,changing my low to be the guess or changing my high to be the guess. So I'm making one of those two
+1881.52,1888.96,"changes. After I've made that change, I need to find the new midpoint. So if I changed my low,"
+1888.96,1898.0,"now I need to make my new guess. And with this new guess, then I'm happy for the while loop to check"
+1898.0,1908.48,"it again. Take that guess squared, see how far away it is from x, and then it does the changing"
+1908.48,1914.32,of the boundary all over again. And that's it. There's no other lines of code in here.
+1914.8,1921.4399999999998,"So in some sense, there's a little bit of trust with this loop that it does the right thing,"
+1921.4399999999998,1927.52,"but if you do a little bit of iteration in your brain or through the Python tutor,"
+1928.08,1936.0,you'll see that it actually does it correctly. So we can just use that same number line.
+1936.72,1944.96,"And let's look at the squared of 36. The epsilon I made it one, just because I don't want"
+1944.96,1950.88,"to do so many steps in the Python tutor, but you can imagine if it's smaller, it'll just give us"
+1950.88,1957.6,"a better approximation. So we're initializing the x, the thing we want to find the square root of,"
+1957.6000000000001,1964.96,"an epsilon, the low and the high, 0, and 36 in this particular case, right?"
+1967.44,1975.6000000000001,"Okay, stepping through, the first guess is half of 36 and 0, so 18. So here's my guess is 18."
+1975.6000000000001,1981.68,"And now we kick off our while loop by saying what is 18 squared? Oh, it's pretty big,"
+1981.68,1988.64,definitely bigger than 36. So I'm going to go inside this else because my guess is too high.
+1989.52,1997.04,"So my high becomes this. And this is so low, right? I know nothing about the low end at this point."
+1999.04,2007.1200000000001,"So then my guess becomes the high plus low, 0 plus 18 divided by 2, right? So that's going to be 9."
+2007.1200000000001,2013.7600000000002,So you can see my guess has updated to 9. And now I find the guess squared. What is 9 squared?
+2013.7600000000002,2021.0400000000002,"Is it still farther than plus or minus 36 plus minus 1? Yes. In fact, it's still way too big."
+2021.6000000000001,2030.3200000000002,"So now my high, since I know 9 is still way too big for my guess, my high becomes 9."
+2030.32,2041.52,Like that. And then I make a new guess based on 0 and 9 and the halfway point between there.
+2042.6399999999999,2052.24,"So 4 and a half, right? So there it is, updated. And using this guess, square it and see whether it's"
+2053.0400000000004,2063.92,"less than 36 or greater than 36. It's less than 36. So now this 4.5 becomes my low end point, right?"
+2063.92,2071.76,"Now I have some information about the low end point like that, right? So I know my final answer is"
+2071.76,2077.28,within this little interval right here. Okay. And then I'm just going to go quicker because now we're
+2077.28,2084.4,dealing with some fractions. My low end point becomes 4.5. And now I get the midpoint between 4 and a
+2084.4,2091.0400000000004,half and 9. And that's 6.75. And then we keep doing the same process over and over again.
+2091.0400000000004,2098.5600000000004,Hopefully you get the idea now where we keep changing this while the guess squared is still 36
+2099.6000000000004,2105.36,"outside of the boundary of 36 plus or minus 1, right? So if it's less than 35 or greater than 37,"
+2105.92,2112.6400000000003,keep making guesses. So we're going to go to probably 6.0 something there. I think that's the end.
+2112.6400000000003,2122.96,"Yep. So the guess being 6.04, 6.9 brings us to a guess squared within plus or minus 1. Yes,"
+2122.96,2143.92,"question. If my guess was correct, then we would break immediately, right? Because this becomes,"
+2143.92,2155.92,"this is false. Yeah, we don't even enter the wild loop. Yeah. Okay. Okay. So let's run the code."
+2156.88,2164.4,"So this is the, this is the bisection search code that I just ran through the Python tutor. We looked"
+2164.4,2172.88,"on the slides, but running with 54,000, 321. So just to recap, the number of guesses we did with the"
+2172.88,2179.84,"approximation method was 23 million. Okay. To give us an answer that said the square root of 23,"
+2179.84,2187.36,"the square root of 54,000 is about 233. And now we run it with our bisection search and I didn't even"
+2187.36,2192.56,"have to wait. That took less than a second, right? Compared to 20 seconds that we had to wait for."
+2193.28,2201.76,And it didn't fail. It gave us very similar answer. It's this 233.068 as close to the square root of
+2201.76,2216.4,"54,000. And we did 30 guesses, dramatic pause. 23 million for the approximation method,"
+2216.4,2224.96,20 seconds later versus 30 guesses less than a second later. So it's not like we went from 23 million
+2224.96,2233.6,"to 5 million guesses, right? We went from the order of millions to just tens, which is really,"
+2233.6,2242.64,"really cool, right? That's very impressive. And that's what logarithmic growth means, right? That's"
+2242.64,2247.84,the power of logarithmic growth and kind of recognizing that we can apply bisection search to these
+2247.84,2256.56,"problems, right? So with approximation method, again, we're decreasing our search space by"
+2256.56,2263.76,".0001 with each guess. But with the bisection search, we're decreasing our search space by half"
+2264.56,2271.76,"with each guess, right? So if we had, you know, however many things to search for in the book,"
+2271.76,2277.36,"we had 400 pages to search through, right? With our first guess, we now only have 200 pages to search"
+2277.36,2282.6400000000003,"through. With the second guess, we only have 100 pages to search through. With the next guess,"
+2282.6400000000003,2288.96,"we only have 50 pages to search through. And the idea of bisection search, just that its logarithmic"
+2288.96,2296.08,"comes from the fact that we have to ask ourselves how many guesses do we make until we have only,"
+2296.8,2301.44,"you know, for example, one page left to search through for the money. Or how many guesses do we have"
+2301.44,2308.32,"to make until we are within epsilon? There's only that one, we reach the one value that gives us"
+2308.32,2315.36,"within epsilon, okay? And so this came, many guesses means that we've divided our search space by two to"
+2315.36,2322.32,"the power of k many times, okay? And that's one we've converged on the answer. And so to converge"
+2322.32,2329.12,"on the answer means you've divided your search space by two k times, so n divided by two to the power"
+2329.12,2336.08,"k equals one. You have reached your one answer, the money's at this page, the student is sitting"
+2336.08,2342.88,"there, or we have come within point zero one of, you know, of the actual answer. And so when this"
+2342.88,2348.96,"is true, n is equal to two to the k, and what we want is to kind of solve this problem in terms"
+2348.96,2355.52,"of n, so k is equal to log of n, and that's where the logarithmic growth comes from for this particular"
+2355.52,2362.32,"problem, okay? So in terms of loops, yes, it took us k times through the while loop to figure out"
+2362.32,2369.7599999999998,"the answer, but in terms of the size of our search space, it took us log of n times to get to our answer."
+2371.52,2377.92,"Okay, so let's look at a couple of nuances of the code we just wrote. So if we try to run the code"
+2378.0,2386.8,"for values between zero and one, what actually happened? So if we run it with, for example,"
+2386.8,2402.32,what's the square root of 0.5? It's running. It's still running. I'm pretty sure it should have
+2402.32,2407.28,given us an answer by now. So let's just stop it. We've entered an infinite loop.
+2408.88,2414.96,"So in that case, let's see what actually it's printing out. So when you've entered an infinite loop,"
+2414.96,2420.32,it's time to put some print statements. Best place to put print statements is within the loop
+2420.32,2427.76,"itself, and just print out some values for things. So here I have this print statement, where we print"
+2427.76,2435.6800000000003,"out what, oops, let me get that out of the way, what the low value is. So we've got low equals,"
+2435.6800000000003,2442.4,and actually I don't need to convert this to string. It should just be low. And then the high value
+2443.04,2459.12,"and then the guess itself. So if we run it, that's what we get, and it looks like it's just repeating,"
+2459.12,2467.04,repeating over and over again. So what happens when I'm looking for a square root of a value between
+2467.04,2480.0,"zero and one? So this is my zero to x, but if x is between zero and one, the square root of x,"
+2482.64,2491.68,"it's bigger than x itself, right? So the square root of 0.5 is bigger than 0.5. It's not smaller than 0.5,"
+2491.68,2503.8399999999997,"right? So what this program is doing is it's making its initial guess, right? High plus low divided by"
+2503.8399999999997,2512.72,"two, so zero, if my initial guess is zero to x, it's making an initial guess there, and then at some"
+2512.72,2519.44,"point it just gets stuck in the loop, because the low becomes 0.5, after our first guess, the high"
+2519.44,2528.48,"becomes 0.5 as well, and the halfway point between 0.5 and 0.5 is just 0.5. So now it's just reassigning"
+2528.48,2538.64,"it's the new guess to itself over and over again. So we need to make a fix to that, and I'm going to"
+2538.64,2547.04,"have you guys make the fix to that, okay? So you don't need to account for both cases, but right change"
+2547.7599999999998,2555.92,"the end points for this particular problem, such that it works with values of x between 0 and 1."
+2555.92,2561.68,"So if we're trying to find the square root of a decimal number between 0 and 1, what are the"
+2561.68,2566.8,"end points that you want to choose for the code to now work? And the code is exactly the same as before,"
+2567.52,2570.16,"okay? So all you need to do is choose different end points, yes."
+2570.3999999999996,2586.72,"Oh okay, we can run it with the Python tutor, and so this is 0.5, right? So basically we've made"
+2586.72,2594.08,"our guess like that, right? And then we're changing our guesses, and so you can see that it's actually"
+2594.08,2605.36,"changing the low and the high, and it originally did the right thing, right? Like the first few guesses,"
+2605.36,2611.68,"it's making the changes appropriately, but then the floating point errors come into play, where at some"
+2611.68,2623.04,"point this 0.4999 and this low, that it keeps dividing, is just going to become 0.5. And 0.5 is a"
+2623.04,2630.48,"power of two, remember as floating points are, and in this particular case, once it reaches the point"
+2630.48,2636.0,"five, then floating point errors don't come into play anymore, because that 0.5 can just be represented"
+2636.0,2642.56,"exactly. So I'm going to have to probably hit next for quite a few more times, but you can kind of see"
+2642.64,2648.4,right where that's getting that 0.5 from. Does that help?
+2655.2,2661.68,"That and also the fact that we didn't really account, this code doesn't actually work correctly with"
+2661.68,2667.68,"these values. So it enters in an infinite loop because of the floating point error towards the end,"
+2668.64,2676.56,"and that causes us to see just 0.5.5. But if we were doing it to infinite precision, you would start"
+2676.56,2684.16,"to see numbers that approach 0.5, but never quite get there. But I think the reason we saw 0.5 here is"
+2684.16,2692.48,"because it already ran 100 times, 200 times, and so now we're just seeing the tail end of it."
+2698.16,2713.7599999999998,"So here is the code for fixing that. So what do you guys think the low end point should be,"
+2713.7599999999998,2718.7999999999997,and the high end point should be if we wanted this to work with values between 0 and 1.
+2719.28,2732.32,"So if this is our x and we know x is less than 1 greater than 0, the square root of x is going to"
+2732.32,2739.76,"be somewhere up here, right? And we know the maximum place it will be is 1, and what's the minimum"
+2739.76,2746.0,"place that the square root of x could be for values within this range? I heard, yeah, x."
+2746.96,2754.4,"So this is the minimum value for the square root of x, and this is the maximum value for the square root of x."
+2757.36,2765.52,"So all we need to do is say the low is equal to x, and the high is equal to 1. And then I think"
+2765.52,2782.16,this code should work. Yeah. And so I did just that down here. So here is the code with
+2783.6,2790.32,"actually allowing for the user to give us any value, not just between 0 and 1 or greater than 1."
+2790.32,2799.44,So all I did here to make the code work and be robust is add an if else right at the beginning.
+2801.44,2807.52,"So I allow the user to give me whatever x they'd like, but then I do a little check here that says"
+2807.52,2816.0800000000004,"if the x is greater equal to 1, then my low and high end points become 0 to x, right? Because I know"
+2816.16,2822.72,"the square root is going to be within that boundary, but then otherwise if the user gave me a value that's"
+2822.72,2831.2799999999997,"less than 1, and I guess I should do greater than 0, just in case the user gives me negative numbers,"
+2832.0,2838.7999999999997,then I would choose the boundary for the low to be x and the high to be 1. So just a very simple if else
+2838.8,2855.28,here. And otherwise the rest the code works just the same. Okay. Yeah. So this is exactly what we
+2855.28,2860.8,"just saw in the slides, right? An if and an else where I choose the end points accordingly."
+2860.8,2867.6000000000004,Any questions about this code? Does it make sense? Yeah.
+2873.6000000000004,2882.5600000000004,"If you make the low equal to 0 here, oops. I think that's fine, right? Because then that means you're"
+2882.5600000000004,2889.28,"looking, you're making your low lower than it needs to be. And so your first guess is basically the"
+2889.28,2898.48,"halfway point x itself. And then it fixes, I think it just fixes it. It goes through 1 extra"
+2898.48,2906.88,"guess exactly. And that's again the power of bisection search, right? If for values greater than 1,"
+2906.88,2914.8,"if we made our high boundary be 2x, it would just make 1 extra guess to bring us to x and then you know"
+2914.8,2918.88,"below and so on and so on. So like 1 extra guess is nothing to the computer, right?"
+2923.6800000000003,2933.52,Okay. So a couple observations for bisection search. So it takes a significantly less
+2933.52,2939.84,amount of time to solve problems using bisection search than it does using the approximation method.
+2939.92,2945.44,"And it gives us an approximation to, in this case, the square root of a number. That was pretty"
+2945.44,2953.1200000000003,just as good as the approximation method itself. When we did the book example and that's kind of
+2953.1200000000003,2956.48,"the second point here, it might be easier to illustrate. When we did the book example,"
+2957.76,2966.48,"the very first guess eliminated more number of pages than later guesses, right? Our first guess"
+2966.48,2974.08,"eliminated 200 pages right off the bat. Our second guess only eliminated 100 pages, our third only"
+2974.08,2980.16,50. And at some point you can imagine that we're only eliminating something like 4 pages. And then
+2980.16,2987.04,"we're eliminating only 2 pages at a time, right? The more guesses you make. So it feels more dramatic"
+2987.04,2994.2400000000002,"at first, but then it kind of dies down. But that's just logarithmic growth, right? It feels dramatic"
+2994.2400000000002,2999.84,"at first, but then as you get closer and closer to the actual approximation, the actual answer,"
+2999.84,3005.6800000000003,"you're not making, taking up as big of steps, or you're not making such dramatic cuts to the book."
+3007.6800000000003,3013.84,"And so the bisection search algorithm is really awesome, but again, there are some limitations to"
+3013.84,3020.1600000000003,"when you can use it, right? You have to have your search space have endpoints. That search space needs"
+3020.16,3026.3999999999996,"to be ordered, right? Alphabetically in order by, you know, in America, whatever. And you have"
+3026.3999999999996,3031.3599999999997,"to be able to get the feedback is this guess too low or too high, right? If you don't have those,"
+3031.3599999999997,3036.8799999999997,"then you can't use bisection search for this. Okay, I'm going to give you a couple moments to work"
+3036.8799999999997,3042.72,on this code by yourself. So this is you writing the bisection search algorithm to find the cube root
+3043.3599999999997,3048.3199999999997,"of positive cubes. So don't worry about, you know, negatives or whatever, just assume the user gives"
+3048.32,3054.4,you a positive cube. I'm initializing the values for you here. So the cube is 27.
+3055.84,3061.2000000000003,"I want you to be within plus or minus 0.01, right? So your guess squared should be within plus or"
+3061.2000000000003,3069.6000000000004,"minus 0.01 of 27. Start with a low of 0 and a high of cube, and write the rest of the algorithm."
+3069.6000000000004,3076.96,"Don't copy and paste. Well, we did for square. Try to write it all by yourself all over again."

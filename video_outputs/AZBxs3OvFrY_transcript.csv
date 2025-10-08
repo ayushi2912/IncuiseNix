@@ -1,0 +1,383 @@
+Start Time,End Time,Text
+0.0,24.84,Okay. Let's get started with today's lecture. It's going to be more of a chill lecture than
+24.84,29.22,"what we've done in the past. Even though we've got quite a few things to cover, as you"
+29.22,34.66,"can see from this title slide, I'm not going to go super duper fast, so please feel free to ask"
+34.66,39.0,lots of questions. And then the second half of the lecture will be really chill because we're going
+39.0,46.379999999999995,"to be talking about testing and debugging strategies. So super high level topic. But first, we're going"
+46.379999999999995,53.82,to tie up some loose ends related to lists and relating to functions. So we're not going to introduce a lot
+53.82,59.94,"of new syntax. These ideas are sort of more optional in your day-to-day coding, but they're just"
+59.94,66.26,"really, really nice to know. So let's first start talking about this idea of a list comprehension."
+66.26,75.62,So you've been writing functions that deal with lists. And one really common pattern that I hope
+75.62,81.78,you've seen so far is the following. So this code right here shows something that we've definitely
+81.78,88.06,"coded together, and you've definitely coded in the finger exercises and the quizzes. And so it is a"
+88.06,94.34,really common pattern. So the idea here is you have a function that creates a new list where the
+94.34,101.1,elements of this new list are a function of the input list. So the pattern here is we create a new
+101.1,107.9,"empty list inside the function. We have a loop over every element in the input, and to each one of"
+107.9,112.62,"these elements in the input, we apply the same function. So in this particular case, we're taking that"
+112.62,119.30000000000001,"element and squaring it. And each one of these elements were appending to this new list, originally empty,"
+119.30000000000001,126.10000000000001,"until we've reached, we've done this function to every element in L, and then we return this newly created"
+126.10000000000001,134.58,"list. So since this is a really common thing that programmers do, Python allows you to do this exact"
+134.58,141.58,functionality with one line of code. And the way we do this is using something called the list
+141.58,147.9,"comprehension. So the way that we do a list comprehension, essentially taking these four lines of code from"
+147.9,155.98000000000002,"this function, we are going to write them in this one line of code that looks something like this. So the"
+155.98000000000002,163.74,"idea here is with this one line of code, we're going to create a new list. We're going to have an iterator that"
+163.74,169.70000000000002,"goes through some sort of sequence of values, and we're going to apply the same function to every one of those"
+169.70000000000002,176.42000000000002,elements. And the other optional piece that we can add inside this list comprehension is to only apply that
+176.42000000000002,187.10000000000002,"function if some condition holds. So let's look at this example, and see how we can convert these four lines of"
+187.1,201.1,code to one line of list comprehension code. So we've got creating a new empty list. This is going to tell Python to create a new
+201.1,208.57999999999998,"empty list for us. So just open and close square brackets. And within these open and close square brackets, we're going to"
+208.58,222.58,write a one-liner expression. And this one liner is going to encapsulate these two lines of code here. So the function we're going to apply to every
+222.58,235.58,"element in L is going to be taking that element and squaring it. So on the right hand side here in the list comprehension, we've got some e squared. Well, what is e? Well, it's going to be every element"
+235.58,256.58000000000004,"e in L. So if we read this in English, we basically say L is going to contain elements e squared for e in L. So it sounds weird, but it kind of makes sense even if we read it in English. And behind the scenes, Python will take one by one, each element in L, square it. And"
+256.58,274.58,"that's the sequence of elements. It will populate this L new with. Now, what if we add a condition to that? So let's say we want to create this new list of elements only for even elements. So we only want to square the"
+274.58,292.58,"elements within my original list L. Well, if we were to write a function that does that, we have to add this extra condition here. So everything else is the same except for this if e percent 2 equal to 0. This tells Python to only grab elements that are even."
+293.58,320.58,"So how do we write this in list comprehension form? So here's a new list. And this is the function to apply only if the test is true. In list comprehension, this is my new list. I've got the for loop is over here. And then the test to apply is at the end here if e percent 2 equal to 0. And then what is the function we're applying? It's just e squared like before."
+320.58,330.58,So the test just gets appended to the end of this list comprehension expression here. Yeah.
+333.58,348.58,"Does it run faster? I'm not sure actually. It might run marginally faster, but probably not significantly. The reason to do this is because as you get more practice with it, this will be easier to read in code."
+348.58,360.58,"And often, if you see a large chunk like this, your eyes will glaze over. You're not going to want to read a chunk like that. But if you see it all in one line, you're going to think, well, how bad can it be?"
+361.58,376.58,"And so you can come up with really complicated list comprehension expressions. But usually we reserve them for really simple, really quick ways to create these lists that you just populate with some values right off the bat."
+376.58,390.58,"So it just makes the code a lot easier to read. Okay. So list comprehension are pretty useful. If you get a little bit of practice with them, you'll find yourself kind of using them all over the place."
+391.58,402.58,And they basically replace code that looks like this. Okay. So these lines of code is a very generic way of writing this one liner list comprehension.
+403.58,416.58,So here I've got a function F that I would like to apply. This XPR expression is the function I would like to apply to each element. This is the list I would like to apply that function to.
+417.58,425.58,"And the test is going to be the conditional. In this particular case, this test means I apply it to every single element."
+425.58,433.58,"But you can imagine having a function, which, you know, in the previous case, we would say lambda X, X percent to equal zero as our condition."
+434.58,443.58,"And then the function that we're essentially replacing is, is this with list comprehension. Right. We create this new list. Again, this is the pattern that we saw in the previous slide."
+444.58,453.58,"We loop through every element in the list. If that condition holds, append that function applied to each element. And then at the end, return the list."
+453.58,468.58,Okay. So this is just a very generic way to write a list comprehension. So let's look at some concrete examples. So here I'm not applying the function e squared to a particular set of elements from a list.
+469.58,482.58,"I'm applying it to the sequence of values given by range. Remember when we were talking about four loops iterating through things, they can iterate through integers following some pattern like range six, range one comma nine."
+483.58,491.58,"I'm a two, something like that. As long as you have a sequence of values, you can iterate over. You can plot that into this list comprehension."
+492.58,500.58,So you could iterate over lists. You could iterate over two pulls. You could iterate over these direct ranges. You could iterate over range of the length of a list.
+501.58,506.58,"Whatever creates an iterable for you, you can put that put that in the list comprehension."
+506.58,516.5799999999999,"So in this particular case, the way I read this is I've got something that I'm squaring. And what's the thing that I'm squaring? It's going to be each value in range six."
+517.5799999999999,523.5799999999999,"So I think about it like what is the sequence of values that I'm going to operate on? Well, it's going to be the number zero, one, two, three, four, five."
+524.5799999999999,527.5799999999999,And the thing that I'm going to do to them is square each one of those values.
+527.58,537.58,"So the end list that I get out of this one liner here is a list containing zero squared, one squared, two squared, three squared, four squared, and five squared."
+538.58,548.58,"We can add a condition to that. So here I've got the each element squared for e and range eight, only if he is even."
+549.58,555.58,"So then the way I think about it is let's start off with what every element in the range is. Well, it's zero, one, two, three, four, five, six, seven."
+556.58,566.58,"The condition I'm applying to that is that it's even. So the numbers I'm going to end up with, I'm filtering all those to only contain zero, two, four, and six."
+567.58,579.58,"Because we go up to but not including eight. And then I'm going to square every one of those. So the end result from this list comprehension is a list containing the element zero squared, two squared, four squared, and six squared."
+580.58,591.58,"And lastly, we've been doing just single integers in the resulting list, but as I mentioned, we can do more complicated things."
+592.58,600.58,"So as long as we can write a little expression here for the thing that we'd like to calculate or add to the list, we can put it in the list comprehension."
+601.58,610.58,"So in this particular case, the element that I'm adding to my list comprehension or my resulting list from the list comprehension is a list itself."
+611.58,624.58,"So each element in my resulting list is another list, right? And that inner list is going to contain two elements every time, the thing I'm actually iterating over and it's square."
+625.58,636.58,"And I've got a condition here. So I've got the element zero, one, two, and three. That's the range. But I'm only grabbing the odd ones in this particular case."
+637.58,648.58,"So the resulting set of numbers that I'm going to, I'm going to apply this to is going to be the number is the numbers one and three."
+649.58,660.58,Because those are the two odd numbers in range four. And so the resulting list is going to contain two elements. So this outer square bracket is the list that I've created.
+661.58,668.58,And its elements will be the element that I have actually iterated over and it's square as a list.
+669.58,683.58,"So 1 and 1 squared for e and e squared when e is 1. And then 3 and 9, 3 squared when e is 3. Questions about that."
+683.58,697.58,"So pretty cool. It's a really nice way to create lists really quickly. Like if you wanted to create a list full of zeros, full of 100 zeros, no need to do a loop."
+697.58,708.58,You basically do a list comprehension that says square brackets zero for e and range 101 or 100. And then you've got yourself a nice list full of 100 zeros.
+709.58,723.58,So think about this and then tell me what the answer is. So the idea here is we have this list comprehension. And just go through it step by step. It looks a little bit intimidating.
+724.58,735.58,"But the first step is to look at the for loop and ask yourself what are the values I'm iterating over. Then look at the condition if there is one. There is one. In this case, it's at the end here."
+735.58,746.58,"So now what subsets of those original things you're iterating over are you actually keeping? And then from those things that you're keeping, what function are you applying? It's the one right at the beginning."
+747.58,753.58,So think about it and then I'll ask you to tell me.
+754.58,764.58,"So step one, what are the values I'm iterating over? The full values, not including the condition. Someone yell it out."
+765.58,780.58,"Yeah, that list in the middle. Awesome. Okay. So X, Y, ABCD, right. And then seven. And then what's the last thing? Is it the number 4.0 or a string?"
+780.58,806.58,"Yeah, exactly 4.0. Okay. String, string. Step two, from this list, what are the values that I'm actually keeping based on the condition? If they're a string. Which one's a string? Is X, Y? Yes. Is ABCD? Yeah. Is seven? Nope. Is four? Point 0? Yes. Excellent. Okay."
+807.58,821.58,"Okay, so then these are the elements that I'm keeping. And now what's the function I'm applying and what's the result going to be? It's going to be a list containing three, but two, four, three."
+822.58,835.58,"Two, because that's length two, four, because that's length four, and three, because that's length three. Great. And we've got ourselves a nice list based on that condition, that sequence of values, and that function applied. Yeah."
+838.58,841.58,Why does it return a list? The whole thing?
+841.58,868.58,"Or like I guess like I thought it was return like two, four, three, or something like that. Oh, yeah. So we're not printing things out here. When we're writing this as a list comprehension, we're essentially telling Python to create this resulting list of values. That's just what a list comprehension does. And so just kind of this expression here with these outer square brackets around our entire expression tells Python that the resulting thing is a list. Yeah, this is a good question."
+869.58,877.58,"Other questions? Okay. Okay, so that, oh, yeah, question."
+880.58,895.58,"Does it support multiple conditions? Yes. So at the end here, you know, you would say if, and then you could wrap them in parentheses. I think, I don't know if you have to, but just to be safe, I would wrap my conditions in parentheses."
+895.58,902.58,And you'd use and or whatever you want to combine the expressions or the conditions with. There's a question. Yeah.
+907.58,921.58,"This one, the lambda. Here, this is a lambda function that we talked about. I forget when a couple lectures ago. It's basically an anonymous function. And all it does is return true all the time."
+922.58,936.58,"So the test will always be true, which means that when we do if test parentheses, e, this will always be true in this particular case. But we're given a different lambda function. That might not be the case."
+939.58,950.58,"Okay, so let's move on to the next topic. The next, I guess two topics will be dealing with functions. And I want to wrap up a couple things here just to give you a couple more ideas regarding function."
+951.58,963.58,It actually related to this last question is the idea of a default parameter. So this is going to be away for us to add parameters to our functions that get some default value.
+963.58,971.58,And that's what that lambda thing actually was in that example. But hopefully this piece of the lecture makes that a little bit more clear.
+971.58,984.58,And then the second part regarding functions we're going to go over is the idea of functions as objects kind of working up on that. And we're going to see what happens when we return a function object from another function.
+984.58,992.58,We've seen functions as parameters to other functions. But we're going to see what happens when you make a function be the return value of another function.
+992.58,997.58,But that's in a little bit for now. Let's look at default parameters.
+997.58,1009.58,"Okay, we've seen this code before triggering flashbacks. So this is by section root. I'll go over it just to remind ourselves what it does."
+1010.58,1016.58,"We've got this code inside this function. We wrote a long, long time ago. Right."
+1016.58,1023.58,"And then we decided to wrap it in a function so that it's a really nicely useful piece of code that we can run many, many times."
+1023.58,1031.58,So the parameter to this function was x of value we'd like to approximate the square root of. Right.
+1031.58,1047.58,"And the code we're using to approximate is using the bisection search algorithm, which initializes some variables, namely epsilon, how, how, sort of how close we want to be to the final answer, low and high end points."
+1047.58,1052.58,We remember that. And then initial guess the halfway between low and high.
+1052.58,1059.58,"And then we keep making guesses between low and high, right, being the midpoint of low and high."
+1059.58,1068.58,"As long as we're not close enough to the final, we're not close enough to the final answer. Right."
+1068.58,1076.58,"So we're going to either it reinitialize our low end point or our high end point, depending on whether that guess was too low or too high."
+1076.58,1084.58,"And then within the loop, we make another guess using those changed values of either low or high based on if or else."
+1084.58,1094.58,"And then we keep doing this process of making more guesses at the halfway point, as long as we're still farther than epsilon away."
+1094.58,1105.58,Okay. That was a recap of what we've done so far. The interesting thing that we had done with this function was or when we turned it into a function was to return our approximation.
+1105.58,1113.58,"So this guess instead of just printing it to the to the user, we returned it so that it could be useful in other parts of the code."
+1113.58,1121.58,"And so when we called the function, we just said name of function and then some value of x."
+1121.58,1128.58,"Now, there are situations where a user would want to change the value of epsilon, right."
+1128.58,1132.58,"Right now, with the way we wrote this code, epsilon is set to 0.01."
+1132.58,1141.58,"And whenever you run the function, it always finds the approximation to the square root of x to that precision, 0.01."
+1141.58,1157.58,"Now, sometimes, depending on the application, the user might want an even better approximation, so 0.00001, or they might not care to be as precise and they want maybe approximated to 1 or 0.5 or something much bigger than 0.01."
+1157.58,1161.58,"So what are the options in this particular case, right, for these scenarios?"
+1161.58,1171.58,"One option would be obviously to go inside our function and say, well, I'm going to change epsilon to be something super duper precise, 0.00001."
+1171.58,1181.58,"And so people who call this function will always get an approximation to that precision. But what about people who don't want it that precise, right."
+1181.58,1187.58,So all the function calls are going to be affected by making that change. And so that's not really desirable.
+1187.58,1192.58,We'd like to let the person who makes the function call be in charge of what precision they'd like.
+1192.58,1200.58,"Another option is to put epsilon outside the function. So to say, okay, well, the only parameter is going to be x."
+1200.58,1207.58,And let's not set epsilon within the function. Let's let the user maybe set epsilon outside the function.
+1207.58,1216.58,"And then they can use, and then our code will basically pop up one level to the global scope and use the epsilon that the user shows."
+1216.58,1228.58,"Not a good idea, because as soon as we allow somebody using our code to kind of make their own variables within our code, we're putting our trust in somebody else's hands."
+1228.58,1238.58,"And, you know, they might forget to reset epsilon, or they might forget to set it to begin with. And so that's just using global variables is not a good idea in the first place."
+1238.58,1244.58,We'd like to keep control of the epsilon that's being used inside our function.
+1244.58,1253.58,"So, unsurprisingly, the last option is going to be our best option. Let's just add epsilon as another parameter to the function."
+1254.58,1270.58,"So, there it is. We've got a bisection route, again, as a function. We've got a parameter x, and we have epsilon as a second parameter that the user can call the function with."
+1270.58,1282.58,"So other than that, the function body is exactly the same. Right? Except that right now, when we make a function call, we have to pass an epsilon as the second parameter."
+1282.58,1295.58,"So, in terms of code, this is the bisection route with epsilon as a parameter, and so now the user can find the approximation to 123 to 0.1."
+1295.58,1308.58,"It's 11.088, in case you're wondering. And then the approximation to 1232.0001, which is 11.095."
+1309.58,1319.58,"So, much better, the user can now be in charge of deciding how close they'd like the approximation to be for every one of their values."
+1319.58,1331.58,"But notice that this code is kind of verbose, and really most of the time, maybe the users don't want to be in charge of setting the epsilon."
+1331.58,1343.58,Maybe they don't know what a good epsilon might be. Right? So how do they know that they should choose 0.0 by default? Maybe that's something you could put in the function specification for anyone using your function.
+1343.58,1351.58,"But it's, you know, you're going to rely on users reading your specification, and that's a little bit scary."
+1351.58,1361.58,"So instead, the functionality that would really like to have is to say, okay, I want to write a function that does take into parameters."
+1361.58,1369.58,"But by default, one of those parameters is something that I set as the person who's writing this function."
+1369.58,1381.58,"So what I would really like to have is epsilon to have some sort of a default value. So if users don't know what to call it with, the code will just use that default value."
+1381.58,1392.58,"And otherwise, if the user is more experienced, and they know they'd like an epsilon of, you know, one times 10 to the negative 10 or whatever it might be, then they can be in charge of setting it."
+1392.58,1405.58,"So most of the time, we want to call the bisection root function without an epsilon parameter, so that it may use a default one. But sometimes we'd like to allow the user to actually set the epsilon."
+1405.58,1415.58,"And so to that end, we're introducing the idea of keyword parameters, also known as default parameters, and they are set like this."
+1415.58,1428.58,"So the bisection function definition still takes in the thing we'd like to approximate the square root of X. But the second parameter here, epsilon, will be equal to something inside the function definition."
+1428.58,1438.58,"So we, as the people who are writing this function, are going to say the default value of epsilon is .01."
+1438.58,1452.58,"So that means when we call the function down here, if the user makes a function call without explicitly passing in a second parameter, Python will use the default one that the person who wrote the function set."
+1452.58,1470.58,"So Python will run bisection root of 123 with epsilon being .01. And otherwise, if the user does want to override that epsilon, they can just pass it in themselves. And that default value of .01 will be overwritten to be .5."
+1470.58,1489.58,"And so in our code here, this is the bisection root with the default values. And so you can see here, if I run it with 123, even though there are two parameters here for the bisection square function, it's Python doesn't complain because it's using epsilon as .01."
+1489.58,1509.58,"So I run it and it runs just fine. But in the second line here, if I actually want to use .5 as my default, as my epsilon value, it overrides my default parameter and it calculates the square root of 123 with epsilon being .5."
+1509.58,1521.58,"So now that we've introduced default parameters, there's a few sort of rules about making function calls."
+1521.58,1534.58,"When you create the function definition, so over here, when you're the one defining a function and you decide to allow some default parameters in your parameter list, everything that's a default parameter needs to go at the end."
+1534.58,1548.58,"You can't switch these around. You can't say epsilon equals .01 comma x. Python will not allow that. So anytime you have default parameters, they always have to go to the end."
+1548.58,1560.58,"That's the only rule for making the function, or defining the function with default parameters. And then once you have default parameters, you can actually call the function in many, many, many different ways."
+1560.58,1569.58,"I know some of these will be confusing. You might not know whether they're allowed or not. You can never go wrong with the last one, as we're going to see in a bit."
+1569.58,1586.58,"So the first one here showcases what happens when you give values for everything that's not a default parameter. In this case, just x. If you just give a value for non-default parameters, Python sets default parameters for everything else, not a big deal."
+1586.58,1599.58,"Alternatively, you can pass in just like we have in the past when we write our own functions with multiple parameters, you can pass in one at a time in the same order, values for every one of those parameters default or not."
+1599.58,1613.58,"And if you pass in values for all of them, Python will not be confused, and it'll just match them one at a time. Variations on that, you can always pass in a value for a parameter name."
+1613.58,1632.58,"So looking at the function definition, we can see the parameter names, the formal parameters are named x and epsilon. So when you make your function calls, you can actually explicitly tell Python something like this x equals 123, epsilon equals 0.1."
+1632.58,1650.58,"And if you have more parameters, you say that parameter equals whatever value you want to run it with. And so that will not confuse Python. And if you do it in that way, you can actually do it in any order you'd like because Python will just assign each one of these variables to be whatever you told them to."
+1650.58,1660.58,"So worst case, you just do something like this right where you one at a time, you just say what the formal parameter is and its value and then Python will not get confused."
+1660.58,1677.58,"The ones at the bottom, though, is where we run into trouble. So for example, if you put the default parameter first and then you put an actual parameter, sorry, you put the default parameter first and then any parameter that's not a default one afterward Python gives an error."
+1677.58,1682.58,Because the default ones have to go after the non default ones.
+1682.58,1698.58,And the last one doesn't actually give an error but Python remember matches parameters one by one. So it's actually going to find the approximation to the square root of 0.001 to an epsilon of 123.
+1698.58,1707.58,Because it's just mapping the parameters one at a time. And so that's not an error but it's not exactly what we wanted to do.
+1707.58,1715.58,Questions about this.
+1715.58,1723.58,"Now let's move on to another thing, another sort of nuance about functions."
+1723.58,1729.58,And we're going to go back to the idea of functions being objects in Python.
+1729.58,1739.58,So I drew this picture back when we first learned of objects of functions as objects. So I'll just do it again just to jog your memory.
+1739.58,1748.58,So that when we make a function definition inside the memory Python creates an object.
+1748.58,1756.58,"As soon as we see just this function definition, Python doesn't care what code is inside here. This code does not run."
+1756.58,1761.58,"It only runs when it's being called. And right here, I have not made a function call at all."
+1761.58,1772.58,All Python knows at this point is that there is a function object inside memory. And it's the name it's name is is even.
+1772.58,1783.58,And this is exactly the same as creating an integer object inside memory and giving it the name are through a line like this or creating a float object in memory and giving it the name pie.
+1783.58,1799.58,"It's just some object with something. And so that means that we can have some code that looks like this, which is going to essentially create an alias for that function object in memory."
+1799.58,1806.58,So here the name is even refers to that function object.
+1806.58,1819.58,So I'm telling Python that I would like to refer to that function object using the name my funk as well. So both my funk and is even are names that point to this object in memory.
+1819.58,1834.58,It's not a function call. I'm not I'm not trying to figure out if some number is even I am literally giving another name to this function this code right that does this thing here.
+1834.58,1845.58,And so that means that if I have two names that point to the same object if I am going to invoke those two names as I do here with some parameters.
+1845.58,1856.58,"Python is going to say, well, I'm going to run the code pointed to by these names with these parameters. So they will both run the code that they're pointing to."
+1856.58,1863.58,Right. This is even. And so it's just going to return true or false. We've seen it.
+1863.58,1874.58,So remember just another name for that object in memory. So we've seen already how we can pass functions as parameters to other functions.
+1874.58,1881.58,And now we're going to see what happens when we return a function from another function.
+1881.58,1888.58,So we're not returning a function call here. We are returning a function object.
+1888.58,1895.58,"So in this particular code, we have only one function. It's named make prod."
+1895.58,1905.58,"And it happens to have some stuff going on inside it. So what's the stuff that this function will do? Well, this function itself will create another function."
+1905.58,1911.58,So this G only exists whenever make prod exists.
+1911.58,1922.58,"The main program at, you can think of it as sort of this level of the code right in terms of indentation. The main program does not know about G."
+1922.58,1934.58,"G is only defined inside make prod. Right. So when we first run this program as is, there's no function call being done. So the main program does not know anything about the internals of make prod."
+1934.58,1946.58,Okay. So make prod creates its own function here. And then all it does is return this function object. Right. Notice it's not a function call. There's no open closed parentheses with a parameter in it.
+1946.58,1953.58,It's just the name G. It's this function object. That's the key thing here.
+1953.58,1962.58,So let's run two codes. This one and this one. They will do the exact same thing.
+1962.58,1971.58,They're going to call make prod with some parameters. And then we're going to see what happens when we return this G.
+1971.58,1978.58,"And notice already it's looking slightly different than what we've been doing before. Yes, we have a call to make prod here."
+1978.5800000000002,1988.5800000000002,But we've kind of chained another function call right after make prod. Right. We've got make prod parentheses to parentheses three.
+1988.5800000000002,1999.5800000000002,"And so this is kind of like, I think of it as chaining a bunch of function calls together. And this is possible as we're going to see when we step through the function environments that are being created."
+1999.5800000000002,2008.5800000000002,This is made possible because make prod this function call returns a function itself.
+2008.5800000000002,2017.5800000000002,"So let's step through the code on the left. Very carefully. And then I'll step through the code on the right, which will do the exact same thing."
+2017.5800000000002,2022.5800000000002,And hopefully it will clear up confusions if we do it twice.
+2022.5800000000002,2031.5800000000002,So this is the code from the left. Let's say we have this exact program here. I've got one function definition.
+2031.5800000000002,2036.5800000000002,And then I've got one function call here. And then I'm going to print the return value.
+2036.5800000000002,2047.5800000000002,"So as soon as I run my code Python creates my global environment. And in the global environment, this is the scope of the main program."
+2047.5800000000002,2056.58,"Well, we have one function definition, which has some code within it. I don't care what it is at this point because I don't have a function call."
+2056.58,2067.58,So then the next thing that I need to do is go down here and say val equals. So I'm going to create a variable val in my global environment.
+2067.58,2074.58,"And I'm going to make a function call. So function calls are done left to right, just like expressions."
+2074.58,2081.58,And the first thing Python sees is this function call make prod parentheses to.
+2081.58,2091.58,It's a function call. So we need to create another orange box because a new environment gets created every time we create we make a function call.
+2091.58,2103.58,"So here I have my scope, my environment for make prod. And I'm currently just stuck here trying to figure out what this is going to return and just the red box here."
+2103.58,2114.58,"Well, every time I have a function call, I need to look at the function definition. And the function definition says what there's one formal parameter a that I need to map to the actual parameter."
+2114.58,2120.58,"So the thing I'm calling make prod with is to should be pretty straightforward, right?"
+2120.58,2126.58,And then I can move on to do the body of make prod.
+2126.58,2133.58,"Okay, so the body of make prod says I would like to create a function definition."
+2133.58,2139.58,The name of this function is g. So there's g and it contains some code.
+2139.58,2148.58,"But again, I don't care what this code is because I'm not making a function call to g yet, right? Right now I'm just defining g."
+2148.58,2160.58,"Okay, so far so good. So this g, I want you to notice, only exists inside this call to make prod."
+2160.58,2171.58,"The global environment does not know about g at this point, right? Because we only define g inside make prod. It's here, right?"
+2171.58,2179.58,"I didn't define it outside of make prod. So the global scope doesn't know about it, but make prod does know about it."
+2179.58,2192.58,And so the only way that the global environment can know about g is if this make prod function somehow returns g.
+2192.58,2201.58,"Okay, so if we pass g back as a parameter, as a value, sorry, to the main program scope, the main program can know about g."
+2201.58,2211.58,"But otherwise, g is kind of stuck in this little, you know, little subtask little environment of make prod. And the main program doesn't know about it."
+2211.58,2224.58,"And so that's what this code is doing. It's essentially saying, well, I've made my definition and now I return g. So here, this g, the code and its code and the associated code, right?"
+2224.58,2233.58,So this object pointed to by g is going to be returned back to the main program.
+2233.58,2245.58,"So now the main program knows about this object, g, that has some code associated with it, right? This line here, where it returns a star B."
+2245.58,2263.58,So the thing that I've boxed and read down here is the return value from make prod to and make prod to return g. So this you can essentially say is g.
+2263.58,2266.58,Is that okay? Does that make sense?
+2266.58,2273.58,"We're passing functions along, right? Not function calls. And so this is just a function named g."
+2273.58,2287.58,"And so now this line of code, val equals, if we replace the red box with g, val equals g parentheses three."
+2287.58,2297.58,"So g parentheses three is another function call, right? Just clearly we look at it. It's a function call. It's got a function name, parentheses and a parameter."
+2297.58,2303.58,"And so since it's a function call, we create another scope for this function call."
+2303.58,2314.58,"As before, we look at what g takes in as a parameter. It's about a variable named B, right? A formal parameter B. And we map it to three."
+2314.58,2318.58,"Because that's our function call, g parentheses three."
+2318.58,2331.58,"And then we have to do the body of g. The body of g says return A multiplied by B. Well, I know what B is, it's three, because you just called me with that value."
+2331.58,2346.58,"But what is a, right? The scope of g has no A within it. So thinking back to our function, our lecture on functions, if a function call doesn't know about a variable name within its environment, within its scope."
+2346.58,2365.58,"It moves up sort of the function call hierarchy. So it says who called me, right? Where was g defined? Well, g was defined inside make prod. And so it was called from make prod. Does make prod have a variable named A?"
+2365.58,2377.58,"It does, right? And its value was two. So we didn't need to go any further up the hierarchy. We've already found a variable named A. So Python will use B as three and A is two."
+2377.58,2397.58,"It multiplies that to be six. And then the g function call can return six. It returns it back to the main program because that's where this function call was being done, right? Remember we had this replace with the g parentheses three out in this global scope here."
+2397.58,2408.58,So that makes gets returned back to the main program and then val becomes six. And we print six.
+2408.58,2421.58,So that was showing you how to chain function calls together. And this was only made possible because make prod has a function returned another function object.
+2421.58,2434.58,"Make prod returned, I don't know, a tuple or an integer or something that was not a function. This code would fail because the return from make prod would be, let's say it returned the number 10."
+2434.58,2445.58,The return from make prod would be replaced with 10. And then Python would see this line as 10 parentheses three. What the heck is that? And so it would completely fail.
+2445.58,2457.58,So this is only made possible by the fact that this make prod function returns a function object. And so we're able to chain these function calls together.
+2457.58,2468.58,"So let's look at the exact same code except this time, instead of chaining them in a row, let's explicitly save the intermediate steps."
+2468.58,2484.58,"So what I'm going to do is say make prod parentheses to I'm going to save as a variable and then make that variable call the three, right, the second part of my chain from the previous line."
+2484.58,2487.58,And it's going to do the exact same thing.
+2487.58,2503.58,"So here I've got the global scope, just like before, I've got a function definition for make prod. So this is the name make prod it points to some code. And then I've got this variable double or that's going to equal something."
+2503.58,2516.58,"So it's a function call. The function call says here's my environment for make prod with its scope. So in this particular scope, I've got my formal parameter a that maps to two."
+2516.58,2528.58,And then the function body itself creates this variable G that's just some code exactly the same as before.
+2528.58,2540.58,"Any questions so far based on what happened last in the last sort of example and here, or is this okay so far."
+2540.58,2554.58,So now I've set up my code and this is where the interesting part comes in right make prod is going to finish its call by saying I'm going to return something and the thing it returns is G.
+2554.58,2575.58,"So it returns this name G just happens to have it happens to be a function object, but think of it as anything else. We're basically saying doubler equals 10 or doubler equals some list or some to double is going to be some some value right this value is just code associated with a function."
+2575.58,2602.58,So in my main program scope I've got doubler equals G which based on the memory diagram we did like five or ten slides ago right it's like when we had my funk equals is even I basically have two names for the same function object right doubler is a name and G is the other name and they both point to this function object.
+2602.58,2607.58,Does that make sense that that's okay.
+2607.58,2624.58,So now that I've got two names that point to the same function object we can just use this doubler in the next line and this doubler is like saying G parenthesis three.
+2625.58,2629.58,Except that I'm using the name doubler which I saved it as on the previous line.
+2629.58,2644.58,So G parenthesis three is another function call create another environment for for G or doubler or whatever name and here I've got one formal parameter B.
+2645.58,2657.58,It's values three and then we do the same trick where you ask what is the value of a I'm going to look up the hierarchy of things that got called to see what the first value of a that I grab.
+2657.58,2669.58,And the first value of a that we grab is the two right and so we're going to multiply the two with three and that six gets returned back to whoever called it which was out here in the main program scope.
+2669.58,2689.58,And so this value will be equal to six and that's it questions which one was easier to understand this one or the one where we did the chaining just show of hands who liked this one more.
+2690.58,2693.58,"Who liked the chaining more? Oh, interesting."
+2693.58,2702.58,"Was the chaining just easier to grasp because there were less names? Okay, cool. I'm glad I showed it first then."
+2702.58,2707.58,Any questions though? Yeah.
+2708.58,2725.58,No reason. In fact you would want to do the chaining way because then you avoid extra lines of code and again with practice it just becomes really easy to know what's going on.
+2726.58,2745.58,"Okay, so that might have been confusing. Why do we bother doing that because that particular example all we were doing is multiplying to I guess doubling a number."
+2746.58,2760.58,We could have easily written that code to you know to double a number and without actually returning a function that seemed way overkill for what that code was trying to do.
+2760.58,2773.58,"Well, it was kind of showing you what you can do with an easy example and you would definitely never ever write functions returning other functions for such simple examples."
+2774.58,2797.58,It's really a method for cases where you have larger pieces of code that you'd like to write because if you're trying to so if you're writing a larger piece of code right some software project and every single function you'd ever want to use is kind of defined at the top level in the main program.
+2797.58,2814.58,It would become really messy right and so there are cases where you would like some functions to only be visible or accessible by other functions right and so you'd only define those functions within the scope of other functions that's one thing.
+2814.58,2824.58,The other thing is using this sort of chaining method allows you to have some control over the flow of control of a program.
+2824.58,2852.58,And so you can imagine in the example here where you basically create this you have this line here and at some point you return G right and you don't want to do the doubling right away right so you don't want to do value equals double right away you can imagine having a bunch more lines of code here that do other stuff before you actually do the doubling right.
+2852.58,2871.58,And so in that in that case in this larger more complex program you're essentially interrupting the flow of control here you're not doing the doubling right away but you did grab this function back and then you can maybe do other things with that function before finally doing the the doubling.
+2871.58,2900.58,And so in that case you can basically execute some code partially do some other operations and then finish executing you know at the end after you've done these operations so again for this example it doesn't make much sense but in a larger piece of code it's this this idea of functions returning functions is just another tool to achieve these ideas of decomposition abstraction which lead you to write more organized code more robust code.
+2900.58,2918.58,So you don't have to do this but you do have to understand what it means for a function to return another function any other questions.
+2918.58,2936.58,So now we're going to do the last piece of today's lecture ideas of testing and debugging this this lecture is usually pretty dry so I'm going to try to make it more fun as fun as I can.
+2936.58,2958.58,The reason why we introduced this lecture now is because I'm hoping that by this point in the course you've had a chance to do some testing and debugging strategies on your own by kind of a trial and error thing on quizzes and on p sets so you've gotten a chance to maybe use the Python tutor you've got a chance to use print statements.
+2958.58,2985.58,You know various things like that and see what works best for you what doesn't work at all and he's like that so you've maybe gotten a little bit burned by some of these strategies but I hope that by you being burned by you know some things that you've tried that worked that didn't work you'll maybe appreciate this lecture a little bit more than if I just showed you this lecture you know back on day one or day two or something like that because it's a lot of common sense stuff.
+2985.58,2992.58,But there's a little bit of actual strategy as well in this particular set of slides.
+2992.58,3009.58,So your programming experience so far I know this is certainly mine is I hope that when I run my code it immediately runs perfectly but instead what is happening for me is I run my code and it immediately crashes I've got my red errors on the side and I get a little bit flustered.
+3009.58,3035.58,So this is exactly what happens probably for you to and the idea here is that you want to write the code in such a way that it makes it easy to test and debug and I know I always say this and I actually don't always practice it but it's important to write the code by writing it with by adding comments as you're writing the code.
+3035.58,3047.58,So writing specifications writing comments for yourself as you're actually writing the code not when you finished it is very important it helps you as you're writing it or coming when you're coming back to it in a couple days.
+3047.58,3059.58,Modularizing the programs also helps so if you see a chunk of code that you're copying and pasting all over the place you want to you know plop it out in a little function that you call multiple places.
+3059.58,3077.58,So ideas like that kind of employ the defensive programming mechanism and it allows you to perform really easy testing and validation when it comes time to do that and then possibly debugging when it comes time to do that.
+3077.58,3089.58,So the lecture is going to be divided into two pieces the first we're going to talk about testing and validation some nice testing strategies and then we're going to talk about some strategies for debugging as well.
+3089.58,3106.58,So the testing and validation part is where you come up with a set of input test cases and expected outputs and all you're doing is running the test running your code to make sure that the expected output matches the output that you actually get from running the code.
+3106.58,3123.58,The debugging the debugging part is where one of your tests don't match the expected output one of the outputs that you get don't match the expected output and at that point you have to figure out why the code is not working obviously.
+3123.58,3147.58,So before you even test your code as I mentioned before it's you have to set yourself up to do the testing and debugging so to ease this part it's important to write documentation very well so when you're writing your own function not functions that we've given you document the doc string what are the inputs you expect what should the function do what should the function return things like that.
+3147.58,3167.58,If you're writing the code in a sort of a strange way or if you use some piece from stack overflow or something like that documented to make sure that if you're looking at it a week from now you still remember what that piece of code did so really really simple things like that can make a really big difference when it comes time to test and debug.
+3167.58,3188.58,Breaking up the code obviously into smaller chunks is very important because if you're copying and pasting the same piece of code over and over again you remember to make a change in one place you might forget to make that same changes in all these different places and so that will be very frustrating when it comes time to actually run and debug the code.
+3188.58,3195.58,So once you have code that's written you would start the testing process.
+3195.58,3224.58,You remove all the errors static semantic errors and syntax errors are really easy to remove python immediately tells you right index error on this line or syntax error on this line those are really easy to figure out using a paper and pen or typing it out on your on your in your python file you come up with a bunch of test cases and for each one of those test cases the way we you know the way we write on your micro quiz.
+3224.58,3239.58,Test cases you say what you expect the output to be so when you actually run it you don't need to remember what this output should be right it's just written down on down somewhere on paper or on the on screen.
+3239.58,3251.58,So when you're creating a bunch of test cases you can create some different classes of tests right so hopefully we're modularizing our programs which means that we're creating functions.
+3251.58,3272.58,The simplest classes of tests are called unit tests and these tests basically test a function with different inputs okay so what you're going to do is come up with a bunch of different test cases for one particular function and run these test cases on the function.
+3272.58,3301.58,If they all work perfect but if they don't or if you find a bug as you're writing test cases in the code you want to perform regression testing and regression testing means that as you find a bug you add a new test case for them or as you fix a bug you make you run the code you run the same the same code with all of the previous test cases to make sure that the bug you fixed didn't introduce errors in a previous test case.
+3301.58,3312.58,So there's a bunch of iterations of unit testing and regression testing to test all of these different modules all the functions in your program and at some point you're ready to do integration testing.
+3312.58,3330.58,And in integration testing you've got all these modules for example as you did in Hangman you've got all these little functions right that do individual things you put them all together into a larger program right in Hangman it was you know a bunch of big while loop where you check all these different things that the user might input and then you call the different functions you wrote.
+3330.58,3347.58,And as you find errors in in the integration right when you've written code that integrated all these different pieces together you might have to go back and do more unit tests for some of the some of the functions that you wrote.
+3347.58,3359.58,Okay so you've done unit testing regression testing and integration testing what are some actual testing approaches how do you actually create these test cases to run your code.
+3359.58,3376.58,So I guess the most natural way to write a test case is just intuition about the problem so given a dog string what are going to be some natural boundaries some natural values of x and y for which you test this code with you guys tell me what's some values that we could test this code.
+3376.58,3390.58,Think about the boundaries to the question right.
+3390.58,3401.58,Yeah three and four is good so x is less than y is a good one vice versa right four and three is another one where y is greater less than x.
+3401.58,3424.58,We could test them being equal right what about zero zero what about a thousand and a thousand so we could do extremes we could do bigger than less than we could do equal things like that so mathematical functions are kind of easy to apply this idea to because they just have natural boundaries but often there are functions which don't have these natural boundaries and then we might be stuck doing random testing.
+3424.58,3439.58,Obviously the more test cases you have the better chance you have of finding a bug but there are actual techniques for coming up with test cases so the first one is called black box testing second is called glass box testing.
+3439.58,3450.58,Now in black box testing you're going to treat the code of the function as a black box so we don't even look at what the code is doing.
+3450.58,3479.58,All we're looking at to guide writing our test cases is the specification the doc string right and so hopefully the person who wrote this function wrote a really nice doc string because that's what we're going to use to write our test cases so the way that we're going to write a test case for the square function is by saying what is the value of x and epsilon according to this to these constraints here.
+3479.58,3491.58,So obviously we're not going to test the code with values that don't match those constraints because the person wrote this function doesn't guarantee that this function will work for those out of you know those weird values.
+3491.58,3506.58,So the good thing about black box testing is if we're the ones testing this function we're only using the specification to write the test cases so if for example this person implemented square root using approximation method I don't care.
+3506.58,3521.58,My test cases will work if the person changes their implementation to use the by section method right by set of test cases will still work even if the person who wrote this function change the black box right the implementation.
+3521.58,3535.58,So it's black box testing is is is really nice in that respect and so for this particular function here's a bunch of test cases that I would run it with right so obviously x being zero perfect square less than one or
+3535.58,3542.58,our kind of nice ones to test irrational values and then a bunch of extremes is also good to test.
+3542.58,3555.58,And then epsilon the same we've got some reasonable values of epsilon and then some extremes and we can even you know mix and match we can have zero and extremes epsilon and perfect squares and extremes
+3555.58,3564.58,epsilon and things like that so lots more test cases than this but this is a really good start.
+3564.58,3570.58,In glass box testing we're going to use the code itself to guide the test cases that we write.
+3570.58,3580.58,So if we write something test test suite that's path complete that means that we're going to hit every single path inside the program.
+3580.58,3585.58,So that means we have to look at the code to guide the test cases that we're writing.
+3585.58,3596.58,Which means that we're going to have to write a test case for the code hitting the if part of a branch we have to write a test case for the code hitting the else part of a branch or the L if part of the branch.
+3596.58,3603.58,If we have a for loop we need to write a test case where the code doesn't go through the loop at all it goes through once or goes through many times through the loop.
+3603.58,3611.58,With while loops we write a test case so that the code doesn't go through the while loop at all it matches the condition once or matches the condition many times.
+3611.58,3624.58,So you can imagine that this glass box testing leads to a whole lot more test cases especially when we have a whole bunch of different combinations of all of these conditionals and loops and things that we'd like to hit.
+3624.58,3633.58,The problem with last box testing and having a complete path a path complete test suite is that we might accidentally miss a bug.
+3633.58,3644.58,So here's an example of a code that's not correct so it finds absolute value of X. If X is less than negative one we return negative X else we return X.
+3644.58,3658.58,So a path complete test suite could be testing two and negative two. The two brings us through the else so we return two and the negative two brings us through the if so we return two.
+3658.58,3668.58,We might say this code works but it doesn't right we already can tell that negative one is returned incorrectly as negative one.
+3668.58,3680.58,And so in addition to testing all the paths through the code we'll also want to look at boundary condition especially for conditionals when we do a glass box testing.
+3680.58,3693.58,Okay so we have a whole bunch of test cases we've run our code with all these test cases and then at some point we've gotten an output from a test case that does not match what we expected to do.
+3693.58,3705.58,Then we have to do the debugging process. And this is where this is where a little creativity is required.
+3705.58,3716.58,There is no recipe like there was in glass box testing and black box testing for writing test cases there is no similar sort of recipe for debugging a program.
+3716.58,3731.58,There is a lot of experience that's needed right a lot of times that you've seen a bug crop up in order to figure out sort of what the problem might be and so a lot of experience writing code is very useful in the debugging process.
+3732.58,3744.58,There are tools to help you do the debugging process but there aren't many tools to actually do the debugging you kind of just have to do it so there's tools built into into anaconda they're not very good.
+3744.58,3756.58,I've used them Python tutor obviously is a really good one especially for small programs because you get to just go step by step and see the values of each variable as the code is running.
+3756.58,3764.58,So I like that a lot print statements are also really good but you have to know where to put them right and you have to use them effectively.
+3764.58,3783.58,So in that sense you know if you're not as familiar with print statements Python tutor might be a better a better suited for debugging but no matter what it's important to be systematic don't just start changing random about you know random variables or random conditions and then run the code through the test again right that's not going to work very well.
+3784.58,3808.58,When we see error messages in the debugging process these are really easy to figure out right index error oh shoot I got to check my indices maybe I went over if you see an index error you should probably print out the variable that you're indexing into indexing with type errors oh man look I'm casting a list to an integer.
+3808.58,3830.58,What is that going to do nothing it's going to give us an error or here I'm dividing a string by an integer again something really simple to fix name errors of course here's I have a here I have a variable that I've never initialized and then syntax errors basically mean things like your indentations off or you're missing a parenthesis or something like that.
+3830.58,3858.58,Logic errors are a lot harder okay these ones you cannot just look at the line and say this is where the problem is these ones happen when your output is does not match the expected output and this is where kind of engaging another part of your brain is very important I've definitely done this a lot I've had some errors I went for a walk come back and I figured out I figured out in bed right
+3858.58,3887.58,so thinking a little bit before you even start the problem is good for this for these logic errors drawing a pictures taking a break talking to friends all these are really good explaining the code to something else somebody else is also a really nice thing to do that's me explaining the code for something we're going to do in a couple minutes to my son he's seven now and he's doing scratch so that's pretty cool but he was helping me debug and now I'm helping him debug yeah
+3887.58,3916.58,or you can explain code to some inanimate object like a rubber duckie now having said that you guys came on a good day because you will all get to have your own rubber duck different kinds grab your personality duck that matches your personality after class I've got minecraft ducks giraffe ducks princess ducks police ducks
+3916.58,3940.58,elephant ducks whatever ducks you'd like come grab one use it for your quizzes use it for your pea sets whatever you'd like to use it for go for it okay so hopefully it comes in handy use it well all right so we're not quite done yet though
+3940.58,3969.58,okay so I will give you a little bit of debugging tips so I know it's I said it's a creative process I said it's really hard to come up with a recipe to do the actual debugging but there are there is maybe one way what one really nice way to do it so the idea behind debugging is basically use the scientific method like I said don't just randomly change things
+3969.58,3986.58,expecting for it to work out what you want to do is look at a bunch of test cases that failed it's possible that they're all they all have something in common and that might lead you to a small piece of code in your program that is the one that you should be focusing on changing right so you want to look
+3986.58,4008.58,at the data formal hypothesis and try to see if another test case also fails that particular one as you're as you're doing the debugging method right if you really have no idea about where to start try putting print statements at reasonable places in the code so when you first enter functions when you
+4008.58,4023.58,first enter a loop write all the values of the loop variable and all the variables that you're creating in the loop or modifying in loop and things like that and if all else fails using the bisection method is a really nice way to try to solve the problem so
+4023.58,4037.58,by section method and debugging basically says put a print statement about halfway in the code if everything looks right for all the variables at that point you know the problem is after this if something is wrong you know the problem is in the
+4037.58,4047.58,first half of the code then put a print statement in the quarter of the code right and then at that point see if the very values all the values at that point match what you expect
+4047.58,4064.58,to be if do great you know the problems in the second quarter I guess yes the second quarter and if they don't you know the problem is in the first quarter okay so the bisection method is is a nice way to try to debug the code
+4064.58,4074.58,so what we're going to do in the last bit of lecture is we're going to debug some code together that's in the Python file and then what I have is included in today's
+4074.58,4089.58,file is actually a wordal game that I wrote it's like 12 underscore world dot pie or whatever and it's buggy so I'm I introduced some bugs in it and I would if you'd like to practice debugging you can try to fix the
+4089.58,4099.58,wordal game to get it to work and then you can play yourself or you can amaze your friends and get them to play your game in case you'd like to do something like that
+4099.58,4114.58,okay so before we end I would like to actually do some debugging with you just to show you the the bisection method for debugging so the code we're going to debug is this one right here
+4114.58,4127.58,and I've already included sort of the fixed code step by step but we're going to talk through it together so this function is buggy
+4128.58,4141.58,it's a function called is pal that takes in a list x and it's supposed to return true if the list elements are a palindrome and false otherwise
+4141.58,4154.58,so using the input ABCBA cast as a list so you know the input is going to be the string A string B string C string B string A
+4154.58,4165.58,this list is a palindrome right because it's the same forwards as it is backwards so if I run it it should print true okay so that test case worked well
+4165.58,4175.58,but now what about the second test case surprise it's not going to work if I pass in the list AB right so my input is going to be the string A and the string B
+4175.58,4188.58,this is not a palindrome right so I expect it to print false but it prints true so I have a nice test case here that I can I can make fixes with and see whether it actually gets fixed
+4188.58,4200.58,now of course AB CDFGHIJKLM this also doesn't work right so this is another test case that's not going to work but I don't want to use this long one as my test case
+4200.58,4211.58,I want to use the simplest test case I can find that doesn't work right so AB seems like a really nice one to test with okay so now the first thing we want to do that
+4211.58,4222.58,that we figured out the input I'd like to test with is put a print statement about halfway through the code yes there's only like five lines of code here so there's only
+4222.58,4231.58,probably one place that makes sense to put a print statement but let's just work with me here so the print statement could be put
+4231.58,4239.58,right here right before the if statement right so I've got two lines of code that do something and then an if so let's just put it right before the if
+4239.58,4246.58,scroll down step two here I go I've put my print statement right before the if
+4246.58,4256.58,now we can run the code again so I'm not going to run the one that worked let me try to run the one that didn't work to figure out what the
+4256.58,4269.58,problem is so I run this the print statement is printing the temp so the reverse of X and X so what I'm expecting in and I showed probably
+4269.58,4278.58,written this over here what I've what I'm expecting to get what I'm expecting is to see the reverse of AB so BA and then the
+4278.58,4289.58,original X AB but I don't so I see AB and AB this first one should be BA so already I have something that's
+4289.58,4298.58,unexpected and so I know the problem is going to be in these first two lines of code right somewhere in here all right so then what I
+4298.58,4305.58,would like to do is figure out which one of these lines of code is the problem so I'm going to put another print statement a
+4305.58,4312.58,quarter of the way through the code okay well there's only one more place to put it so let's put it in here I've got another
+4312.58,4320.58,print statement right before the reverse so what I'm going to be checking is before the reverse the value of my
+4320.58,4329.58,temp variable and my original variable and after the reverse the value of my reverse variable and the
+4329.58,4339.58,original variable so what I'm expecting to see is this one here they should be the same AB AB but this one
+4339.58,4349.58,here I'm expecting to see BA AB so run it with this buggy example so before the reverse I'm expecting AB and
+4349.58,4358.58,AB and AB and I do get that so that's good I'm happy to see that and then after the reverse that's my
+4358.58,4367.58,problem right I'm expecting this one to be reversed but it's not so now I know the problem lies here temp dot
+4367.58,4373.58,reverse because here in this print statement here temp and X were as expected so what do you think the fix
+4373.58,4380.58,should be to the reverse yeah exactly we need to add parentheses this is a function we need to call it
+4380.58,4390.58,like a function right so let's do that fix we've done it here so here I've added the parentheses to the
+4390.58,4400.58,reverse and run it again so now what I'm expecting is before the reverse I need to see AB AB so this one
+4400.58,4406.58,should be the same we shouldn't change because I didn't do anything to that temp equals X and after the
+4406.58,4415.58,reverse I'm expecting the temp to be BA and the X to be AB unchanged all right let's run it so before the
+4415.58,4422.58,reverse everything looks okay temp and X are the same after the reverse look at that I've got my BA as my
+4422.58,4438.58,reversed variable I'm happy but then my X has also changed I'm sad yes exactly there's a clue the right we
+4438.58,4446.58,see a clue we've made a change to temp and X has also changed so as was suggested from the back we need
+4446.58,4456.58,to make a copy of X what we've done here is called on when I did temp equals X on a mutable variable what did I
+4456.58,4473.58,make an alias exactly right so let's make a copy of that X right here so hopefully that fixes
+4473.58,4482.58,things because I've run out of lines to fix so we run this code again with AB and see the output before
+4482.58,4490.58,the reverse temp and X should be the same and they are they're both AB AB and after the reverse the temp
+4490.58,4498.58,should be the reversed BA and it is and the X should remain the same AB and it's false so it's not a
+4498.58,4507.58,palindrome last thing I need to do is double check my original test case the one that actually worked
+4507.58,4516.58,before I made all my changes to see whether it still works and it does so that particular list is a
+4516.58,4524.58,palindrome so that still returns true so that's it so I've got a couple or just one I guess list
+4524.58,4529.58,comprehension for you to try on your own to write and then of course the buggy
+4529.58,4531.58,wordle game for you to try as well

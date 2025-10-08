@@ -1,0 +1,427 @@
+Start Time,End Time,Text
+0.0,15.0,"All right, everyone, let's get started."
+15.0,18.0,So today's lecture will be on this thing called dictionaries.
+18.0,22.0,And it's not the dictionaries that our parents and grandparents used.
+22.0,26.0,Notice I never actually used regular book dictionaries either.
+26.0,29.0,Maybe once in my entire life.
+29.0,32.0,But it's actually on a Python dictionary.
+32.0,37.0,So this is going to be a new data type that we have not worked with before.
+37.0,42.0,But it'll be a compound data type much like we've seen lists and tuples to be.
+42.0,46.0,It's just going to be very different than lists and tuples.
+46.0,53.0,"So before I introduce a bunch of syntax and what a Python dictionary is,"
+53.0,58.0,let's try to just motivate the need for such a data structure.
+58.0,61.0,So suppose we have the following problem.
+61.0,65.0,We've been dealing with this problem in many of our lectures.
+65.0,69.0,But we once again want to store student information.
+69.0,75.0,So let's say we want to store great information for a bunch of students.
+75.0,80.0,"With what we know so far, we can store information using lists."
+80.0,85.0,It's a very reasonable data structure to use because we might get new students in the class.
+85.0,87.0,"Students might drop, grades might change, things like that."
+87.0,91.0,So let's use this mutable data structure list.
+91.0,96.0,"Let's say we want to store names of students and their grades in the class,"
+96.0,98.0,like their final letter grade.
+98.0,102.0,"Additionally, we can store things like micro quiz grades and p-sets grades."
+102.0,106.0,"But for now, let's just assume we're storing just the names and the final grades in the class."
+106.0,111.0,"So if we do this using lists, one reasonable way to store this information is by saying,"
+111.0,115.0,"well, I'm going to have a list of all the names of the students in my class."
+115.0,118.0,I'm going to have a list of all the grades of these students in the class.
+118.0,124.0,"And I'm basically going to go index by index and make the rule that says,"
+124.0,129.0,"at a particular index, I'm storing all the information related to this one person."
+129.0,134.0,"So at index zero here, I'm storing the name of the student and their grade."
+134.0,138.0,"At index one, I'm storing the name of that student, John, and their grade."
+138.0,142.0,"At index two, I'm storing the name of that student and their grade."
+142.0,144.0,And at index three and so on and so on.
+144.0,148.0,"So now I basically have to remember that for a particular index,"
+148.0,154.0,I am storing all the information related to that student.
+154.0,159.0,"Okay, so seems like a reasonable way to do this."
+159.0,164.0,Now let's say that I wanted to look up the grade for a particular student.
+164.0,168.0,So I write this function called get grade.
+168.0,170.0,It takes in some parameters.
+170.0,173.0,The first thing it'll take in is the name of the student.
+173.0,178.0,"So Anna, for example, and I would pass in the list of all the names in my class"
+178.0,180.0,and the list of all the grades in the class.
+180.0,183.0,So these are these two lists that I've previously created.
+183.0,186.0,So these get passed in to this function.
+186.0,189.0,"So you can imagine if we have a list of everybody at MIT,"
+189.0,193.0,these lists are going to be pretty large that we're passing in as parameters.
+193.0,197.0,How do we actually grab the letter grade associated with a student?
+197.0,204.0,"Well, we're going to use the fact that the letter grade for the student at index i"
+204.0,212.0,is in the grades list is going to be grabbing the letter grade for the student
+212.0,215.0,at that same index in the name list.
+215.0,219.0,"Okay, so we have to figure out this particular student being passed in here"
+219.0,223.0,what index they're at in the names list.
+223.0,225.0,So that's what this line of code is doing.
+225.0,232.0,"Using this index function on the name list with a parameter, for example, Anna."
+232.0,237.0,So this will return for us the index where Anna is in my list.
+237.0,243.0,"So from the previous example, it's going to say that it's going to turn the number zero"
+243.0,247.0,because Anna is stored in the name list at index zero.
+247.0,251.0,"So now that I have that index in hand, stored in variable i,"
+251.0,256.0,I can just index into the grade list at that same index.
+256.0,258.0,So I can get grades list at index zero.
+258.0,265.0,We'll return for me the grade that I got for that particular class or whatever we're storing here.
+265.0,268.0,And then we just return the two-pole student comma grade.
+268.0,271.0,"So this becomes really messy, right?"
+271.0,276.0,I already mentioned that if I have a list of a whole bunch of students for a really large class
+276.0,282.0,"for the entire university, then it becomes really unwieldy to just keep passing in all these lists."
+282.0,287.0,If I have in addition all these micro quiz lists and all these problem-set lists
+287.0,291.0,"that also store additional information for the student, I then have to pass those in"
+291.0,293.0,for their respective functions.
+293.0,296.0,"And so it gets really messy, right?"
+296.0,299.0,Writing these functions that retrieve this information.
+299.0,303.0,"And additionally, if we're mutating these lists like if a new student comes in"
+303.0,309.0,"and we need that all their information, I need to make sure to update every single one of these lists that I'm maintaining."
+309.0,316.0,"If a student leaves, or drops the class, I need to remember to remove that index from all of these different lists."
+316.0,324.0,"So really, really messy situation that we could get into by using this method to store information about students."
+324.0,327.0,So let's try a different approach.
+327.0,330.0,"Instead of using all of these different lists,"
+330.0,334.0,let's say that we're going to store everything in a master list.
+334.0,336.0,So we're not storing many lists.
+336.0,339.0,We'll just store one list for the grades in the class.
+339.0,346.0,And the way it'll be stored according to this in the slide is going to be this grades list.
+346.0,350.0,So this is one list with three elements in it.
+350.0,355.0,"And you can imagine if we have more students, we would just put all these students in this master list."
+355.0,360.0,So what is each one of these student elements?
+360.0,363.0,"Well, each student element is itself a list."
+363.0,365.0,So already I've got my master list.
+365.0,368.0,And each element within this list is also a list.
+368.0,372.0,"So this is a list for Eric, a list for Anna, and a list for John."
+372.0,374.0,These are variable names.
+374.0,377.0,What are these lists going to be comprised of?
+377.0,380.0,"Well, they will be comprised of three things."
+380.0,382.0,"So notice, right, two commas here."
+382.0,384.0,So the first thing is their name.
+384.0,388.0,The second thing is another list containing their problem set grades.
+388.0,396.0,And I'm kind of using this element of that list to denote what that set of numbers represents.
+396.0,401.0,"And then another list as my third element being for the micro,"
+401.0,403.0,being the scores for the micro quiz grades.
+403.0,410.0,"And again, I'm denoting the first element of that list telling me what this list contains."
+411.0,417.0,"Okay, so I've got lists, master list with three sub lists for my three students."
+417.0,421.0,"And each one of those lists contains three elements, a string, a list, and another list."
+421.0,427.0,And those two lists are then also comprised of a string and a list themselves.
+427.0,434.0,"So super complex, a data structure, a sort of composition or design choice that I've made here."
+434.0,441.0,But it solves the problem of maintaining all these different lists in separate variables.
+441.0,448.0,"So now, let's say I wanted to write a function that gets the grades for a particular student for either, you know,"
+448.0,451.0,problem set or micro quizzes grades.
+451.0,453.0,This is the function that does that.
+453.0,457.0,"So again, it's not looking super nice."
+457.0,459.0,So what is this function going to take in?
+459.0,462.0,The who is going to be a string representing the name?
+462.0,464.0,"So for example, Anna."
+464.0,469.0,"The what will be also a string representing what information I'd like to grab,"
+469.0,472.0,either PS or MQ.
+472.0,476.0,And the data is going to be my master list of all the grades.
+476.0,479.0,So this grade equals this list of everything.
+479.0,481.0,So what is this code going to do?
+481.0,487.0,"Well, it has a for loop down here and a nested for loop inside it."
+487.0,496.0,The outer for loop basically looks through each one of these elements here and looks at the element at index zero.
+496.0,505.0,"So either Eric, Anna, or John, and grabs only the list where that piece, the string here, matches the who."
+505.0,512.0,"So if student at index zero equals who right here, then we've found the student I'm interested in grabbing the information for."
+512.0,513.0,Cool.
+514.0,518.0,"So now I've gone, I've grabbed the right piece, the right list."
+518.0,522.0,And now I'm interested in their grades for a particular what?
+522.0,524.0,So either MQ or PS.
+524.0,528.0,So I do the exact same thing again for that list here.
+528.0,536.0,"So if I'm interested in Anna's PS grades, I've grabbed these lists here."
+537.0,541.0,And then I'm going to check if the info at index zero.
+541.0,544.0,So either this PS or this MQ matches the what?
+544.0,550.0,"So either PS or MQ to match what I'm interested in grabbing the information, what information I'm interested in grabbing."
+550.0,557.0,"And then I'm going to go inside this if statement, if they match, and then I return the who in the info."
+557.0,559.0,"So again, super complex."
+559.0,564.0,No need to understand this that well because we're not going to use this method for long.
+564.0,567.0,So this get grades here.
+567.0,577.0,"For example, if I grab a micro quiz grades and I run the code, it will return for me this two pull that grabs that returns for me the name of the student."
+577.0,582.0,And then this just this sub list of the thing that was interested in in this case micro quiz.
+582.0,592.0,And it grabs for me all the grades and then I can then index into this returned two pull to grab either the first quiz or the second quiz grades.
+592.0,604.0,And same for Anna right in this particular case it grabs for me just the two pull with my name and then that sub list with the promise that grades.
+604.0,615.0,Okay so again really messy I have to I've made my design choice for how to create this all these lists with sub lists and sub lists within those.
+615.0,627.0,And so I'd have to document that probably if I was using this method and then this function to grab this information again super complex hard to read.
+627.0,644.0,So it's not really a great way to store information either but the idea behind this which is to try to store some data associated with some sort of key right the PS or MQ or in this case I'm storing you know a bunch of grades for Eric or Anna.
+644.0,670.0,So that idea we can explore and that's basically what dictionaries will do for us it will allow us to create data structures that map some sort of custom index a key to some value so much like a book dictionary does right it maps the word to its definition will be able to create our own dictionaries that map some object to another object.
+670.0,690.0,So when we create a dictionary we call every sort of quote unquote element in the dictionary and entry and that entry is is that mapping of a key to a value so just to draw a parallel with a list we can think of a list as mapping something to another something.
+690.0,705.0,The thing that a list maps is this index number zero one two three in that order right so it has to start have an element at index zero and then that index increases by one from there on.
+705.0,719.0,And for each one of these index indices I'm mapping that index to some element in my list right that's basically what the list does there's something associated with index zero something associated with the X one and so on.
+719.0,738.0,So it's kind of like a very restrictive dictionary right an actual Python dictionary works in similar way except that now I am not putting any restrictions on my indices my indices here become the sort of custom indices call the key.
+738.0,753.0,And so now I'm able to associate a value equivalent element in my list with that key so I can have an element associated with any object.
+753.0,778.0,So I am using the term value here and in in in the dictionary the key is associated with a value and that's one entry in the dictionary now this is going to be a little bit confusing because we've been using the term value to refer to just some objects value right like you know into a variable a has value five or something like that.
+778.0,800.0,But now I'm going to try to make a conscious effort now that we're introducing dictionary and dictionary values associated with the key to say whenever I'm talking about the dictionaries value to say dictionary value just so it's not confusing just just keep that in mind it can be a little bit confusing at first now that we're using the same terminology for two different things.
+800.0,813.0,So we're going to go through in this lecture we're going to introduce a bunch of syntax and operations with dictionaries and there will be lots of you try it exercises just to give you a little bit of practice with the syntax because this is kind of a syntax heavy lecture.
+813.0,821.0,So hopefully it helps a little bit but let's first see how to store data in a Python dictionary.
+821.0,833.0,So as I mentioned a Python dictionary stores entries and that entry is a key value pair so you're mapping one key to its value.
+833.0,847.0,The key can be any immutable object and we're going to see what this means in a little bit and the value associated with that key or the Python value associated with that key can be any object you'd like even lists or other dictionaries.
+847.0,854.0,So the way we create a Python dictionary is by using these open and closed curly braces.
+854.0,865.0,So tuples were open and closed parentheses lists were open and closed square brackets dictionaries are open and closed curly braces and this creates inside memory an empty dictionary so an
+865.0,870.0,dictionary with zero entries so the length of that dictionary is zero.
+870.0,883.0,To create a dictionary with one entry in it again we have curly braces and we add one entry in it so this something colon something else is an entry in my dictionary one entry.
+883.0,893.0,And the thing before the colon is the key and the thing after the colon is the value associated with that key.
+893.0,905.0,So you can think of it if we're drawing a parallel to lists this is now mapping you know sort of at this custom index for we're putting elements 16.
+905.0,921.0,Okay so we can also create dictionaries that aren't just full of integers and you can mix and match data types as you'd like but usually in dictionaries we kind of have the keys all be the same type and the values you know all be the same type.
+921.0,931.0,You can certainly mix and match types just like it you could you could create lists and tuples full of an integer and the float and another list and you know it makes it match in that way.
+931.0,945.0,So here I'm creating a dictionary again open and closed curly braces starts my dictionary and it has four elements in it so each sorry four entries in it and each entry is separated by comma.
+945.0,970.0,I've got here my first entry so it is mapping the key Anna to the dictionary value B my second entry maps key map to value a third entry maps key drawn to value B and last entry maps key Katie to value a right so this is a dictionary that essentially maps strings to other strings.
+970.0,985.0,So you can see here I've kind of visualized the dictionary that we just created we've got these custom indices right so we're basically mapping names to letter grades.
+985.0,1005.0,Everything okay so far does it make sense I guess conceptually okay so the first thing we'd like to do is once we have a dictionary full of a bunch of entries how do we grab an entry how do we look up a value associated with a key.
+1005.0,1034.0,So the way we do that is in a very similar way to the way we look up an element in a list right a key in a dictionary is just a custom index right so how did we look up an element in a list so if I wanted the element at index three I would basically say L square brackets three and that grabs for me the value at that index well now I've got my custom indices right my custom indices are these strings.
+1035.0,1061.0,The syntax will be exactly the same I've got this custom index I'd like to look up so I say dictionary name square bracket custom index so if I say grade square bracket John Python will go in to my dictionary named grades it look up the key John and it'll return for me the value associated with that key B.
+1062.0,1089.0,So this entire expression here is a value evaluates or gets replaced with the string B just like when we indexed into a list L square brackets three we replaced that entire index index indexing operation with the value of the element at that location right so similar here if I try to index into a dictionary and that key doesn't exist so notice my dictionary has no string grace Python will give me a key.
+1089.0,1099.0,So if you run code with dictionaries and you get a key error exception being raised in the console you'll know that you're trying to index into a key that doesn't exist.
+1102.0,1118.0,So the question might be yes we're able to look up a value right given a key can we do the same thing but backwards given a key sorry given a value like ABC whatever can we look up a key associated with that.
+1119.0,1138.0,And the answer is no we'd have to write some sort of loop or some sort of code that goes through every item in my dictionary to look to to check each value and see whether that the key associated with that values equivalent to the one I'm looking so there is no nice expression to do that backward operation.
+1139.0,1165.0,And that's because the values in my dictionary can be repeated so if I look up the value B right and I want what's the key associated with B well there's actually two of them so how does Python know I want both of them how does it know I want only one of them how does it know I want maybe a list of all these things it doesn't right so you'd have to write code that does something of you know for that operation and we're going to see how to do that later.
+1166.0,1185.0,Okay so let's have you work on this you try it and this is just an exercise in looking up a value so this is a function I'd like to write according to this specification so it's called find grades grades is a dictionary mapping student names to grades so string to string exactly like we've seen in the previous slide.
+1186.0,1199.0,And students is going to be a list of student names so in the example here I've got my input dictionary this thing we just saw and then my list of student grades is for example you know these two strings mat and Katie.
+1201.0,1214.0,For a bunch of these questions especially even on the micro quiz and things like that if it gets a little confusing when I try to write the specification in a very detailed way to make it clear what I'd like.
+1215.0,1228.0,From from this function it's important to try to use the example to help you figure out what we'd like because we're writing the specification in a general sense but the example should hopefully make things really clear for what we'd like.
+1229.0,1244.0,So in this particular case what we want the function to return is a list of the grades for the students being past it right so we look up mat we see their their grade is a C we look up Katie their grade is an a so I want to return the list C comma a right.
+1245.0,1256.0,In the same order that I passed in my students so give you a couple minutes to work on that and then we can write it together so that's um line 94.
+1258.0,1261.0,So this is just the exercise on looking up values in the dictionary.
+1262.0,1264.0,All right does anybody have a start for me.
+1269.0,1270.0,Yes please.
+1270.0,1275.0,Yep I'll knew how about that.
+1276.0,1280.0,So this will be my results list yep.
+1282.0,1284.0,Yep for loop.
+1284.0,1304.0,Yep so grade square bracket LM looks up the value associated with my student named LM.
+1305.0,1315.0,And maybe we can save it like this grade equals this and then you said append yep so we can do L new dot append the grade.
+1317.0,1318.0,Anything else?
+1319.0,1322.0,Yep a return so we can return L new.
+1324.0,1328.0,Yep so very reasonable code I like it a lot.
+1328.0,1342.0,But you know besides the first lecture I don't know that we've written any code that didn't involve a loop so your best bet for writing code you know from for any sort of thing in this class is to think what loop can I do.
+1343.0,1349.0,So let's run the code and it should return for me C comma a and it does.
+1350.0,1371.0,Now that we can iterate so you know I mentioned this before but once we're iterating over you know two pulls and lists and things like that one thing I would add it just for debugging purposes is say something like LM is and then you can you know say like an example of what it could be like Anna or Matt or whatever it could be just to remind yourself.
+1372.0,1379.0,That that thing that loop variable is a string and so it's one less thing to remember as you're writing for their code this is really nice.
+1384.0,1397.0,Okay so dictionaries are already proving to be really really useful we can create values associated with custom indices and if we want to grab the value associated with that custom index.
+1397.0,1413.0,It's really just a matter of indexing using a key using that specific key much like we did indexing into a list okay no need to loop none of that you know iteration it's just in a single line of code that indexes into the list.
+1414.0,1423.0,So let's see a few more operations before we do the next you try it so I've got my list of grades that we've been working with in the past couple slides.
+1424.0,1446.0,Let's say that we now want to add a new student in their grade the way we do that is very similar to the way that we would add an element to a list once we already have an index for that list right here notice we don't actually have a slot for grace yet I'd like to add her to my dictionary.
+1447.0,1471.0,That's okay with this particular syntax here so grades at key grace if Python does not find grace in my list in my dictionary of keys it'll just add her okay which is really nice right I don't need to check if she's already in there there's no looping you just say you know grades at grace equals a boom it adds it for you.
+1472.0,1494.0,What if I want to change an entry in my dictionary well let's say I want to change grace is grade to a C grades at custom index grace equals C will go in look at my keys when grace didn't exist Python added her with her value but she already exists there so Python will just overwrite her value.
+1494.0,1509.0,So really nice you know something to look out for in case you already have values in the dictionary you know you want to be careful if you actually do want to overwrite things but it's really really nice behavior and it's different than lists right.
+1509.0,1534.0,Especially adding an entry to the dictionary you can delete entries much like we deleted entries from a list we use the Dell function and the Dell function says what entry you'd like to delete from what lists so here we just say the name of our dictionary at index.
+1534.0,1546.0,So this will completely remove Anna and her value and the value associated with Anna from the from the dictionary.
+1546.0,1563.0,So what I want to make a note of is that our dictionaries being mutated with all of these different methods are all these different functions right so here when I added grace I've mutated my original dictionary right the animation didn't make a copy of this dictionary with grace added
+1563.0,1583.0,leaving the original unchanged I've literally gone in and mutated my original dictionary to add grace I've mutated the original dictionary to add to change her grade I've mutated the original dictionary to remove Anna from the dictionary right so all these all these functions are actually mutating my dictionary.
+1583.0,1612.0,Okay one other very useful thing that you can do with dictionaries is to check if a key is in my dictionary so we do this using the in operator this in keyword we've seen seen the in keyword being used to check if an element is in a list to check if you know a substring or a character is in a string to check if some element is in a tuple we can also use it to check if an element or key is in my in my dictionary.
+1612.0,1627.0,So I want to make a note it's only checking the keys it does not look for the values in the dictionary we'll see how to check if some value is in the dictionary and a little bit but the in keyword specifically only looks at the keys in the dictionary.
+1628.0,1648.0,So if I have the expression you know the string John is in grades Python only looks at the keys and say yep there it is I don't care what values associated with it I just care that it's in my keys so this entire expression here John in grades will evaluate so be replaced with true.
+1648.0,1661.0,Daniel obviously is not in my dictionary keys so it returns false be is not in my dictionary keys even though it's in my values it still returns false because it only looks at the keys.
+1664.0,1668.0,All right let's have you try this exercise.
+1668.0,1697.0,So function is called find in L again we can use the specifications and the example to help us figure out what we'd like from this function so Ld is going to be a list of dictionaries so in the example here I've got three dictionaries defined and the first parameter here the thing being passed as Ld is the list with d1d2d3 as my elements.
+1698.0,1727.0,And K is just an integer what I'd like to do is return true from the function if that K is a key in any of these dictionaries and false otherwise so as soon as I see a key that matches K I want to return true so in this example here when I look at look for the K2 inside these dictionaries D1 doesn't have it but D2 has it so I would return true.
+1729.0,1740.0,When I look for 25 and that same list of dictionaries 25 is a value in one of these in D3 but it's not a key in D1 D2 or D3 so that would return false.
+1745.0,1753.0,All right so that's just a little lower line 115 give you a couple moments and then we can write it together like usual.
+1754.0,1765.0,All right does anyone want to start me off here so how can we do this? Create a loop yes 4?
+1768.0,1778.0,Yep okay so that means that D is you know I can say like K1 mapped to V1 or something like that right a key to a value.
+1784.0,1795.0,If K in D yep so that will check for me my keys in that particular dictionary that I'm looking at right now.
+1797.0,1806.0,Yep we can immediately return true right as soon as we found it no need to check the other dictionaries just pop you know pop out of the function and return true.
+1806.0,1820.0,Same inside the if or inside the for outside the for outside the for we can return false yep.
+1821.0,1835.0,I like this code a lot uses this in operator right to do that the task so the return false outside of the for loop works really well because if I've gone through every D inside LD here.
+1836.0,1855.0,Then I'm checking every single dictionary right as soon as I find one that has that key this return true acts like a break and a return right so breaks out of the loop and returns immediately and it doesn't you know return false.
+1856.0,1863.0,But if I've gone through every dictionary and didn't find the key matching K then I return false.
+1866.0,1871.0,Did anybody try it a different way or is this.
+1874.0,1887.0,We could certainly try it with a boolean flag right we can flag the fact that we found it through some loop you know keep track of it and at the end just return that flag that's another way to do it but this is probably the most python.
+1887.0,1907.0,So we can run it on these two examples here right so I'm expecting to looking up to return true and looking up 25 to return false and it does questions about this code or dictionary so far is everything okay so far.
+1907.0,1919.0,Okay all right a couple more operations so so far we've looked up values in a dictionary we've added stuff to the dictionary we've deleted stuff from the dictionary.
+1920.0,1935.0,One really useful thing to do is to be able to look at every single entry in my dictionary the reason why we'd want to do this is because we should assume that when we create our dictionaries there's no order to them right.
+1935.0,1952.0,This is very much unlike lists lists had an order to them we knew that the first element in our list was at index zero the next one was at index one and so on right lists were ordered sequences of elements but dictionaries are not ordered sequences of elements.
+1953.0,1964.0,That's not super true there are up until a very recent version of python there was no guarantee to order they would put in some order that couldn't.
+1965.0,1983.0,I couldn't figure out how it was determined but I forget which python version maybe 3.6 or something like that started to guarantee an order when you in for for the list for the dictionary elements and that order was the same order that you inserted the elements.
+1984.0,1998.0,But if you'd like to write robust code that could be run by people you know using an older version of python you should write the code assuming that no such order exists and it's okay it doesn't make the code that much harder to write.
+1999.0,2011.0,But if we're not assuming any order to python element entries to in the dictionary then that means a lot of times we actually have to look at each entry in the dictionary to do some sort of task.
+2012.0,2018.0,So one of the first things you might want to do is to iterate through all the keys in the dictionary.
+2019.0,2036.0,To do that we use a function called grades dot keys and this grades dot keys function here doesn't mutate the dictionary at all but instead it returns for me an iterable a sequence of values which are all the keys in my dictionary.
+2037.0,2046.0,Now the data type of this return value is called dict underscore keys it's not a data type we've worked with before.
+2047.0,2057.0,It looks really weird but if you'd like and you don't have to do this you can always cast this sequence of values that's type dict keys to a list like this.
+2058.0,2066.0,So if you cast to list grades dot keys it gives for us this more recognizable list with each key being an element in the list.
+2068.0,2072.0,You don't have to do this but if it makes it easier for you you can.
+2073.0,2081.0,So this line of code here grades dot keys returns for you you can think of it like this iterable this list of all the keys in the dictionary.
+2081.0,2097.0,Again they're not ordered right I mean they're ordered in the order that I added them into the dictionary right Anna then Matt then John then Katie but they're not sorted in you know alphabetical order if you have integers they won't be sorted in ascending or descending order so it's best to just not assume an order to begin with.
+2098.0,2102.0,Similarly we can get an iterable of all the values in the dictionary.
+2103.0,2117.0,And to do this no surprise there we use grades dot values and this is again a function where it doesn't mutate the grades at all but instead it gets replaced with this dict values data type never seen it before either.
+2118.0,2128.0,And you can cast it to a list if you'd like because it makes more sense to us at this point in time which just returns for us this list of every single value in my dictionary.
+2128.0,2137.0,Again no order right we can see that there's no order except for the order that we actually added the element yeah.
+2147.0,2152.0,Yeah yeah and print out the same the same iterable I guess if you do it again yeah.
+2159.0,2172.0,If you're iterating over the dictionary not in the Python version we're using but in a previous version if you ran you know you're on your machine or if I ran the same code on my machine it might have given me a different order.
+2172.0,2200.0,But in the versions we're using from now on in Python right because you guys all probably downloaded the latest version of you know in a condo and spider it will guarantee the order that you inserted the elements in but if somebody using an older version of Python takes your code and runs it they might actually get you know a a b b or some other order for these for these functions here.
+2201.0,2203.0,Yeah you're welcome.
+2204.0,2217.0,So it these being iterable just means that we can have something like four i or so four k in grades that keys basically giving us a loop where k is going to be each element in this list.
+2218.0,2238.0,So that's fine so we can iterate over the keys or we can iterate over the values directly but what I find personally most effective is to iterate over each entry in the dictionary so not just over the keys are the values by themselves it's to iterate over the keys and the values together.
+2239.0,2256.0,So to do that we use this function called grades dot items and unsurprisingly this will return also an iterable where each element in my iterable is not just the key or the value it's a tuple of the key comma the value.
+2257.0,2280.0,Okay and again we can cast it to a list to give us something that's more recognizable you can see now each element in the return list is going to be the tuple where I have an entry right so my entry and a comma be is this first element in my return list and then Matt a and then John be and then Katie so I grab these entries together where I have access to both the key and the value for that entry.
+2280.0,2308.0,Which means and this is the important part that we can do something like this and we can do this for the previous slide as well but for this particular grades dot items iteration if we're grabbing a key value pair out of items that means we can do something like this for k comma V in grades dot items means that Python will map k to the key for that entry and V to the value for that entry.
+2310.0,2320.0,As I'm iterating over each one of these pairs right so with each iteration I have access to both the key and the value for that entry which is pretty useful.
+2321.0,2333.0,So if I have this line of code here if I print key K has value V the K and the V will change with each entry I'm just grabbing both the key and the value for that entry.
+2333.0,2354.0,It's not a tuple so the actual object type is this thing dict underscore items so again not a type that we've we've worked with before but that's just the type right like we've seen lists tuples dictionaries dict underscore items is another data type.
+2354.0,2368.0,But the cool thing is that it's an iterable so it's a sequence of values which means that you can cast it to a list which is also a sequence of values and it knows how to do that casting and you get the more recognizable list that we've been using.
+2370.0,2372.0,Other questions.
+2373.0,2384.0,Okay so I really like using grades that items to iterate over entries so let's have you try this exercise so it's a function called count matches it takes in one dictionary d.
+2385.0,2398.0,I didn't say what the elements are but you know you can mix and match so here I have a dictionary with just in mapped to ints and here I've got a dictionary where it maps you know ints and strings and things like that.
+2398.0,2415.0,And what I want this function to do is tell me how many entries in this input dictionaries have the key match its value so here in this first example the key here is one the values to so they don't match these don't match and these don't match so the count should be zero.
+2416.0,2428.0,But down here in this example the one doesn't match to so that's fine but the key a matches its value one count key five matches its value two counts right so this should return count to.
+2431.0,2438.0,All right let's have you work on that down by line 137 and then we'll write it together.
+2439.0,2443.0,All right how could I start this.
+2444.0,2445.0,Yes.
+2446.0,2448.0,Account yes.
+2449.0,2450.0,Zero yep.
+2452.0,2453.0,A for loop yep.
+2460.0,2462.0,Yep as a function yep.
+2462.0,2471.0,V equal K yep so this is where my value equals my key for that particular entry.
+2474.0,2476.0,Count equals count plus what perfect.
+2478.0,2480.0,Yep return count.
+2481.0,2483.0,Did anybody do it a different way.
+2484.0,2487.0,Yep okay awesome.
+2488.0,2489.0,Yeah.
+2496.0,2497.0,We can write it yeah.
+2497.0,2522.0,Yeah so we can say for X and D dot keys or something like that right something like that or no we can also say for X and D I think that might work
+2522.0,2527.0,to because it'll grab the key for us but just to be safe keys.
+2528.0,2532.0,And now we need to grab the value so how do you grab the value associated with KX.
+2537.0,2548.0,Yeah scorebrake it's just indexing right so D square brackets X oops if D square brackets X equals so that's the value equals the key.
+2549.0,2557.0,Right then again we you know count plus one so this is our other way.
+2559.0,2573.0,Yep so we don't have to use items but it just items makes things easier because we have in hand a variable that's you know the value and a variable that's the key and doing things like indexing starts to get confusing.
+2574.0,2585.0,If you know I mean it can be confusing but yeah both ways are very valid so let's run it and it should work.
+2586.0,2589.0,Yep so the first count is zero as we expected and the second count is two.
+2591.0,2594.0,Is that any questions about this code does it make sense.
+2595.0,2597.0,Is there another way that somebody tried it.
+2598.0,2622.0,Okay so dictionaries are mutable objects right so all the aliasing and cloning rules apply remember when we talked about lists and using the equal sign between a list and another variable name.
+2623.0,2628.0,Just a plain old equal sign means that you are making an alias for that list.
+2629.0,2642.0,Same thing applies to dictionaries so using you know saying D1 equals D2 where D2 is a dictionary means that you've just created an alias for that dictionary so if you change the dictionary through either of those variables you're changing the object itself.
+2643.0,2653.0,If you want to actually make a copy you use D dot copy where D is the name of the dictionary you'd like a copy and that gets you a copy of that dictionary and then you can change it without changing the original one.
+2655.0,2665.0,So let's talk a little bit about the values for a dictionary and the keys because there are some restrictions on the keys for the dictionary no restrictions on the values.
+2665.0,2682.0,So dictionary values can be any type right you can have a dictionary value that's a float in string to pull you can have a dictionary value that's a list which is a mutable object you could have a dictionary value that's another dictionary all are okay whatever you'd like for the values to be.
+2683.0,2692.0,You can have dictionary values that are duplicates so you can have one key that maps to value five another key that maps to value five all good.
+2693.0,2716.0,So the key so the values don't need to be unique we do have restrictions on the keys though okay the first restriction on the keys is that it has to be unique right so if you're mapping a key one to value five you cannot map a key one to value six.
+2717.0,2728.0,Because if you go and look up the value associated with one how does Python know which value you'd like the five or the six right so the keys have to be unique first of all.
+2730.0,2739.0,Second the keys have to be immutable technically hashable but for the purposes of this class just think of them as having to be immutable.
+2739.0,2750.0,So a key can only be one of these types that we've seen so far in float string to pull or bull you cannot have a key that's a list you cannot have a key that's a dictionary because they're mutable objects.
+2751.0,2767.0,So let's look at that a little bit further in detail so the reason why we can't have a key that is mutable is because of the way keys are stored in Python sorry the way the dictionaries are stored in Python.
+2768.0,2778.0,So I'm going to show you an example on the next slide first I'm going to explain how they're stored and then we'll go through an example showing you exactly why you can't have a mutable structure.
+2779.0,2790.0,So the way keys are the way dictionaries are stored in Python is you first need a key right to associate with a value so everything starts off with the key you'd like to add to your dictionary.
+2791.0,2805.0,So Python basically runs a function called a hash function on the key for simplicity sake let's say the key you're trying to store is a number that hash function might return that same number it might return something else.
+2806.0,2817.0,If you're trying to store a string as a key Python again runs it may be a different hash function that takes in that string which might be a bunch of characters and it converts it to some number.
+2817.0,2841.0,So the hash function always takes in your key and converts it to a number that number think of it like representing a memory location where you're going to store the value associated with that key right so you're always grabbing a number that represents a memory location at that memory location you'll store the value.
+2842.0,2856.0,So next time you want to look up the value associated with the key you just run that same hash function the function won't change you run the same hash function on your object and you'll be able to get that same integer back you'll be able to grab that same value back.
+2857.0,2869.0,But if you're storing mutable objects that means that object can change so if you run the hash function the thing that gives you a number on something that's changed that number might not be the same.
+2869.0,2876.0,Because you've changed the thing that you're passing into the function so why would it give you the same value back.
+2877.0,2889.0,So let's look at this example so again we're storing grades and let's say we're trying to store a bunch of grades inside our memory and let's say our memory is just 16 locations so 0 through 15.
+2890.0,2894.0,So at each at these locations I'm going to store grades associated with a person.
+2895.0,2912.0,The function I'm going to run on the student is using their name so I'm going to store Anna's grade somewhere but I need to run a function that takes in the string a and a and gets gets for me a number that number is where I'm going to store my grade.
+2912.0,2921.0,"So a simple hash function we might do is to say well I'm going to take a and map it to 1, b, map it to 2, c, map it to 3 and so on."
+2922.0,2933.0,I can sum all of those numbers associated with my letters in my name right 16 and then I can mod it with 16 which is how many entries I have in my memory.
+2933.0,2943.0,So if I mod it with 16 that's going to give me a number 0 through 15. If you take the remainder when you divide by 16 you'll either get 0 all the way up through 15.
+2944.0,2954.0,So if I mod my name that means I'm going to store my grade at a memory location 0. So far so good.
+2954.0,2975.0,So I'm basically I made up this hash function that tells me where to put my my grade. Now I add another person again I'm going to look I'm going to convert the letters in their name to numbers so that I can easily get a number out of their out of their their letters so I'm basically hashing their number their letters to a number.
+2975.0,2984.0,Again summing this for Eric is 35 I'm going to mod it with 16 which means I'm going to put Eric's grade at location 3.
+2985.0,2996.0,Next person John same thing right I add the numbers mod 16 I'm going to put John at location 15 so this is my memory where I'm storing the values associated with these students.
+2996.0,3010.0,So if I want to grab back my grade I run the exact same hash function. So I'm going to run the same hash function on my name my name hasn't changed right it's still the string I'm not allowed to change it because it's a string.
+3011.0,3023.0,And so I'm going to get the same value back 0 so that means to grab the letter associated with my name I just need to go straight into my memory location and look up the value associated the value at that memory location.
+3023.0,3033.0,So I know it's going to be a C. Now let's say I'm storing a list a student name as a list.
+3035.0,3051.0,So again Anna Eric and John are immutable right they will not change but if I store Kate as a list her name might change again I can run the same hash function on her name that means her grade when I first store it is going to be at location 5.
+3051.0,3065.0,So I'm storing Kate at location 5 all these three strings I know I can get back because they cannot change but let's say that Kate went goes and changes her name for Kate with a Kate to Kate with a C.
+3066.0,3080.0,It's the same object right the same person she earned her grade B originally so if I want to grab her grade back even though her name has changed I would still like to grab the B associated with her as a person.
+3081.0,3096.0,But Kate with a C if I run that same hash function that I ran to put her grade in my table tells me that I now need to look up her grade at memory location 13 no longer at memory location 5.
+3097.0,3100.0,She's not there.
+3101.0,3124.0,So now it's like did the student disappear all that stuff. So you see now that means that's the reason why I cannot have a mutable object as a key to my list because if that object changes running that hash function on that changed object might not give me the same memory location where I originally stored the value associated with that object.
+3124.0,3137.0,So let's revisit our original example the one where we tried to store everything in a master list all these grades in a master list.
+3138.0,3141.0,Now let's store it in a master dictionary.
+3142.0,3150.0,So I've got my grades notice curly bracket curly bracket is a dictionary I've got two students in my class Anna.
+3150.0,3155.0,So this is Anna's information and Bob that's Bob's information.
+3156.0,3165.0,So just two students in my master dictionary so the key Anna right is going to be one entries one entry key.
+3165.0,3175.0,Key Bob is the other entry key and what's the information associated with these keys well with Anna I've got this dictionary associated with her name.
+3175.0,3186.0,So that's this big thing here I'll explain it in a bit and similarly with Bob Bob has one thing associated with him and it's another dictionary.
+3187.0,3195.0,So I'm mapping strings to dictionaries here and that's fine because values in a dictionary can be other dictionaries.
+3196.0,3208.0,So what are these dictionaries about well the number of items in the dictionary for a particular person there's three elements right so comma comma separates my three elements.
+3208.0,3218.0,The first one is going to be mapped with key mq the second one mapped with key ps for problem set and the last one mapped with the string fin for final.
+3219.0,3229.0,So each one of these students has this dictionary associated with them and that dictionary then itself has three entries one for the micro quiz one for the ps one for the final scores.
+3230.0,3239.0,So now what's the values associated with those keys well the micro quiz is going to be a list the promise that is going to be a list and the final is going to be a string.
+3240.0,3246.0,So a really nice representation of my of my class right and same for Bob.
+3248.0,3263.0,So now what if we want to grab a students exam grade or the students no list of exam grades remember that big function right with the two nested four loops and the nested ifs that becomes this line.
+3264.0,3275.0,Isn't that cool applause I like that yeah exactly we should applaud this because look how easy it is now to yes thank you yes.
+3277.0,3286.0,Dictionaries are awesome guys so yeah so look that line becomes this you know grabbing one one quiz score becomes this single line of code right here.
+3287.0,3304.0,So let's break it down again we do left to right whenever we've got this chain of stuff going on so the first thing we say is well we're looking up grades at some index so grades at some index gives me that dictionary so something like this whole thing here.
+3305.0,3322.0,Right okay good that's first chain now this box here gets replaced with that dictionary and I'm doing another index into that dictionary so that means I'm going to grab the mq associated with that that dictionary.
+3323.0,3341.0,So the value associated with mq is going to be this list 544 so this box here gets replaced with the list 544 and then if I want to grab just the first quiz value I say now I'm going to index in the list 544 and index 0 so that grabs for me just the 5.
+3342.0,3347.0,So then the first quiz score for Anna was a 5 it's pretty bad.
+3347.0,3376.0,Okay so let's have you think about this this is a function nothing to code here just just to think this is a function that grabs the average of every single thing where that thing is what in the class.
+3377.0,3404.0,So if what is mq as you know is in down here in this example if what is mq this code is supposed to get the average of all of the micro quizzes for all the students in the class so you basically want to grab the average of 10 plus 8 plus 3 and if it's PS I would like to grab the average of all the problem sets for all the students in the class so the average of 10 10 7 8 and 0.
+3407.0,3430.0,So we've got a loop right that goes through other students in the keys so the student stud stud here is going to be this dictionary right so given this dictionary what line should you insert here such that you're creating a list just a single top level list of all of the values in there.
+3430.0,3442.0,So the thing you actually want to end up with and if we're looking at the PS scores just because it's easier to think about is going to be 10 10 right 7 8 and 0.
+3443.0,3452.0,So in the end what I would like to get in my all data this list that I'm maintaining here is something like this for the PS.
+3452.0,3479.0,So think about which one of these lines will accomplish that and just to help you out we can say student is you know my dictionary of who thinks it's the first one second one third one fourth one.
+3482.0,3511.0,Nobody thought it's the first one you guys sure why do you think it's the second one is it because of the append yeah let's think about it so all data is a list and what are we appending so what is data at stud at what going to give us data at student is the dictionary this dictionary here right this value here.
+3513.0,3528.0,And if we take this value and index into the what will it be an integer or will it be a list a list so when we append a list to another list what is that going to give us.
+3528.0,3556.0,So if we have a list already with you know you know ABC if I append another list to this will it put the element within that list or the list itself yeah exactly so I don't that's not going to work for us clearly D is not right either and definitely indexing into data at student at what is not going to be right.
+3556.0,3585.0,So that leaves one other choice the first one so let's see why the first one works or concatenating right so the plus concatenates so let's say I already have a list ABC I'm going to concatenate something I already have with data at student at what which we said is what is it a single element or another list exactly so we concatenate with something like.
+3586.0,3603.0,You know 10 10 or something like that so that will return for us ABC 10 10 which will allow us to do something like getting the sum of all these elements questions about that doesn't make sense.
+3603.0,3632.0,Yes because we're indexing into mq so if you index into mq mq is your key so you grab the value associated with that key.
+3632.0,3661.0,So that would be this list here the 10 or for ps it would be the list 10 10. So quick recap on lists and dictionaries before we do one final longer example so again lists are ordered sequences of elements right there is some element at index zero there's some element index one some element index two so we do have these quote unquote indices right but there's no there's an order to these indices and there has to be an element and
+3661.0,3681.0,index zero and further up from there right dictionaries also have these quote unquote indices which we call keys but these are custom so you can basically rearrange you could think of it as being allowed to rearrange indices however you'd like right there's no order to the indices in a dictionary.
+3681.0,3699.0,There are some restrictions on the keys or these indices so they can't be immutable or a hashable but other than that you know the things that you store related to that key can be any type just like you can store any type in a list.
+3700.0,3723.0,So the last thing I'd like to go through is a larger example and this was showcased a whole bunch of things that we've been talking about so far will showcase sort of how to first of all create dictionaries which is what we did today it will showcase how to reuse functions you know how to write functions and reuse functions in other places it will showcase a little bit of mutability as well.
+3724.0,3748.0,But you know this is all in a larger example and you know if I go a little bit faster this I've given you Python tutor links and it's also in the file to run on your own so that the goal of this function of this last example is to basically find the most common words in a song's lyrics and dictionaries are going to be really useful for doing something like this.
+3748.0,3756.0,So I'm going to show you first of all what we want to end up with and then we can talk about how to divide this larger problem into smaller pieces.
+3757.0,3769.0,So those are all the pieces but basically what I want to end up with is I want to have a song be stored as a string.
+3770.0,3796.0,You'll recognize these but these are very old I actually haven't updated these songs for a few years but yeah anyway don't judge so I've got a song stored as a string and I'm going to run each individual function but in the end what I'd like to do is come up with something like this so I want to present the user the top most common words in the song.
+3797.0,3809.0,So here I have a list so you can see open close curve bracket tells me it's a list and I've got elements in my list so here's the first element in my list which tells the user that the word I occurs 18 times.
+3810.0,3815.0,The next element in my list tells the user that the word we occurs 17 times.
+3816.0,3825.0,The next element tells the user that the words ain't ever getting older occur all 16 times and then so on right so we're decreasing in frequency
+3825.0,3842.0,with the most common word occurring 18 times and then I'm showing the user the most common words down to and including six so I would choose some arbitrary value I want to find in the song the words that occur at least six times for example.
+3843.0,3846.0,So that's the goal of this program.
+3847.0,3859.0,So how will you achieve this it's obviously a pretty big task I wouldn't want to code you know the entire thing right off the bat but we can actually divide it into three smaller pieces.
+3860.0,3873.0,The first piece and we're going to write the code for this is to create something called a frequency dictionary so given a string of words we're going to create a dictionary that maps each word to how often it occurs.
+3873.0,3881.0,So fancy word frequency dictionary but it's pretty simple it just maps the word to its count inside my long string.
+3882.0,3891.0,So this presents the data which is this string of words in a much nicer format right it's a dictionary that tells me the frequency of each word.
+3892.0,3901.0,Once I have that in hand things get a little bit easier I can write another function that finds the word that occurs most often in that dictionary.
+3901.0,3913.0,So the way I'm going to do that is look up the frequencies in the values find the maximum of those values and then figure out which keys are associated with that maximum value.
+3914.0,3920.0,And this is all made possible because I've reimagined my data in this frequency dictionary format.
+3921.0,3933.0,The last step once I figure out how to write a function that returns for me the words that occurred the most times is to find the words that occur at least some number of times.
+3934.0,3944.0,And I'll go through an example of this one in a few slides when we get to it but this last function here number three you can actually rewrite it in a whole bunch of ways.
+3944.0,3955.0,I'm just going to show you one way to write it that'll involve mutability but you don't have to do it using mutability you can definitely do it in a whole bunch of you know with a whole bunch of other implementations.
+3956.0,3963.0,So let's begin by first creating a dictionary that maps the word to their frequencies.
+3964.0,3973.0,So I picked a song that it has a real song and it has some repetition and it's short that it fits in one line.
+3974.0,4002.0,So I've got this song here and I've got my function generate word dictionary the song is a string right so it's basically the song a little bit cleaned up not in terms of words but in terms of removing punctuation removing you know commas maybe exclamation or I might have kept quotations or something like that but basically it's removing all of the punctuation stuff because that will mess up my word counts.
+4003.0,4010.0,So what is this function going to do given a string for my song well first I'm going to convert all my letters to lowercase.
+4011.0,4020.0,This means that you know capital TG will be counted as the same word as lowercase TG which is the correct way to do it.
+4021.0,4031.0,So convert everything to lowercase then I'm going to use our friend the split function remember which takes in my string and splits on a character so by default it'll split on the space.
+4033.0,4045.0,This puts our string of words in a very manageable format a list of words right much nicer to work with lists than work with a string.
+4046.0,4057.0,Now that I have my word list I'm going to create my empty dictionary and then populate it so I'm iterating over my list of words and then I have a choice.
+4057.0,4073.0,Either I've seen this word already and I want to update the frequency right so I want to increase the frequency by one because I've already added this dictionary this word to my dictionary or this is the first time I'm seeing this word and I want to add it to my dictionary with a frequency of one.
+4074.0,4085.0,So the first case here the if will update the frequency because I've already seen the word in my dictionary so here I'm using the in key word to check if the key the word is already in my dictionary.
+4085.0,4094.0,If so I increase its frequency by one otherwise this is the first time I'm adding my word to my dictionary so give it a frequency of one.
+4095.0,4100.0,And then I return the word dictionary right so this will map strings to integers.
+4101.0,4104.0,Let's work through it in the Python tutor.
+4104.0,4127.0,So step step step step step lowercase my input string step I've split it so now I've got this list of all of my words step this is where we begin so I've created my empty dictionary over here.
+4127.0,4147.0,This is keep an eye on this area here it will be populated soon the first word W is raw right it's the first word in my list it's obviously the first time I'm seeing it I have nothing in my dictionary right now so I'm going to pop in my else and I'm going to add it to my dictionary with a frequency of one.
+4148.0,4163.0,Okay that worked next word in my dictionary is this in my list is this one same word I've already seen so I'm going to go inside the if and increase the frequency to two right raw is now two.
+4164.0,4174.0,Next is a right so here's my word I've got the next one in my list it's the first time I'm seeing it add it to my dictionary with a frequency of one.
+4174.0,4194.0,Next word I'm seeing is again increase its frequency to two and I'm going to go faster now this is increasing frequency to three right I've seen it three times now and then I'm adding Rome for the first time mom for the first time and row for the first time.
+4195.0,4216.0,And lastly I'm going to increase my frequency two more times because it occurs two more times in my song right so that it's increased to two and now it's increased to three and then we're done so we return the word dictionary really nice way to represent my list my my song right very nice.
+4217.0,4227.0,Okay so now that I have this frequency dictionary and I've put it up here this is what we ended up with how can we write a function that returns for me the most frequent word.
+4227.0,4252.0,So one thing we can recognize is the most frequent word has the highest value Python dictionary value in my dictionary right so as a human I would kind of look to see which which one of these entries have the biggest value as a computer I can't really do that because I have to do it a little bit more systematically.
+4253.0,4280.0,So what we can say is well let's look at our values and grab the maximum of the values so here I'm using this dot values function on my dictionary to grab for the to grab for me all of the values in my dictionary so this will be kind of like the list two comma three comma one comma three comma one and then I'm running the max function on that list so max of this list of numbers gives me the maximum value in that list the three.
+4281.0,4305.0,So highest now has the value into your three and now all I need to do is iterate over my element entries in my dictionary right so this is KV in the items and I'm checking now inside this iteration is if the value is equal to the highest right so as I'm looking at each entry is the value for that entry the same as the highest one I've seen.
+4305.0,4323.0,If it is I'm going to maintain a list of all the words with that highest value because there might be more than one word that has that highest value as we saw when we actually ran it here right here I had a list of all of these words that occurred 16 times so that's kind of the output that I want to maintain.
+4324.0,4333.0,Okay so I'm appending to my words list and at the end I'm returning this to pull with the words comma that highest value so.
+4334.0,4352.0,Python tutor like like in the previous time so let's create our original dictionaries is what we ended up with last time so the highest values three here and I'm going to look through each entry in my dictionary so you can see KV is going to be each one of these in order so first
+4352.0,4376.0,it's raw two then it's a three and so on obviously the two is not equal to the three so we move on the three equals the three so we take the a and boom add it to my list here so this is the list I'm maintaining of all the words that occur with that frequency three next no for your own yes for ma so I'm going to add it to my list and then no for row and I'm done.
+4376.0,4385.0,So the return is going to be this list this to pull here with the list of the words that occur three times.
+4391.0,4405.0,Last part I'm not going to go through Python tutor I did include a link to it because it becomes very messy with the arrows but I do encourage you to try it try to follow it along on your own time I will explain the however the way that I chose to say.
+4406.0,4421.0,So I chose to solve this problem to include mutation and reusing the function that we just wrote that grabs for me the highest value and the words associated with that highest frequency value.
+4422.0,4434.0,So this is the idea I have my original word dictionary right this is the frequency dictionary we created right off the bat what I'm going to do is
+4434.0,4449.0,look to see which words occur with the highest frequency so the highest frequency my function from before grabs for me it figures out that it's three and it figures out the words associated with that three are a and ma.
+4451.0,4463.0,That's exactly what we just did so I'm going to grab those words and those entries in the dictionary and then I'm going to mutate the dictionary to remove those words because I know those words occur with the highest frequency.
+4464.0,4473.0,So now I've removed those words and I've saved them because they were the result of the function that I had just run right.
+4474.0,4484.0,So I'm maintaining this frequency list which will contain all the words that occur at least I guess I said one greater than one time so at least two times.
+4485.0,4491.0,So I'm going to grab the ones that occur three and two times so right now I had just grabbed the words that occur three times.
+4491.0,4498.0,I've removed them from my dictionary so I've actually mutated my dictionary to remove those words.
+4499.0,4512.0,Now if I run the exact same function I just wrote on the previous slide on this mutated dictionary which words will it give me which words occur the most now.
+4513.0,4522.0,Exactly right now the highest value in my dictionary in this frequency dictionary is two because I mutated to remove what was previously the highest value.
+4523.0,4537.0,So I'm running the same function again on the mutated dictionary to give me just the raw right so I grab that keep track of that in my frequency list right mutate the dictionary to remove that.
+4538.0,4547.0,And as I'm doing that I'm also keeping track to make sure that the highest frequency I have in the remaining dictionary is at least whatever I was interested in.
+4548.0,4557.0,So here I want it at least two so this function the one I will write will no longer grab any other values from the dictionary because now one frequency one I don't want to grab.
+4558.0,4567.0,So this is the resulting value and that's the idea we're using the ability and the function we just wrote to do this task and this is the code that does that.
+4567.0,4581.0,So this runs the function we wrote previously step number two gives us that list that to pull with the list of all the words this loop here make sure I still have frequencies that are at least X in the dictionary.
+4582.0,4601.0,I grab the the to pull that I just created so something like this and add it to my frequency list so this is the resulting list that I'm keeping track of and then this bit here removes the word for my dictionary so I'm mutating the dictionary using this del keyword that we saw you know at the beginning of this lecture yeah question.
+4601.0,4630.0,So I think maybe it's because the function I forget what the specification said but I don't know if it said at least two or greater than two or greater at least X or greater.
+4630.0,4645.0,It depends on which one I actually said in the specification but you can imagine changing this to greater than or greater than or equal to and then we're running this function again inside this while loop to grab the frequency.
+4645.0,4654.0,So these are just the observations I actually see that at the beginning of this example a bunch of the different things that we've learned that we're using within this example.
+4654.0,4664.0,So slicing or splitting iterating over the list directly mutability using the items things like that.
+4664.0,4679.0,So that's it that's all I have I'll see you guys on Monday Monday is Halloween if you'd like to bring a costume I love Halloween I will wear something different than what I usually wear.
+4684.0,4694.0,I'll see you guys on Monday Monday.

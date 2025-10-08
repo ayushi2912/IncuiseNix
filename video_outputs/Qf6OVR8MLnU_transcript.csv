@@ -1,0 +1,611 @@
+Start Time,End Time,Text
+0.0,18.16,"So last lecture, we started talking about the idea of decomposition and abstraction, and"
+18.16,21.68,we talked a little bit about what that means and how it ties into what we've already
+21.68,22.68,been doing.
+22.68,27.12,"Today, we're going to do a real-world example of decomposition and abstraction, and then"
+27.12,31.400000000000002,we'll see exactly how we can achieve this in programming.
+31.400000000000002,37.72,"So let's start by talking about an example in the real-world, the smartphone."
+37.72,43.16,"So a lot of us have it, but for a lot of us, it's really just a black box, right?"
+43.16,44.16,"For me, I know it is."
+44.16,49.0,"For most of the people in the world, the phone is a black box."
+49.0,54.36,"We basically view the phone in terms of its inputs and in terms of its outputs, right?"
+54.36,60.32,"So the phone has some buttons, you can scroll, you can touch things."
+60.32,64.8,But we don't really know exactly how all of these buttons and scrolling and all these
+64.8,68.16,internal workings actually do their job.
+68.16,71.2,"And in fact, we don't need to know how they do their job, right?"
+71.2,76.7,"To us as the user, all we really care about is the interface between us and what task we"
+76.7,78.92,"want to achieve, okay?"
+78.92,84.32,So what we need to know that interface is basically the relationship between the input
+84.32000000000001,88.84,we give to the phone and the output we get.
+88.84,91.48,"So when we push that button, the phone turns off."
+91.48,96.52000000000001,"When we push this other button, the volume increases, okay?"
+96.52000000000001,99.80000000000001,"And so that's the idea of abstraction, right?"
+99.80000000000001,105.04,"The phone is basically abstracted away all of those hardware details, all of those implementations"
+105.04,108.12,"that make it actually work for the user, right?"
+108.12,111.84,So the user doesn't need to know how it works in order to use it.
+111.84,117.52000000000001,"Now abstraction actually enables decomposition, what does that mean?"
+117.52000000000001,125.08,"Well, once we abstract away details, we can have different manufacturers working on different"
+125.08,130.92000000000002,"components of the phone, to build these different components."
+130.92000000000002,135.48000000000002,And if different manufacturers are working to build these hundreds of distinct parts within
+135.48000000000002,141.76,"the phone separately, they need to have some way to put these parts back together."
+141.76,147.48,"And when they're working on their pieces separately, that's the idea of decomposition."
+147.48,152.56,How do they know that what they're working on will actually fit in with the rest of the
+152.56,153.56,components?
+153.56,158.0,"Well, they use the idea of decomposition, they're basically following a specification, they're"
+158.0,164.72,"following a set of inputs that may become into their component, and a set of outputs that"
+164.72,168.95999999999998,maybe their component needs to give to other components.
+168.96,174.24,And all these different manufacturers that are building these different parts need to
+174.24,176.32000000000002,know is that interface bit.
+176.32000000000002,179.84,They don't need to know how other manufacturers build their components.
+179.84,185.36,All they need to know is what functionality those other components have.
+185.36,189.04000000000002,And so all of these different manufacturers can build all these different components.
+189.04000000000002,193.76000000000002,"The interfaces are going to be sort of standardized, so to speak."
+193.76000000000002,196.20000000000002,And that's all that they care about.
+196.20000000000002,201.04000000000002,"So once you know the interface, you can come together and put all these different components"
+201.04000000000002,206.8,"together to work towards a common goal, as in to make a phone work."
+206.8,210.68,"So this is true for hardware, as in the phone example, but it's also true for software."
+210.68,215.04000000000002,And that's exactly what we will be doing in this lecture on functions.
+215.04000000000002,219.28000000000003,We're going to achieve decomposition and abstraction in programming.
+219.28,226.88,So treating code as a black box and making a large program kind of splitting it up into
+226.88,229.96,these different self-contained parts.
+229.96,230.96,OK.
+230.96,234.68,"So in programming, we want to suppress details as well, right?"
+234.68,239.12,"Not just in hardware, like with the phone, we want to suppress details in programming as"
+239.12,240.12,well.
+240.12,243.6,And we do this using this idea of abstraction.
+243.6,251.95999999999998,"So we will be writing code, as we have already been doing, with the thought that the code"
+251.95999999999998,255.4,we're writing will be written only once.
+255.4,259.71999999999997,We will have some functional piece of code that will do a very useful task.
+259.71999999999997,263.52,"And then after we've written that code and debugged it and made sure it works well, we'll"
+263.52,266.08,treat that code as a black box.
+266.08,270.12,"So from there on out, as long as we know what inputs that piece of code needs and what"
+270.12,274.88,"outputs that piece of code gives back to somebody else or to us, we don't care exactly"
+274.88,275.88,how it does it.
+275.88,279.72,We just care that it is there and it is available for use.
+279.72,280.72,OK.
+280.72,285.24,"So today's lecture, we're going to be seeing how we can actually create these little functional"
+285.24,287.16,pieces of code.
+287.16,290.56,We can then give these pieces of code to ourselves.
+290.56,294.08,"We can definitely use these functional pieces of code that we're written, or we can give them"
+294.08,298.96,to other people so that they can use them as well.
+298.96,306.59999999999997,So we're going to write these functional pieces of code and we'll call them functions
+306.59999999999997,308.56,or procedures.
+308.56,313.28,"And in fact, we've already been using functions, believe it or not."
+313.28,318.64,These three are examples of functions we've already been using in Python.
+318.64,320.44,So maps is a function.
+320.44,327.56,"So it's some useful piece of code that when we use it in this particular way, it's taking"
+327.56,332.92,in two inputs and it gives me back the biggest of those two inputs.
+332.92,340.68,"The middle one, ABS is the absolute value function and its input is one number, an integer, and"
+340.68,346.4,it gives back to me the absolute value of that number.
+346.4,352.28,And LAN is also a really useful one that we've been using with strings and basically its input
+352.28,357.52,is a string and its output is going to be how many characters are in the string.
+357.91999999999996,360.28,So we've already been using functions.
+360.28,366.79999999999995,"The point of today's lecture is you're going to start to write your own functions, hopefully"
+366.79999999999995,368.79999999999995,useful ones.
+368.79999999999995,375.28,"Okay, so the idea of a function is that we want to abstract away exactly how that function"
+375.28,378.79999999999995,"achieves something useful, some useful task."
+378.79999999999995,384.15999999999997,And so the way that we're going to tell other people how to use our function is using this
+384.16,391.76000000000005,idea of abstraction and we capture what the function does with these things called specifications.
+391.76000000000005,396.6,They're also called doc strings and the doc string is kind of like a contract between somebody
+396.6,401.40000000000003,who creates this useful function and somebody who wants to use the function.
+401.40000000000003,404.92,"The person who uses the function might be you, the person who wrote it, or it might be"
+404.92,406.64000000000004,somebody else.
+406.64000000000004,410.68,"And in the contract, the things that we're going to mention are what are the inputs to the"
+410.68,411.68,function.
+411.68,416.8,"So in the length function, it needs a string."
+416.8,418.84000000000003,What is the function doing?
+418.84000000000003,421.28000000000003,And what is the output of the function?
+421.28000000000003,426.72,What is the function give back to somebody who uses this function?
+426.72,431.44,And we haven't actually done this explicitly but you've probably seen this as you type
+431.44,432.96000000000004,your code in.
+432.96000000000004,438.32,So here's an example of the absolute value function and it comes up with this little pop-up
+438.32,439.8,here whenever you type it in.
+439.8,446.64,"So for example, ABS parenthesis right here or if you hover over a function in your file editor,"
+446.64,452.56,you'll see it pop up this little text box that says the specification or the doc string.
+452.56,458.36,"And here you see exactly the signature of the function so it takes in one input, the x,"
+458.36,463.2,"the value you want to find the absolute value of, and then some text here which is what the"
+463.2,464.76,function does.
+464.76,469.12,So the specification of the doc string is literally just a multi-line comment.
+469.12,471.16,There's nothing special about it.
+471.16,475.92,"As long as you kind of hit those points, the inputs, what the function does and what the function"
+475.92,482.08,"gives back to you, you've written a good specification."
+482.08,483.08,Okay.
+483.08,488.32,"Oh, so I should mention that these contracts, even though I call them contract, they're"
+488.32,491.24,not actually enforced by Python.
+491.24,495.8,So it's really just up to the person who writes the code to make sure that their specification
+495.8,501.76,is really detailed and your function does what you say you will.
+501.76,505.56,"So if your function can take in both positive and negative integers, for example, then you"
+505.56,510.04,better make sure that the function itself doing whatever task it needs to do can handle
+510.04,514.0,both positive and negative integers.
+514.0,520.4,"So once we write these functions, we now have these little bits of code that perform some"
+520.4,522.0,useful task.
+522.0,526.36,"Even some input, it will perform this task and give me back some output."
+526.36,532.88,"And now that we have these different little pieces of functionality, we can go ahead and"
+532.88,539.56,"take this large file of code, which you might write from now on and kind of see exactly which"
+539.56,543.0,pieces of code may be are getting repeated.
+543.0,547.24,"That's a clue that that's something that you can kind of abstract away into a little module,"
+547.24,549.08,aka a function.
+549.08,553.2,"And then you can just use these functions to break up the code, a very large piece of"
+553.2,556.6,code into smaller little self-contained modules.
+556.6,563.48,"And then maybe the bulk of the work that the code is doing is just saying, hey, this module"
+563.48,567.72,"please give me this answer, and then this module gives me this answer, and then putting those"
+567.72,571.36,values back together again.
+571.36,575.0,So these reusable pieces of code are called functions or procedures.
+575.0,580.92,"We're basically going to try to capture some sort of computation, a very useful task that"
+580.92,583.72,you'd want to do over and over again.
+583.72,589.74,"And we're going to see some details about how to write functions, but essentially it's just"
+589.74,595.92,"going to be code that you've already been writing, just written in a special way that makes"
+595.92,598.92,it reusable.
+598.92,603.0,So we're going to have to kind of switch the way we've been thinking about code for a bit.
+603.0,606.52,"Now that we're introducing functions, because right now when we've been writing functions"
+606.52,612.72,"in a file, we basically write some code top to bottom, and then we think about that code"
+612.72,617.76,as being executed line by line top to bottom.
+617.76,622.32,"But now that we're creating these things called functions, little blocks of code that we can"
+622.32,627.16,"use many times in many different places in our code, we're actually going to introduce the"
+627.16,629.2,idea of defining a function.
+629.2,634.1600000000001,"So that means we're going to write a piece of code, and all that piece of code is going"
+634.1600000000001,641.24,to do is tell Python that this is a module or a function that exists in my program.
+641.24,646.72,"All we're doing is defining the function, but we're not actually going to run the function"
+646.72,651.48,"when we define it, okay, and that's kind of the difference that the way that we're going"
+651.48,653.48,to have to shift our thinking here.
+653.48,658.0,"So when you define a function, you just tell Python that here is some useful piece of code"
+658.0,664.88,"that exists, that does something, but it doesn't actually run until you call the function."
+664.88,670.52,"And the cool thing about writing a function is once you wrote it once, you can make 100"
+670.52,676.04,different function calls to that one piece of code that you wrote later on in your program.
+676.04,680.28,"So you can call the function many times with different inputs to give you different outputs,"
+680.28,682.96,but you only had to write it one time.
+682.96,686.32,"So I would compare this to when we write code in a file, right?"
+686.32,691.72,"When we write code in a file, yes, we can write a whole bunch of lines, but this code isn't"
+691.72,694.44,"running as we're writing it, right?"
+694.44,699.0,We have to actually push the run button to run that file.
+699.0,702.44,"So similarly, when we're telling Python that I'm going to create this function that does"
+702.44,708.2,"something useful, it's not actually running those lines, we have to tell Python that we want"
+708.2,712.48,to run this function.
+712.48,716.9200000000001,So the first thing we're going to do in this lecture is just actually create a function.
+716.9200000000001,721.36,"I'm going to show you how to define a function, so tell Python that this function exists,"
+721.36,726.16,and then we'll see how to actually run the function to give us some useful values.
+726.16,731.4,"So the function characteristics are going to be, the function has to have a name."
+731.4,737.44,"So just like when you create variables, that store some useful value like pi to 20 decimal"
+737.44,741.76,"digits that you want to reuse over and over again, we're going to create a function and"
+741.84,747.48,that name is kind of like a handle for us to refer to this large chunk of code that does
+747.48,749.76,something useful for us.
+749.76,754.72,"A function has some inputs called parameters or arguments, it could have no inputs or more"
+754.72,761.28,"or one or more, and a function should have a doc string, so this is the specification."
+761.28,766.48,"Again, just a multi-line comment that tells the user, the person who wants to use this function,"
+766.48,770.48,"the inputs, what the function does, and what the output, or the return, or whatever this"
+770.48,773.32,function will do for you.
+773.32,778.96,"And then the body of the function is just Python code, exactly the kind of code we've already"
+778.96,781.76,"been writing, except not wrapped in a function."
+781.76,785.9200000000001,"So if you found yourself writing a piece of code that did something useful, you can totally"
+785.9200000000001,790.48,"wrap that in a function, and we'll see how to do that today."
+790.48,795.28,So the body of the function is just a bunch of lines of code that do this useful task.
+795.28,799.96,The only difference in the body is that at some point this function has to end.
+799.96,805.32,"It has finished its task, it figured out a final value, this useful thing, that's kind"
+805.32,811.0400000000001,"of the result of your task, and you want to give this value back to somebody who's using"
+811.0400000000001,812.44,this function.
+812.44,817.84,"And we do that using this return keyword, as we're going to see in the next slide."
+817.84,821.48,So here's an example of a really simple function.
+821.48,827.2,"So it's just a definition, so again, these lines of code do not run."
+827.2,832.4000000000001,Here we're just telling Python that we're creating a function that does something.
+832.4000000000001,836.0400000000001,So we kick that off with the DEF defined keyword.
+836.0400000000001,840.8000000000001,"So notice it's blue, if you type it in your code, you'll notice it changes color."
+840.8000000000001,843.84,So DEF tells Python we're defining a function.
+843.84,847.6400000000001,"The next is the name of the function, so this should be something descriptive, usually an"
+847.6400000000001,853.6400000000001,"action word, right, because a function does something, so you want kind of like an action type name"
+853.6400000000001,856.0,for your function.
+856.0,862.8,"Then we have parentheses, and inside the parentheses you have any of the inputs, the parameters,"
+862.8,864.8,"the arguments to the function, right?"
+864.8,868.08,So what should the user give you as input to this function?
+868.08,870.36,And then of course a colon.
+870.36,875.92,"So in that line right there, the only thing that is sort of customizable, quote unquote,"
+875.92,878.92,is the name of the function and the parameters.
+878.92,882.72,"If there's zero parameters, you put nothing in there, if there's more than one, you separate"
+882.72,885.36,them by commas.
+885.36,892.08,"Anything else should be standard, the DEF, the parentheses, and the colon at the end."
+892.08,898.28,"Since we have a colon at the end, then that means we have to indent the next bit of code."
+898.28,902.6,That the indentation will tell Python that the rest of this is part of the function.
+902.6,906.36,So everything from here on out is part of the function definition.
+906.36,909.0,"So we have our doc string, of course."
+909.0,913.0,"You start with triple quotes, and you end it with triple quotes, and in it you can write"
+913.0,914.0,whatever you want.
+914.0,918.76,Treat it like a comment that's on multiple lines.
+918.76,924.6,"And you can see here I've said that this function takes in an input i, which I restrict to be a"
+924.6,929.92,"positive integer, and then I say what the input gives back to the user."
+929.92,936.08,"So it will return true if i is an even number, and it will return false otherwise."
+936.08,940.48,"So I've hit all the points, the inputs, what the function does, and what it gives back"
+940.48,946.12,to whoever wants this function to run.
+946.12,949.12,"Beyond that, we have the body of the function."
+949.12,953.9200000000001,"So here you notice it's just lines of code that you would have written otherwise, right?"
+953.9200000000001,959.48,"If you were given the problem on a quiz that said given i, defined for you, write some"
+959.48,966.36,"code that prints true if the number is even in false if the number is odd, this is basically"
+966.36,968.88,lines of code that you would type in.
+968.88,974.0,"The only difference is this little return here, right?"
+974.0,980.92,"The function is sort of some lines of code that do a task, and that task when it finishes"
+980.92,988.0,"has to give something back, right, it can't just sit there I guess, and the thing that it"
+988.0,998.64,gives back to whoever wants this function to run is set up by this return statement here.
+998.64,1003.4399999999999,"So if the number is divisible by zero, we return true, and else we return false."
+1003.4399999999999,1008.12,"So one of these, either true or false values, will be returned by the function."
+1008.12,1016.16,"So this is kind of, you can think of it like the output of the function, okay?"
+1016.16,1018.6,"Questions so far, does this make sense?"
+1018.6,1025.0,"Again, this is just us creating this function inside the computer, inside Python, we're not"
+1025.0,1031.8,actually running these lines of code yet.
+1031.8,1037.34,"So if you are given sort of a larger problem, I just want to take a couple slides to talk"
+1037.34,1040.8,about how you think about writing the function.
+1040.8,1047.56,"This was a really easy one, so obviously it's not that hard to write, but sort of what"
+1047.56,1052.04,is the thought process if you are given a larger problem like in English or something
+1052.12,1057.8,"like that, and you wanted to translate this into a piece of code that does something functionally"
+1057.8,1059.56,"interesting, okay?"
+1059.56,1061.8,So you think about what the problem is.
+1061.8,1067.52,"So our problem is given an integer, figure out if it's even or odd, okay?"
+1067.52,1074.8,"So given this statement, you could come up with the name of this piece of code that's functionally"
+1074.8,1080.32,"interesting, so is underscore even, is a good name?"
+1080.32,1084.8,"And we can also come up with the inputs for this function, right?"
+1084.8,1090.04,"So I, we are only given one number, so there's no need for this function to take in any other"
+1090.04,1091.72,inputs.
+1091.72,1095.84,"And then using that description, we can now start to fill in the dox string that says, well,"
+1095.84,1098.72,"our input is going to be a positive integer, right?"
+1098.72,1104.12,"We could use sort of math to figure out restrictions on the inputs, and then we can write the rest"
+1104.12,1107.72,"of the dox string that tells us what to return and what, right?"
+1107.72,1110.76,What the function is doing.
+1110.76,1114.76,"And once you have that, you can just solve the problem."
+1114.76,1119.44,"So for us, we solve the problem by basically saying, if the remainder when we divide i by"
+1119.44,1123.88,"2 is 0, we return true, and otherwise we return false, okay?"
+1123.88,1128.68,"So that's some, that's code that you could have already written, right, without actually"
+1128.68,1130.24,this function lecture.
+1130.24,1134.48,"But now we're putting it in the context of function definitions, so we're going to be able"
+1134.48,1139.1200000000001,"to run this function with many different inputs to give us a bunch of different outputs,"
+1139.1200000000001,1146.6,whether a bunch of these different numbers are even or not.
+1146.6,1149.96,"So when we're writing the body of the code, the only difference is from what you've been"
+1149.96,1152.4,"doing is the return statement, right?"
+1152.4,1157.6,"Instead of printing something out to the console, we're going to return a value to somebody"
+1157.6,1162.6,who wants to know whether the number i is even or odd.
+1162.6000000000001,1167.4,"The function can also print stuff to the console, but the key thing here is you want to return"
+1167.4,1170.44,a value to the user.
+1170.44,1175.64,"And after you wrote code right off the bat and you test it and made sure it works, you can"
+1175.64,1177.44,improve the code a little bit.
+1177.44,1185.92,So here we're improving it by noticing that i% 2 equal equals 0 here is actually already
+1185.92,1188.2,"a Boolean, right?"
+1188.2,1194.64,"If i is even, 3% 2 equal equals 0 is true, and otherwise it's already false."
+1194.64,1203.16,"So these four lines of code basically say if true, return true, else return false."
+1203.16,1210.0800000000002,So our improvement can just be to return whether i% 2 equal equals 0 right off the bat.
+1210.08,1218.1599999999999,So here we're going to return either true or return false based on what i is.
+1218.1599999999999,1223.76,"So at this point, again, sorry, I'm stressing this enough, too much, but it's really important"
+1223.76,1230.08,"to understand that once we write these lines of code in the context of a function definition,"
+1230.08,1233.24,these lines of code do not run.
+1233.24,1241.2,They basically just sit in Python saying that there are these lines of code that correspond
+1241.2,1247.8,"to some function object whose name is even, that's it."
+1247.8,1253.8,So what we need to do now is to actually tell Python to run these lines of code.
+1253.8,1258.92,"To do that, we make a function call, and again, we've already been doing function calls just"
+1258.92,1261.96,"of functions that already exist in Python, right?"
+1261.96,1266.52,"Just Python itself, max, absolute, len, all that stuff."
+1266.52,1271.48,"But now we're making a function call to something that we wrote, right?"
+1271.48,1277.28,This nice piece of code that tells us if a number the input is even or not.
+1277.28,1282.52,"So here I've got an, I'm going to invoke the name of my function."
+1282.52,1286.6000000000001,"So I'm, aka, I'm going to call the name of my function, I'm basically just typing in"
+1286.6000000000001,1291.7600000000002,"the name of my function in the code, parentheses, and then the inputs the function expects."
+1291.7600000000002,1292.92,"There's only one, right?"
+1292.92,1295.96,The number I want to figure out if it's even or odd.
+1295.96,1298.0000000000002,"And then that's it, right?"
+1298.0000000000002,1302.64,"So I've got the name of my function and then all the input, the parameters that this function"
+1302.64,1304.72,expects.
+1304.72,1311.7600000000002,"At this point, Python goes into the function body, it runs the function, and it returns back"
+1311.7600000000002,1312.7600000000002,of value.
+1312.76,1319.52,"However, the value is associated with the return is that value will immediately be given"
+1319.52,1322.08,back to whoever called it.
+1322.08,1323.28,What does that mean?
+1323.28,1332.48,"Well, that return value will completely replace this function call, okay?"
+1332.48,1335.8799999999999,So let's think back to expressions.
+1335.8799999999999,1339.08,Do you remember when we were learning about Python expressions?
+1339.08,1343.8799999999999,"When I said you have something like object operator object, like three plus two."
+1343.8799999999999,1348.6,"That was an expression, and Python went in, evaluated that expression, and replaced that entire"
+1348.6,1353.08,"expression by the value, five."
+1353.08,1354.4399999999998,This is exactly the same thing.
+1354.4399999999998,1357.52,"In fact, functions are kind of like Python expressions."
+1357.52,1359.8,"They do something useful, right?"
+1359.8,1363.3999999999999,It's just that it's not math or something like that that gets evaluated.
+1363.3999999999999,1367.1599999999999,It's a bunch of lines of code that get evaluated.
+1367.16,1373.8400000000001,"But in the end, that function returns back only one value, okay?"
+1373.8400000000001,1377.52,And that value replaces the entire function call.
+1377.52,1382.96,"So this entire function call is going to be basically replaced by false, right, because it's"
+1382.96,1384.72,an odd number.
+1384.72,1392.72,"And the next one is going to be replaced by true, right, the return from the function."
+1392.72,1398.28,"So the way that the code looks, just this definition of is even, and then running a function"
+1398.28,1399.6000000000001,call is this.
+1399.6000000000001,1403.24,"This is all that we would have in our file, right?"
+1403.24,1405.88,So here we have our function definition.
+1405.88,1410.1200000000001,"And then at the same indentation level, we have a function call, right, because it's not,"
+1410.1200000000001,1411.8,the call is not part of the function.
+1411.8,1416.76,"The call is just making use of the function that we wrote, okay?"
+1416.76,1418.04,So what exactly happens?
+1418.04,1421.52,We'll do a little bit of step by step now going a little bit into more detail as to what
+1421.52,1425.96,exactly happens when we make the function call.
+1425.96,1430.52,"So when we make the function call, so again, function definition, this just tells Python we"
+1430.52,1436.0,have this function that does something in our program.
+1436.0,1439.56,And then here we have the function call.
+1439.56,1445.4,"When, as soon as Python sees the function call, that's when it starts doing something useful."
+1445.4,1448.72,"Up here, it just sort of stores this in memory."
+1448.72,1453.64,"So as soon as it sees the function call is even three, it looks at the input parameter"
+1453.64,1456.0,to the function call.
+1456.0,1458.64,"And here you see we have a value, right?"
+1458.64,1461.48,It's an actual tangible object.
+1461.48,1467.76,"It's not a some random variable, it's not something abstract, it's a number three."
+1467.76,1472.4,The I up here from our function definition is called a formal parameter.
+1472.4,1473.4,"It's abstract, right?"
+1473.4,1477.64,We wrote the body of the function assuming the user will eventually give us a value for
+1477.64,1483.8400000000001,"I. But in the actual body of the function, I is just a variable we're using, kind of like"
+1483.8400000000001,1484.8400000000001,"in the quizzes, right?"
+1484.8400000000001,1489.72,"For now, I've been saying, you know, assume you're given some number, and that's defined"
+1489.72,1490.72,for you.
+1490.72,1492.4,Write the code assuming you know this number.
+1492.4,1493.88,It's the exact same thing.
+1493.88,1499.76,We write the code of the body of the function assuming we know a value for I.
+1499.76,1504.96,"So when Python sees this function call with three, it goes into the body of the function and"
+1504.96,1507.0400000000002,"says, all right, what are my parameters?"
+1507.04,1508.8799999999999,"There's only one, it's I."
+1508.8799999999999,1514.0,And it's going to map them one by one to all the actual parameters given in the function
+1514.0,1515.0,call.
+1515.0,1518.08,So basically just maps I to three.
+1518.08,1520.68,And then it executes the body of the function.
+1520.68,1523.0,So it replaces everywhere you see I.
+1523.0,1526.8799999999999,"So it might have a longer bit of code here, but here we just have one line."
+1526.8799999999999,1530.44,It replaces I with three.
+1530.44,1532.84,So we have 3% 2 equal equals zero.
+1532.84,1536.96,"Now we have a tangible value, right, false."
+1536.96,1540.16,So this expression is replaced with false.
+1540.16,1544.0,And so this line of code here will return false.
+1544.0,1549.3600000000001,"And as soon as Python sees that return value, it immediately exits the function and gives"
+1549.3600000000001,1553.64,back the value that you're returning to whoever called it.
+1553.64,1558.6000000000001,So this entire function call here will be replaced by false.
+1558.6000000000001,1560.6000000000001,Okay.
+1560.6000000000001,1563.48,That was very step by step.
+1563.48,1565.28,But does it make sense?
+1566.12,1567.3999999999999,Okay.
+1567.3999999999999,1571.3999999999999,"So this is a program that doesn't do anything, right?"
+1571.3999999999999,1576.96,"If somebody were to write this program and run it, it doesn't actually show anything to"
+1576.96,1578.52,the user.
+1578.52,1584.28,"That's because in our program, it's like we had just written a line of code that said false."
+1584.28,1586.24,Does I get printed to the output?
+1586.24,1588.52,"No, right?"
+1588.52,1595.08,What we need to do is do something useful now that we have the result of a function call.
+1595.08,1600.36,"So one useful thing we can do is to actually print the result of the function call, right?"
+1600.36,1602.32,So here we have print.
+1602.32,1605.4399999999998,And then I have my function call I had up here.
+1605.4399999999998,1608.6799999999998,I'm just sticking it inside the print statement.
+1608.6799999999998,1612.52,"And Python will, as before, evaluate is even three."
+1612.52,1613.76,This is replaced with false.
+1613.76,1619.6,And this line essentially becomes print false.
+1619.6,1623.36,"And so the way this looks in our actual code is this, right?"
+1623.3600000000001,1632.3200000000002,"So here I have, this is even function, the inefficient way of writing it."
+1632.3200000000002,1634.4,I've got two function calls here.
+1634.4,1638.3600000000001,"But if I run the code, it doesn't print anything, right?"
+1638.3600000000001,1640.2,I need to do something useful with them.
+1640.2,1644.1200000000001,And one useful thing we can do is to print the result of these function calls.
+1644.1200000000001,1651.3600000000001,"So now that I've wrapped these calls inside a print statement, I see the output in my console."
+1651.3600000000001,1652.3600000000001,Okay.
+1652.3600000000001,1657.68,"So we're kind of separating ourselves, right, when we're writing code now."
+1657.68,1661.64,"One, we're defining a function, some code that does something useful."
+1661.64,1668.3200000000002,"And then two, we're using this function that we wrote to make function calls."
+1668.3200000000002,1672.2400000000002,And the beauty about writing the function is we only write it once and debug it once.
+1672.2400000000002,1676.3600000000001,But now we can run it as many times as we'd like.
+1676.3600000000001,1680.48,"Without functions, we'd find ourselves copying and pasting, right?"
+1680.48,1684.84,"That piece of code that does something useful in many places in our code, which could lead"
+1684.84,1685.84,to errors.
+1685.84,1690.48,"The code is hard to modify, it's hard to debug, you might, all that stuff."
+1690.48,1691.48,Okay.
+1691.48,1692.48,Okay.
+1692.48,1696.1200000000001,I'll give you a chance to try this out for about a minute.
+1696.1200000000001,1697.76,So let's have you write this code.
+1697.76,1700.6,So here I'm giving you the function specification.
+1700.6,1703.0,Most of the time I'll give it to you even in quizzes.
+1703.0,1707.0,I want you to write for me a function called div underscore by.
+1707.0,1711.28,This one takes in two parameters.
+1711.28,1714.28,Both integers greater than zero and d.
+1714.28,1725.0,And this function will return true if d divides n evenly and false if it does not divide n evenly.
+1725.0,1729.28,"So if you test it out with those two values, the first one should give us false and the second"
+1729.28,1731.88,one should give us true.
+1731.88,1738.0,"As usual, this is down in the Python file, so we have around line 28 is where you should"
+1738.0,1742.8400000000001,start typing in your code.
+1742.8400000000001,1745.72,Does anyone have a start for me?
+1745.72,1750.72,"It should be very similar to what we just, yeah."
+1750.72,1767.72,"It's d percent and like, double equals zero, then correct, true."
+1767.72,1768.72,Else.
+1768.72,1770.72,Print false.
+1770.72,1771.72,Okay.
+1771.72,1774.72,So let's run the function.
+1774.72,1775.72,Let's just do it with one.
+1776.72,1782.72,So the first one I'm expecting to print false.
+1782.72,1788.72,"It does print false, but it also prints this weird none right after it."
+1788.72,1792.72,"Actually, this is something we're going to talk about next lecture."
+1792.72,1797.72,But does anyone know an improvement we can make to the code?
+1797.72,1798.72,Yes.
+1798.72,1802.72,"Yes, actually, you're right."
+1802.72,1809.72,"So instead of printing true, remember it's a function, we want it to give us back the value"
+1809.72,1810.72,true.
+1810.72,1818.72,"So instead of printing, we'll do a return true, and we don't need the parentheses in this case,"
+1818.72,1827.72,and then we'll do a return false.
+1827.72,1828.72,Right.
+1828.72,1831.72,So now we don't have that weird none right after it.
+1831.72,1834.72,That's something I was going to talk about next lecture.
+1834.72,1839.72,"But basically, when we had prints here, what did the function return?"
+1839.72,1843.72,Did it have any return statement inside it?
+1843.72,1844.72,"No, right?"
+1844.72,1851.72,"And so if there's no return statement inside the function, Python automatically returns this special none."
+1851.72,1852.72,Okay.
+1852.72,1854.72,This is something we'll talk about next lecture more in detail.
+1854.72,1857.72,"Yeah, the return true return false is correct here."
+1857.72,1858.72,Yes.
+1858.72,1862.72,Did you see the difference between this and the return?
+1862.72,1863.72,Yeah.
+1863.72,1864.72,Yeah.
+1864.72,1875.72,"You don't need the return, the if else, just like before, so we can just do return this directly, right?"
+1875.72,1881.72,And we can run it with the other one.
+1881.72,1886.72,"The second one should actually return true, but it returned false."
+1886.72,1887.72,Does anyone know the problem?
+1887.72,1888.72,Yeah.
+1888.72,1891.72,"Yes, exactly."
+1891.72,1898.72,"So actually, we want the remainder when we divide n by d, right?"
+1898.72,1905.72,"So this is just flipped around, n% d equals 0."
+1905.72,1910.72,"So it's a good thing we had two test cases to test for that, and you don't have to test them with such big numbers."
+1910.72,1914.72,"Obviously, you test them with some smaller numbers as well."
+1914.72,1919.72,"So let's zoom out a little bit and talk about how exactly functions are stored in memory, right?"
+1919.72,1926.72,"Because I mentioned this thing about defining a function, and that just doesn't do anything really that we can see."
+1926.72,1928.72,But what exactly happens in memory?
+1928.72,1933.72,"Well, let's think about what happens when we create variables."
+1933.72,1941.72,"We can create a is equal to three inside memory, or the program scope, again, we'll talk about this next lecture."
+1941.72,1942.72,But you can think of this as the memory.
+1942.72,1952.72,"What happens is a is becomes a variable that's bound to value three, b equals four is a variable b bound to value four, and c is going to be bound to value seven."
+1952.72,1953.72,"Clear, right?"
+1953.72,1955.72,We already know this.
+1955.72,1957.72,What happens when we create a function?
+1957.72,1961.72,"So again, this is something I might write in a code file."
+1961.72,1963.72,So the top bit is my function definition.
+1963.72,1977.72,"So as soon as Python sees this DEF keyword, everything that's indented, that's part of the function definition, and the body, is essentially just some code, right?"
+1977.72,1984.72,"To Python, it does not care at this point what that code is, or what that code does."
+1984.72,1990.72,"All it knows is that there is a function object, and functions are actually objects in Python."
+1990.72,1994.72,There is a function object whose name is even.
+1994.72,2003.72,"That is all it knows when we get to this point here in the code, right after we define the function, right, before a equals."
+2003.72,2016.72,"So we think about the function as kind of like a variable, quote unquote, it's not actually variable, but it's like a variable whose name is even, and it points to its bound to some code in memory."
+2016.72,2020.72,"And we don't care what that code is right now, because we might never use it."
+2020.72,2023.72,We only care what the code is when we make function calls.
+2023.72,2029.72,So down here is where the action actually happens when we make our function calls.
+2029.72,2033.72,"I have a is going to be, as usual, a variable, right?"
+2033.72,2037.72,That's going to be bound to some value.
+2037.72,2041.72,"So the function definition is kind of just like a black box, right?"
+2042.72,2048.7200000000003,"Once you wrote it once and you know it works, you don't care anymore how it actually achieves its task."
+2048.7200000000003,2056.7200000000003,All you care is that it takes in a number and tells you whether that number is even or odd via true false.
+2056.7200000000003,2062.7200000000003,"So down here where we make our function calls, we're just using our black box."
+2062.7200000000003,2065.7200000000003,And we're using the black box by making function calls.
+2065.7200000000003,2072.7200000000003,So a is going to be a variable that's bound to the value returned by is even.
+2072.7200000000003,2076.7200000000003,So it's going to be based on the function call false.
+2076.7200000000003,2078.7200000000003,And then here I have another function call.
+2078.7200000000003,2082.7200000000003,I'm using this useful piece of code that I wrote up here.
+2082.7200000000003,2085.7200000000003,And b is going to be a variable that's bound to true.
+2085.7200000000003,2091.7200000000003,"And c is going to be a variable that's bound to true, right?"
+2091.7200000000003,2093.7200000000003,Does that make sense?
+2093.7200000000003,2099.7200000000003,I'm separating the code we write which doesn't run until we actually make function calls.
+2099.7200000000003,2107.7200000000003,That's the thing about functions and that's how it helps us write more robust code.
+2107.7200000000003,2115.7200000000003,So now here we can have a more complex piece of code where we're using the function that we wrote.
+2115.7200000000003,2122.7200000000003,"Not just making a function call and printing the result, but we're actually using it inside a more interesting program."
+2122.7200000000003,2127.7200000000003,"So here I've got a program that will print for me the numbers between 1 and 10,"
+2127.7200000000003,2130.7200000000003,and it'll print whether that number is odd or even.
+2130.7200000000003,2135.7200000000003,"So if you were just to read this code, it's pretty easy to read, right?"
+2135.7200000000003,2139.7200000000003,"We have a loop that goes through the numbers 1 to 10, not including 10."
+2139.7200000000003,2144.7200000000003,And then I have this if is even.
+2144.7200000000003,2145.7200000000003,Well that's cool.
+2145.7200000000003,2151.7200000000003,Here I'm using the function that I wrote kind of just in the middle of another piece of code.
+2151.7200000000003,2161.7200000000003,"Which is fine because as I said a few slides ago, function calls are basically just expressions, right?"
+2161.7200000000003,2168.7200000000003,"They get run, they get evaluated, you get one value back out of them, and then that value replaces the function call."
+2168.7200000000003,2170.7200000000003,So that's fine.
+2170.7200000000003,2176.7200000000003,"Let's use the is even result, the return from the is even method inside a conditional."
+2176.7200000000003,2186.7200000000003,"If I, if calling is even with I returns true, that means if the number is even, we print that value comma even."
+2186.7200000000003,2189.7200000000003,Else we print that value comma odd.
+2189.7200000000003,2191.7200000000003,So here I'm not defining a function.
+2191.7200000000003,2194.7200000000003,Notice it's not wrapped in the df or anything like that.
+2194.7200000000003,2197.7200000000003,I'm just using a function that I already wrote.
+2197.7200000000003,2203.7200000000003,"So inside here, just comment that out."
+2203.7200000000003,2205.7200000000003,This is the code we just had on the slide.
+2205.7200000000003,2208.7200000000003,"So again, notice it's not with it, it's not wrapped within a function."
+2208.7200000000003,2213.7200000000003,"It's just a loop that tells me the numbers one at a time, whether they're odd or even, right?"
+2213.7200000000003,2216.7200000000003,"So prints one comma, yeah."
+2216.7200000000003,2217.7200000000003,What are you doing?
+2217.7200000000003,2220.7200000000003,Do you select like everything in common?
+2220.7200000000003,2228.7200000000003,"Oh, when I select everything, I just use spiders like ability to, so I do control one or command one probably on a Mac."
+2228.7200000000003,2232.7200000000003,And it just comments and uncomments things in batch.
+2232.7200000000003,2235.7200000000003,"Very useful, yeah."
+2235.7200000000003,2238.7200000000003,"And so this code is now very easy to modify, right?"
+2238.7200000000003,2244.7200000000003,I can just choose 100 and then I can run it again and it gives me the numbers one through 100 odd or even.
+2244.7200000000003,2249.7200000000003,And you can imagine using your is even function in a more complex setting.
+2249.7200000000003,2255.7200000000003,"And is even is a really simple function to write, but again you can imagine writing a more complex function."
+2255.7200000000003,2261.7200000000003,"And then that complex function isn't a whole chunk of code that just gets stuck into this program, this loop."
+2261.7200000000003,2276.7200000000003,It's going to be a function that you call that you can just easily read the specification for and you don't need to completely understand how it works in order to use it.
+2276.7200000000003,2282.7200000000003,"Okay, so we're going to go through one other example to write a little function."
+2282.7200000000003,2291.7200000000003,"And this will also showcase kind of the best practices for writing a function and writing code, especially maybe in a quiz situation or something like that,"
+2291.7200000000003,2296.7200000000003,"how to write incremental code, how to test it a little bit at a time, and so on."
+2296.7200000000003,2304.7200000000003,So the last example I want to go through is I want to write some code that adds all the odd integers between and including A and B.
+2304.7200000000003,2309.7200000000003,Might be something you're asked on a quiz.
+2309.7200000000003,2319.7200000000003,"What the first thing you do when you're faced with such a task is to think about a nice name for the function, so some odd or some odds is a reasonable name."
+2319.7200000000003,2327.7200000000003,"The inputs to the function, well, I've got two endpoints, I want to sum odd numbers in between, so the inputs might well be my two endpoints."
+2327.7200000000003,2333.7200000000003,"And then what is the thing you function achieves? Well, in the end, it's going to give me some sum."
+2333.7200000000003,2342.7200000000003,"So let's call that some variable, some underscore of underscore odds, and we'll return it at the end of our function."
+2342.7200000000003,2347.7200000000003,And in between we're going to have some code.
+2347.7200000000003,2353.7200000000003,So first thing to do is to not write code right away when you're faced with a task again on a quiz or something like that.
+2353.7200000000003,2362.7200000000003,"It's best to take a piece of paper, write a little bit, one example, and try to think about how you'd solve it, not like a human wood,"
+2362.7200000000003,2369.7200000000003,"unless we would immediately know the sum, right? It's very easy for humans to identify solutions to these problems."
+2369.7200000000003,2374.7200000000003,"But try to think about how you would write, what kind of a recipe would work for this?"
+2374.7200000000003,2378.7200000000003,Would you loop? Would you have a conditional? Would you use a for loop or a while loop?
+2378.7200000000003,2383.7200000000003,And a bunch of other concepts that we'll learn about in the following lectures.
+2383.7200000000003,2387.7200000000003,But the key thing is to just not write code right away.
+2387.7200000000003,2395.7200000000003,"So let's start with a really simple example on paper. We can say, let's choose end points, A is 2 and B is 4."
+2395.7200000000003,2402.7200000000003,"On paper, I would probably write out 2, 3, 4 in a row, right? So I know the numbers I need to look at."
+2402.7200000000003,2408.7200000000003,"I would say 2 is my A, 4 is my B, I need to look at every one of these numbers one at a time."
+2408.7200000000003,2414.7200000000003,"Reasonable. I can do another example, sorry, and I know what the answer should be."
+2414.7200000000003,2419.7200000000003,"So that when I write my code, I actually know what I'm looking for."
+2419.7200000000003,2424.7200000000003,"I look at another example, let's say a little bit more complicated, a bigger range, A is 2, B is 7."
+2424.7200000000003,2430.7200000000003,"I try to use the same strategy I used, same recipe. I used to solve that simpler example in this harder one."
+2430.7200000000003,2434.7200000000003,"So again, I'm going to write out all the numbers between 2 and 7, inclusive."
+2434.7200000000003,2440.7200000000003,"This is my first, this is my last. And my strategy was to go through one at a time."
+2440.7200000000003,2447.7200000000003,"And if it's odd, I take it to my running sum, and add it to my running sum, and if it's even I don't, I ignore it."
+2447.7200000000003,2450.7200000000003,"And again, I know the answer for this should be 50."
+2450.7200000000003,2454.7200000000003,"So with these two examples in mine, I can start writing code."
+2454.7200000000003,2460.7200000000003,"But instead of writing code for the big problem, that might include some nuances or some edge cases,"
+2460.7200000000003,2463.7200000000003,I can actually try to solve a similar problem.
+2463.7200000000003,2469.7200000000003,"So instead of summing all the odd numbers between A and B, let's just sum all the numbers between A and B."
+2469.7200000000003,2472.7200000000003,And see if we can get code right working for that.
+2472.7200000000003,2478.7200000000003,"Once we do, figuring out the odd ones should be a small tweak to our code."
+2478.7200000000003,2484.7200000000003,"So if we start with figuring out the sum of all the odd numbers between an including A and B, that sounds like a loop,"
+2484.7200000000003,2490.7200000000003,"because I knew when I wrote my example on paper, I'd have to touch each number between an including A and B."
+2490.7200000000003,2495.7200000000003,So I know I need to loop through every one of these values.
+2495.7200000000003,2501.7200000000003,"While or a for loop, your choice in the slides, I'll do both, just to see what it looks like."
+2501.7200000000003,2504.7200000000003,"So with a for loop, it's easy. It's just for I and range AB."
+2504.7200000000003,2509.7200000000003,"But with a while loop, remember we have to initialize our loop variable if we have one."
+2509.7200000000003,2514.7200000000003,I equals A. Our loop condition is while I is less than or equal to B.
+2514.7200000000003,2519.7200000000003,So we're going to loop through while I'm looking at all these values up to and including B.
+2519.7200000000003,2523.7200000000003,And I need to remember to increment my loop variable within the loop.
+2523.7200000000003,2528.7200000000003,By one each time in this case.
+2528.7200000000003,2530.7200000000003,"Okay, and then what do I do within my loop?"
+2530.7200000000003,2533.7200000000003,"Well, I'm going to remember we're solving a similar problem."
+2533.7200000000003,2540.7200000000003,"I'm going to keep a running sum. So as soon as I see a new I, I'm going to add it to my sum."
+2540.7200000000003,2543.7200000000003,I realize here probably my IDE would show me that there's an error.
+2543.7200000000003,2548.7200000000003,"I didn't initialize some of odd, so I remember to initialize some of odd's right before the loop."
+2548.7200000000003,2551.7200000000003,And then this is a good place to test the code for a little bit.
+2551.7200000000003,2555.7200000000003,"So we'll test it with a really simple example, 2, 4."
+2555.7200000000003,2562.7200000000003,"Okay, if we test it with 2, 4, the for loop gives me a 5, but the while loop gives me a 9."
+2562.7200000000003,2566.7200000000003,So you guys might have noticed what the problem is.
+2566.7200000000003,2571.7200000000003,"My for loop goes through up to but not including the end variable, right, the B."
+2571.7200000000003,2576.7200000000003,So we can add a print statement in case you didn't figure that out.
+2576.7200000000003,2580.7200000000003,"And the print statement would actually tell us, right, it tells us what we're incrementing."
+2580.7200000000003,2585.7200000000003,"First it's 2, then it's 3, but I never hit the 4."
+2585.7200000000003,2589.7200000000003,So the fix is to just change my end range to Bb plus 1.
+2589.7200000000003,2593.7200000000003,And then we run it again and we see the answers manage.
+2593.7200000000003,2596.7200000000003,"Okay, and this solves the bigger problem."
+2596.7200000000003,2602.7200000000003,"So now all we need to do is adding the nuance, the piece where we just grab the odd numbers."
+2602.7200000000003,2605.7200000000003,"And here we say, well, if I'm just grabbing the odd numbers,"
+2605.7200000000003,2611.7200000000003,I only want to add I to my sum of odds when I see an odd number.
+2611.7200000000003,2615.7200000000003,So here I could use my is even function that I already wrote.
+2615.7200000000003,2619.7200000000003,"I would say if not is even, or I can just do it all over again."
+2619.7200000000003,2623.7200000000003,"If I percent 2 equal 1, then we do this."
+2623.7200000000003,2625.7200000000003,"Right, and now we can run it again."
+2625.7200000000003,2630.7200000000003,"And hopefully this now matches with the example I had on paper, and it does."
+2630.7200000000003,2634.7200000000003,"Okay, so the idea here is to try to solve a simpler problem first."
+2634.7200000000003,2639.7200000000003,"And then as you see more nuances to the problem, add in the functionality just a little bit at a time."
+2639.7200000000003,2647.7200000000003,So you don't actually get bogged down by a whole bunch of problems issues that might come up when you wrote a whole bunch of code.
+2647.7200000000003,2652.7200000000003,The last step is just to test it on the other example just to make sure that it still works.
+2652.7200000000003,2659.7200000000003,"And so if we print some of odds between 2 and 7, again this matches what I had written down on paper."
+2660.7200000000003,2666.7200000000003,"If you don't want to use print statements, the Python tutor is also a great debugging tool."
+2666.7200000000003,2668.7200000000003,"So testing code often, very useful."
+2668.7200000000003,2671.7200000000003,I think I've stressed this in previous lectures as well.
+2671.7200000000003,2675.7200000000003,Using prints or the Python tutor did debug is also very useful.
+2675.7200000000003,2678.7200000000003,"I don't actually intend to go through this, you try it."
+2678.7200000000003,2686.7200000000003,But this along with a bunch of other examples or things to try at home are in the Python file.
+2686.7200000000003,2692.7200000000003,"Just functions, you can write, is palindrome, this keep consonants, this first elastif."
+2692.7200000000003,2698.7200000000003,Read the function specification and try to write code that matches the specification.
+2698.7200000000003,2706.7200000000003,"And as usual the answers are in the Python file, but please try to do them on your own first before looking at the answers."
+2706.7200000000003,2710.7200000000003,"Okay, a quick summary."
+2710.7200000000003,2714.7200000000003,"Functions are very useful, allows us to abstract certain useful tasks, right?"
+2714.7200000000003,2719.7200000000003,"Basically, I've tracked away functionality that we might reuse many times in our program."
+2719.7200000000003,2723.7200000000003,"Functions take inputs, they have something to return."
+2723.7200000000003,2728.7200000000003,We're going to see next time what happens when we don't return anything.
+2728.7200000000003,2732.7200000000003,"Creating the function is different than running the function, right?"
+2732.7200000000003,2736.7200000000003,"So you create the function once, but you can run it many, many times."
+2736.7200000000003,2738.7200000000003,And that's what makes functions useful.
+2738.7200000000003,2745.7200000000003,"It makes code easy to write, read, debug, modify, leads to very nice robust code."

@@ -1,0 +1,508 @@
+Start Time,End Time,Text
+0.0,18.6,"All right, let's get started."
+18.6,24.92,"So today we're going to be starting a completely new set of topics, and we'll be talking about"
+24.92,29.92,"these topics for the next four lectures, and it's a big topic."
+29.92,35.400000000000006,The big idea we're trying to accomplish in these next four lectures is for us to start defining
+35.400000000000006,39.24,our own object types.
+39.24,46.44,And we'll be defining these object types through these things called Python classes.
+46.44,53.64,So today's lecture will just define a really simple object type and then we'll build up
+53.64,55.120000000000005,from there on.
+55.120000000000005,61.60000000000001,"So let's take a step back and think about particular objects, like really specific objects that"
+61.60000000000001,63.24000000000001,we've been working with.
+63.24000000000001,69.2,"So for example, we've been working with probably the number 1,234, we've been working with"
+69.2,76.56,"the float pi 3.14159, we've been working with sequences of characters like HLO with lists"
+76.56,77.56,"of numbers, right?"
+77.56,82.52000000000001,"So here's a list with those specific elements within it, and we've been working with dictionaries."
+82.52,87.44,And here's a specific dictionary with these entries.
+87.44,91.8,"Now every one of these things up here is an object, right?"
+91.8,96.24,"We have it in our program, we can manipulate it, we can add it to other things, we can"
+96.24,98.28,"index, we can do all these things."
+98.28,102.6,"But every one of these objects is basically has a certain type, right?"
+102.6,108.44,We talked about this back in lecture 1 when I introduced types of objects.
+108.44,109.8,So what does that mean?
+109.8,115.32,Well in that lecture I said that the type of an object basically tells us the kinds of
+115.32,116.92,"things that we can do with it, right?"
+116.92,120.64,So the things you can do with a number are going to be different than the kinds of things
+120.64,121.75999999999999,you can do with strings.
+121.75999999999999,126.4,And we've been seeing this since that lecture up until today.
+126.4,129.4,Today we're going to see how we can create our own object types.
+129.4,134.16,"So to do that we have to understand the following thing, and this is something I'll keep repeating"
+134.16,135.16,today.
+135.52,140.32,"Decide to create an object type, or every one of these objects for example, has been created"
+140.32,142.92,"using some blueprint, right?"
+142.92,145.88,And when you're creating these objects you need to think about two things.
+145.88,150.64,"The first is what data will represent this object, and the second is what behaviors will"
+150.64,152.32,this object have.
+152.32,155.32,"Now the objects up here are pretty simple, right?"
+155.32,160.64,"The kinds of data that represents this integer is, well there's no data really, it's just"
+160.64,162.16,the number itself.
+162.56,166.0,"It has some operations, some things that you can do with this integer."
+166.0,171.68,Now the data that represents a list is going to be different than the data that represents
+171.68,178.16,"an integer, because a list is kind of made up of a sequence of numbers or objects."
+178.16,182.07999999999998,And then the data that makes up a dictionary is completely different than the data that
+182.07999999999998,186.32,"makes up the list, because a dictionary has entries, where each entry has a key and a value"
+186.32,189.68,"pair, and then you have a bunch of these entries, right?"
+189.68,193.48000000000002,"So the data representing each one of these objects is different, and we're going to decide"
+193.48000000000002,197.28,what data represents the new objects that we want to create.
+197.28,201.28,"And of course this is something we've known from the first lecture, the kinds of ways that"
+201.28,205.08,we can interact with these objects is also different amongst all these different object
+205.08,206.56,"types, right?"
+206.56,213.16,"So in terms of terminology, when we create an actual object that we want to manipulate, we"
+213.16,215.88,call it an instance of a type.
+215.88,223.16,"So this specific number, 1,234, is an instance of an integer, and this specific sequence of"
+223.16,229.48,"characters, lowercase h, l, l, o, is an instance of a string, all right."
+229.48,235.07999999999998,So the idea of object-oriented programming is basically that everything in Python is an
+235.07999999999998,239.68,"object, and this we've talked about when we were introducing functions, we treated functions"
+239.68,241.51999999999998,like objects.
+241.52,246.92000000000002,"And what that means is that we can create new objects that have some type, so we actually"
+246.92000000000002,252.12,"create these very specific objects that we can manipulate, and we can also destroy the"
+252.12,253.12,"objects, right?"
+253.12,255.72,"So you can create them, manipulate them, and destroy them as you will."
+255.72,258.92,But each one of these objects has a specific type.
+258.92,263.48,So let's talk a little bit more about the data abstraction.
+263.48,269.16,"So once you have an object that you'd like to create, so think of anything in the world,"
+269.16,275.64000000000004,"some something, the two things that you need to think about are what is going to be the"
+275.64000000000004,279.84000000000003,"way that you represent the object in terms of data, right?"
+279.84000000000003,283.20000000000005,And the other thing is what are the behaviors of this object?
+283.20000000000005,289.12,How can other programmers or other objects interact with this thing that you're creating?
+289.12,294.12,"So when we're creating our own object type, we have to think about these data abstractions,"
+294.12,295.12,okay?
+295.12,297.12,So let's take a more sort of real life example.
+297.12,302.48,So let's say I have these two very specific cars that actually exist in the real world.
+302.48,306.56,"So we can actually drive these cars around, we can manipulate them, right?"
+306.56,310.72,"They have already been created, they are actual objects, right?"
+310.72,316.12,"Well behind the scenes, these objects were created using some blueprint, right?"
+316.12,322.4,"This blueprint is not an actual tangible thing, it's basically some abstract notion of how"
+322.40000000000003,327.36,"to create those specific objects, those specific cars."
+327.36,332.64000000000004,"So as we're thinking about creating our own object types, we have to think about design"
+332.64000000000004,334.24,"decisions, right?"
+334.24,338.28000000000003,If I want to create a blueprint for a car that somebody can then use to create an actual
+338.28000000000003,342.52000000000004,"car in real life, how do I abstract the car?"
+342.52000000000004,346.72,"And as we're creating these objects ourselves, we get to make these design decisions, which"
+346.72,348.08000000000004,is pretty cool.
+348.08000000000004,352.16,"So if I were creating this car, right, the blueprint for a car, I would say, well, I'm going"
+352.16,356.0,"to use maybe the length of the car, the width of the car, and the height of the car, and"
+356.0,357.52000000000004,the color of the car.
+357.52000000000004,362.56,And those four data attributes will represent a car object.
+362.56,364.56,"But of course that's my design decision, right?"
+364.56,368.96000000000004,If you are more familiar with cars or if you wanted to get into a more detailed description
+368.96000000000004,375.56,"or representation, you would also have a number for how many horsepower it has, how many"
+375.56,380.08000000000004,"doors it has, maybe how many people could fit, you know, other things like that."
+380.08,387.03999999999996,"But a very simple data abstraction for a car is linked with height and color, right?"
+387.03999999999996,391.44,"So that's data abstract, so what data represents this object you're trying to create?"
+391.44,392.76,Now how about the interface?
+392.76,397.76,"Well, in terms of the interface, we decide what are some ways that programmers can interact"
+397.76,401.59999999999997,with the object or other objects can interact with this object.
+401.59999999999997,407.79999999999995,"So we could say that we could let the users change the color of the car, right?"
+407.8,413.44,"We could say that we can let the car, you know, make a noise, so honk the horn, could"
+413.44,417.8,"be maybe one thing, one function that this car could do."
+417.8,422.0,"And if we say honk the horn, then maybe you would print something to the screen, right?"
+422.0,423.0,Something like that.
+423.0,426.88,"And then we can have the car drive from point A to point B, or we could have the car, you"
+426.88,432.64,"know, go in a circle, you could have the car crash on other car, and all of these behaviors"
+432.64,439.71999999999997,will are part of this interface for this particular car.
+439.71999999999997,444.08,"But we're going to define them such that any car that we create from here on, any actual"
+444.08,449.4,"object that we create, we'll have all of these behaviors and all of these data attributes."
+449.4,453.44,"So an example a little closer to home is the list, right?"
+453.44,456.03999999999996,We've been working with lists so far.
+456.03999999999996,461.52,"So behind the scenes, somebody created the data type list, right?"
+461.52,466.15999999999997,"So there's some code in Python that basically defines the data that makes up the list, the"
+466.15999999999997,469.84,"data attributes, how is a list described?"
+469.84,475.12,"And the behaviors, the procedures, the functions that a list can do, right?"
+475.12,479.71999999999997,"So in terms of data attributes, well, there's many design decisions that, you know, whoever"
+479.71999999999997,483.28,"decided to create this list class could have done, how could they have represented the"
+483.28,484.28,list?
+484.28,488.91999999999996,"Well, they could have said, I'm going to allocate sort of a continuous block of memory,"
+488.92,492.04,"where and your elements will go in that order, right?"
+492.04,497.36,"From the smallest memory of value to the biggest memory value, that's one design decision."
+497.36,501.88,"Another one could be that instead of allocating sort of a continuous block of memory, you could"
+501.88,505.52000000000004,"say, I can allocate memories here and there, that's okay."
+505.52000000000004,512.72,"But then each element in my list will then be represented by two things, the first being"
+512.72,517.44,"the value at that location, and the second could be maybe another integer or something that"
+517.44,523.24,tells Python which memory location to go to to get the next element in the list.
+523.24,528.7600000000001,"So both valid design decisions, I think Python did the second one, right?"
+528.7600000000001,533.24,"So those are, that's how you represent the data that represents the list."
+533.24,536.8800000000001,"And in terms of behaviors, well, we've already been working with lists, so we know a bunch of"
+536.8800000000001,538.9200000000001,"the behaviors that lists have, right?"
+538.9200000000001,542.7600000000001,"You can index into it, you can sort a list, you can append an item to the end of the list,"
+542.76,548.0,"you can get the maximum element within the list, all of these different procedures, functions"
+548.0,549.84,"are things that you can do with lists, right?"
+549.84,551.36,And we've been working with them.
+551.36,555.84,"And we've been working with lists without actually knowing the representation, how somebody"
+555.84,560.4,"decided to represent this class, which is pretty cool."
+560.4,562.56,"So a couple more real life examples, right?"
+562.56,566.56,"If we were to think about representing, you know, one of the, each of these."
+566.56,569.4399999999999,"So if we think about the object and elevator, right?"
+569.44,572.48,"Again, it's up to us to make the design decision."
+572.48,574.96,"It's basically a box that can change floors, right?"
+574.96,578.2800000000001,So we could represent it using the length with the height.
+578.2800000000001,581.72,"Maybe we could also represent, which are all, you know, floats or something like that."
+581.72,587.1600000000001,We can also represent it using the max capacity and the current floor it's at.
+587.1600000000001,594.9200000000001,"So all five of these variables, you know, together, values together, represent my elevator,"
+594.9200000000001,595.9200000000001,right?
+595.9200000000001,598.96,"And again, it's my design decision to do this, yours might be different."
+598.96,604.1600000000001,"In terms of things that the elevator can do, well, we can change its current floor, which"
+604.1600000000001,608.08,"is basically saying, you know, change the value of the variable current floor to be something"
+608.08,609.48,else.
+609.48,613.8000000000001,"Add people to it, maybe checking if you're at max capacity or not and maybe printing out"
+613.8000000000001,617.96,"a warning if you're above that, removing people, things like that."
+617.96,624.36,An employee is also a pretty common example of something that's typically implemented in
+624.36,625.76,a bunch of programming languages.
+625.76,629.16,"So an employee, basically a person that has a salary, right?"
+629.16,631.04,Maybe works for company X.
+631.04,634.28,"So you could represent this employee using their name, right?"
+634.28,638.84,"Maybe a string for the first name, a string for the last name, and then their birthday, maybe,"
+638.84,643.4,"and then their salary, which is, you know, a float or something like that."
+643.4,647.0,"And in terms of behavior is what can employees do, where you can change their name, you can"
+647.0,651.08,"change their salary, you can maybe activate or deactivate them as current employees, things"
+651.08,652.08,like that.
+652.08,658.0400000000001,"A queue at a store, also a really nice example, and it kind of goes hand in hand with stack"
+658.0400000000001,660.08,of pancakes.
+660.08,662.08,How would you represent a queue at a store?
+662.08,666.48,"Well, the representation isn't going to be a set of things."
+666.48,672.76,"The representation could be something really simple, like just a list, right?"
+672.76,673.76,Which is fine.
+673.76,677.84,"So maybe the list will have, you know, some strings with the names of the people who are currently"
+677.84,680.32,in the queue at a store.
+680.32,687.1600000000001,"But what's going to make a queue kind of special is the way that we'll be using it, right?"
+687.1600000000001,691.6800000000001,"So the representation isn't super unique, it's just a list."
+691.6800000000001,697.08,"But the way that a queue operates will be special, because if you think about the queue, the first"
+697.08,700.9200000000001,"person who comes into the queue will be the first person out of the queue, right?"
+700.9200000000001,703.7600000000001,"A first in, first out kind of situation."
+703.7600000000001,708.36,"So that means if you make the design decision to add new people at the end of the queue, right?"
+708.36,714.96,"So if I have a new person that gets added here, they're the newest person in."
+714.96,718.6800000000001,"That means if I'm removing a person from the queue, I better remove the oldest one, which"
+718.6800000000001,722.84,"is going to be over at the beginning of my list, right?"
+722.84,728.4,"So the way that you use the queue will be consistent with this idea, and then you can basically"
+728.4,729.6,simulate the queue.
+729.6,734.6800000000001,And the stack of pancakes is very similar if you think about pancakes.
+734.6800000000001,737.88,"The first one you made is the last one you eat, right?"
+737.88,741.16,"So it's a first in, last out of a kind of situation."
+741.16,749.24,"So that means that we can still represent a stack of pancakes using a list, right?"
+749.24,754.64,"So the representation, the data representation for a stack of pancakes will be the same as"
+754.64,758.36,"a queue, except that the behavior will be different, right?"
+758.36,763.08,"Because if I just made a new pancake and it goes at the end here, right?"
+763.08,766.8,The newest one that I made is the first one that I'm going to eat.
+766.8000000000001,771.4000000000001,"So if I add a pancake to the end of my list, I'm going to remove the pancake that I want"
+771.4000000000001,775.5200000000001,to eat from the end of my list as well.
+775.5200000000001,776.5200000000001,Okay.
+776.5200000000001,780.2800000000001,So the idea of object-oriented programming and the reason we're doing this is because now we're
+780.2800000000001,785.2400000000001,bundling basically data and behaviors into one thing.
+785.2400000000001,792.48,And so we can create all of these objects that have the same type that all are going to function
+792.48,793.48,in the same way.
+793.48,795.96,"We know they're going to be consistent, right?"
+796.12,800.2,They're going to be consistent in the data that represents them and consistent in the way
+800.2,801.6,"that we use them, right?"
+801.6,809.4000000000001,"So we know for sure that the queue is going to be a first out kind of situation, right?"
+809.4000000000001,813.48,And the way we're going to implement this is using these things called Python classes.
+813.48,818.52,And the reason we create these Python classes is to make code that's very nicely reusable.
+818.52,821.9200000000001,We can create really simple Python classes that we'll see today.
+821.9200000000001,826.96,"And then we can build upon these Python classes to create more complex classes, which we'll see"
+826.96,828.2800000000001,on Wednesday.
+828.2800000000001,833.3600000000001,"But the big idea here, and this is something that I was a little bit confused about when"
+833.3600000000001,838.48,"I first started learning about object-oriented programming, is you get to be in charge of"
+838.48,840.5200000000001,"the design decision, right?"
+840.5200000000001,845.4000000000001,So you get to decide what data represents the class and you decide what behaviors represent
+845.4000000000001,846.6,the class.
+846.6,851.88,"So if you wanted to say that you represent a queue using a list, right?"
+851.88,856.44,"First in first out, if you add items to the end, you remove items from the beginning."
+856.44,858.12,That's one design decision.
+858.12,862.24,"Another design decision could be, well, you still represent it as a list, but new items get"
+862.24,864.32,added to the front.
+864.32,868.0400000000001,"But to be consistent with the idea of a queue, that means you remove items from the back."
+868.0400000000001,870.8000000000001,"And then the behavior is the same, right?"
+870.8000000000001,875.8000000000001,"We're implementing a queue, no matter which one of those design decisions we've made."
+876.8000000000001,877.8000000000001,Okay.
+877.8000000000001,882.4000000000001,"So as we're going through today's lecture, I want to make a note of a couple things."
+882.4000000000001,886.6400000000001,So I've got these little tabs up at the top here.
+886.6400000000001,890.2800000000001,We're going to be basically switching our brains a little bit today.
+890.2800000000001,895.2400000000001,"We're going to be defining a Python object, right?"
+895.2400000000001,899.32,"So we're going to be writing code that tells Python, hey, I am telling you, I would like"
+899.32,902.8800000000001,to create this object type.
+902.88,907.64,"And these are the data, these are the, this is the data that represents them, represents"
+907.64,909.76,"it, and these are the behaviors that represent it."
+909.76,912.24,So that's us implementing the class.
+912.24,916.84,"So telling Python that we are now creating and telling you what, what, what an object of this"
+916.84,918.72,type is and does.
+918.72,924.4,"And the other thing is, once we have a definition for this object type, we're going to actually"
+924.4,926.8,"use the type, right?"
+926.8,930.92,We're going to create new objects of this type.
+930.9200000000001,936.0000000000001,"So when we're creating the class, when we're telling Python that's an object like this exists,"
+936.0000000000001,941.2,"we're deciding the name of our class, we're deciding what data abstracts it, we're deciding"
+941.2,943.6400000000001,"what behaviors we can do with it, right?"
+943.6400000000001,948.4000000000001,"So if you think about the list, we haven't actually seen the code to do this, but someone"
+948.4000000000001,952.44,wrote code to define this list class.
+952.44,957.6800000000001,"Now using the class means that we're assuming that this code already exists, right?"
+957.6800000000001,960.8800000000001,And you're just creating a whole bunch of objects of this type.
+960.88,962.68,"So we've been doing this definitely, right?"
+962.68,966.64,"If we think about the list class again, here, you know, for example, we created an actual"
+966.64,968.64,"object that we can manipulate, right?"
+968.64,970.6,L is equal to 1 comma 2.
+970.6,975.32,"We've also created L is equal to 3 comma 4 comma 5 and all these things, right?"
+975.32,979.8,We're basically creating these instances that we can manipulate and use in our program to
+979.8,981.92,"achieve something useful, right?"
+981.92,986.2,"And today, we're going to see how we can do both of those things."
+986.2,990.56,"I want to draw a little parallel with functions because it's going to feel very similar, right?"
+990.5600000000001,997.36,"And with functions, when we were defining a function, we were telling Python that I would"
+997.36,1005.5200000000001,"like to abstract some code that does something useful using this function definition, right?"
+1005.5200000000001,1010.12,So we were writing the definition for the function in this abstract way.
+1010.12,1012.84,"We didn't actually run the function at that point, right?"
+1012.84,1014.4000000000001,We just defined it.
+1014.4000000000001,1017.48,"And so when we define a class, that's basically what we're doing."
+1017.48,1025.08,We're telling Python that we're creating this object that bundles data and behaviors together.
+1025.08,1031.48,"When we create instances of this data type that we're going to define, that's kind of like"
+1031.48,1036.1200000000001,"we called the actual function that we defined, right?"
+1036.1200000000001,1041.52,"So when we called the function, we were now doing something useful in our program, right?"
+1041.52,1045.1200000000001,"We said, here are some actual parameters I want you to run this function with."
+1045.1200000000001,1047.64,"Now, tell me what the output is, okay?"
+1047.64,1052.2800000000002,And that's exactly what we're going to do when we create instances of the data type we're
+1052.2800000000002,1053.68,defining.
+1053.68,1061.68,"We're now creating actual objects that we can manipulate and use in our class, okay?"
+1061.68,1068.5200000000002,"So the object we're going to create in today's lecture is a coordinate in a 2D plane, okay?"
+1068.5200000000002,1070.4,"Pretty simple, pretty mathematical."
+1070.4,1075.8000000000002,"So before we actually write the code, let's kind of think about what it actually means"
+1075.8000000000002,1078.3200000000002,to put a coordinate in a 2D plane.
+1078.3200000000002,1081.2800000000002,"So we're going to think about if we had a bunch of instances, right?"
+1081.2800000000002,1084.7800000000002,"If we had a bunch of coordinates in a 2D plane, what do they look like?"
+1084.7800000000002,1088.2,What kind of data are we interested in grabbing from these instances?
+1088.2,1090.2,What are some things we can do with it?
+1090.2,1094.48,So here I have a point in my 2D plane.
+1094.48,1102.16,"So if we think about how we look at this coordinate, well, we know how far away the coordinate"
+1102.16,1108.08,"is on the x-axis, and we know how far away the coordinate is on the y-axis, right?"
+1108.08,1111.44,So that's one instance of a coordinate object.
+1111.44,1113.76,"Now let's say we had another one, right?"
+1113.76,1115.6,Here's another dot in my 2D plane.
+1115.6,1120.44,"Again, this dot will also know how far away it is on the x-axis, and how far away it"
+1120.44,1123.32,"is on the y-axis, okay?"
+1123.32,1133.6,"So one reasonable data abstraction for a coordinate in a 2D plane could be to say I want two numbers,"
+1133.6,1139.36,"one representing how far away it is on the x-axis, and one for how far away it is on the y-axis,"
+1139.36,1140.36,right?
+1140.36,1141.36,That seems pretty reasonable.
+1141.36,1143.36,"I don't care about color, right?"
+1143.36,1148.8,"Even though I colored these things, but you can imagine making a cuter version of this"
+1148.8,1153.36,"coordinate object that also has a color associated with it, okay?"
+1153.36,1157.56,So the data that will represent my point in a coordinate plane and a 2D coordinate plane
+1157.56,1160.2,"is just two numbers, right?"
+1160.2,1163.0,"One for the x, one for the y."
+1163.0,1165.48,Now what are some things that we can do with these coordinate objects?
+1165.48,1171.72,"Certainly something really simple we can do is to say, well, point, you know, one of these"
+1171.72,1177.0,"points, you know, the orange one, for example, tell me how far away you are on the x-axis,"
+1177.0,1179.56,"or tell me how far away you are on the y-axis, right?"
+1179.56,1183.76,"So those two commands could return, you know, something like three, for that's how far away"
+1183.76,1189.24,"that point is on the x-axis or four, for how far away it is on the y-axis."
+1189.24,1190.68,Those are pretty simple things to do.
+1190.68,1194.88,"One more interesting thing to do is to say, well, hey, you point, orange point, right over"
+1194.88,1200.04,"there, can you tell me how far away you are between the green point, right?"
+1200.04,1202.96,So that would be the Euclidean distance between these two points.
+1202.96,1208.8400000000001,And we are going to write code that figures out how far away one coordinate object is from
+1208.8400000000001,1210.72,another coordinate object.
+1210.72,1215.8,"All right, so let's start defining this class coordinate."
+1215.8,1219.48,"We're going to, you can see here, this is the code that implements the class."
+1219.48,1226.1200000000001,So this will tell Python that we are now creating this object type coordinate.
+1226.1200000000001,1231.04,"So we're not using it yet, we're not creating any objects, any object instances, we're just"
+1231.04,1234.76,telling Python that we'd like to create this object type.
+1234.76,1240.96,"So we start with the keyword class, right, in parallel, we started with a keyword df to define"
+1240.96,1241.96,a function.
+1241.96,1247.2,"Then we say the name of our object type, so this will be literally the type of the object."
+1247.2,1251.52,"So coordinate, just like we had list, int, float, you know, all those things, this will be"
+1251.52,1253.8,of type coordinate.
+1253.8,1257.56,And then in parentheses here we say the parent of this class.
+1257.56,1262.36,So usually we say object until two lectures from now when we're going to see what happens
+1262.36,1264.36,when we put something else in there.
+1264.36,1268.9199999999998,"But when we put object in the parentheses there, we're telling Python that anything a generic"
+1268.9199999999998,1272.96,"Python object can do, our object can do as well."
+1272.96,1281.56,So something really basic is saying that I'm going to create this object in memory and
+1281.56,1286.04,"assign a variable to it, so that I get a handle for that object using this variable, right,"
+1286.04,1291.48,"using super basic, any Python object has this ability and ours will too, because I've"
+1291.48,1297.36,"put this object in the parentheses here, okay, all right."
+1297.36,1302.32,"So now we've told Python, we're creating a data type called coordinate."
+1302.32,1305.56,What are we going to fill in the body of this class?
+1305.56,1309.96,"So the things we need to fill in are going to be our attributes, okay, now again what makes"
+1309.96,1310.96,up an object?
+1310.96,1316.0,"Two things, the data that you want to represent this object with, and the procedures."
+1316.0,1322.64,"AK functions, AK behaviors that you'd like this object to have, okay."
+1322.64,1327.0,"So the data will be two things, right, we decided that we're going to represent a coordinate"
+1327.0,1329.6,"using two numbers, okay."
+1329.6,1332.08,Now what about behaviors?
+1332.08,1338.08,Behaviors will essentially be functions that work with objects of this particular type.
+1338.08,1341.56,So we're going to define them as functions but we're going to define them in a really special
+1341.6,1348.48,"way that tells Python you can only run this function on an object of type coordinate, right,"
+1348.48,1349.6399999999999,which makes sense.
+1349.6399999999999,1354.36,"I would not like to find the distance between, you know, two integers, that's just subtraction"
+1354.36,1358.56,"or I would not like to find the distance between two dictionaries, what does that even mean?"
+1358.56,1362.96,So distance method that we mentioned is one thing we'd like to implement will only work with
+1362.96,1366.32,"objects of type coordinate, okay."
+1366.32,1371.96,"So these special functions are actually called methods, okay, and I'm going to use this"
+1371.96,1376.56,"term a little bit today, hopefully you get used to it and then from now, from there, from"
+1376.56,1381.28,next lecture on I'll just use the word methods to refer to functions that only work with objects
+1381.28,1389.76,"of this type, okay, so we so far in the previous slide had class coordinate object."
+1389.76,1392.6399999999999,Now what is the next thing you have to do?
+1393.0400000000002,1397.48,The next thing you always have to do when you tell Python you're creating a new data type
+1397.48,1405.2800000000002,"is to tell Python how you want to construct this data type, okay, kind of a constructor,"
+1405.2800000000002,1407.8000000000002,a constructor function.
+1407.8000000000002,1412.68,"And the way we do this is by defining, so you can see we're defining it like a function,"
+1412.68,1418.2,"DF, but we're going to define a function that has a special name and the name is double"
+1418.2,1424.8400000000001,"underscore in it, double underscore, okay, so that's the name of this function and"
+1424.8400000000001,1428.8,"you can see it's a function, DF name, and then parentheses, and there's a bunch of stuff"
+1428.8,1429.96,in the parentheses.
+1429.96,1434.16,"The first thing will be this thing called self, so already it's going to be a little bit"
+1434.16,1437.44,different than regular functions.
+1437.44,1443.3600000000001,"Now I'm going to, this is not the only time I'll explain self, I'll explain it throughout"
+1443.4,1449.92,"this lecture, but the basic idea of self is that it's always going to be the first parameter"
+1449.92,1456.16,"of a method, right, a function that only works with an object of this class, of this type."
+1456.16,1462.0400000000002,And the reason why we have it here is because all we're doing here is telling Python that
+1462.0400000000002,1465.0400000000002,we'd like to create this object type.
+1465.0400000000002,1470.8400000000001,"We don't have an actual object to manipulate, right, I haven't created an actual object yet."
+1470.84,1474.4399999999998,"I'm just telling Python, I'd like to create this object."
+1474.4399999999998,1481.9599999999998,"So if I don't have an actual object created yet, I need some way to refer to an instance"
+1481.9599999999998,1487.6,"without actually having one yet, and that's what the self is doing, right, it's basically"
+1487.6,1493.76,"a variable that tells Python that this is an object of, that this is a function that only"
+1493.76,1500.72,"works with an object of this type, and I'm going to use this variable self to refer to"
+1500.72,1506.72,"this object, myself, my data attributes, and my methods, and things like that."
+1506.72,1510.8,"So we'll become clear, there will be many examples, but for now it's basically a way for"
+1510.8,1515.6000000000001,"us to refer to an object of this type, an instance of this type without actually having created"
+1515.6000000000001,1517.72,one.
+1517.72,1523.6000000000001,Anything after self is basically a parameters you'd like to create this object with.
+1523.6000000000001,1529.84,"So for us, it doesn't make sense to say create this coordinate object without actually initializing"
+1529.8400000000001,1534.2,"its x and y values, right, when we put a coordinate object in a 2D plane, I would like"
+1534.2,1540.2400000000002,"to put it in that 2D plane, so it needs an initial x and initial y value, okay, so these"
+1540.2400000000002,1544.4800000000002,parameters here will tell Python you need to pass in a value for x and y when you create
+1544.4800000000002,1554.0800000000002,"your object, and then the body of this in it will have whatever code you'd like to initialize"
+1554.08,1562.3999999999999,"your object, yes, question."
+1562.3999999999999,1565.76,"The underscore is part of how you write it, so you have to have underscore underscore in"
+1565.76,1569.84,"it, underscore underscore, yeah, it's a special function, we'll talk about the next lecture,"
+1569.84,1578.28,"it's called a dunder function, double underscore function, dunder, okay, okay, so the body of"
+1578.28,1583.04,"this function can contain a bunch of initialization codes, so anything you'd like to initialize"
+1583.08,1589.1599999999999,"when you create an object of this type, that's what you stick in here, okay, usually most"
+1589.1599999999999,1595.36,"of the time, 99% of the time, you want to initialize the data that makes up your object, right,"
+1595.36,1600.36,so the data we decided makes up our object is how far you are in the x-axis and how far
+1600.36,1607.04,"away you are in the y-axis, so here, this data that I want every single one of my objects"
+1607.04,1614.2,"to have, a value for x and a value for y, is initialize using self-dot, right, so self-dot"
+1614.2,1621.24,"a variable named x and self-dot a variable named y, and the self-dot before these variables"
+1621.24,1627.44,"distinguishes these variables x and y here from regular variables, right, if I were to"
+1627.44,1632.92,"just say x equals x-val and y equals y-val, x and y will just be regular variables, as"
+1632.92,1638.2,"soon as my init function terminates, those variables are gone. But because I've got self-dot"
+1638.2,1644.52,"x and self-dot y, this means that these values x and y will persist throughout the lifetime"
+1644.52,1650.96,"of my object, when I create my actual object, and every single object I create will have their"
+1650.96,1654.2,own x and y values. Question?
+1654.2,1662.04,"Does it have to be different to be x-val, so kind of the set of x-val, or?"
+1662.04,1668.04,"Good question. Does this self-dot thing have to be different? It does not have to be, so"
+1668.04,1673.2,"you can have self-dot x-val equals x-val, and self-dot y-val equals y-val. The reason I did"
+1673.2,1679.16,"it here is to showcase that they actually do not have to be the same. Yeah, they are completely"
+1679.16,1684.28,"different, right, so self-dot x is different than x-val. We're just happening to be assigning"
+1684.28,1694.72,"this value to be whatever has passed it. Okay, so a little bit of a kind of, again, just"
+1694.72,1698.64,"kind of explaining what this self is in the context of a blueprint, so if we think about"
+1698.64,1703.52,"a blueprint in real life, right, so here I have a blueprint for a room that I might want"
+1703.52,1708.74,"to create. I don't actually have this room created yet, right, it's just an idea. But"
+1708.74,1718.0,"what I know is that I'm going to use this blueprint, right, to have a room that contains two chairs"
+1718.0,1723.28,"of coffee table and a sofa, right, so in this blueprint I don't have actual rooms that I've"
+1723.28,1727.8799999999999,"implemented, you know, this thing, and I don't have actual rooms where I've put two chairs"
+1727.88,1735.8400000000001,of coffee table and a sofa. It's just an idea. But self is kind of the way that a blueprint
+1735.8400000000001,1742.16,"accesses its attributes, right, so I've got, if I say self-dot coffee table, that means if"
+1742.16,1747.7600000000002,"in the future I have an actual room, self-dot coffee table means I'm referring to that room's"
+1747.76,1762.52,coffee table. So the self is a variable that we use to refer to attributes for a blueprint
+1762.52,1767.96,"when I don't have actual rooms created. But once I create instances of rooms, right, so"
+1767.96,1772.6,"for example here I have something called living room created, right, so I've taken my blueprint"
+1772.6,1777.64,"and now somebody asked me to create a room with this blueprint, right, now I no longer use"
+1777.64,1783.48,"self because I have an actual room in hand, so now I would refer to coffee table in this"
+1783.48,1788.24,"living room as living room dot coffee table or living room's coffee table, right, no longer"
+1788.24,1795.2,"self's coffee table. So self is only used in the context of my blueprint, okay, and to sort"
+1795.2,1800.3200000000002,"of bring the last point home, the idea that with the blueprint you can create many different"
+1800.3200000000002,1805.3600000000001,"instances, well here's a living room that I've applied my blueprint to and here's another"
+1805.3600000000001,1808.6000000000001,"living room, completely different room that somebody asked me to use my blueprint for"
+1808.6000000000001,1813.6000000000001,"to create it, different chairs, different coffee tables, different colored, you know, things."
+1813.6000000000001,1818.3200000000002,"These are all different instances that I use my one template, my one blueprint for the"
+1818.3200000000002,1824.92,"room on. So when we're defining the class we don't have actual objects, right, again that's"
+1824.92,1829.2800000000002,"just kind of a really big idea here, we're just telling Python I'd like to create this object"
+1829.2800000000002,1833.3200000000002,and this is what it looks like. I'm bundling this data with these behaviors together but
+1833.32,1839.4399999999998,I don't have actual objects of this type created yet. So let's actually create some objects.
+1839.4399999999998,1847.6,"The code that does this is as follows, so I've put the definition for my class, the constructor,"
+1847.6,1852.34,the init method for my class up here just to remind us what it looks like. And with that
+1852.34,1857.52,code we can now start to create actual objects that we can manipulate. So when we created something
+1857.52,1863.24,"like, you know, L is equal to one square bracket list, one comma two, now I'm creating these"
+1863.24,1868.52,actual coordinates in my code using my blueprint. So the way we do that is we invoke the name
+1868.52,1874.68,"of our class. So you say coordinate, that's what we named it, right, that's our data type."
+1874.68,1881.48,And here I'm passing in every single parameter except for self. So I initialized a coordinate
+1881.48,1888.44,object using x val and y val. So I need to put in two parameters here for x val and y val.
+1888.44,1895.92,"And self actually becomes this thing that I just created, this object. So coordinate three"
+1895.92,1903.44,"comma four is now an object that's being referenced by variable named C, which is why I'm"
+1903.44,1909.68,"not passing in self. So it's kind of weird to think about. But now I have one object in memory,"
+1909.68,1914.68,"which is referenced by name C. And on the next line I have another object in memory, right?"
+1914.68,1920.68,"Again, I've invoked the name of my class coordinate. This particular object, x value will be zero and y value"
+1920.68,1926.68,will be zero. So different than the one I just did on the previous line. But they'll have the same
+1926.68,1932.68,"structure, right? So they will both have some x and y value. They'll just be different from each other."
+1932.68,1937.68,But they'll both have x and they'll both have y. The one I've named down here is going to be
+1937.68,1944.68,"a coordinate object. So I've got two objects of type coordinate. One is referenced by C, by name C, and the other one is"
+1944.68,1952.68,"referenced by name origin. So now that I have these objects in hand, I can access any of their attributes. And python will"
+1952.68,1961.68,"grab for me the attribute of that particular object. So here I've got this thing called dawn notation, which we've seen before."
+1961.68,1972.68,I'll explain it again in a couple slides. But the dawn notation tells python to access the x data attribute of object C.
+1972.68,1983.68,"So this will grab for me the x value of C, three, right? And the next line will grab for me the x value of origin, zero."
+1983.68,1993.68,"And this is all made possible because x, and we could also access y, x and y were defined in the class definition using self dot."
+1993.68,2001.68,"If I didn't use self dot, those would just be variables. And as soon as I created my object, they would have gone away because that function had terminated."
+2001.68,2010.68,"But in order to have these variables x and y persist throughout the lifetime of my object, I've defined them using self dot x and self dot y."
+2010.68,2020.68,"So any object I've created that's of type coordinate will have some value for x and some value for y, right? So we can access that value through this notation."
+2020.68,2026.68,Does that make sense so far? Is that all right?
+2026.68,2036.68,"So we're going to visualize this in a slightly different way. So the exact same code as on a previous slide, we're now going to do it in our little memory type."
+2036.68,2046.68,"So here I have C is equal to coordinate three, four exactly what I had on the previous slide. So in memory, the way you think about it is, you know, as we've been thinking about other objects."
+2046.68,2058.6800000000003,"So it's not much different. We have C is our name, right? And it's bound to an object of type coordinate. It just so happens, we define this object, but it's the same idea. I've got a name bound to some object."
+2058.68,2076.68,"And this object has its own x value and its own y value. So when you evaluate c dot x, Python goes into memory, it says, hey, what type is c? And it says, oh, it's a coordinate object. Does coordinate object have a data attribute named x? Yes, it does because it looks at the init."
+2076.68,2082.68,"And then it says, well, what's its value? It's three. And so it just returns that."
+2082.68,2103.68,"And so the next three lines here are slightly different from two slides ago, but very similar. A is equal to zero creates for me a variable named a bound to the value zero, right? Just to showcase that it's exactly the same as having a variable named c bound to this object that we created."
+2104.68,2118.68,"And then when I say, or rig equals coordinate a comma a Python says, all right, well, here's a name, or rig or origin? What is it bound to? Well, it's also bound to an object of type coordinate."
+2118.68,2130.68,And it's an object we define. So we define an object of type coordinate having an x and y value. So here they are. And they're originally zero. There's set to zero when I created this object.
+2130.68,2147.68,"So when I say or rig dot x Python will look up a rig. It's going to say, hey, what type are you? Oh, you're a coordinate. Do you have an x value? You do? That's what we define in the init. Let me grab that value from you."
+2147.68,2163.68,"So we're just manipulating objects in memory, right? Now that we've written the code to work with objects that we created, we're just creating a whole bunch of these objects in memory, and then, you know, grabbing the x values, and then we're going to get distance between two objects in a bit."
+2163.68,2177.68,One more way to kind of show you that exact same code is to visualize it. So here is the code all the entire code as you would have it in a file.
+2177.68,2190.68,So you would have all this altogether. The gray box is the definition for my object type. And the blue box is me using this object that I just created.
+2190.68,2200.68,"I've just separated that out just for clarity. So when I have my gray box, there's nothing to display, right? It just sits in memory."
+2200.68,2208.68,"And Python knows of this type of class coordinate that has two data attributes, the things that I've defined using self dot, right, x and y."
+2208.68,2224.68,"When I create c is equal to coordinate 3, 4, right, visualizing what we're trying to do here. Here I've got this object whose name is c, and it's at 3, 4. And then I've got this object named the origin, and it's x and y values are 0, 0."
+2224.68,2237.68,"So because I've created these objects using the same blueprint, right, the coordinate blueprint that I've defined up in the gray, that means every object that I've created c and origin has a self dot x and self dot y value."
+2237.68,2245.68,It just so happens that the actual values for x and y are different between these two objects.
+2245.68,2255.68,"So when I grab origin dot x, I'm looking up origin, and I'm grabbing its x value 0, right, just another way to visualize it."
+2255.68,2263.68,"Okay, is everyone okay with these data attributes? All right. So now let's add a method."
+2263.68,2280.68,"All right, so a method, remember, is just a function that works with an object of this type. Okay, so the way that we tell Python we'd like to create a method is by passing in self as the first parameter."
+2280.68,2294.68,"So let's create this function named distance. If you look in the actual Python code for today, I've got two more functions, one to get the x value of this current object and one to get the y value."
+2294.68,2299.68,But those are not as interesting. This distance one is interesting.
+2299.68,2308.68,So I would like to create this function that only works with an object of type coordinate. So what we've done so far is these lines up here.
+2308.68,2323.68,"Now we've got df again, it's just a function. So we've got deaf name of it distance and then the parameters. So again, since this is a function that only works with an object of type coordinate, I need to put self as the first parameter."
+2323.68,2338.68,"And this self will help us refer to the object when I call the method on it. So if self is the first parameter, that means that this distance method will be called on self."
+2338.68,2350.68,"So when I have an actual object in hand, that I'm calling distance on the self parameter will take on the value that is that object. We're going to see this in the next slide."
+2350.68,2367.68,"So self is the thing that I'm calling this function on. And then what other parameters do I want to give to this function? Well, I want to find the distance between myself, so this object that I'm going to call distance on, and another coordinate object."
+2367.68,2385.68,"Now, other than maybe a doc string here that says, hey, warning, other should be an object of type coordinate. There isn't really anything that enforces the type of other when you make a function call or you make a method call."
+2385.68,2399.68,"So you can call this distance method with other being an integer, which is not an object of type coordinate. The code will run but will immediately crash because of what's going on inside."
+2399.68,2406.68,So the only way this code will work is if you're calling it on an object of type coordinate for the other.
+2406.68,2425.68,"So the reason for that is because, well, when we think about grabbing the distance between two objects that are coordinates in a 2D plane, we take the difference between the x values, square that, take the difference between the y values, square that, right, Pythagoras, add those two together, take the square root."
+2425.68,2439.68,"So if I'm calling this distance method on an object of type coordinate, i.e. self, how do I grab myself's x value? Well, I just say self.x, right, my x value. What is it?"
+2439.68,2452.68,"And then I would like to subtract that from the other coordinate object's x value. What's my other coordinate object? It's the thing that I'm passing in as a parameter, so grab their x value."
+2452.68,2469.68,"If I take self.x minus other.x, Python will grab my x value, subtract it from others x value, square that. We do the exact same thing with y, right, grab my x, y value, subtract it from others y value, square that, and then the rest is just Pythagoras."
+2469.68,2474.68,Add those two and take the square root. I take it to the power of a half.
+2474.68,2493.68,"The function is just a regular function other than this self being the first parameter and us working with data attributes of myself and potentially other parameters, but you can see it returns a value, it has the df, an aim, and things like that."
+2493.68,2508.68,"The way we're going to use this method that we just wrote is using the dot operator, just like we accessed a data attribute of an object that I created, I can access a procedural attribute, i.e. a method of an object I just created."
+2508.68,2526.68,"So we use the dot operator for this. The thing before the dot is the object I would like to call the method on, dot, the name of the method I'd like to call, and in parentheses it's just a function, so I need to give it any parameters this method expects."
+2526.68,2543.68,"Now this should look very familiar. We introduced dot notation when we worked with lists, remember that. And I said when we worked with a list, for now I have to remember why we used this special way of writing this function, but it was the same idea."
+2543.68,2557.68,"The thing before the dot was the list I wanted to apply the function to, so my list is the name of a list variable, I wanted to apply the function append, and it happened to take an integer as a parameter."
+2557.68,2564.68,"Same with sort here is also another one, but this one didn't take any parameters, but it's the same idea of the dot notation."
+2564.68,2576.68,"In terms of our plus, here I've got two corded objects, and I've got a dot notation being used here to find the distance between one object and another one."
+2576.68,2591.68,"So the thing before the dot is an object I would like to use the distance method on, pick one of them, c, dot distance, the name of the method I'd like to call, and in parentheses I've got another corded object, or rig."
+2591.68,2606.68,"So here I am using the class, and I've got actual values, actual objects that I'm manipulating, c, and or rig."
+2606.68,2625.68,"So this might look a little bit weird, but when we actually call the function remember we omitted self when we omitted, sorry, we omitted self when we made this function call, but that's because self implicitly becomes the thing before the dot, the thing you're calling this method on."
+2625.68,2634.68,"So let's visualize that in our memory, so here I've got my class definition for a coordinate, it has some data attributes and some procedural attributes."
+2634.68,2647.68,"I've got these two objects being created, c is this object of type coordinate, or rig is this object of type coordinate, they've got different x and y values, but they both have x and y, some x and y values."
+2647.68,2674.68,"When I make a function call, sorry, a method call on c, Python says all right, let me look at this thing before the dot, what is it, it's an object of type coordinate, then it looks at the method you're trying to call distance, it says hey does coordinate have a distance method defined, why yes it does we just wrote it."
+2674.68,2688.68,"And then it says all right well let me call this distance method, it's going to set self as c, the thing before the dot, and any other parameters will be set in order to whatever is being passed in here."
+2688.68,2699.68,So or rig will become the other parameter from my definition for that function.
+2699.68,2716.68,"So this is just the conventional way of calling methods and it's the way we've been working with lists and dictionaries and things like that. So again, we've got some object, the thing before the dot, some method to run."
+2716.68,2727.68,"And when we call it this way, the thing before the dot becomes self in our class definition, right, in our method definition, and then all the other parameters become assigned one by one."
+2727.68,2730.68,"Right, everything except for self."
+2730.68,2742.68,"Now to sort of demystify this, I would like to show you what this is actually equivalent to. So we can run the function, the method that we defined using by actually passing in a value for self."
+2742.68,2758.68,"If this is more, if this is clear to you. So in that case, the thing before the dot cannot be an object, right, because if it is an object of the type coordinate, then Python will say well, this is the object I'm running the distance method on."
+2758.68,2768.68,"So to demystify this, you can actually invoke the name of the class, right, the object that you're trying to create the name, the data type, right, coordinate."
+2768.68,2782.68,"And then Python says, oh, I see, you're calling the name of the class. It's not an object, so then what do you want from me? Okay, the thing after the dot says I would like to run this method on you."
+2782.68,2788.68,"But now it needs all the parameters in the parameter list, including self."
+2788.68,2800.68,"So here I would set, you know, I would have to give it explicitly, see comma zero instead of just zero, because the thing before the dot is the name of my class, not an actual object, like it is on this side."
+2800.68,2816.68,"So this is actually the conventional way to do this, right, this is the shorthand, the python way to do this. But this hopefully demystifies the self deal and the way we actually, you know, set that first parameter to the thing before the dot."
+2816.68,2828.68,"Alright, yes, question. Yeah, exactly. If there's more parameter, just pop in those extra ones with commas, just like a regular function."
+2828.68,2838.68,"So this dot operator basically accesses either our data, c.x, or our methods, right, c.distance, whatever or whatever method name we have."
+2838.68,2852.68,"So that's it for today's lecture. Next lecture we're going to build on this coordinate object by creating circles, and then we'll create some fraction objects, and we'll look at some other way, some other objects that we can bundle together."
+2852.68,2854.68,Thank you.

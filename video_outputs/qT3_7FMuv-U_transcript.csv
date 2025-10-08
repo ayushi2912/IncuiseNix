@@ -1,0 +1,356 @@
+Start Time,End Time,Text
+0.0,17.02,"All right, welcome everyone, so in case you missed last lecture, I've got some extra"
+17.02,25.18,debugging ducks that were left over from last lecture's debugging lecture. Please take
+25.18,29.36,them home. I don't want to have to take them back to my office and then bring them back
+29.36,36.76,"so many times, so please give them a good home. If you find them useful in your debugging"
+36.76,43.64,"strategy throughout your programming careers, I suggest you upgrade to carrying a debugging"
+43.64,49.72,"duck with you everywhere. As I have on my phone, I use it in my day-to-day life, so that's"
+49.72,56.4,"just the next step beyond an actual duck. All right, so let's get started on today's lecture."
+56.4,65.16,"We will be going over the idea of exceptions and assertions, and these are basically those"
+65.16,71.36,scary red errors that we get when our program crashes. Today's lecture will hopefully
+71.36,76.68,shed some light on exactly what these exceptions are and how we can actually use them to
+76.68,84.32,our advantage in our code. So let's start by talking about exceptions. So when you run
+84.32000000000001,91.68,"your code, usually it runs without error, produces the right output all the time like mine does,"
+91.68,99.16000000000001,but sometimes it so happens that your code hits an unexpected condition. And when that unexpected
+99.16000000000001,106.08000000000001,"condition is run, you get an exception to something that was expected. So we've already seen"
+106.08000000000001,111.12,a bunch of different exception examples. So we even talked about a couple of these last
+111.16000000000001,116.60000000000001,"lectures, so we've got index errors where you index too far into some list, type errors where"
+116.60000000000001,122.60000000000001,"you're doing funky things with types that Python doesn't like, syntax errors are also exceptions,"
+122.60000000000001,126.88000000000001,"name errors are also exceptions, so a bunch of these errors that we've encountered are types"
+126.88000000000001,135.64000000000001,of exceptions. So it turns out so far in our programming experience that whenever we get an
+135.64000000000001,141.20000000000002,"exception, the programming immediately crashes. And really, we don't have any way to handle"
+141.20000000000002,146.72000000000003,these exceptions. We just accept the fact that it crashed and we go back to the debugging board.
+146.72000000000003,152.64000000000001,"But it turns out that in Python, we can actually write code to handle these exceptions. So if your"
+152.64000000000001,158.96,"code does happen to throw an exception, so an error occurs or something unexpected happens,"
+158.96,165.28000000000003,you can write code that deals with that situation and either decides to ignore the fact that
+165.28,173.28,"an error occurred, set some default values or just raise your own exception and move on."
+173.28,181.04,So we're going to see a bunch of examples of these cases. So the way that we deal with exceptions
+181.04,187.58,is using some code blocks. The way that we handle exceptions is using these try and accept
+187.58,197.10000000000002,blocks. So the way that we write an exception handler is to put some potentially problematic code
+197.10000000000002,203.46,"inside this try block. So the try is a keyword in Python, so obviously you can't name a variable"
+203.46,209.18,"try or anything like that. If you type it in your code, you'll see it turns blue. And try tells Python"
+209.18,215.46,that you're starting a code block that contains some lines of code you'd like Python to execute. So just
+215.70000000000002,222.34,normal code. If Python is able to successfully execute these lines of code without an exception being
+222.34,229.58,"raised, so without the program crashing, then nothing happens. Nothing is run inside this accept"
+229.58,236.74,"block. And the code just continues as normal. But if it so happens that in that code that you ran,"
+236.74,243.58,"something strange has happened, and the code would have crashed, the code actually doesn't crash"
+243.58,250.86,because we can catch the exception that gets raised inside this accept block. So if we have an
+250.86,257.98,"associated accept block over here, to a try block from here, Python is going to try to run this"
+257.98,263.58000000000004,"potentially problematic code. And if an exception is raised, it will stop running any further lines"
+263.58000000000004,269.5,inside the try block and immediately hop to the lines in the accept block. And the lines in the
+269.5,277.5,accept block will then get executed. So to just kind of draw a parallel to if I were to kind of say
+277.5,284.46,"this in terms of if and else, the way that I would describe the try and accept blocks is I would say if,"
+285.66,290.86,and then I would put all the potentially problematic lines of code that I'd like to write inside this
+290.86,297.58,"condition for the if. And if all of these lines of code manage to successfully run, then nothing else"
+297.58,303.09999999999997,happens. The inside of this if is essentially just a pass and we don't execute the else and then we just
+303.09999999999997,308.53999999999996,"carry on with the rest of our lives. But if there is some line of code here that we're trying to run,"
+308.53999999999996,314.38,"that crashes or that causes the program to crash, Python will say, no, I'm not going to crash just yet."
+315.02,319.74,Let me see what the code would like me to do. And so we'd hop inside this else and then we'd do
+319.74,324.86,"something to handle the problem. And the something we do is inside this accept block. So again,"
+324.86,330.46000000000004,this is not code we'd ever write. It's just kind of a way to draw parallel with what we know so far.
+331.26,338.62,The code that we would write is this try a bunch of code except do something you'd like do do some
+338.62,345.1,lines of code if an error should come up in the in the try block. So let's look at some examples with
+345.1,350.22,code that you should be able to write at this point in the course. So we'd have some code on the left
+350.22,357.02000000000004,here. It's a function called some digits and we're writing this code without any exceptions.
+358.22,363.58000000000004,We're just writing it as if you were given this code on a quiz. What would be one solution?
+364.86,371.42,So this sum digits takes in a string s and we say it's non empty containing some digits and I
+371.42,375.58000000000004,want to return the sum of all the characters that are digits. So I don't actually say anything about
+375.58,384.46,whether the string s contains non digit characters but let's write it in a robust way anyway. So we'd
+384.46,391.02,"have a loop that goes through every character in that string s and I'm using this in keyword here,"
+391.02,398.78,this nice little trick here that says if that character so whatever character it may be is inside this
+398.78000000000003,406.54,string of digits then I know it's a number sorry I know it's a digit and I'm going to cast that
+406.54,412.46000000000004,digits 0 through 9 whatever it may be to an integer add it to my running total and then that loop does
+412.46000000000004,418.94000000000005,its thing until it's done and then I return the total. So in terms of running the code
+421.5,426.70000000000005,this is just as I have it on the slide. So here if the user gives me the string 123 I'm going to
+426.7,435.74,sum 1 plus 2 plus 3 6 perfect and if the user gives me 123 and then some random characters that I
+435.74,442.46,know I can't add Python will still will still be able to evaluate it because that if statement will
+442.46,448.53999999999996,not be run right for A B and C we don't go inside the if so there's no need to cast anything right so
+448.53999999999996,455.09999999999997,the code still works. If I didn't have this if here right if I decided to just cast to an
+455.1,460.86,element every single thing that comes my way the first line of code will still work but the second
+460.86,468.46000000000004,line of code will throw an exception. You see I have on right hand side my scary red text that says
+468.46000000000004,478.94,value error invalid literal for int with base 10 a kind of hard to parse but after you've seen a
+478.94,484.06,bunch of these you'll figure out that there's something going on with my types and then I'm trying
+484.06,490.62,to cast you know I'm trying to cast to an integer the the string a and obviously it doesn't know
+490.62,496.14,how to do that. So that's the potentially problematic line right casting to an integer.
+498.22,502.86,So let's try to write the same code except that now we'll do it with exception handling.
+503.74,510.62,So a bunch of it is going to be the same. What we're going to change is the potentially problematic
+510.62,519.5,code is these these two lines here right I don't need the if anymore. Instead I'm going to just assume
+519.5,525.5,I can cast every single character to an integer and I'm going to try to do that so I'm going to try
+525.5,531.18,to cast every single character to an integer and and then add it to my running total.
+535.02,540.46,Most of the time that's going to work if the input is a digit but sometimes the users give me
+540.46,546.46,something that's non-digit. In that case you saw what happened the code throws a value error.
+547.1800000000001,553.02,So if we didn't have the accept block nor the try block the code crashes immediately no answer is
+553.02,561.02,even given but with the accept block Python will say oh in this particular for loop run I had an
+561.02,567.34,exception raised so I'm going to execute whatever's inside the accept block and the accept block says
+567.34,572.38,print can't convert and then the character that it couldn't convert that time through the loop.
+573.58,578.86,And then that loop iteration is done and it goes on to the next character in the sequence.
+581.98,590.86,So let's run the code and this is the sum digits with the accept so here I've got the user giving me
+590.86,598.3000000000001,perfectly fine input no exceptions were raised the code worked well if the user gives me some
+598.3000000000001,605.74,characters within there the loops go through it adds 1 plus 2 plus 3 but then when it tries to cast
+605.74,613.1,to an integer the a over here right as as the iteration goes to a it's going to say this raises a value
+613.1,619.5,error as we just saw and I'm going to execute whatever's inside the accept block so prints couldn't
+619.5,624.46,convert character there it is and then I actually gave the user the character it couldn't convert it
+624.46,630.54,goes on to the next iteration the next character in the sequence the b again tries to convert b it
+630.54,636.3,can't cast it to an integer so we print couldn't convert b and then lastly the same with the c
+637.82,643.26,does that make sense is that all right so far so kind of like a little if else situation going on here
+643.26,653.18,um nice places to put try accept blocks are when you're dealing with user input because the users
+653.18,660.14,when they give you some inputs right for using the actual input command they're very unpredictable we
+660.14,664.46,don't know what kinds of things they'll give you even though you give them clear instructions to
+664.46,671.02,tell me one number or tell me another number so in this in these three lines of code
+674.14,681.6600000000001,down here I've got the user giving me two numbers and then I print the first one divided by the second one
+682.62,688.86,so I'm a nice user I do what I'm told so I'm going to do five divided by eight perfect the code runs
+688.86,696.54,well let's see somebody else runs the code and this time they decides they decide to do seven
+696.54,705.26,divided by I don't know five like that value error right so that's one thing that could go wrong the
+705.26,712.0600000000001,user tries to be um funny and then another thing that could go wrong is let's say the user gives me
+712.0600000000001,718.0600000000001,a zero for the second number so in this case I get a zero division error you can see Python doesn't
+718.0600000000001,723.0200000000001,know how to divide by zero so it raises an exception this thing zero division error
+725.0200000000001,731.1800000000001,so these are uh this is a case where I'm dealing with potentially problematic input so I'm going to
+731.1800000000001,737.1,wrap my potentially problematic lines of code in a try and accept block so I've got those three lines
+737.1,742.1400000000001,that I'm going to try to do and if anything goes wrong I'm gonna uh I'm going to execute whatever's
+742.14,749.58,in the accept block and all I do is say print bug and user input okay so let's run that that's
+749.58,761.8199999999999,this one here so here again uh proper input works well if the user gives me uh a letter bug and
+761.8199999999999,767.8199999999999,user input so much nicer friendlier way to crash the program right then you know value error whatever
+767.82,775.82,it was and then again if the user gives me a zero bug and user input okay again much nicer way to
+775.82,786.38,crash the program so what we can actually do is give a specific uh have have specific behaviors
+786.38,793.1,depending on what exceptions are raised right so maybe I don't want a generic text that says bug
+793.1,799.02,and user input for both of those cases right maybe if the user divides by zero I want to give them
+799.02,805.74,a different message then if the user gave me a letter right um so in that case what I can do is I
+805.74,811.5,can have different accept blocks for every different error that I know might come up right so as I'm
+811.5,820.0600000000001,writing this code I can think ahead right and I can try to catch specific errors so here I can catch
+820.0600000000001,827.34,the value error so I say accept and then I say the name of the error that I'd like to catch and
+828.3800000000001,835.0200000000001,this block of code this accept block of code will be run only if the code in the tri block crashes
+835.0200000000001,841.98,with that specific value error right and then I can also catch my zero division error down here
+842.5400000000001,849.74,and in this particular case only this this accept block is only run when the zero division error
+850.46,856.94,is raised right so here in the value error I'm going to print for the user I could not convert to a
+856.94,863.1,number so a more specific error message so they know what's up and in the zero division error I can
+863.74,868.5400000000001,also flag that there was an issue I can't divide by zero by printing that to the screen and then I
+868.5400000000001,876.22,can say you know a divided by b is infinity and I can uh continue the last statement that was supposed
+876.22,881.5,to be done in the tri block a plus b I can give the answer to a plus b because we can add a zero
+881.5,889.82,to uh to a no problem okay the last accept block down here is uh catching anything else that's not
+889.82,896.0600000000001,a value error and not a zero division error so I can't think of anything that could go wrong um so if
+896.0600000000001,902.62,we uh happen to go in here something went very wrong I would say uh the only thing I can think of
+902.62,909.26,is if our computer is almost out of memory and running this little piece of code pushes it over the
+909.26,915.18,edge right then the python will probably crash and maybe it'll print that error before completely
+915.18,919.98,shutting down the computer or something right but that that last one should never really run
+921.18,927.1800000000001,so let me show you what happens when we run the code with these uh specific accept blocks now
+927.2600000000001,932.86,so if the user gives me perfectly nice input then the program proceeds as normal every line of code
+932.86,940.94,inside the tri block is executed over here none of the accept blocks are executed the user gives me a letter
+943.1800000000001,947.5000000000001,I end the program gracefully with the message could not convert to a number so then they know
+948.0600000000001,955.2600000000001,that I caught them and then the last one is if I try to divide by zero uh again I've got the
+955.26,960.7,little message can't divide by zero and then I give them their division to be infinity and a plus
+960.7,969.8199999999999,b is six so I do all the lines of code that are caught over here question so far seems all right so far
+970.78,978.06,okay so really nice ways for us to deal with uh with uh exceptions that get raised in our programs now
+978.78,984.9399999999999,the the things that I uh that I've told you that we can associate with a tri block is an accept block
+984.94,990.0600000000001,right so we've done that but we can actually associate a couple other things with tri blocks and
+990.0600000000001,995.4200000000001,we don't really use them in this class but I just thought I'd mention them so if you have an else block
+995.4200000000001,1001.4200000000001,associated with a tri block that means the uh the lines of code inside the else block will execute
+1001.4200000000001,1006.7800000000001,whenever everything inside the tri block is executed perfectly so if everything goes according
+1006.7800000000001,1012.7,the plan whatever you put inside the else block will also get executed and then you could have a
+1012.7,1018.22,finally block as well so you know just like we have a uh a try and accept you can also have a
+1018.22,1023.1,finally associated with those and the body of the finally will be executed no matter what if an
+1023.1,1028.3,exception was raised you also execute the finally if the code work perfectly fine without raising
+1028.3,1033.66,any errors the finally also gets executed so I gave an example here of uh something that you might
+1033.66,1039.26,put inside the finally block um sort sort of cleanup code so if you're you know writing code that opens
+1039.26,1044.14,files from the file system a good idea is to close them before you finish your program so that's
+1044.14,1049.82,something that you might want to do inside the finally block just close files before shutting down
+1049.82,1059.5,uh before your program terminates okay so I've shown you how to deal with exceptions but now what do
+1059.5,1065.34,we do inside the accept blocks okay we've done a couple different things mostly printing out that
+1065.34,1071.5,something went wrong but we can do various other things um one thing and I don't recommend doing
+1071.5,1077.74,this is to just fail silently certainly we could write code that basically you know has uh yeah next
+1077.74,1089.58,question yep yep so this is an else that we'd associate with a try so we would do something like
+1089.58,1095.26,um else and then you would you know print something here success or something
+1097.6599999999999,1102.62,and then if the code executes perfectly without an error then you will also print success
+1104.3,1113.98,yeah um so what do we do inside the uh inside the accept blocks one thing is to fail silently which
+1113.98,1120.46,means that well you could say you could try your entire piece of code and then you could say accept
+1120.46,1125.58,and then the only line you have in accept is maybe a line that says pass so that means any error that
+1125.58,1131.34,happens you would catch but you do absolutely nothing and let the program continue with a potentially
+1131.34,1138.22,bad value being passed along that's not a good idea um you could also silently substitute values that
+1138.22,1144.14,you know might be uh might be problematic without you know flagging things happening also not good ideas
+1144.14,1150.46,okay um at the very least you should flag something to the output that something weird has happened okay
+1151.34,1155.5,another thing you could do is return some error values so you could have a whole bunch of variables
+1155.5,1164.78,in your code that you could set to some values like flags kind of thing um whenever your code uh runs
+1164.78,1170.94,into an exception block right but the problem with that is that you have to now check for all these
+1170.94,1176.7,values further on in your code right so now your code becomes overly complicated because you have a
+1176.7,1181.42,whole bunch of extra variables you're constantly checking to see if any errors were flagged or something
+1181.42,1188.06,like that have um one last thing and this is what I'll show you you can do is to actually still stop
+1188.06,1194.06,the execution so much like when we input when we tried to run the uh the some digits program and it
+1194.06,1201.6599999999999,crashed with a value error we could still make our program crash but it's on our own terms so we can
+1201.6599999999999,1207.82,raise our own value errors or whatever kind of error you'd like to raise with your own custom message
+1208.7,1215.4199999999998,so the code still crashes which is fine because maybe you don't want problematic code to move on
+1215.98,1222.46,but you're basically having it crash with a custom message and a custom error type being raised
+1223.1000000000001,1228.22,so this is a keyword in Python you raise your own value error and in the parentheses you put whatever
+1228.22,1235.3400000000001,message you'd like to put okay so here's an example of the some digits where we raise our own exception
+1235.3400000000001,1243.66,so let's say that um indeed we only wanted the user to give us digits and we don't actually want
+1243.74,1249.1000000000001,this function to keep running and passing along the total if the user ever gave us a string that
+1249.1000000000001,1256.14,contains letters right so in that particular case I'm going to still put a tri block and an accept
+1256.14,1263.66,block around a tri block around the problematic code and accept block to catch any errors but now instead
+1263.66,1270.14,of printing something and letting the code carry on with the loop we're going to raise a value error
+1270.38,1277.42,with our own message so my message is that the string contained a character so if I run this code
+1278.6200000000001,1285.74,and it's actually up here if I run this code with perfectly fine inputs there's no issue right we
+1285.74,1292.6200000000001,just calculate the total as we want but if the user gives us some code uh that some string that
+1292.6200000000001,1298.7800000000002,does contain extra characters which maybe we don't actually want um to have happened you see
+1298.78,1305.02,I still have a value error which is the same kind of exception that was raised without the
+1305.02,1311.82,try and accept but now the message that I've passed in is string contained a character as opposed
+1311.82,1319.8999999999999,to invalid literal for whatever that you know that cryptic message was so this is a much nicer way
+1319.8999999999999,1326.7,to uh to flag uh or to to stop the term stop the program to terminate the program but do it on your
+1326.7,1334.78,own terms so let's have you work on this for a couple minutes um you'll raise your own value errors
+1334.78,1340.7,I'd like you to write this function that's called pairwise division it takes in two lists the lists
+1340.7,1347.18,should be not empty in their equal lengths right so as per this example here's two lists that are
+1347.18,1353.9,not empty and they're the same length and I would like the code to basically go uh element by element
+1354.46,1360.5400000000002,and create a new list where each element is going to be for example four divided by one five
+1360.5400000000002,1366.7,divided by two and six divided by three so pairwise you do the division put all those elements in a new
+1366.7,1376.38,list and return that list if the denominator so the the second parameter passed in l denom contains
+1376.38,1383.02,any zeros raise a value error okay so don't let the code crash with the zero division error
+1383.02,1389.58,but instead raise a value error with a nice message so start with just the code to do the task and
+1389.58,1397.9,then add the value error bit um at the end okay does anyone have a start how would you like to solve
+1398.62,1405.5,this problem how do you want to write it yeah
+1413.02,1433.82,l num i divided by l denom at i so we do the division four i in
+1433.82,1448.86,so here what is i is it the element or is it an index yeah so how do we grab like basically numbers
+1448.86,1463.58,zero through the length of one of these lists if you want to do yeah so we have to do range
+1464.1399999999999,1470.54,remember yeah range len i don't know yep i think those are my parentheses that's
+1471.4199999999998,1477.02,cool that you did list comprehension right away uh does anyone want to rewrite this using uh if or
+1477.02,1490.3799999999999,using a loop it's two oh yeah yep
+1490.7800000000002,1510.6200000000001,so we still want to use the index right because if we're looking at the element in l num it's going
+1510.6200000000001,1518.3000000000002,to be hard for us to grab the same element in l denom so let's iterate through the like zero through
+1518.3,1523.34,the range right so basically what we did up there range len and then pick one of them because
+1523.34,1529.02,they're the same length so now let's change this to i just so we're not confused i would say i
+1529.02,1535.18,is zero one two three four right so now we know this is the index so with this index in hand
+1536.1399999999999,1539.82,this is the right start right l num at i gives me the element in l num
+1540.78,1544.62,divide by l denom exactly at i
+1551.26,1557.02,yep l we can do l dot append something like that
+1558.46,1566.78,we can't say l at i equals that because our l is not made exactly yes perfect so we could do
+1566.78,1578.22,like this this is just another way and then at the end we can return uh our variable right
+1581.5,1586.54,okay so that solves our problem how do we add the piece where we raise a value or so how do you
+1586.54,1594.62,want to check that there's uh that l denom has a zero because this should hopefully run work with
+1594.6200000000001,1601.2600000000002,our code without uh oops did i do it twice sorry yes i did let me just comment one of these out
+1602.8600000000001,1611.74,oops there so how do i add the piece about values yes
+1611.74,1629.66,yep so we can pop this into a try and then accept and raise value error yep and with some nice
+1629.66,1633.02,message here nice message
+1636.86,1641.5,and we can also put the entire for loop under the try the code is not very long that it does
+1641.82,1646.78,it wouldn't make a difference right so if we try to run it like that now i've got my value
+1646.78,1654.46,error with my nice message another uh yeah another way we could raise the value error just for
+1654.46,1659.82,completion sake is to say something like you can even raise things inside if statements they don't
+1659.82,1666.06,have to be part of accept blocks before we even do anything with the code we can say if zero is in
+1666.06,1676.7,l denom raise value error that would also be a fine thing to do okay so we can raise values wherever
+1676.7,1684.54,we'd like so now i'd like to talk a little bit about assertions so assertions are actually still
+1684.54,1691.58,exceptions that get raised they're just a very special type of uh exceptions that we mostly use
+1691.58,1699.26,as a defensive programming tool so assertions are basically used to enforce these
+1699.26,1704.62,contracts that we make between somebody who writes a function and somebody who uses a function
+1704.62,1709.8999999999999,so that's basically the function dog strings right when we talked about dog strings i said that
+1709.8999999999999,1717.4199999999998,it's very hard for us to enforce the the the the text within the dog string right because it's just
+1717.8200000000002,1722.8600000000001,the person who's writing the function saying you know the input list should not be empty or you know
+1722.8600000000001,1727.98,these the input two input lists like in the previous example should be the same length and there's
+1727.98,1731.8200000000002,no way for us to really enforce that it's just something that's nice to have and we're going to
+1731.8200000000002,1738.38,guarantee that the code runs if these things are upheld but it turns out that assertions are actually
+1738.38,1744.8600000000001,a nice way for us to add to a nice thing to add to our functions that do try to enforce these this
+1744.8600000000001,1751.98,contract through the specification so the way we create an assert we say assert and i'm asserting
+1751.98,1758.22,that this statement is true so if i want that the input length for a function to be non-zero i would
+1758.22,1765.18,assert that the length l is not equal to zero or something like that and if the assertion is true
+1765.18,1770.8600000000001,right if that condition is met then the code carries on as normal but if the assertion is not true
+1770.8600000000001,1777.42,then python ends with an assertion error and then some message that the condition was not true
+1777.42,1783.0200000000002,and these are really nice because it holds the execution of a program as soon as that contract is not
+1783.0200000000002,1788.8600000000001,held right as soon as something within the specification has gone wrong then the program terminates
+1788.8600000000001,1793.9,with those assertion errors and it's nice to see them because if you're debugging your code you don't
+1793.9,1802.38,want to propagate bad values or bad values through functions because that value might get propagated
+1802.38,1807.9,later and later and later and then it would make your debugging very hard okay so if you stop the
+1807.9,1814.94,execution as soon as something is just strange or off as in something like an assumption on
+1814.94,1825.1000000000001,parameters not met then that's that's good so in our some digits example here is the code that we
+1825.1000000000001,1831.66,wrote last so total down to the bottom is exactly what we had before all we're going to add is this assert
+1831.66,1837.3400000000001,statement up here that the length of s is done empty because part of my contract here is that s is a
+1837.3400000000001,1842.78,non-empty string right so that's a nice thing to assert if the user ever gives us an empty string the
+1842.78,1851.34,program will terminate so in this example here I've got the some digits with the assert so if the
+1851.34,1860.54,user gives us an empty string no total was created and the assert was immediately false right so length
+1860.54,1868.3,s was equal to zero the assertion error was raised with the message s is empty so what I had here
+1868.54,1879.1,if I have fine input then no assertion is raised and the code carries on as norm so that's nice
+1882.7,1889.34,so let's have you add one more line of code to your the program that we just wrote just add an assert
+1889.3400000000001,1897.5000000000002,statement that enforces the contract so I have l numb and l d numb are non-empty lists of equal
+1897.5000000000002,1903.2600000000002,lengths so you can do this all in one assert statement or you can put two separate assert statements with
+1903.2600000000002,1908.2200000000003,two separate messages however you'd like it is fine with me so I'll give you a minute to work on
+1908.2200000000003,1917.18,that and then we can write it all right what assertions should I put in here yeah
+1920.3000000000002,1934.0600000000002,so the thing I'm asserting should be true so I do I want them to be equal yes exactly so what
+1934.0600000000002,1945.1000000000001,we I want l numb to equal l l yeah do you like that yep that's one right so the thing you want
+1945.1000000000001,1950.5400000000002,you're asserting that this is true and if not comma we're going to put a message right list
+1951.1000000000001,1958.94,lengths different or something like that do you want to do the other assert statement or does
+1958.94,1968.46,this somebody else want to take a crack at the other assert so the other one is that they are
+1968.46,1993.26,non-empty lists yeah so we can definitely do that not equal to zero comma
+1993.26,2003.74,yeah I'm too list or something like that yep very nice so here we're trying to enforce our nice
+2003.74,2009.66,contracts and I've got two examples down here so here I've got two different lengths of lists so
+2009.66,2017.66,there you go my assertion has raised was raised with my nice message length differ and then the code
+2017.66,2022.46,would immediately stop and it would force us to check to see why these lengths are different so
+2022.54,2028.46,these bad lists won't propagate any further if I had larger pieces of code and then same here I've
+2028.46,2043.82,got this assertion error that I have an empty list okay any questions so far okay one more example
+2043.82,2048.7,I want to go through I'm not going to actually run this one but it is in the Python slides I just
+2048.7,2055.8999999999996,wanted to give you another example of how we can use exceptions assertions in just a different
+2055.8999999999996,2064.7,setting and it hopefully shows that as a programmer you get to choose how you add these exceptions
+2064.7,2070.62,and assertions right so wherever they they seem reasonable to add you should add them so in this
+2070.62,2077.98,particular example we are assuming that we have a class list in this case I only have two students
+2077.98,2086.06,in my class so these are their test grades so I've got a list that looks like this it looks
+2086.06,2094.22,complicated but I'll walk you through it this is one student in my list and this is another student
+2094.22,2099.82,in my list so I've got a list of lists right where these things that I've highlighted in red is my
+2099.82,2107.98,students and for each student I have more lists as part of their sort of information so the first
+2108.86,2115.02,list related to one student is their name right the first element is the first name second element is
+2115.02,2121.02,their last name and then the second list for that student is their grades in the class so just another
+2121.02,2128.46,list of all the grades in the class okay so what I would like to do and this is the code I'm going to
+2128.46,2137.9,go through is what is I'd like to create a new list based on the original grade a test grades
+2137.9,2142.78,that contains the same information as before so you can see I still have two lists of students
+2142.78,2149.34,the first row in the second row and in each student's information I again still have their name
+2149.34,2155.58,and their list of grades but I'm adding one more item at the end for each student which is the
+2155.58,2162.06,average of the list of grades so I've taken the average of these and plopped it as my integer or
+2162.06,2169.02,float at the end and same with my next student so the code that's going to do this looks like this
+2169.02,2176.38,I've got that's just the original list to give you an example to look at because I find it hard to
+2176.38,2182.22,see things without examples so this is the code that gets the stats for the class so that creates
+2182.2200000000003,2188.94,this new list containing my average at the end for each student in the class lists so for example
+2188.94,2197.1800000000003,student here stew is going to be this list of two lists what I'm going to do in my new list that I'm
+2197.1800000000003,2202.94,creating here new stats is I'm going to pen student at zero which is just their name so just a straight
+2202.94,2208.46,copy and paste student at one which is just their grades again a straight up copy and paste of all their
+2208.46,2216.94,list of grades and then I'm going to apply a function named average to the list of student grades
+2219.7400000000002,2223.82,and what we're going to see in the next couple slides is we're going to see a few variations of
+2223.82,2229.9,this average function and what happens when we when we apply these different these different functions
+2230.2200000000003,2239.9,but for now I will assume that this code will do the job so the original average function will take
+2239.9,2247.58,in a list of grades so this grades here will look like this blue box here right so just a list of numbers
+2248.38,2253.98,it's going to sum all the grades so sum of all the elements inside the list and divide by how many
+2254.06,2265.18,there are average okay now let's say that I have a student that contains no quiz grades or no
+2265.18,2276.7,grades at all in that case their list of grades will be empty so if I try to apply the sum of all the
+2276.7,2282.3,grades divided by the length of the grades for somebody who has no grades information that length
+2282.3,2287.9,will be zero so I'm going to get a zero division error when I run my code and it will crash
+2289.9,2297.9,so what I'd like to do is to change my average function to try to catch such an error so I'm
+2297.9,2304.0600000000004,going to try to do the sum divided by the length and I'm going to catch this zero division error
+2304.0600000000004,2311.26,inside this except block and all I'm going to do is print warning no grades data so for any student
+2311.26,2317.0200000000004,that actually has grades information here the code will work the code to get the average will work
+2317.0200000000004,2325.0200000000004,just fine because it will do the sum divided by the length but and then so that means the
+2325.0200000000004,2330.0600000000004,tri block will succeed and we're going to return the sum divided by the length but if any student
+2330.0600000000004,2337.26,enters the zero division error here we're going to print something and what do we return what is the
+2337.26,2352.7000000000003,function return if we enter the except block that's what's going to be printed but what is this
+2352.7000000000003,2360.78,function actually return what value none exactly right there's no return inside this except block
+2360.78,2366.78,and no code after it either so you can see here if it successfully completes for these three students
+2366.78,2372.1400000000003,we've got our numbers those that's what we return but for the last student that has no grades
+2372.1400000000003,2380.3,information we're returning them okay I don't like that what I would like in my grades book is to have
+2380.3,2389.6600000000003,numbers as my as my value there so instead let's add a return for that except for that except block
+2390.6200000000003,2395.82,so we're still going to flag the error we still want to know that something weird has happened I don't
+2395.82,2402.46,just want to replace return a zero without actually telling the user that something's gone down I
+2402.46,2407.5800000000004,still flag the error but then I can return a zero so that it's still a number and then if I do
+2407.5800000000004,2415.6600000000003,something with numbers at the end then it all works out this was a particularly hard first quiz 10 10
+2416.14,2426.46,okay one last thing we can do is to just assert right so if we if we want to make sure that every
+2426.46,2432.8599999999997,student had some sort of grades information maybe if the grades data was empty something weird
+2432.8599999999997,2439.58,happened from a previous function that might have been called I don't know but maybe we say let's
+2439.58,2445.5,just assert that the length of the grades is not zero so we only want this code to execute if
+2445.5,2451.5,there are some grades information and if not let's just raise an assertion error just in case so we
+2451.5,2459.2599999999998,can assert that the length of grades is not equal to zero and in that case the code will terminate
+2459.2599999999998,2464.7799999999997,as soon as we try to get that last student's information right it will crash and it will crash with
+2464.78,2470.1400000000003,this assert statement that there's no grades data and then we can go back to the code and see did
+2470.1400000000003,2475.1800000000003,we actually expect the student to have information or not and then we can you know try to work through
+2477.98,2486.38,so just a quick summary of exceptions and assertions hopefully this lecture kind of demystified
+2486.38,2493.1000000000004,some of these exceptions that we've been getting it showed you they're not as scary as they might have
+2493.1,2500.62,seemed originally they don't always have to terminate the program right you can catch them
+2500.62,2505.66,you can deal with them in whatever way that makes sense for that particular function or program
+2505.66,2512.62,you can print a nice output to the screen you can set some default values you can still terminate
+2512.62,2517.42,the program but do it on your own terms with your own errors with your own custom messages so that
+2517.42,2523.26,the users can see something nicer than the default Python messages right and so exceptions
+2523.82,2529.02,exception handling is very important is a very important part of writing a program especially if
+2530.06,2537.5,if you expect weird things to happen right assertions on the other hand are a type of exception
+2538.06,2543.34,and they're useful as I've mentioned to try to enforce these these contracts these specifications
+2543.34,2550.6200000000003,you basically use assertions because you don't want bad values to propagate okay so as soon as
+2550.6200000000003,2559.26,something that isn't as you expect it to be happens assertion error is raised and the programming
+2559.26,2567.1000000000004,media terminates allowing you to check to see why exactly those conditions were not met okay so that's
+2567.1000000000004,2568.1400000000003,it that's all I had
+2573.34,2575.9,you

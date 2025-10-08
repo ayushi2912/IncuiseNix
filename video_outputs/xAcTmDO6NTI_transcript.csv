@@ -1,0 +1,542 @@
+Start Time,End Time,Text
+0.0,23.64,"All right, so welcome to the first lecture of 600L. That's our new number. My name"
+23.64,29.16,"is Anna Bell. That's two separate names. First name, Anna, last name, Bell. Super confusing."
+29.16,34.24,"But I've been a lecture here in the CS department for probably almost 10 years now, and I've been"
+34.24,38.72,doing the intro course for a while. I'm really happy to be teaching this full semester
+38.72,47.84,"version of 600A. So today, what we're going to do is go over a little bit of course administrative"
+47.84,52.72,"information, and then we'll dive right into just some thoughts about computers, high level"
+52.72,57.36,"how they work, and then we'll start going into some Python basics. So we're going to get"
+57.36,63.28,coding right away. So I highly encourage you since you're in this class to download the lecture
+63.28,70.28,"slides beforehand, to take notes, and run code when I do. Some of the lectures are interactive,"
+70.28,75.6,so and we'll have breaks. So there'll be a place where you can take a break to actually do some
+75.6,80.56,"coding, and that's important. I call them you try breaks. That's important to make sure that you're"
+80.56,87.16,"actually practicing what we are learning right at this time. The main idea for lectures is yes,"
+87.16,92.84,"I will do some teaching, but there will also be opportunities for questions, and for you guys to"
+92.84,97.24,try some programming right on the spot. Even if you don't finish writing a program that we start
+97.24,102.03999999999999,"talking about, I will finish it, and we can all kind of talk about it together, and I'll kind of show"
+102.03999999999999,108.84,you some pitfalls and things like that. There will be lots of opportunities to practice in this class
+108.84,115.08,"through at various degrees of granularity, and then there's also lots of opportunities that I have"
+115.64,120.92,in the handouts to do extra practice at home and through a bunch of different resources as well.
+122.28,128.04,The reason why I stress participation and practice is because part of the reason you're here is
+128.04,133.24,"you want to learn how to program, right? You don't know how to program yet, and programming is"
+133.24,138.44,"actually a skill, right? It's like math or reading. It's something that you have to practice. You can't"
+138.44,143.8,"just watch me type in a bunch of lines of code, and then when it comes time for to do the quiz,"
+143.8,149.96,you automatically know how to do it. You need to do it often more and more so that it becomes
+149.96,156.12,"sort of second nature, right? So the three big things you'll get out of this class are knowledge of"
+156.12,162.28,"concepts. Obviously, we're going to learn some computer science ideas, programming skill, and problem"
+162.28,169.88000000000002,solving skills. Lectures and exams basically help you with your knowledge or test your knowledge
+169.96,176.84,"of concepts and help you get knowledge of concepts. Finger exercises give you the programming skills,"
+176.84,182.28,"and the problem sets help you with problem solving. Basically, if you're given an English version"
+183.32,189.64,"of a problem in English, how do you go from that to thinking about what computer science concepts"
+189.64,195.56,"can I apply? And then after that, how do I take those computer science concepts and actually do"
+195.64000000000001,203.4,the programming? So what are some topics we'll be covering? We will be at the core of it learning
+203.4,209.72,"computational thinking. So in the future, when you encounter a problem, you can, your first thought"
+209.72,215.08,shouldn't be how do I kind of mathematically solve this or how do I brute force manually solve this
+215.08,220.52,"problem. How can I apply computation to help me solve this problem? And throughout these lectures,"
+220.52,225.48000000000002,you're going to see some examples of us applying computation to a problem you might have already
+225.48000000000002,232.76000000000002,"seen and maybe solved mathematically, which is pretty cool. Obviously, to get to that, we're going"
+232.76000000000002,237.48000000000002,"to learn the Python programming language. Once we get the basics, we're going to see how we can"
+237.48000000000002,242.44,start to structure our code to look a little bit better so we don't just have a bunch of code
+242.44,249.64000000000001,dumped in a file. We're going to start to organize our code and see how we can make a neat readable
+249.64000000000001,257.64,"and modular. And then towards the, not in this lecture, but in a couple lectures and as a theme"
+257.64,262.68,"throughout this class, we're going to look at some algorithms. They're not super complicated,"
+262.68,267.8,but they're kind of the base algorithms for a bunch of algorithms you might see in the future
+267.8,273.24,"if you decide to take more CS classes. Lastly, towards the end of the class, we're going to see algorithmic"
+273.24,278.04,"complexity, which basically means we're going to start asking or trying to answer the question,"
+278.76000000000005,283.72,"how do we know the programs we write are efficient? We can write programs, but how do we know that"
+283.72,288.92,they're fast and how do we know that they don't take up all the memory in the computer? So
+288.92,294.36,"things like that, comparing different algorithms that do the same thing against each other."
+295.8,301.32000000000005,"So if there's no questions, again, as I said, a bunch of this information is already in the handout,"
+301.32,309.64,"plus more. We can begin. Okay, so let's start by talking about knowledge."
+311.32,317.32,"Declarative knowledge is a statement of fact, and a lot of us, probably in math and in the past,"
+317.32,322.28,"have worked with declarative knowledge, but this is not how computer science is, not how this class"
+322.28,327.96,"works. In computer science, what we do is we work with imperative knowledge, which is basically a"
+327.96,334.12,"recipe, how to do something, and when we're programming, all we're doing is writing a recipe for"
+334.12,341.64,the computer to do something. That's it. So here's a numerical example. The first statement is a
+341.64,347.96,"declarative statement, right? The square root of a number x is y such that y times y is equal to x."
+347.96,354.52,"There are many possible values for x and y that this statement can be true, right? But if we gave"
+354.52,359.71999999999997,"that statement to a computer, it wouldn't know what to do with it. What we need to do is tell the"
+359.71999999999997,365.88,"computer how to find the square root of a number, and then tell us what the square root of that number is."
+365.88,372.28,"And so the computer that needs a recipe. So the recipe, a really simple one, for finding the square"
+372.28,378.03999999999996,"root of a number is steps one, two, three. So what we do is, let's say we want to find the square"
+378.04,385.48,"root of 16, we obviously know it's four, but the computer doesn't. And so we give it an initial guess,"
+385.48,393.8,"let's say the guess is three. How do we go from there? So the steps we follow, step one, if three times"
+393.8,401.16,"three nine is close enough to 16, we can stop. It's not really close enough for me. So let's keep going,"
+402.04,407.88,"step two. Otherwise, so we're going to make a new guess by averaging g, which is our original"
+407.88,414.44,"guess three, and x over g, which is 16 over three, right? 16 was the square we wanted to find."
+414.44,422.2,"So our next guess is 4.17. Okay, using the new guess, repeat the process until we are close enough."
+422.2,428.44,"So we go back to step one, that's the first part of the process. We find guess squared, 4.17 squared"
+428.44,436.04,"is 17.36. So now we say, is that close enough? Not really, it's not, it's 17, it's not really"
+436.04,445.64000000000004,"even close 16. So let's do it again. We make a new guess by averaging 4.17 and 16 divided by 4.17,"
+445.64000000000004,453.32000000000005,"right? That gives us our new guess, 4.3035. Okay, next step, right, using the new guess, we repeat"
+453.32000000000005,464.12,"the process. So 4.3035 squared is 16.277, 0.0277. Is that close enough to x? Yeah, I could be happy with"
+464.12,469.16,"this. I could stop there, because we're within sort of plus minus 1. So I'm okay with that,"
+469.16,474.36,but if we wanted to be within plus or minus 1 times 10 to the negative like 6 or 7 or something
+474.36,481.96,"like that, then we would continue the process. So really what we had there is an algorithm, right?"
+481.96,486.52,"It's a sequence of steps, step one, step two, step three. There's some sort of flow of control,"
+487.08,492.44,"right? We had a place where we said if this is, you know, if the guess is close enough, then"
+492.44,497.96,"you know, we can stop. Otherwise, we do something else. We had another flow of control where we said"
+497.96,502.2,"repeat this thing, right? So we're kind of not going linearly, but we're changing the flow."
+503.24,508.28,"And then lastly is a way to stop, right? We don't want the algorithm to go on forever. We would like"
+508.28,513.32,"to stop at some point, and the stopping point, I was kind of vague about it, but it could be,"
+513.32,521.24,"you know, when we were within plus or minus 1 of the actual answer. And so, right, recipes,"
+522.44,528.2,"are basically algorithms, right? My grandmother was basically teaching algorithms when she would"
+528.2,537.24,"teach me to make a cake, right? She didn't call it that, but she was, really. And so even recipes"
+537.24,541.6400000000001,"have that same structure. There's a sequence of steps. There's a flow of control, like if you don't"
+541.6400000000001,547.24,"have a user's substitute or repeat this, you know, repeat sticking a toothpick to see if it comes out"
+547.24,553.0,"clean every minute or something like that. And then there's a way to stop, right? When the toothpick"
+553.0,558.44,"comes out clean, you take it out of the oven and you eat it. And so computers are machines that"
+558.44,564.44,"execute these algorithms. They're actually dumb, right? Computers are not very smart. They don't"
+564.44,569.64,make decisions on their own. They just follow these sequences of steps that we told them to do.
+570.6,576.84,"Computers are good at storing lots and lots of data, right? We can't really do that, but computers can"
+576.84,582.84,"store gigabytes of storage, terabytes even. And computers can do operations really, really quickly,"
+582.84,587.64,"which is something we can't do, right? They're good at those two things, but they're not very smart."
+587.64,591.48,They can't make decisions unless they're told to make the decisions.
+594.36,601.32,"So really, the computer only does what you tell it to do. And that's one of the big ideas that I want"
+601.32,607.48,"you to come away from this lecture with. Computer only does what you tell it to do, right? The"
+607.48,613.8000000000001,"sequences of steps that you tell it to do, that's the only thing it follows. So a little brief history"
+613.8000000000001,619.24,just to kind of make you appreciate programming Python programming language before we actually get
+619.24,626.2,"started with it is, so before the 1940s, we had these things called fixed program computers,"
+626.9200000000001,631.8000000000001,like a pocket calculator is an example of that. Every button was an operation.
+632.84,637.32,"You could, in the little screen, you could use parentheses to put a bunch of different operations"
+637.32,644.44,"together, but there was no way to store all these operations together to later put in different"
+644.44,651.0,inputs for that same sequence of operations. You had to input it every single time.
+651.96,662.84,"After the 1940s, stored computer came into play and they were able to store instructions to do"
+662.84,670.76,things as data. And there was a special program called an interpreter that executed these instructions.
+670.76,676.92,They knew how to follow simple sequences of steps when the program told it to go to a different
+676.92,686.4399999999999,location it did. So it was basically executing these instructions. And the instructions that it
+686.4399999999999,691.8,"did were arithmetic and logical, so addition, subtraction, things like that, simple tests like"
+691.8,697.16,"checking for equality between two values and moving data, so taking this value and putting it at a"
+697.16,702.5999999999999,different memory location. So I just wanted to give you a really brief overview and this is not
+703.08,710.36,"super accurate, but it gives you a sense of how exactly things happen low level in the computer."
+710.36,716.84,So the computer basically has memory where things are stored. It has an arithmetic logic unit that
+716.84,721.4,"does operations. It knows how to add things, subtract things, multiply things, compare things."
+721.96,727.8000000000001,And then it has the control unit where this program counter is set. And this is where you put a
+727.8000000000001,735.5600000000001,program in. So this works. This is a program. And up here is our memory. So we have a bunch of memory
+735.5600000000001,741.96,"locations, 3, 4, 5, 6, 3, 4, 5, 7. And at each of these memory locations, we have some values stored,"
+742.9200000000001,750.2800000000001,"prefilled. So when we first run this program, what ends up happening is the interpreter sees the"
+750.28,756.92,"first instruction add the values at 3, 4, 5, 6, and 3, 4, 5, 7 together. So it goes to these memory"
+756.92,763.56,"locations here, grabs the 3 and the 4, and sends them to the arithmetic logic unit. The ALU knows"
+763.56,770.76,"how to do the addition, so it adds 3 plus 4, 7, and sends the result back here. Now we never told"
+770.76,776.12,"it to store that result anywhere, but the next instruction says store the value you just got back"
+776.12,784.92,"from the ALU at this memory location 3, 4, 5, 8. So the next step basically takes that 7 and stores"
+784.92,793.8,"it at memory location 3, 4, 5, 8. Super tedious. All we did was add 3 plus 4. We do that again."
+793.8,801.32,"We add the values at 7, 8, 9, and 7, 8, 9, now. So it goes in the memory, it grabs the 5 and the 2, sends it"
+801.32,810.44,"to the ALU. The ALU calculates it as 7, brings it back, and then we store that in location 7, 8, 9, 1."
+812.2,817.72,"And then after that, all we've done is two additions, and then the next instruction says compare the"
+817.72,824.2,"values at memory locations 3, 4, 5, 8, and 7, 8, 9, 1. So we're going to compare the 7 with the 7."
+824.76,831.96,"The ALU again does this comparison and says, all right, well, 7 and 7 are equivalent, so this is"
+831.96,839.0,"true or whatever it wants to give back to the interpreter. And then the last instruction here,"
+839.0,843.72,we have is print the result of that comparison. So we print true because they were equal.
+844.84,850.2,"Again, super high level, but it kind of gives you an appreciation for programming languages these"
+850.2,855.08,"days, right? This is very tedious to write, if we had to write programs in this manner."
+856.44,860.44,"Allentering a long time ago showed that you can compute anything with actually a very,"
+860.44,866.2,"even more basic set of primitives, not addition subtraction, but instead with a tape, you would"
+866.2,871.4000000000001,"actually have six primitives. Move the tape left, move the tape right, read the value at the tape,"
+871.4000000000001,876.2,"put a value on the tape, erase the value from the tape, and no operation."
+877.1600000000001,887.24,"And so since he showed this, what the result of it actually was is down here. Anything"
+887.24,891.88,computable in one language is computable in any other programming language. So if we had some
+891.88,899.4000000000001,"program written in Java, that basically boils down to something super long but something that is"
+899.4000000000001,905.5600000000001,"made up of these six primitives, that means that if we boil down this program to these six primitives,"
+905.5600000000001,911.5600000000001,we can build back up the same program in a completely different language. And that's really powerful.
+911.5600000000001,917.32,"That's a really cool statement. Now, we're not going to be working with those primitives."
+918.0400000000001,924.2,"We're going to be using the Python primitives, which are more convenient and they allow us to do a"
+924.2,929.4000000000001,lot more things in much less time. I'm going to do a look comparison as we talk about the primitives
+929.4,937.0799999999999,"of Python with English. So in English, some of the primitives might be words or even we can do"
+937.0799999999999,943.8,"letters or characters, but we can say it's words. With characters, we can build up words, with words,"
+943.8,947.9599999999999,"we can build up sentences, with sentences, we can build up stories, with stories, we can build up books"
+947.9599999999999,957.0,"and things like that. In programming languages, the primitives are numbers, sequences of characters,"
+957.0,966.6,"operators like addition, multiplication, division, checking for equality, checking that something is"
+966.6,973.48,"greater than things like that. So once we have these primitives in a language, we can start to build"
+973.48,980.68,"up the syntax of the language. So in English, having something like noun and noun and noun doesn't make"
+980.6800000000001,988.2,"any sense. Cat dog boy doesn't make much sense. It's not syntactically valid, but noun verb noun is"
+988.2,997.8800000000001,"syntactically valid. Similarly, in programming languages, we can have two objects kind of side-by-side."
+997.8800000000001,1003.6400000000001,"So here, this is a sequence of characters, H and I, and this is the number five right beside that sequence"
+1003.6400000000001,1009.6400000000001,of characters. But that doesn't make any sense. What does it mean to have this sequence of characters in
+1009.64,1015.48,"that number right beside? It has no meaning in Python. Instead, what we have to do is we have to add an"
+1015.48,1020.76,"operator in between these two objects. So here, we add a little star operator in between the sequence of"
+1020.76,1027.24,"characters high and the number five. And in Python, the meaning to this is, I want to repeat the sequence"
+1027.24,1032.2,"of characters high, H, I, five times. So this would basically give me high, high, high, high."
+1033.16,1042.04,"So once we have sentences in English and expressions that are syntactically valid, we can now talk about the"
+1042.04,1049.88,"static semantics of the language. So in English, saying something like, I, our hungry is syntactically correct, but it's not"
+1049.88,1060.8400000000001,"syntact, static, it's not, sorry, it's not, it doesn't have good static semantics, right? There's no meaning to that."
+1061.0,1067.3999999999999,"Because the R is for, you know, your plural. Similarly in programming languages and this will"
+1067.3999999999999,1073.0,"differ depending on what programming language you use. Here, you know, in the previous slide, we saw"
+1073.0,1078.76,that you can use the star operator between the sequence of characters in the number. And that meant
+1078.76,1085.56,repeat that sequence many times. But if we use a plus operator in between the sequence of characters and
+1085.56,1093.24,"a number, that doesn't have any meaning in Python. So it has a static semantic error, even though it's"
+1093.24,1103.08,"syntactically valid, right? We have operator, sorry, object operator object. So so far, we've been able to"
+1103.08,1109.1599999999999,"find really nice parallels with English, right? English language and programming languages, but this is"
+1109.1599999999999,1115.08,"kind of where things break down. When we talk about the semantics of a language. So in English, you can"
+1115.08,1122.04,"have many different meanings, right? The chicken is ready to eat means, let's eat this chicken. Or the"
+1122.04,1128.28,"chicken is ready to eat means the chicken wants to eat something, right? Programming languages, there is"
+1128.28,1133.72,"no multiple meanings to a program that you write. Because the, because the computer, the machine,"
+1133.72,1141.6399999999999,"the language follows the set of instructions to a T, there is no ambiguity about what it needs to do,"
+1141.64,1146.92,"right? It just follows the instructions and does what it needs to do to the end until it reaches,"
+1146.92,1153.16,"you know, it terminates the program. And so programs only have one meaning, but the problem is it"
+1153.16,1159.0800000000002,might not be the meaning that you intended it to have. And that's when things start to go wrong.
+1159.8000000000002,1165.8000000000002,"We can have syntactic errors in our program, spelling errors, and indentation errors, things like that."
+1165.8,1172.76,And those are easy to catch. Static semantic errors are 90% probably easy to catch. But the problem
+1172.76,1179.8,"comes in with the semantics, right? The meaning that you intended this program to have might not be"
+1179.8,1185.8,"what it's actually doing. And that's where most of my errors happen, and that's where I get super"
+1185.8,1190.36,"frustrated when I program, and that's probably where you guys will get super frustrated too. Because you"
+1190.3600000000001,1196.68,"write a program that you think is doing one thing, but instead either it crashes, right away, or runs"
+1196.68,1201.5600000000002,"forever and doesn't really stop, or it terminates, but it gives you an incorrect answer, it's not what you"
+1201.5600000000002,1210.3600000000001,"were expecting. And we'll talk about this in a few lectures. So when we write programs, we're basically"
+1210.3600000000001,1216.92,"writing sequences of definitions and commands. And we're going to write these either in a file editor,"
+1217.5600000000002,1224.44,"or in a shell. The first today, at least, we're writing in the shell directly, and half of tomorrow"
+1224.44,1234.76,will write in the shell because we're not really writing many lines of code. We're just going to be
+1234.76,1241.48,I'm just going to be showing you some really quick things that we can do with the Python programming
+1242.44,1249.0,"language. So hopefully you all have installed the programming environment. This is the code editor,"
+1249.0,1254.84,"so tomorrow we'll start working in here. But for today, we're really just going to work in the shell."
+1254.84,1260.76,"And even in the future, you can still type commands in the shell. I find the shell very useful if there's"
+1260.76,1266.76,just something really quick that I want to check that I don't want to write a program for and then run.
+1266.76,1270.84,It's just like a simple command that I want to check to make sure it's doing what I think it's doing
+1270.84,1281.6399999999999,"before I insert it in my code editor. So here we have this. All right, so mine is, I guess I'm"
+1281.6399999999999,1287.0,"using the white theme just because I find it easier for you guys to see. This is the file editor,"
+1287.0,1292.84,"and this is just a bunch of expressions. Yeah, a bunch of code that we're going to type in today,"
+1292.84,1297.08,"and we're going to type it in the shell today, so the thing on the right hand side."
+1297.32,1308.52,"Okay, so what exactly do we do when we write a program? At the base of it, we are going to create objects"
+1308.52,1317.0,"inside our programs, and we're going to manipulate them. That's it. That's what programming is mostly about,"
+1317.0,1325.56,"at its core. Now, when we create objects, it's important. This is kind of something we're going to come"
+1325.56,1331.0,"back to again and again in a kind of more high-level setting, but right now, what I want you to"
+1331.0,1339.6399999999999,"understand is that when we create an object, an object has a type. And the type that an object has"
+1339.6399999999999,1345.72,tells Python the things you're allowed to do with that object. So here are two examples. The number
+1345.72,1353.08,"30, it's a number, the type, we'll talk about it in a bit. The type is an integer, it's a whole number,"
+1353.8799999999999,1358.4399999999998,"but basically what are the things we can do with this integer, with this number? We can add it to"
+1358.4399999999998,1363.8799999999999,"another number, we can subtract it to another number, we can take it to another power, we can take some"
+1363.8799999999999,1371.08,"other number to this power of 30, right? A bunch of sort of mathematical operations, as you would expect."
+1372.12,1377.8799999999999,"So that's pretty straightforward. What about this one here? This quotation, capital A,"
+1377.88,1384.44,"lowercase, and lowercase A quotation. So this is something we'll talk about next lecture, it's called"
+1384.44,1390.6000000000001,"a string, and it's a sequence of characters. The quotations tell Python, it's a sequence of characters,"
+1390.6000000000001,1396.68,"and the characters, part of it, are capital A, lowercase, and lowercase A. The kinds of things I can"
+1396.68,1402.2800000000002,"do with this string are not the same kinds of things I'm allowed to do with the number, right? If I"
+1402.28,1410.12,"tried to take Anna and divide it by the sequence of characters, Bob, Python would complain very"
+1410.12,1414.68,"much, right? Because you can't divide a string by another string. A sequence of characters doesn't"
+1414.68,1420.52,"make sense to divide it by another sequence of characters. Similarly, I can't take Anna to some power,"
+1420.52,1426.52,"right? I can't multiply, or I can't multiply by itself, things like that. But the kinds of things that"
+1426.52,1430.68,I am allowed to do on a sequence of characters is different than the kinds of things I'm allowed to do
+1430.68,1435.8,"on a number. So the things I can do with the sequence of characters is I can say, well, what's the"
+1435.8,1441.88,"character at the first position? What's the middle character? How long is the sequence of characters,"
+1441.88,1447.64,right? How many characters do I have? And so now you can see that the type of the object is actually
+1447.64,1453.8,"really important, Python uses it to know the kinds of operations you're allowed to do with it. And so"
+1453.8,1461.24,"there's actually scalar objects, and these are Python's primitives, numbers and truth values."
+1461.8,1465.6399999999999,And there are non-scalar objects. We're not talking about these yet. We'll talk about these in a
+1465.6399999999999,1471.1599999999999,"few lectures, but these have some sort of structure. So for example, a list of numbers has a"
+1471.1599999999999,1475.48,structure because there's a number at the beginning of the list. There's a number at the end of the
+1475.48,1480.76,"list, things like that. But a number itself doesn't have a structure. It's just the number."
+1480.76,1487.0,So what are the types of the scalar objects? What are the types of the primitives in Python?
+1487.0,1496.28,"Integers, so number 5, 0, negative 100, a million, float is another type. It represents all the real"
+1496.28,1503.56,"numbers. So 3.27, 2.0 is a float because it has a decimal number, even though to us that just"
+1503.56,1511.32,"means 2. But to Python, if you put in 2.0, it says that's a type float. Negative 3.14159, things"
+1511.32,1517.8,"like that. Bool is a boolean. It represents truth values, and there's only two possible values that"
+1517.8,1528.12,"a boolean type has. True and false, and it has to be capital F false. And the last one is this"
+1528.1200000000001,1536.7600000000002,"none type. It's literally called none type, and it has only one special value. None. We're not"
+1536.7600000000002,1542.8400000000001,"going to talk about it for a bit, but we will sometime in the future. So to figure out the type of an"
+1542.8400000000001,1549.3200000000002,"object, when you create that object, you use the type command. So we can say something like type,"
+1549.3200000000002,1554.44,"parentheses, and this is a command. And inside the parentheses, you say, what do you want to find"
+1554.44,1560.44,"the type of? So if we do type of seven, it tells me it's an int. And if you want to do the same"
+1560.44,1565.4,"command again, I hit the up arrow and it automatically puts in what I wrote previously. And then if I want to"
+1565.4,1575.0800000000002,"do type of 0.0, it's a float, because there's a decimal point. So this is basically what I said. So we type"
+1575.08,1587.72,"this in the shell, and the shell tells us what the output is. So just to reiterate, int float,"
+1587.72,1595.32,"boolean, none type are types of objects. And there can be many different objects you can create of"
+1595.32,1601.8,"that type. So if you think about it, ints and floats, we basically have an infinite number of objects,"
+1601.8,1608.12,"we can create of those types, because we can have 0, 1, 2, 3, 100, 200, 300, a million,"
+1608.12,1612.52,"right? There's all the negatives. There's almost an infinite number of values,"
+1613.8799999999999,1620.36,"objects that we can create of the type, int float. But boolean, there's only two. The truth values"
+1620.36,1626.6,"true or false. And the none type, there's only one. This is not. So that's the type. And these are"
+1626.6000000000001,1633.88,"the possible values, possible objects we can create. You try it. So you can just yell out the"
+1633.88,1640.68,"answers. There's nothing to type unless you want to check yourself. So what is the type of 1,234?"
+1642.0400000000002,1653.4800000000002,"Int, type of 8.99, float, type of 9.0, float, type of true, boolean, type of false, boolean, perfect."
+1653.56,1658.3600000000001,"If you ever wonder what the type of something is, you type it in here. Just you guys are doing"
+1658.3600000000001,1665.16,"well. Type is boole. Type of lowercase t true is an error. Just wanted to point that out,"
+1665.16,1670.52,"just to reiterate the fact that capitalization matters in Python. This is our first error by the way,"
+1670.52,1678.3600000000001,guys. Very exciting. The error is a name error. And this is the message associated with it.
+1678.3600000000001,1687.0800000000002,You also know that it's something special in Python when you have color coded stuff. So you see
+1687.0800000000002,1693.8000000000002,"capital T true, capital F false, or this dark blue here, whereas anything that's not"
+1694.7600000000002,1701.16,special in Python is just black. So type is a special command. This is a float. So you see
+1701.5600000000002,1709.16,"their color coded. Okay. So once we create objects, one thing we can do with these objects is to"
+1709.16,1717.3200000000002,cast them to a different type. Now this is a little bit maybe confusing because we're not actually
+1717.3200000000002,1725.0800000000002,"changing the object once we've created it. So once we create the integer 3, it's there in memory."
+1726.04,1732.4399999999998,"If we cast that integer to a float version of it, we're creating a new object in memory. We're"
+1732.4399999999998,1738.4399999999998,not changing the 3. The 3 already exists. We're just getting the float version of it and storing it
+1738.4399999999998,1745.8799999999999,"as a new object in memory. So when we do float 3, this is a command that gets for me the float version"
+1745.8799999999999,1754.84,"of the integer 3. Okay. So that will give me 3.0. So for example, this is what I had float"
+1754.92,1767.8000000000002,"3. Right. The output is 3.0. If I do int of 5.2, it truncates it and it gives me the integer portion"
+1767.8000000000002,1775.5600000000002,"of this float. If I do int of 5.9, it still truncates it and gives me the integer version of this float."
+1775.5600000000002,1781.4800000000002,It doesn't round. Right. I'm just asking for the integer version of this of this of this float.
+1782.44,1791.08,"Some operations like round is an operation we can do has an implicit cast in it. So if I round 5.9,"
+1791.08,1796.84,it's actually going to round it to 6.0 and then cast it to an integer. So notice it doesn't give me
+1796.84,1807.48,"as an output 6.0, it then rounds it to just 6. Okay. So that's basically what I said in the example."
+1808.2,1813.96,"So let's have you try this. What are the types of the following? I don't need the values,"
+1813.96,1820.6,"but the types. So if I get type of float of 123, what is the type of that?"
+1823.72,1829.88,Float. Yeah. Exactly. Yep. Yep. What if I round 7.9? What's the type of the result?
+1830.3600000000001,1841.16,Int. Yep. What if I create a float of the round of 7.2? Yes. Good. Float would be 7.0. And the int of 7.2?
+1843.96,1851.88,"Int. Yes. Exactly. I want the type, not the value. And the int of 7.9 is an int. Exactly. Awesome."
+1851.88,1858.92,Good. Okay. So we've created a bunch of objects. Right. We know that we can create a bunch of objects
+1858.92,1865.88,"in our programs. What do we do with them? Well, we can combine them into expressions. So"
+1866.44,1873.5600000000002,"let's say we have 3 plus 2. I've got object, operator object. Cool. Syntactically valid in Python"
+1873.5600000000002,1883.16,"and has no static semantic error. So if I do that in Python, it's going to be okay, 3 plus 2, 5."
+1883.16,1893.48,"And the type of 3 plus 2 is an integer. Right. So basically what I've done here, I've put an"
+1893.48,1901.72,expression within this type command. And that's okay. That's in fact encouraged in Python. You don't
+1901.72,1906.6000000000001,"just want to calculate and then stick in. That would be very, very tedious. So you can insert"
+1906.6000000000001,1913.8000000000002,"expressions in many, many different places. Right. So here we have 3 plus 2, 5 divided by 3. Again,"
+1913.8000000000002,1920.44,we've got 5 divided by 3 has this decimal value. And the result has a float. It is of type float.
+1921.88,1927.96,"So the important thing to remember when we're doing expressions is Python reads the expression,"
+1928.6000000000001,1935.0800000000002,"but it does not store the expression in memory. Okay. What it does is it reads the expression,"
+1935.1599999999999,1942.6799999999998,"evaluates it to one single value, and then it stores the result value in memory. So it never"
+1942.6799999999998,1948.36,"stores the expression, it evaluates the expression, and then stores the value. Okay. And so this is"
+1948.36,1955.48,"the syntax for an expression, object operator object, as we just saw. And that's really, and the idea,"
+1955.48,1962.52,"I said before, right, where Python stores values of expressions, not the expressions themselves,"
+1962.52,1969.72,"is really, really important. Right. So this is my first big idea slide. I decided to insert these"
+1969.72,1974.44,because I think they kind of stress the importance of several concepts. So I hope this is one.
+1975.32,1980.36,"So you know, we're taking expressions. They can be as complex as you'd like. We can use parentheses,"
+1980.36,1986.68,"you know, a bunch of, it doesn't just have to be object operator object. It can be more complex than"
+1986.68,1993.72,"that, but basically, however complex that expression is, we evaluate it, and we replace it with one"
+1993.72,1999.72,value. And the expression can be something like this. It doesn't just have to be something that's
+1999.72,2004.92,"mathematical. Right. This was a mathematical expression, but this is also an expression, and it"
+2004.92,2011.88,"evaluates. So this entire thing evaluates to this word, you know, this word, which represents the"
+2011.88,2021.5600000000002,"type integer. So here are some more examples, three plus two, again. We've got these examples with"
+2021.5600000000002,2026.8400000000001,"the parentheses, four plus two times six minus one, obviously, gives us the number, 35. And then we"
+2026.8400000000001,2031.4,"can insert expressions wherever we'd like. So here, I'm inserting that specific expression"
+2032.2,2038.68,"in the type command. And this is also an expression, like I just said, and its result is int."
+2038.68,2045.72,"Okay. And similarly, we can also insert that expression here, and then we can wrap that around"
+2045.72,2048.6800000000003,"cast, and it gives us a flow. Yes."
+2056.6800000000003,2058.6800000000003,"When you're inserting, sorry, when you're inserting what?"
+2059.3999999999996,2064.3599999999997,"Oh, since you said there are expressions, and you said that you need like object operator, object"
+2064.3599999999997,2069.24,"expression to the type of flow that's easy to operate. Oh, I see."
+2071.56,2080.8399999999997,"Yeah, that's a good question. So in this particular case, the type and the float are not,"
+2082.12,2087.3199999999997,"there is no operator, I guess, in this particular case. It's more like a command that gives us an"
+2087.32,2096.52,"output, but there is still an output that it gives us. So we can then take the result of this"
+2097.1600000000003,2104.84,"and save it somewhere else. Sorry, yeah. I guess the example I gave on the previous slide was just"
+2104.84,2109.2400000000002,"an example of an expression, where we could do object operator object. Yeah."
+2109.32,2118.76,"Okay. Yeah. So when we have these, I guess it works for mathematical expressions,"
+2119.48,2122.6000000000004,"mathematical expressions work left to right, just like in math."
+2122.6000000000004,2132.92,"parentheses can override certain precedents. If we have commands that have computations,"
+2133.48,2139.0000000000005,"then we have this command with the parentheses, and we evaluate what's inside the parentheses first."
+2139.0,2142.28,So we work our way in to out in that particular case.
+2145.0,2149.4,So here's some examples. Let's have you try these. So we can type these in our console.
+2150.68,2158.6,What are the values of the following expressions? So 13 minus 4 divided by 12 times 12. So we can try that.
+2158.6,2169.4,"I don't know off the top of my head, so we'll have to type it in 0.0625, okay? So the value of that expression"
+2169.4,2175.64,"is a float, right? 0.0625. What's the value of the expression type 4 times 3?"
+2178.6,2187.4,"And yeah, what about the type of the expression 4.0 times 3? Yes, exactly. That's very good. So"
+2187.4,2195.64,"the type of 4 times 3 is int, but 4.0 times 3 is a float, good. And then what about int of a half,"
+2195.64,2208.6,"or 1 over 2? Yeah, exactly. It's 0.5 and we truncate to 0."
+2210.2000000000003,2215.4,The reason I had this here is because it leads nicely into this slide. You don't have to memorize
+2215.4,2221.48,"these rules. You can always check it out in the console, but there are some rules for the resulting"
+2221.48,2229.4,"types when we do operations. So when we do operations with numbers, addition, subtraction, and multiplication,"
+2231.1600000000003,2237.32,"always yield an integer if both of the operators are integers. If one is a float or both are floats,"
+2237.32,2244.44,"then it gives me a float. Division is different. No matter what types you divide, you'll always get a float."
+2246.12,2252.6,Okay. Now what about this slash slash and this percent? These are actually useful operations. They
+2252.6,2259.4,"kind of go hand in hand with division. So when I do 5 divided by 3, it's this 1.667."
+2261.7200000000003,2271.2400000000002,Slash slash is basically a floor or getting the integer portion of the division. So 5 slash slash 3
+2271.2400000000002,2283.0800000000004,gives me 1. It truncates the fraction. The percent gives me the remainder. So 5% 3 gives me the
+2283.0800000000004,2290.2000000000003,remainder when I divide 5 by 3. So it's going to give it to me in a whole number. So that's going to
+2290.2000000000003,2297.2400000000002,"be 2 because there's 2 left over when I divide 5 by 3. So these are pretty useful operations,"
+2297.96,2305.32,the slash slash and the percent when we do mathematical programs. The last thing is the star star
+2305.32,2313.8,"is how we denote power, exponentiation, kind of different than you might be used to in math. So 2 to"
+2313.8,2323.6400000000003,"the power of 3, 8, right? 2 to the power of 3.0, 8.0. And the rules for integer division"
+2324.3599999999997,2330.68,"percent and exponentiation are just like addition subtraction multiplication. If 1 is a float,"
+2330.68,2342.04,"then the result will be a float as well. Okay, and we talked about type of output."
+2344.04,2349.16,So I think I briefly mentioned this. The operator precedence is exponentiation and then
+2349.16,2355.08,multiplication division percent remainder at the next level and then addition subtraction at
+2355.08,2363.7999999999997,"the bottom, but you can always override these using parentheses. Okay, questions so far before we move"
+2363.7999999999997,2374.68,"on. Yes. So why is division of y is always resultant? Yeah, so the question is why does it always"
+2374.68,2382.68,"result in a float? If it didn't, I think the operation itself would have to do extra work to figure"
+2382.68,2387.3999999999996,out whether it's a whole number or not. So I think it's just easier that it gives us always a float.
+2389.48,2396.04,"I guess, previous versions of Python, the slash was actually, I think, integer division,"
+2396.6,2401.0,which is super counterintuitive because you would use that in your program and then you would basically
+2401.0,2406.44,"enter your divide and things would go wrong. But again, just a design choice on behalf of the"
+2406.44,2415.8,"programmers. Yeah. Other questions so far? Okay, so we have a lot of objects, right? Objects have"
+2415.8,2423.64,"different types. Again, floats, integers, Booleans. What can we do with them? Right, so far they're kind of"
+2423.64,2428.68,just sitting in there and we can get properties about them. But what we'd like to do is write programs
+2428.68,2434.8399999999997,"basically trying to automate some things about these objects, manipulate them to help us achieve,"
+2434.8399999999997,2443.8799999999997,"you know, a more complicated and interesting program. So what we can do to get to that end is to start"
+2443.8799999999997,2453.16,"assigning names to some of these objects. Okay, if I create an object for Pi, right, in my program"
+2453.16,2459.56,"to 20 decimal places, somehow. And I have that number in my program, that float in my program."
+2459.56,2464.7599999999998,"If I want to use that number in many different places in my program, I'd have to copy and paste it"
+2464.7599999999998,2472.6,"a whole bunch of times, right, so far. Which is very tedious. Lots of errors will happen. Right,"
+2472.6,2477.64,"I don't want to do that. So instead, what I can do is I can give a name to this ridiculously long"
+2477.64,2484.44,"value of Pi called Pi, right. And then I can just use this name anywhere I want to grab that"
+2484.44,2490.44,"ridiculously long value for Pi in my program. It's a lot easier to read, right. It's a lot easier"
+2490.44,2500.2799999999997,for me to write this program. And it leads to a really nice and neat program. So what we can do is we
+2500.28,2508.0400000000004,"can start saying that, you know, the float 0.001 will be referenced by the name small, or, you know,"
+2508.0400000000004,2514.76,the 100.4 will be referenced by the name temp. So what we want to do is create these things called
+2514.76,2522.76,"variables. And a variable is different in computer science from a mathematical variable, or variables"
+2522.76,2527.6400000000003,"that you've known so far in math. So math variables come back to the idea of declarative knowledge,"
+2527.64,2532.8399999999997,"right, a declarative statement. You can have something like a plus b is equal to b minus 1 in math,"
+2533.56,2539.72,"right, or x is equal to, or x times x is equal to y. And that's perfectly okay, right. In math,"
+2539.72,2546.2,we basically say that variable x represents all the square roots of y. That's not going to fly
+2546.2,2552.2799999999997,"in computer science. Computer science, we don't have, right, we don't do declarative knowledge,"
+2552.2799999999997,2556.44,we do imperative knowledge. And so what we're working with in computer science is a bunch of
+2557.64,2565.16,assignment statements. So what we can do in computer science is we're going to basically bind a
+2565.16,2571.24,value to a variable. So we're going to say this variable name is bound to this value. Every time
+2571.24,2576.92,"I want to grab this value, I'm going to invoke this variable name. So here are some examples. I've got"
+2576.92,2584.04,a is equal to b plus 1. The thing on the right hand side will evaluate to some value as long as I have
+2584.04,2592.2,"something that b, you know, b as a value for. I've got here m is equal to 10, right? So m is a"
+2592.2,2600.7599999999998,"variable. Its value is 10. I've got f is equal to m times 9.98. So again, I have an expression on the"
+2600.7599999999998,2607.72,right hand side and that's okay. I'm going to use the value of 10. So f's value will be 99.8. Yeah.
+2607.7200000000003,2615.88,"So you put it so that like for f, is it like this one value of m or can you have it? So it's going to do"
+2615.88,2622.92,whatever ms and recent mean early. Yeah. The question is can you have m whatever it recently is? So in this
+2622.92,2629.1600000000003,"particular case, I just have these two lines and m will be whatever 10 is. But we'll see in a couple"
+2629.1600000000003,2635.96,"lectures that we can write like a loop where you change m and then every time you change m, you"
+2635.96,2642.04,re-immediately calculate f. And then it will calculate f based on the new value of m. But if we
+2642.04,2648.36,"just have these two lines, that's all there is. It just uses 10. Was there another question?"
+2649.88,2657.08,"Okay. So in computer science, you have only one variable to the left of this equal sign,"
+2657.08,2662.52,"called the assignment operator, and you have a value to the right hand side of the equal sign,"
+2662.52,2671.32,the assignment operator. Okay. So one variable basically maps to or binds to one value. So the
+2671.32,2677.4,"equal sign is an assignment statement. It's not equality, it's not a solve for x type of situation,"
+2677.96,2686.12,it's just an assignment. It binds this name to this value. So the way that we figure out the name
+2686.12,2691.8,"with the value is, well, if we have this assignment statement here, we first look at the right hand side."
+2691.8,2697.0,"So we always start with the right hand side, and we evaluate it. Remember, we have an expression"
+2697.0,2704.44,"on the right. We have to evaluate it to one value. So this will be 3.14, whatever it is, 1.159."
+2705.1600000000003,2713.4,And then we take that value and bind it to the name pi. So anytime I type in pi and my program from
+2713.4,2719.88,"now on, Python will automatically grab 3.14159 from memory. So it's bound to that value now."
+2720.44,2727.7200000000003,Okay. There are some rules that I have them on the previous one. Yes. There are some rules to
+2729.88,2736.28,"variable names, but we'll talk about that in a bit. For now, I want you to tell me if any of the"
+2736.28,2742.76,"following are allowed. If I do x is equal to 6, is that allowed in Python? Yes, it is good,"
+2742.76,2747.2400000000002,"because I have one variable name, bound to one value, 6. What about 6 equals x? It's just backward."
+2748.1200000000003,2756.1200000000003,"Okay, good. 6 equals x is bad, syntax error. How about x times y equals 3 plus 4?"
+2757.7200000000003,2762.5200000000004,"Nope, exactly, because the thing on the left has an operator in it, and operators are special,"
+2762.5200000000004,2769.48,"right? So you can't have a variable with that star as a name. How about x, y equals 3 plus 4?"
+2770.5200000000004,2774.2000000000003,"Allowed. Yes, exactly. I was hoping to get you guys with that, but I didn't."
+2774.2000000000003,2781.4,"x, y equals 3 plus 4 is, okay, there was no error, and then I can invoke the name of the variable"
+2781.4,2788.36,"I just created simply by typing it in. So if I type in x, y, it gives me 7, right? And then I can do"
+2788.36,2799.5600000000004,"operations with it, x, y plus 1 is 8, right? Yeah. So those are strings, right? Sequences of"
+2799.56,2807.24,characters here. These are variables. So these are names that I am giving to as a variable.
+2807.24,2812.6,"Yeah, that's a great question. So this is going to be a string, and you notice it changed color,"
+2812.6,2819.32,"right? It has some meaning in Python, but x, y is a variable that I create. Yeah."
+2819.8,2830.92,"Okay. So why do we want to give names to variables? Because as I showed you with a pi example,"
+2830.92,2838.44,"it's a lot easier to write code, write readable code if you have variable names within your programs."
+2838.44,2846.28,"So when you write programs, it's important to choose variable names wisely. You don't want to use"
+2846.28,2850.44,just single letters. You don't want to name it something that doesn't have something to do with
+2850.44,2856.6000000000004,the program you're writing. Because you're going to want to reread these programs sometime in the
+2856.6000000000004,2861.96,"future, or others might want to read your programs sometime in the future. So here's an example of a"
+2861.96,2869.1600000000003,nice program. It's just basically for assignment statements that do some calculations. The first line
+2869.1600000000003,2874.36,of the program is not really a line. It's called a comment. You can have as many of these as you'd
+2874.36,2880.44,"like. They start with a hash. It's a line that starts with a hash, and it's basically a text"
+2880.44,2887.32,that you write that helps you or others figure out what the code is supposed to do. And usually
+2887.32,2895.2400000000002,"we comment sort of large chunks of code at a time, not line by line. Then we have these four"
+2895.2400000000002,2902.36,"equal, four assignment statements. So here I'm defining variable named pi bound to the value here,"
+2902.36,2909.48,"so not the division, but 3.14159. Variable named radius bound to this float 2.2. And then I have a"
+2909.48,2917.32,variable named area which is bound to the result of this expression. So when Python sees my pi and
+2917.32,2923.8,"my radius, it grabs them from memory, replaces them with the values, evaluates the expression,"
+2924.6,2931.32,"grabs that one value that we evaluated to, 15 point something, whatever this is, and binds the 15 point"
+2931.32,2941.32,something to the name area. Same with circumference. Code style is something that we're actually
+2941.32,2947.1600000000003,going to look at in your problem sets. So I just wanted to quickly talk about that. Here is a program
+2947.8,2953.0,"that has really bad style. Actually that shouldn't be, it should be terrible or something like that."
+2953.6400000000003,2958.92,"But in case you haven't noticed, it's the same program as on the previous slide. But if I gave you"
+2958.92,2965.4,"this program straight off the bat, you probably wouldn't know what it's doing. It's reusing 355 over"
+2965.4,2973.08,113 twice here. It's using just A and C as variable names. This description is due calculations.
+2973.8,2980.84,"So pretty bad. This is a little bit better. I've recognized that 355 over 113 is being used twice,"
+2980.84,2990.36,so I'm saving it as a variable. But my variables are still single characters. And my comments are
+2990.36,2999.1600000000003,pretty bad. I'm basically saying what the code is doing. Please don't do that. We can see that A equals
+2999.1600000000003,3005.7200000000003,P times R times R. I see that I'm multiplying P with R squared. I don't need to read that in English.
+3006.2000000000003,3013.5600000000004,What I would like to see is a comment like this. Here I'm commenting a chunk of code.
+3015.0800000000004,3019.32,Someone who doesn't want to read this chunk of code just reads the comment and I already know that
+3019.32,3024.6800000000003,I'm calculating the area in circumference using an approximation for Pi. That's a pretty nice
+3025.6400000000003,3035.32,"comment there. Good descriptive names. So we can actually, once we create an object, a variable"
+3035.7200000000003,3040.6000000000004,"sorry, once we create an object and bind it to a variable, we can change the bindings."
+3041.4800000000005,3048.0400000000004,So we can take that variable name and bind it to a completely different value. This might not be
+3048.0400000000004,3054.44,"sort of useful right now, but it will be useful when we introduce control flow in our programs."
+3055.7200000000003,3062.0400000000004,"So to re-bind a variable, what that means is we're going to take the name. We're going to lose"
+3062.04,3066.52,the binding to the previous value and we're going to re-bind it to a new value. So I'm going to show
+3066.52,3073.4,you how this looks like in memory. I'm going to use this sort of cloud picture to represent what
+3073.4,3078.2,happens behind the scenes whenever we write programs and it's like a little animation to help you
+3078.2,3086.36,understand line by line what's going on. So here we have Pi equals 3.14. So the green 3.14 is my
+3086.36,3092.52,value in memory. Cloud is memory. That's my value in memory and it's bound to this name Pi.
+3092.52,3100.1200000000003,"So this is my variable name. The next line radius equals 2.2, same thing. I've got 2.2 as my"
+3100.1200000000003,3106.6,"value in memory, my object, and radius is the name for that object. Area equals Pi times radius"
+3106.6,3112.28,"squared. So what happens behind the scenes is it calculates this value, right? It doesn't store the"
+3112.28,3119.6400000000003,expression. It stores the value resulting from the calculation and then it binds it to the name
+3119.6400000000003,3126.6000000000004,area. Everything okay so far? We've seen this code before. Cool. So now what happens when we do
+3126.6000000000004,3136.44,"this radius equals radius plus one? In math, that would say zero equals one. But we're not in math"
+3136.6,3142.6,"here, right? We're in computer science and this is perfectly valid. We're following the rule right"
+3142.6,3150.6,when we have an assignment that says look at the right hand side first and evaluate it and then
+3150.6,3157.4,"bind it to the left hand side. So if we look at the right hand side first, right? We see radius"
+3157.4,3166.6800000000003,"well what's the value? 2.2. We see add one to it, 3.2, save that in memory and then we see the"
+3166.6800000000003,3176.52,assignment. Now save it with the name radius. Okay so we can only have one variable assigned to one
+3176.52,3182.44,"value at a time, right? This is not math, this is computer science. So you can only have radius"
+3182.44,3189.48,"point two, one thing at a time. With this line of code, radius equals radius plus one, we've lost the"
+3189.48,3198.6,"binding to 2.2, this object in memory and we've rebounded it to the value 3.2. Okay and that's perfectly"
+3198.6,3205.4,"fine. 2.2 is now just sitting in memory, we can't get back to it unless we say maybe radius equals 2.2."
+3205.4,3210.6,"It just sits in memory and then you know, may I be collected later on by or reclaimed by garbage"
+3210.6,3215.96,collection or something like that but for now we can't get back to it. Now what's the value for
+3215.96,3226.2,area at the end of these lines? Well according to this it's 15.1976 so it's using the old 2.2 value for radius
+3227.88,3236.36,"and that's okay because the program never told, never had a line that said recalculate area after we"
+3236.36,3244.6,"changed the radius, right? It's just following, done, line by line, right? It doesn't know that hey if I"
+3244.6,3249.96,"change the radius the user might want the area changed, right? It doesn't make those connections,"
+3249.96,3255.8,it's just following instructions and that's okay. If we wanted to change the area we would have to
+3255.8,3261.88,copy this line and paste it after we've changed the radius and then the area would change as well.
+3261.88,3272.12,"Does that make sense? That's kind of an important part of this lecture. Okay, cool. So big idea here is"
+3272.12,3276.44,"that our lines are evaluated one after the other, we're not skipping, we're not repeating things,"
+3276.44,3282.92,"that's something we're going to learn about later, but for now line by line. So here's a little"
+3282.92,3288.92,you try it. These three lines are executed in order. What are the values for meters and feet
+3289.7200000000003,3293.96,"variables at each line? So how about at the first line, what's the value for meters"
+3294.84,3305.2400000000002,"after we execute the first line? 100, what about feet? So in the first line there is no value for"
+3305.2400000000002,3311.4,"feet yet. How about after the second line? 328.8, right? How about the value for meters?"
+3312.76,3317.4,100 still and what about after the third line? I'm changing meters to 200.
+3319.4,3329.4,"Exactly. Yeah, meters is 200, but feet is still 328.08. And this is something I want to show you guys"
+3329.4,3336.2000000000003,today and we're going to use this Python tutor a lot more in the future. Python tutor is a nice
+3336.2000000000003,3342.36,"website that allows you to step in your code, step through your code, step by step. So at each"
+3343.8,3348.04,"line that you execute, you get to see the values of all the variables in the code."
+3348.04,3353.16,It's very useful debugging tool. I hope you'll try it out today and on Monday maybe for the
+3353.16,3359.4,"finger exercises if you're having trouble. And you know, you can use it for quizzes to help you debug."
+3359.4,3364.2799999999997,But we can I can just show you it's pretty simple here because it's just a step by step. So
+3364.2799999999997,3370.2,we step through. So the red says the line I'm going to execute green is the line I just executed.
+3370.2,3375.56,So I just executed meters 100. So here I have my meters variable with the value 100.
+3376.36,3381.16,Step through next. So I just executed feet equals this. So I now have a variable named feet
+3382.04,3391.16,within a value 328.08 meters still 100. And then meters 200 feet remained 328.08.
+3393.72,3398.36,"So obviously this is a pretty simple program to run the Python tutor on, but you can imagine using it"
+3399.32,3408.92,in more complex settings. How about one more? And this is my last example. I want you to try to
+3408.92,3414.76,"write a program that swaps the values of x and y. So originally, and I'll draw this the memory diagram"
+3414.76,3422.6,"real quick. So we have, this is our memory, we have x is bound to one, y is bound to two."
+3422.6,3430.7599999999998,"And what I want to do without saying x equals two, y equals one, what I want to do is swap the values."
+3430.7599999999998,3436.44,"I want x to be associated with two and y to be associated with one, but only using commands like"
+3437.0,3445.0,this. And so the code here is buggy. That means it's wrong. It has an error in it.
+3445.72,3451.0,"Because, well, let's step through a little bit at a time. Y equals x."
+3452.12,3462.04,"What do I do when y equals x here? Yeah, exactly. Y is going to move from two to one."
+3463.24,3471.56,"Now, what happens when I do x equals y? Yes, x stays the same. My first line, y equals x,"
+3471.56,3477.64,lost the binding to two. Right? And now it's all messed up because I can't get it back.
+3478.6,3482.92,"So instead, so if you didn't understand this, you can click Python Tutor and just kind of step"
+3482.92,3486.92,"through, step by step on your own. But how can we fix this?"
+3490.2799999999997,3495.32,"Create a third variable? Yeah, that's a great idea. Yeah, we can create a third variable. So x is"
+3495.32,3500.28,one y is one. Y is two. So we can create a third variable. What do you want to make the variable
+3500.28,3511.88,"equal to? x or y? Yeah, either one. I made it y. So let's do y. So here I've got a temporary"
+3511.88,3518.28,variable called temp. And I made it equal to two. And now what can I do?
+3518.92,3529.8,"Which one can I reassign now? x equals y or y equals x? Exactly. If I do x equals y,"
+3529.8,3536.1200000000003,I lose my binding to one. And I'm messed up again. So y equals x is okay to do. So I'm going to
+3536.1200000000003,3542.1200000000003,"lose the binding from y, from two, and bind it up to one. And now what do I do?"
+3542.7599999999998,3553.7999999999997,"Yeah, now I can safely reassign x to temp, right? So I can say x is equal to temp because temp"
+3553.7999999999997,3561.4,"points to two, and I want to make x point to two as well. So in terms of code, so that's sort of"
+3561.4,3568.92,"the diagram, but you know, we can write the code. So you don't, let's see, we don't write it in here,"
+3568.92,3573.7200000000003,"but you know, on your own, or you can write it in here if you'd like, or we can do it together."
+3573.7200000000003,3581.8,"So x is equal, oops, x equals one, y equals two, right? And then we can have, we had temp,"
+3581.8,3588.92,"we wanted to assign it to whatever y was, right? So we say temp is equal to y. And if you want to"
+3588.92,3594.36,"check the values of the variables, you can just invoke the names, right? So x is one, y is two,"
+3594.36,3606.92,"and temp should be whatever y is, two, okay? Good so far. So now I'm at the step here, I think,"
+3606.92,3612.6800000000003,right? I've just created this. And then the last thing I need to do is lose the binding from x
+3614.36,3620.36,"to whatever temp is, right? So I want to do this operation here, which means I want to assign x to"
+3620.36,3635.48,"be equal to temp, right? So now x is two, y is what? What did I do? Yeah, let's, so this happens,"
+3635.48,3644.76,"sometimes we can just start all over, right? So y equals temp, sorry, temp equals y,"
+3644.76,3662.2000000000003,"y equals x, y is one, x is one, and then x equals temp, y is one, x is two, okay? So it's okay if"
+3662.2000000000003,3668.76,"things go wrong, they will go wrong. We can just start all over in this particular case by redefining"
+3668.76,3673.5600000000004,"our variables and just trying it out all over again. So that's kind of what the shell is for,"
+3673.56,3678.2,"that's what I use it for, that's what we're going to use it for in the future. Just to do quick"
+3678.2,3684.2799999999997,"things like this, you know, and also things like checking the types and other commands we've done"
+3685.4,3693.08,"earlier. Okay, so any questions before we do the summary? Was this all right pace, or was it too"
+3693.08,3703.4,"fast? Okay, good, thumbs up is good. So let's do a quick summary. We saw that we can create programs"
+3703.4,3709.4,by manipulating objects. We created objects in Python and we saw that objects have a particular
+3709.4,3715.7999999999997,"type. The type that the object has tells Python the things that you can do with that object, right?"
+3716.44,3724.44,"We can combine objects in expressions, and these expressions evaluate or boil down to one"
+3724.44,3731.48,"particular value. Objects or values can be stored in variables, and these variables allow us to"
+3731.48,3737.5600000000004,"access these values with nicer names later on in our program, and then we're able to write"
+3737.5600000000004,3744.04,need or more legible programs as well. So the equal sign I showed you a couple of differences
+3744.04,3749.8,"between math and computer science. The equal sign was one notable difference, right? The"
+3749.8,3754.92,"equal sign in math is declarative, and the equal sign in computer science is an assignment. You're"
+3754.92,3760.84,"basically saying this is associated with this, right? And we're not doing any sort of equality"
+3760.84,3770.6,"in computer science. And yes, computers do what you tell them to do. That's kind of the big thing"
+3770.6,3777.0,"here, right? Line by line, it executes starting from the top, goes line by line. So far we haven't"
+3777.0,3783.24,"seen any places where the computer makes a decision, but next lecture we will see how we can insert"
+3783.24,3791.16,decision points in our programs for the computer to either execute one set of code or another set of
+3791.16,3797.3199999999997,code. So that's the end of today's lecture. Thank you all for joining. I will see you on Monday.

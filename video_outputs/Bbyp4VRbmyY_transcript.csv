@@ -1,0 +1,741 @@
+Start Time,End Time,Text
+0.0,21.240000000000002,"All right, so let's get started on today's lecture."
+21.240000000000002,27.240000000000002,"So today we're going to be doing one of two lectures on the topic of recursion, and"
+27.240000000000002,33.36,"we may or may not have heard of recursion, it's a programming technique and a way to algorithmically"
+33.36,36.160000000000004,solve problems.
+36.160000000000004,42.800000000000004,"It's not something that's going to come easy, because it's going to force our brain"
+42.800000000000004,48.480000000000004,to think about problems that we've seen in a completely different way.
+48.480000000000004,53.800000000000004,"So you don't have to use recursion if you don't want to, but there will be problems where the"
+53.800000000000004,60.84,idea of recursion and applying or writing recursive code is going to come a lot more naturally
+60.84,64.28,than writing code that we have been so far.
+64.28,67.84,"But I'm just warning you, it's going to take a little bit of kind of forgetting everything"
+67.84,73.16,we've learned about loops and things like that to train our brain to think recursively
+73.16,75.36,for the next two lectures.
+75.36,80.44,"To help you, we will have an interactive portion of today's lecture, so think about whether"
+80.44,88.0,"you want to come up on stage or whatever this is, the front, and be a part of the interaction."
+88.0,94.84,"You'll be forever immortalized on the open course where, awesome, I love it, on the open"
+94.84,98.47999999999999,course where it videos.
+98.47999999999999,107.2,"All right, so let's think about iterative algorithms that we've seen so far."
+107.2,112.12,"So iterative algorithm basically means we are writing code that has a loop within it,"
+112.12,113.12,right?
+113.12,117.12,"So either a for loop or a while loop, writing code with these for loops or while loops"
+117.12,125.68,"lead to iterative algorithms, so things that do some task, some, for some repetition."
+125.68,132.04,So the idea of iterative algorithm is that there are some variables that capture the state
+132.04,133.44,of the computation.
+133.44,138.88,"So each time through the loop, these variables will change their value, essentially capturing"
+138.88,142.16,what the values are at each step in the loop.
+142.16,146.64,"So when we're writing these iterative algorithms, we basically think about what is something"
+146.64,151.04,"that's changing each time through the loop, like we keep running some, like that's the easiest"
+151.04,152.92,"example, right?"
+152.92,158.32,"What is a variable that's changing each time through the loop, kind of like a counter that"
+158.32,161.84,keeps track of how many times we've been through a loop?
+161.84,162.84,When do you stop?
+162.84,167.8,"For four loops, you stop after you've exhausted a sequence for while loops, you stopped when"
+167.8,170.24,you have a condition that becomes false.
+170.24,174.48000000000002,"And then at the end of the loop, you have some sort of result that you've been storing"
+174.48000000000002,178.0,and accumulating or changing each time through the loop.
+178.0,182.56,"So that's an iterative algorithm, and we've been working with these a lot."
+182.56,188.36,"So to show you, we're going to go through the next few slides, showing you an iterative"
+188.36,192.56,"algorithm to do multiplication, it's going to be very, very simple."
+192.56,200.08,"And we're also then after going to look at the same problem, which is doing multiplication,"
+200.08,201.64000000000001,but in the context of recursion.
+201.64000000000001,206.08,And hopefully that gives you a sense for how we think about the exact same problem we're
+206.08,211.68,"trying to solve, multiplying two numbers together in a completely different way."
+211.68,214.44,So this is not the function that I want to write with iteration.
+214.44,219.56,"I don't want to create a function named molt and then return a star B, right?"
+219.56,221.6,I don't want to use the built-in function.
+221.6,226.79999999999998,"I want to assume that I don't know how to do a star, a multiplication."
+226.79999999999998,231.56,"And so instead, what I'm going to do is I'm going to rely on, let's say I know how to"
+231.56,239.68,"do addition, I'm going to rely on the idea of addition to actually write my multiplication function."
+239.68,243.72,So let's think about how to make multiplication iterative.
+243.72,250.6,"We can have a loop, right, that adds A to itself B times, right?"
+250.6,253.56,That is the definition of multiplication.
+253.56,257.08,So let's write a function that does this using a for loop.
+257.08,259.64,Then we'll write it using a while loop.
+259.64,263.64,"With a for loop, we're going to write this iterative algorithm."
+263.64,267.84,"It's capturing the state of the computation, just like we said we should."
+267.84,274.15999999999997,"So the for loop will iterate, will have my range of values being from zero to B."
+274.15999999999997,277.52,So we're going to repeat this loop B times.
+277.52,282.0,"The variable total is capturing my state of the computation, right?"
+282.0,286.52,It's keeping track of what the total is at each step through my loop.
+286.52,290.12,"At the end of the loop, I return the total."
+290.12,294.28,"So very, very simple iterative function here."
+294.28,296.2,Now let's think about another iterative solution.
+296.2,303.76,"Instead of keeping a loop variable B that goes from zero all the way up to B, or what was"
+303.76,304.76,my loop variable?
+304.76,305.76,And I think.
+305.76,308.96,"Yeah, instead of keeping a loop variable and that goes from zero to B, let's work our way"
+308.96,309.96,backward.
+309.96,312.36,"And this time, let's use a while loop just for fun."
+312.36,317.08,Let's say that I'm going to start at B and count down to zero.
+317.08,322.76,"So again, repeating some task B times."
+322.76,328.44,So what I'm going to do is I'm going to have some counter that starts at B and decreases down
+328.44,330.32,to zero.
+330.32,331.32,Again within my loop.
+331.32,334.08,I have to keep track of the result.
+334.08,338.84,So my total in the previous code is now being called result in this code.
+338.84,343.28,And so what I'm going to do is my iteration will start right at zero and then I'm going
+343.28,347.36,to keep adding A to itself B times.
+347.36,350.08,So the code looks like this.
+350.08,352.92,I've got my while loop this time instead of a for loop.
+352.92,357.76,I'm going to start out with knowing what B is and I'm going to decrease B by one each time
+357.76,359.96,through the loop.
+359.96,363.0,So here I've got B equals B minus one.
+363.0,366.79999999999995,So that's capturing the state of the counter at each iteration.
+366.79999999999995,371.84,The result just like the total in the previous slide is capturing the state of my sum at each
+371.84,373.64,time through the iteration.
+373.64,375.71999999999997,And at the end I return result.
+375.71999999999997,381.91999999999996,"So hopefully very simple, very review code here."
+381.91999999999996,387.2,But now let's look at the code in a recursive sense.
+387.2,389.76,So here let's not look at the code yet.
+389.76,396.15999999999997,But let's think about is there some thing that we're repeating over and over and over again.
+396.15999999999997,400.2,"If we recognize it, we can think recursively."
+400.2,403.88,So let's try to figure out this recursive pattern.
+403.88,407.64,So I work best with example like actual numbers.
+407.64,414.84,"So instead of using an abstract A and B, let's use A is five and B is four as an example."
+414.84000000000003,419.88000000000005,"So let's say I want to use the star operator, that's basically the function I'm trying to implement,"
+419.88000000000005,423.92,the star operator between five and four.
+423.92,428.04,"So in the iterative sense, we said that's five plus five plus five plus five, adding five"
+428.04,430.28000000000003,four times.
+430.28000000000003,435.48,"The idea of recursion is that we're trying to take our original problem, which is using"
+435.48,443.72,"the star operator between two numbers and try to solve a very similar problem, if not"
+443.72,448.12,"the same, but in slightly changed way."
+448.12,454.76000000000005,"So instead of saying I'm going to multiply five by four, what I will do is recognize that"
+454.76000000000005,462.84000000000003,"five times four, which is my original problem, can be rewritten by extracting out one of my"
+462.84000000000003,463.84000000000003,fives.
+463.84000000000003,471.16,So I'm going to take a five out and add it to five times three.
+471.16,473.44000000000005,So this is my recursive pattern.
+473.44,480.0,"I'm using the star operator between five and some number, but if I extract a five out,"
+480.0,489.72,"I can use the star operator between five and a slightly smaller number, one less than four."
+489.72,493.24,"Well, what if I do what about five times three?"
+493.24,496.0,Can I do the same thing again?
+496.0,497.28,"I can, right?"
+497.28,502.28,"For five times three, I can again notice that I can extract the five out again and"
+502.28000000000003,505.52000000000004,I have five plus five times two.
+505.52000000000004,509.56,"And then I can do the same thing again, to figure out what five times two is, I can again"
+509.56,516.32,"extract a five out and be left with five times one, or five star one, right?"
+516.32,521.36,"And so notice the thing inside the box is, is basically me solving my original problem,"
+521.36,527.28,"which is using the star operator between five and some number, but that number is changing"
+527.28,531.24,each time on each line.
+531.24,535.5600000000001,"At some point, I can say this problem is so easy that I know the answer."
+535.5600000000001,540.8,"So five star one, so a number multiplied with one, is just the number itself."
+540.8,545.32,"And so at that point, I can say I don't need to continue dividing my problem into smaller"
+545.32,547.0,and smaller pieces.
+547.0,551.52,"So just to bring the point home, let's use parentheses to illustrate sort of which pieces"
+551.52,553.16,I'm replacing where.
+553.16,558.88,"So I've got my original problem, applying the star operator in the multiplication on five"
+558.88,560.28,and four.
+560.28,566.52,"And I extract the five out, and I recognize that I can have five plus and then solving five"
+566.52,571.12,star three.
+571.12,572.8,"I need to have some trust here, right?"
+572.8,577.8,"I don't know what five star three is, but if I decompose that problem in the exact same"
+577.8,583.72,"way, I can extract the five out of that, right?"
+583.72,586.76,"And add it to five star two, right?"
+586.76,589.76,So the thing in the box is our equivalent.
+589.76,593.68,"And then, again, five star two, I'm going to recognize this is the same problem I've"
+593.68,594.68,been trying to solve.
+594.68,600.72,"Let's apply the same solution, which is to extract a five out and add it to the multiplication"
+600.72,603.4399999999999,of five star one less.
+603.4399999999999,604.4399999999999,OK.
+604.4399999999999,607.3199999999999,"So again, the two boxes are equivalent."
+607.3199999999999,611.64,"So this idea here where we're recognizing the same problem and dividing it, dividing it,"
+611.64,618.24,"dividing it, having this trust that at some point, we're going to divide it so much"
+618.24,624.16,that we've reached a fundamental fact that we can solve is this divide step.
+624.16,625.16,OK?
+625.16,631.12,So we're going to divide it all the way down here where I've got five plus five star one.
+631.12,636.24,"At this point, I can say, well, five star one is going to be five, OK?"
+636.24,639.16,This is a basic fact that I can just solve.
+639.16,643.12,I don't need to divide this problem any further.
+643.12,647.6,"So once I solve this fact, I can start building back up my answer, right?"
+647.6,655.9200000000001,"And I can start passing the answer back up the chain of multiplication calls, right?"
+655.9200000000001,659.96,"So if I'm at this step here and I figured out that this is five star one, this five star"
+659.96,664.48,"one is equal to five, I can just replace it with the five."
+664.48,670.08,"And then I can build up the solution to this five star two, because now five star two"
+670.08,674.24,is just five plus five.
+674.24,677.08,"So this is going to be 10, right?"
+677.08,678.64,"It's just simple addition, right?"
+678.64,683.2800000000001,"There's no more multiplication, which is the thing that we were trying to avoid."
+683.2800000000001,685.9200000000001,So then the five star two gets replaced with 10.
+685.9200000000001,691.08,And I'm still building back up my solution until I get to the five star four.
+691.08,695.6800000000001,"So I was trying to figure out what five star three is, but before I could do that, I had"
+695.6800000000001,698.76,to solve the rest of the two lines beneath it.
+698.76,702.5200000000001,"But now I can finally solve it, it's just five plus 10, right?"
+702.5200000000001,705.0,That's the similar problem I was trying to solve.
+705.0,708.88,So I can replace the five star three with 15.
+708.88,714.12,"And finally, my original problem was trying to figure out five star four, and now I can finally"
+714.12,721.08,"solve it, because I finally built back up my solution as five plus 15."
+721.08,725.76,Any questions about these steps should be pretty straightforward.
+725.76,730.12,"I know it's a weird roundabout way of figuring out what the answer is, but what I'm trying"
+730.12,734.2,to get at is trying to recognize the problem that we're trying to solve.
+734.2,738.76,And then solving a very similar problem just slightly changed.
+738.76,743.2,"In this case, we're multiplying five star one less than what we were just trying to figure"
+743.2,745.12,out.
+745.12,751.4000000000001,"So in terms of the recursion for this particular problem, multiplying A with B, we recognize"
+751.4000000000001,756.76,that A star B is going to be A plus A plus A plus A times B times.
+756.76,762.36,"If we extract an A out, just like when we extracted the five out and added it to something"
+762.36,767.92,"else, we'll recognize that that's just A plus A plus A plus A plus A plus A plus A, B minus"
+767.92,769.72,one times.
+769.72,778.6800000000001,"Well, that A plus A plus A plus A B minus one times is just our original problem just multiplying"
+778.6800000000001,781.92,A with B minus one.
+781.92,784.6,So this is my recursive step.
+784.6,789.4,We recognize that A star B is equal to A plus A star B minus one.
+789.4,796.4,"So I'm using the same operation I'm trying to find here, down here, in my quote unquote"
+796.4,798.64,solution.
+798.64,805.6,"But this is not the end of recursion because if I just had this as my definition, then"
+805.6,807.36,I would have infinite recursion.
+807.36,809.4399999999999,I don't have a way to stop.
+809.4399999999999,816.16,"And so this recursive step in conjunction with a base case, something that we know fundamentally"
+816.16,820.4,"about the star operator, is going to give us our solution."
+820.4,826.0,"So we knew on the previous slide, when we multiply A with one, we just get back A."
+826.0,833.6,"So our base case, very simple case of multiplication between A and B is going to be one B is one."
+833.6,837.88,And that's going to be A times B is equal to A.
+837.88,843.1999999999999,So these might look like the mathematical definitions that you might come up with in
+843.1999999999999,844.1999999999999,a math class.
+844.2,845.6400000000001,"And we have them right here, right?"
+845.6400000000001,850.6400000000001,"So if B is not equal to one, A times B is A plus A times B minus one."
+850.6400000000001,855.96,"And then the base case, right, is when B is equal to one, A times B is equal to A."
+855.96,864.76,"So with these two lines, we can actually come up with the code, the programming version"
+864.76,867.72,of this function.
+867.72,873.12,So here we're creating a function named multi-recur.
+873.12,878.48,"And its parameters are going to be A and B, right, so I'm multiplying A with B."
+878.48,884.6,And I have to encode these two cases when B is one and otherwise.
+884.6,888.8000000000001,"So we usually start with the base case, it's the simplest to think about."
+888.8000000000001,891.88,"So when B is one, A times B is equal to A, right?"
+891.88,896.64,"So when if B is equal to one, then what is A times B?"
+896.64,897.72,"It's just A, right?"
+897.72,902.92,"So the function can just immediately, immediately, return A."
+902.92,909.4399999999999,"Else, so that's our base case, else, this is going to be our recursive step."
+909.4399999999999,916.72,"We're not going to return A, but we will return this, right, A plus A star B minus one."
+916.72,923.96,"Well, the A is just A plus, and this, the star operator between A and B minus one, is"
+923.96,929.5600000000001,just the function again.
+929.5600000000001,931.2,Isn't that really cool?
+931.2,938.5600000000001,We're using the function name in the body of this function that we're defining.
+938.5600000000001,943.08,And it's not a problem because the parameter to the one at bottom and
+943.08,946.0,"the recursive step is changing, right?"
+946.0,949.12,"I'm not calling, won't recur with A comma B again."
+949.12,952.6800000000001,That would be very silly of me because that would lead to infinite recursion.
+952.6800000000001,955.44,I'm not making any progress towards a base case.
+955.44,958.5200000000001,But I am calling it with B minus one.
+958.5200000000001,961.6400000000001,"So this function will just keep calling,"
+961.6400000000001,967.0400000000001,"won't recur with A with B, B minus one, B minus two, B and so on until it gets to B as one."
+967.0400000000001,970.8800000000001,And then it'll build back up the solution just like we had in the slides with all
+970.8800000000001,974.72,the parentheses that we were replacing.
+974.72,977.0400000000001,So let's step through the Python tutor.
+977.0400000000001,981.48,And I will show you how it actually looks when we make all these function calls.
+981.48,984.32,And then we'll do another example.
+984.32,991.24,"So here I've got molt recur with A is, I think I ran it yet with five and four,"
+991.24,993.5600000000001,just like the one we've been looking at.
+993.5600000000001,996.28,So this is going to be my main function.
+996.28,1001.84,"It makes a function called to molt recur, excuse me, five comma four."
+1001.84,1005.52,"So my A is five and my B is four, right?"
+1005.52,1009.88,"This is this little blue thing here is one function environment, right?"
+1009.88,1016.32,"Like when I draw boxes on my slides that are orange, they do them in blue."
+1016.32,1020.12,"OK, now in this function call, what do we do?"
+1020.12,1021.68,Is B one?
+1021.68,1022.36,No.
+1022.36,1027.04,"So we go in the else case, and we return five plus."
+1027.04,1028.0,What happens next?
+1028.0,1029.2,Does anyone know?
+1033.04,1034.04,Yeah.
+1038.52,1039.84,"Yes, molt recur will run again."
+1039.84,1042.76,"Again, with A is five and B is three, exactly."
+1042.76,1045.6,"It is a function call, right?"
+1045.6,1051.12,"So as a function call, we are going to create a new environment."
+1051.12,1054.48,"So here's, boom, another box."
+1054.48,1059.28,"My previous box is currently hung up, right?"
+1059.28,1065.76,"It cannot finish because it's trying to figure out what A, what five plus the result of"
+1065.76,1066.84,this function call is.
+1066.84,1068.48,"But this one's not done yet, right?"
+1068.48,1073.3600000000001,It's still figuring out it's result.
+1073.3600000000001,1077.16,"So we've put that one on hold, and now we're trying to figure out molt recur five comma"
+1077.16,1078.16,three.
+1078.16,1079.8,"Well, what is molt recur five comma three?"
+1079.8,1082.08,It's going to be B is not one.
+1082.08,1097.1200000000001,"So this one will also go in this else, and it will return five plus, what?"
+1097.1200000000001,1101.6000000000001,"The function call, when B becomes two, exactly."
+1101.6000000000001,1105.0800000000002,"But notice, it is another function call, right?"
+1105.0800000000002,1108.48,"So here I have, boom, another box."
+1108.48,1114.3200000000002,"Now I've got two function calls, this original one back here, which was waiting on this one"
+1114.3200000000002,1116.24,that I've highlighted here.
+1116.24,1121.88,But now this one that I've highlighted here had to make another function call down here.
+1121.88,1127.2800000000002,So I've got currently three function calls in the works that are trying to figure out what
+1127.2800000000002,1129.0800000000002,their results are.
+1129.0800000000002,1134.0400000000002,"All right, finally, this molt recur five comma two is going to make another function call,"
+1134.0400000000002,1140.0800000000002,"so it's B is not one, so we're going to go into the else."
+1140.0800000000002,1141.88,And what is its else going to say?
+1141.88,1149.44,"We're going to return five plus, and it's another function call."
+1149.44,1157.28,"So now I'm four function calls deep, and I haven't done any sort of visible work, right?"
+1157.28,1161.8400000000001,"I've just kept kind of, you know, kicking the can down the road to try to figure out what"
+1161.8400000000001,1169.52,"the values are, and everybody's waiting for somebody else to finally return a value."
+1169.52,1174.8,"So this first one is waiting for the one right underneath it to return a value, but this"
+1174.8,1179.0800000000002,"one is waiting for the one underneath it to return a value, and this one is waiting for"
+1179.12,1180.84,the one underneath it to return a value.
+1180.84,1183.12,That's the chain of calls.
+1183.12,1184.6799999999998,What's this last one going to do?
+1184.6799999999998,1187.6799999999998,Is it going to make another function environment?
+1187.6799999999998,1192.9199999999998,"No, it's going to return A, which is five."
+1192.9199999999998,1197.52,"Okay, there's my return value five."
+1197.52,1203.1599999999999,"So this one will return the five to whoever called it, and whoever called it was this one"
+1203.1599999999999,1206.3999999999999,"here, molt recur five comma two, right?"
+1206.4,1213.0,"Five comma two was trying to figure out what five plus, this bottom function call was."
+1213.0,1218.48,"Okay, well, now it can figure out that it's going to be five plus five, so its return will"
+1218.48,1220.52,be ten.
+1220.52,1225.96,"This one returns a value up one level to whoever called it, and that was molt recur five comma"
+1225.96,1231.48,"three, and now molt recur five comma three can finish its job, it was trying to figure out"
+1231.6,1236.64,"what five plus its function call was, which is we figured out is ten."
+1236.64,1242.68,"So this one can figure out its fifteen, and finally this last value can return back up"
+1242.68,1249.52,"to the original function call five comma four, and five comma four will return five plus"
+1249.52,1255.2,"the fifteen that got returned, which is twenty."
+1255.2,1261.52,"Okay, questions about what just happened?"
+1261.52,1263.72,Does everything make sense?
+1263.72,1264.96,All right.
+1264.96,1269.08,"Okay, so let's look at one more example."
+1269.08,1272.52,"I mean, we'll look at a few more examples this lecture, but let's look at a real world"
+1272.52,1274.52,example for now.
+1274.6,1279.68,This one will hopefully illustrate the difference between iterative algorithms and recursive
+1279.68,1282.48,algorithms in a more real life setting.
+1282.48,1292.48,"So let's assume that in this real world, setting a student asks for regrade for an exam."
+1292.48,1298.2,"In an iterative setting, we have basically one function call, right, regrade or whatever"
+1298.2,1299.2,you want to call it.
+1299.2,1301.16,There's my student.
+1301.16,1304.48,How is the student going to iteratively get the regrade?
+1304.48,1311.64,"Well, the student will be in charge of basically looping through each staff member, right?"
+1311.64,1316.96,"So the student goes to the instructor and says, can I have a regrade please?"
+1316.96,1321.32,"Okay, the instructor may have graded one problem, maybe they didn't, but they will regrade the"
+1321.32,1325.2,"problem that, you know, maybe they were in charge of."
+1325.2,1329.6,"Then the student will go to the next person on staff, the TA."
+1329.6,1331.76,Can I have a regrade please?
+1331.76,1335.32,"Let's say the TA maybe regrades the problem they were in charge of, maybe they didn't,"
+1335.32,1338.64,"but in any case, they'll give the score back or they'll answer, you know, the student's"
+1338.64,1340.84,request.
+1340.84,1347.4,"The student then goes to the next person on staff, the lab assistant, can I have a regrade"
+1347.4,1348.4,please?
+1348.4,1352.0,"The lab assistant might regrade the problemally in charge of, you know, whatever, gives"
+1352.0,1353.48,the grade back to the student.
+1353.48,1357.76,The student is keeping track of all these regrades scores that they're getting to kind of figure
+1357.76,1359.8,out what their new total score is.
+1359.8,1366.58,"And finally, the student might go to the grader who did probably most of the work, asks"
+1366.58,1373.6399999999999,would regrade the grader will do tofully agree to do the regrade and pass back the values.
+1373.6399999999999,1380.32,So here notice the student is in charge of iteratively going to every single person on staff and
+1380.32,1385.08,getting the result back and the student is keeping track of what their new score is.
+1385.08,1389.08,"Obviously, the staff members will too for the purposes of assigning grades, but the student"
+1389.08,1390.8799999999999,is as well.
+1390.8799999999999,1395.12,"So the student's basically adding up all these values, but there's only one function call,"
+1395.12,1399.6799999999998,so I've denoted the function call using just this black circle here.
+1399.6799999999998,1401.96,"Okay, so that's iteration, right?"
+1401.96,1402.96,We know how to do that.
+1402.96,1406.56,"We've been doing this for a really long time in this class, but now let's look at the"
+1406.56,1409.6399999999999,same problem recursively.
+1409.6399999999999,1413.76,"So in recursion, we've got these two steps, right?"
+1413.76,1420.2,"There's the problem of decreasing our original problem into smaller problems, right, until"
+1420.2,1423.76,we reach some sort of base case.
+1423.76,1430.68,"And then at that point, we have the task of building back up our answer."
+1430.68,1434.8,"So in the recursive setting, again, I've got my one function called to regrade on behalf"
+1434.8,1442.68,"of the student, but the student will only interact with one person, maybe the instructor, okay?"
+1442.68,1445.5600000000002,The student will not interact with anybody else in staff.
+1445.5600000000002,1448.72,"The student will just go up to the instructor and say, hey, I would like your regrade for"
+1448.72,1449.72,this exam.
+1449.72,1455.0800000000002,"Okay, now the student is going to wait, right?"
+1455.0800000000002,1459.4,The instructor is also a function call to regrade.
+1459.4,1463.4,"So maybe the instructor didn't do any of the grading, but the instructor will make their"
+1463.4,1465.28,own function call to the TA.
+1465.28,1467.68,"Can you please regrade this exam, right?"
+1467.68,1472.2,"The TA may be graded one problem, they'll keep track of the problem they need to grade,"
+1472.2,1474.1200000000001,but there are other problems that need to be graded.
+1474.1200000000001,1479.96,"So the TA will then ask, make their own function call to the lab assistant, maybe the lab assistant"
+1479.96,1481.56,graded some problems.
+1481.56,1487.0,And then the lab assistant will also make further the request sort of passing along the function
+1487.0,1488.4,call to the grader.
+1488.4,1493.6000000000001,So we have the task of doing the regrading as a function being passed along all of the staff
+1493.6000000000001,1495.92,"members, okay?"
+1495.92,1504.2,"Then we reach the base case, which is the last, the grader that needs that probably knows,"
+1504.2,1506.0,probably graded the last question.
+1506.0,1511.2,"We've got the answer being passed back up the chain of function calls, right?"
+1511.2,1515.28,"So the grader will say, all right, I've graded my problem, there's nobody else I need to ask."
+1515.28,1517.0800000000002,So here's my score.
+1517.0800000000002,1521.3200000000002,So this score is being passed back up the chain of function calls to the lab assistant.
+1521.3200000000002,1525.1200000000001,The lab assistant will take that score and add it to their score.
+1525.1200000000001,1530.5600000000002,It passes it back up the chain of function calls to the teaching assistant.
+1530.5600000000002,1535.2,"The teaching assistant adds that score to their score, maybe they graded a problem, maybe"
+1535.2,1536.2,they didn't.
+1536.2,1540.64,"But anyway, they're compiling the results, little by little back up until it passes it to the"
+1540.64,1541.64,instructor.
+1541.64,1544.5600000000002,"And then the instructor says, here you go, this is your score."
+1544.5600000000002,1545.72,"So you see the difference, right?"
+1545.72,1548.24,"The student is the iteration, right?"
+1548.24,1552.8000000000002,"They ask everybody on staff, so they interact with everybody on staff."
+1552.8,1559.24,"But in recursion, the student is basically hung up waiting for an answer until we've gone"
+1559.24,1563.52,down all these chain of function calls and the answer has been built back up.
+1563.52,1568.24,"So the student is not keeping track of the answer at all, they only get the final answer at"
+1568.24,1569.24,the end.
+1569.24,1570.24,Would that help?
+1570.24,1571.24,At all.
+1571.24,1578.2,"Okay, I've refined this example a couple of times, hopefully this is good."
+1578.2,1582.2,"So the big idea in recursion here is got, I've got these, quote unquote, earlier function"
+1582.2,1583.2,"calls, right?"
+1583.2,1589.2,"The ones I've made way back at the beginning, these function calls are just waiting on results"
+1589.2,1590.92,"to come back, right?"
+1590.92,1593.48,They're not doing any useful work at the beginning.
+1593.48,1599.2,They only do useful work when they're assembling the results after getting a return back from
+1599.2,1602.0,later function calls.
+1602.0,1607.04,So hopefully that gives you a sense of how we can apply recursion.
+1607.04,1609.04,"Now, what exactly is recursion?"
+1609.04,1614.08,"So algorithmically, it's a way for us to come up with some solutions to some problems in"
+1614.08,1617.48,"this dividing conquer approach, or decrease in conquer approach, right?"
+1617.48,1623.0,"You have your original problem, you divide it so much into the same problem just slightly"
+1623.0,1628.6399999999999,"changed until you reach a base case, that base case can kick off the conquer step and start"
+1628.6399999999999,1634.04,passing back a value that you can start assembling from your earlier function calls.
+1634.04,1635.04,Okay.
+1635.04,1640.04,"Now, semantically, as we saw in the example where we multiplied the functions, we've got a"
+1640.04,1642.04,function that calls itself.
+1642.04,1646.24,"Obviously, it's not calling itself with the exact same parameters, because that would lead"
+1646.24,1649.04,"to infinite recursion, and that's not what we want."
+1649.04,1654.44,"We're going to call ourselves with a slight change in our parameters, in such a way that"
+1654.44,1657.28,we will reach our base case.
+1657.28,1661.52,"And once we reach the base case, then again, we kick off the conquer step, and we can start"
+1661.52,1662.52,reassembling back.
+1662.52,1666.72,And you saw how the function calls do that when they help each other back out.
+1666.72,1667.72,Okay.
+1667.72,1670.28,I'm going to give you a couple of minutes to try this.
+1670.28,1674.8,So complete the function that calculates n to the power of p for these variables.
+1674.8,1680.44,"So if you come up with the mathematical definition, it will be a pretty straight translation to"
+1680.44,1681.68,code.
+1681.68,1684.36,I did include two base cases here.
+1684.36,1689.68,"So maybe a base case is when n is 0, and another base case is when n is 1, figure out what"
+1689.68,1693.6000000000001,"you should return, and then how to write this recursive step."
+1693.6000000000001,1703.44,"So I've got line 50-50-ish, is where I can type in the code."
+1703.44,1705.44,All right.
+1705.44,1707.44,What's my first base case?
+1707.44,1708.44,Yeah.
+1708.44,1709.44,Yep.
+1709.44,1716.44,"If p is equal to 0, then we can return 1."
+1716.44,1717.44,Oops.
+1717.44,1718.44,Just one time.
+1718.44,1725.44,That's another base case.
+1725.44,1729.68,P is 1.
+1729.68,1730.68,We can return n.
+1730.68,1731.68,Awesome.
+1731.68,1736.68,How about my recursive step?
+1736.68,1741.48,Yep.
+1741.48,1750.16,"We can return n times, like this."
+1750.16,1752.88,Now let's assume I don't know how to do star star.
+1752.88,1756.1200000000001,How do you rewrite this in terms of the thing we're trying to write?
+1756.1200000000001,1757.92,There was a solution back there.
+1757.92,1760.52,How are the scores recurred and you write them?
+1760.52,1761.52,Yep.
+1761.52,1762.52,We can do that too.
+1762.52,1763.52,Yep.
+1763.52,1764.52,Exactly.
+1764.52,1768.3600000000001,"So here we're assuming that we don't know the star star operator, right?"
+1768.3600000000001,1771.3600000000001,Otherwise this would be a very easy function to write.
+1771.3600000000001,1777.2800000000002,We are trying to define the star star operator ourselves using this function in power recur.
+1777.2800000000002,1782.3200000000002,So we're just going to call it again down here with n and p minus 1.
+1782.3200000000002,1789.4,"So if we run it, this will give us 8."
+1789.4,1790.92,"Is that, yeah?"
+1790.92,1796.2,What is the necessity of having a team of 1?
+1796.2,1797.2,Yes.
+1797.2,1798.2,A great question.
+1798.2,1799.2,What is the necessity of this?
+1799.2,1800.2,There is no necessity.
+1800.2,1805.48,I actually just included it there to just show you how we can have two base cases.
+1805.48,1812.32,"So in this particular case, we would actually never hit this one if n is greater than 1 because"
+1812.32,1815.32,we always stop here.
+1815.32,1818.64,"If the user gives us 0, we would just return that one."
+1818.64,1822.76,But it would work if we completely removed that as well.
+1822.76,1823.76,Yep.
+1823.76,1825.76,Great question.
+1826.76,1828.76,OK.
+1828.76,1832.08,Let's look at one more example.
+1832.08,1836.0,And this one is the one that I'm going to ask for some participation.
+1836.0,1838.76,I would like four of you to come down with me.
+1838.76,1842.92,"But before we do that, let's think about factorial."
+1842.92,1850.4,So the definition of n factorial is n times n minus 1 times n minus 2 times n minus 3 down to 1.
+1850.4,1851.64,What is a base case?
+1851.64,1854.8,What is the simplest thing that we know the factorial of?
+1854.84,1855.8,You guys tell me.
+1859.52,1861.8,What is 0 factorial?
+1861.8,1862.8,1.
+1862.8,1863.8,Good.
+1863.8,1865.6,"I chose 1, but both could work."
+1865.6,1867.1599999999999,Yep.
+1867.1599999999999,1872.96,"If n is equal to 0, we can also return 1, or we can do n is equal to 1, return 1."
+1872.96,1875.12,What's our recursive step?
+1875.12,1878.52,Do you recognize the recursive pattern here?
+1878.52,1889.16,n factorial equals n times n minus 1 factorial.
+1889.16,1894.12,"If we extract the first n out, n minus 1 times n minus 2 times n minus 3, and so on, is"
+1894.12,1896.36,just n minus 1 factorial.
+1896.36,1903.12,And so our recursive step just says it's n times the same function factorial with n minus
+1903.12,1904.12,1.
+1904.12,1905.6,Does everyone OK with that?
+1905.6,1906.6,Cool.
+1907.4,1912.0000000000002,"OK, so let's look through this example with some participation."
+1912.0000000000002,1913.6000000000001,So four people.
+1913.6000000000001,1917.0800000000002,"One, yes, and you'll be on OCW forever, you guys, too."
+1917.0800000000002,1917.8400000000001,Yep.
+1917.8400000000001,1920.5200000000002,Two more.
+1920.5200000000002,1922.8000000000002,"Yes, thank you."
+1922.8000000000002,1923.4,Thank you.
+1923.4,1924.3600000000001,Awesome.
+1924.3600000000001,1928.92,"OK, and I'll have you guys stand right here."
+1928.92,1935.88,I'll ask you guys to come in one at a time as we are working through this exam.
+1935.88,1940.5200000000002,So we're just going to demonstrate once again what happens when we make function calls.
+1940.5200000000002,1942.88,You want to just stand right here beside behind my computer.
+1942.88,1943.88,Thank you.
+1943.88,1944.88,"Yep, behind my computer."
+1944.88,1945.88,Cool.
+1945.88,1949.88,"OK, perfect."
+1949.88,1954.3600000000001,"OK, so I'll just stand here."
+1954.3600000000001,1957.68,"So I am going to be the main program, right?"
+1957.68,1960.3600000000001,"I am, you run this code."
+1960.3600000000001,1963.1200000000001,I am going to be the main program.
+1963.1200000000001,1972.1200000000001,I am going to keep track of the variables and everything that's in this global scope.
+1972.1200000000001,1978.2,"OK, so in the global scope, just like we have been in the past, I've got a definition for"
+1978.2,1982.0000000000002,my factorial function here.
+1982.0000000000002,1983.2800000000002,And this is just some code.
+1983.2800000000002,1984.7600000000002,"At this point, I've just defined it."
+1984.7600000000002,1987.1200000000001,I don't care what it actually is.
+1987.1200000000001,1992.2800000000002,"But I have one function call, so my one and only job is to print the result of factorial"
+1992.28,1993.28,"4, right?"
+1993.28,1995.32,I have a pretty easy job.
+1995.32,2001.3999999999999,"So what happens, you guys, audience, tell me what happens when I've got factorial 4?"
+2001.3999999999999,2003.0,What is this?
+2003.0,2006.28,Do I just know right off the bat what factorial 4 is?
+2006.28,2009.48,"No, it is a function call, right?"
+2009.48,2017.52,"So as a function call, what do I need to do?"
+2017.52,2018.52,Exactly.
+2018.52,2020.0,"I need to create an environment, OK?"
+2020.0,2023.28,So you will be my first environment.
+2023.28,2025.68,"Hello, my name is, you can put it on here."
+2025.68,2028.2,"Hello, my name is, and then you can step right over there."
+2028.2,2030.6,So you are my first function call.
+2030.6,2033.68,"Your name is fact for factorial, awesome."
+2033.68,2039.4,"So I have just called you, what is your job?"
+2039.4,2045.56,"So you guys tell me, what is factorial 4's job is from running the code?"
+2045.56,2048.92,Are they going to do the if or the else?
+2048.92,2050.64,"This is your job, you keep track of that."
+2050.64,2055.88,"Your end is going to be 4, and your job is to return 4 times factorial of 3."
+2055.88,2058.76,Do you know what factorial of 3 is right now?
+2058.76,2061.48,"No, so what do you need to do?"
+2061.48,2063.16,"Yes, please call somebody else."
+2063.16,2065.4,Who are you going to call?
+2065.4,2069.64,"Next, what is your name going to be?"
+2069.64,2075.12,"Your name is also factorial exactly, and you are going to be called with n is equal to 3."
+2075.12,2079.56,You can say on right beside factorial of 4.
+2079.56,2080.3199999999997,Very nice.
+2080.3199999999997,2088.7599999999998,"So now notice we've got two function calls, both of their names are factorial, right?"
+2088.7599999999998,2091.52,But they are completely separate function calls.
+2091.52,2093.92,They are completely in different environments.
+2093.92,2098.48,"They have their own end values, they have their own jobs to do, right?"
+2098.48,2102.16,"Just because their name is factorial for both of them,"
+2102.16,2105.92,"does not mean that they'll interfere with each other's variables, right?"
+2105.92,2108.3199999999997,"Very, very important point to make."
+2108.3199999999997,2112.3999999999996,"Factorial 3, do you know what factorial 2 is?"
+2112.3999999999996,2114.48,"No, so what do you need to do?"
+2114.48,2118.08,"Exactly, who are you going to call?"
+2118.08,2119.16,Here you go.
+2119.16,2122.8399999999997,What is your name going to be?
+2122.8399999999997,2125.08,Factorial at 2?
+2125.08,2126.44,"Yes, we are at 2, exactly."
+2126.44,2131.24,"So you are factorial, your name is also factorial, and you are going to be with"
+2131.2400000000002,2132.5200000000004,called with n is equal to 2.
+2132.5200000000004,2136.2000000000003,"Again, now I have 3 factorial calls."
+2136.2000000000003,2140.7200000000003,"They are all to the name factorial, but they are all independent function calls."
+2140.7200000000003,2143.5600000000004,So your job is to return 2 times factorial of 1.
+2143.5600000000004,2145.7200000000003,Do you know what factorial of 1 is?
+2145.7200000000003,2146.7200000000003,Yes.
+2146.7200000000003,2148.7200000000003,Wait.
+2148.7200000000003,2150.44,As a human you do.
+2150.44,2152.5200000000004,But as factorial you do not.
+2152.5200000000004,2154.0800000000004,What do you need to do?
+2154.0800000000004,2155.0400000000004,"Oh, call her."
+2155.0400000000004,2155.92,"Call her, exactly."
+2155.92,2156.6800000000003,Here you go.
+2156.6800000000003,2158.6400000000003,Your name is also factorial.
+2158.64,2161.48,You can stand beside our lovely other factorials.
+2161.48,2165.08,"So your job, audience, I have already given away."
+2165.08,2172.12,"Your last job is to return 1, excellent."
+2172.12,2175.12,So here is your return value.
+2175.12,2182.16,"Now, factorial of 1, are you going to return that value to me?"
+2182.16,2184.3199999999997,Which one will you return it to?
+2184.3199999999997,2185.3199999999997,Exactly.
+2185.32,2191.32,So factorial with n is equal to 2 can now replace their factorial 1 function with 1.
+2191.32,2194.32,So what is your return value going to be factorial of 2?
+2194.32,2196.1200000000003,I got it right.
+2196.1200000000003,2197.1200000000003,2.
+2197.1200000000003,2198.1200000000003,Exactly.
+2198.1200000000003,2200.52,So where do you pass your value along to?
+2200.52,2201.52,OK.
+2201.52,2202.52,"Now, one thing we forgot."
+2202.52,2207.1200000000003,"As soon as you made the return value, you disappear."
+2207.1200000000003,2210.36,"You had a very simple job, I'm sorry, but it was really important."
+2210.36,2211.6000000000004,You were our base case.
+2211.6000000000004,2215.28,"Without you, we would have had infinite recursion."
+2215.28,2217.7200000000003,"OK, so you've passed along your value."
+2217.7200000000003,2220.8,"So as a function that's done its job, what do you do?"
+2220.8,2221.88,"Disappear, exactly."
+2221.88,2222.6400000000003,Thank you.
+2222.6400000000003,2224.76,"All right, factorial of where are we?"
+2224.76,2226.0,"3, exactly."
+2226.0,2228.52,What is your value going to be now?
+2228.52,2229.44,"6, exactly."
+2229.44,2231.44,So here's your return value.
+2231.44,2232.28,You give it to me.
+2232.28,2233.0,There you go.
+2233.0,2235.84,"And as, exactly, very good."
+2235.84,2236.52,We disappear.
+2236.52,2238.6000000000004,So we've got 3 function calls that disappear
+2238.6000000000004,2240.52,as soon as they return to value.
+2240.52,2243.76,"And finally, 4 times 6, 24."
+2243.76,2246.1600000000003,And who do you give your value?
+2246.1600000000003,2248.88,"Which I just gave you, sorry, yeah, that was confusing."
+2248.88,2251.0,"Thank you so much, you guys."
+2251.0,2256.5600000000004,That illustrated a couple of things you guys can head back.
+2256.5600000000004,2257.5200000000004,Thank you so much.
+2257.5200000000004,2264.48,So we illustrated a couple of things here.
+2264.48,2269.96,"I can do it on the slides as well, just to bring the point home."
+2269.96,2271.92,But let's go through it.
+2271.92,2274.08,So I've got factorial 4.
+2274.08,2276.48,"Every time I make a function call,"
+2276.48,2279.8,"even though it's the same name, all factorial,"
+2279.8,2282.6,it's a completely separate environment.
+2282.6,2284.36,"Happened to have the same name, but they're"
+2284.36,2286.7200000000003,just in charge of doing their own job.
+2286.7200000000003,2293.2000000000003,So here I've got factorial 4 calling 4 times factorial 3.
+2293.2000000000003,2297.12,"As soon as I see factorial 3, this creates another environment."
+2297.12,2301.12,This is going to be returning 3 times factorial 2.
+2301.12,2302.88,"Again, another environment."
+2302.88,2307.64,This returns 2 times factorial 1 and a final environment.
+2307.64,2312.96,Our most important environment is that last one with the base case.
+2312.96,2316.52,It allows us to kickstart our conquer step.
+2316.52,2320.92,So this base step will return the value 1 to whoever called it.
+2320.92,2323.68,"Again, we're not skipping around."
+2323.68,2327.3199999999997,We only return the value to the function that called us.
+2327.3199999999997,2329.92,And I know it gets really confusing because everything
+2329.92,2332.36,is called fact in this particular case.
+2332.36,2336.36,But we just have to remember which function called us.
+2336.36,2339.28,And so we return the 1 back up here.
+2339.28,2341.16,This becomes 2 times 1.
+2341.16,2343.44,And they can finish their job.
+2343.44,2347.36,"So notice at this point, we were 1, 2, 3, 4 functions."
+2347.36,2349.7200000000003,Just kind of hung up and waiting for values
+2349.7200000000003,2351.28,to be passed back to us.
+2351.28,2354.32,But now we can finally finish our jobs 1 by 1.
+2354.32,2356.48,So this one returns a 2.
+2356.48,2358.36,This one returns the 6.
+2358.36,2362.4,This one returns the 24.
+2362.4,2366.44,And the 24 gets printed out.
+2366.44,2370.88,So big idea here.
+2370.88,2374.2400000000002,"We've got each function call, even though it has the same name,"
+2374.2400000000002,2376.1200000000003,is completely separate.
+2376.1200000000003,2381.52,Completely independent environment with their own parameters.
+2381.52,2385.04,Those parameters can change within those environments.
+2385.04,2386.08,And that's totally OK.
+2386.08,2388.4,They won't interfere with any parameters
+2388.4,2390.4,in any other environments.
+2394.4,2397.7599999999998,So let's do the Python tutor link.
+2397.7599999999998,2400.04,"And then again, we can just do one more time"
+2400.04,2402.04,just to show you what this looks like in terms
+2402.04,2403.3199999999997,of the Python tutor.
+2403.3199999999997,2406.84,So here I've got my factorial with n is equal to 4.
+2406.84,2408.92,Calls n is equal to 3.
+2408.92,2411.52,Calls factorial with n is equal to 2.
+2411.52,2414.04,Calls factorial with n is equal to 1.
+2414.04,2417.0,"At this point, just like with the multiplication,"
+2417.0,2419.8,"I've got all these factorials in the works,"
+2419.8,2422.2799999999997,but we can start returning values back to whoever
+2422.2799999999997,2429.24,called us until we get back to the original function call.
+2429.24,2430.32,OK.
+2430.32,2432.96,So this is another recap of the observations
+2432.96,2435.2799999999997,that we've seen right each different function call
+2435.2799999999997,2437.32,has its own environment.
+2437.32,2439.2,The variables within these environments
+2439.2,2441.36,are specific to those environments.
+2441.36,2444.36,They don't interfere with each other.
+2444.36,2446.84,And the flow of control is right.
+2446.84,2449.56,"So when we make a function call, all we know"
+2449.56,2451.88,is the function that we call next.
+2451.88,2453.2000000000003,We don't skip around.
+2453.2000000000003,2455.96,All we know is who we call next and who we need
+2455.96,2457.32,to give the value back up to.
+2461.8,2463.28,One last thing I wanted to point out.
+2463.28,2467.44,"So here I've got the code for factorial,"
+2467.44,2471.84,the iterative version and the recursive version.
+2471.84,2474.52,"So the one on the left is, sorry, the one on the right"
+2474.52,2476.0,is what we already wrote.
+2476.0,2478.28,So it's factorial recursive.
+2478.28,2480.6,And the one on the left is the iterative version.
+2480.6,2487.08,"So I personally think the one on the right is more readable,"
+2487.08,2490.0,because it's very similar to the way
+2490.0,2493.68,that we would write the expression mathematically.
+2493.68,2497.2000000000003,"But if you had a little bit of time to think about it,"
+2497.2000000000003,2499.6800000000003,you can just as easily come up with code that
+2499.6800000000003,2502.32,does the exact same job iteratively.
+2502.32,2504.92,"So remember, in iteration, we've got our loop."
+2504.92,2507.88,There's no other function calls.
+2507.88,2511.1200000000003,We have a loop that iterates some number of times.
+2511.1200000000003,2513.7200000000003,There's some sort of loop variable or loop counter.
+2513.7200000000003,2516.0800000000004,And there's a state variable that keeps track
+2516.0800000000004,2517.2000000000003,of the answer of interest.
+2517.2000000000003,2519.36,"In this particular case, the product"
+2519.36,2523.1600000000003,from one all the way up to and including it.
+2523.1600000000003,2525.28,So I want to end today's lecture
+2525.28,2527.32,with just a couple of observations.
+2527.32,2531.52,So today we saw some really simple examples of recursion.
+2531.52,2535.32,"But I think it outlined some really, really tricky ideas"
+2535.32,2538.6400000000003,that people usually have trouble grasping
+2538.6400000000003,2539.76,when you first see recursion.
+2539.76,2542.1200000000003,And that's because you basically write a function
+2542.1200000000003,2543.48,in terms of itself.
+2543.48,2545.6000000000004,And that can be a little bit confusing.
+2545.6000000000004,2547.2400000000002,"So of course, we applied recursion"
+2547.2400000000002,2549.4,"to some really, really simple things."
+2549.4,2552.1600000000003,We did multiplication.
+2552.16,2555.8399999999997,And we did factorial.
+2555.8399999999997,2558.52,"Depending on how you feel, the recursive version"
+2558.52,2560.6,or the iterative version might be more intuitive for you.
+2560.6,2562.3999999999996,"And certainly, for these examples,"
+2562.3999999999996,2566.48,you did not need to write them recursively.
+2566.48,2567.7999999999997,There's a lot of code out there
+2567.7999999999997,2570.64,that you actually don't need to implement recursively.
+2570.64,2573.2,"The iterative solution is far more intuitive,"
+2573.2,2576.56,especially since you guys were first introduced to iteration.
+2576.56,2579.48,"You introduced four loops in a while loops back in lecture,"
+2579.48,2581.12,like three or something like that.
+2581.12,2583.2799999999997,"So if that's the first thing you saw,"
+2583.2799999999997,2585.92,that's usually the first thing that's going to be your go-to.
+2585.92,2588.08,But there are several problems that
+2588.08,2591.44,are more intuitive to write using recursion.
+2591.44,2594.92,So a couple of examples where recursion is more intuitive
+2594.92,2599.3199999999997,"is any time when you need to repeat a task that, for which"
+2599.3199999999997,2603.0,you don't know how deep you need to go.
+2603.0,2606.7599999999998,"In which case, the recursive calls will take care of making"
+2606.7599999999998,2608.48,"calls to itself, to itself, to itself,"
+2608.48,2610.2799999999997,to itself until it reaches the base case.
+2610.28,2613.2400000000002,You don't need to think about that in your iteration.
+2613.2400000000002,2616.1600000000003,So an example of that is this kind of classic one
+2616.1600000000003,2620.1600000000003,where we have a file inside a file system.
+2620.1600000000003,2623.8,"Someone, if we're looking for a piece at dot text,"
+2623.8,2627.52,we can have a student whose piece at dot text
+2627.52,2632.52,is straight under their user's slash piece at dot text folder.
+2632.52,2635.76,But we might have another person whose piece at dot text
+2635.76,2639.0,"is going to be within their users or documents, their schools,"
+2639.0,2644.52,"their MIT, their classes, their 600L, their piece at one slash"
+2644.52,2646.28,piece at dot text.
+2646.28,2649.4,"So that uncertainty, for how far deep you need to search"
+2649.4,2652.28,"the file system in order to get to the file of interest,"
+2652.28,2654.96,is a perfect place to apply recursion.
+2654.96,2657.56,Another one is where you have an expression.
+2657.56,2659.68,If you're building your own calculator in code
+2659.68,2665.2,"and you have order of operations using parentheses,"
+2665.2,2667.88,"again, you don't know how many parentheses you might need"
+2667.88,2672.6,"to have a loop go through in order to get to that base expression,"
+2672.6,2675.04,to figure out the one that you need to do first.
+2675.04,2682.48,And so that's another case where using recursion is very useful.
+2682.48,2684.92,"So in the next lecture, what we're going to do"
+2684.92,2688.2000000000003,"is a recap of recursion using another example,"
+2688.2000000000003,2689.76,Fibonacci sequence.
+2689.76,2695.28,And then we're going to start looking at recursion applied to lists.
+2695.28,2699.84,"And specifically, if we have lists within lists within lists,"
+2699.84,2703.4,"and we don't know how many nested lists we might have,"
+2703.4,2706.0400000000004,recursion's going to be a perfect example for that.
+2706.0400000000004,2707.0400000000004,OK.

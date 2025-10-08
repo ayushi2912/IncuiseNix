@@ -1,0 +1,439 @@
+Start Time,End Time,Text
+0.0,16.8,"So, let's get started with lists and mutability."
+16.8,22.96,"So last lecture, we talked a lot about what it means to have these mutable data structures"
+22.96,23.96,lists.
+23.96,26.240000000000002,"Today, we're not off the hook."
+26.240000000000002,29.6,We will continue talking about the idea of mutability.
+29.68,35.24,We're going to do it in the context of removing items from lists and some of the pitfalls that
+35.24,36.88,come with that.
+36.88,42.64,"And then we'll go into along the way ideas about cloning, making copies of lists and"
+42.64,48.400000000000006,"aliasing, making another name for the same object in memory."
+48.400000000000006,56.32,"So first, let's quickly talk about making a copy of a list because so far when we're dealing"
+56.32,64.2,"with these mutable objects, we notice that it's sometimes inconvenient to mutate the"
+64.2,65.2,list.
+65.2,68.2,And it's hard to keep track of the fact that we're mutating a list.
+68.2,72.92,And there are some problems for when it does make sense to make a copy of our list so
+72.92,80.88,that we can mutate the copy or mutate the original while still having those original items
+80.88,83.72,in saved somewhere else.
+83.72,89.84,"So you can ask Python to make a copy of a list, and basically behind the scenes, it creates"
+89.84,92.2,a new list object for us in memory.
+92.2,98.96,And copies over every single element from the list you'd like to copy into the new list.
+98.96,103.16,So the syntax for doing a copy of a list is as follows.
+103.16,108.72,"So we've got a list that's already made called L, and we want to make a copy of it."
+108.72,112.68,"So the syntax is L, square brackets with a colon inside it."
+112.68,117.36000000000001,"And behind the scenes, Python makes this list inside memory, and then we save that new"
+117.36000000000001,124.72000000000001,list that has the exact same element as L into a list named L copy.
+124.72000000000001,129.4,"And so in memory the way this looks, so if I have this code here where I name my list L"
+129.4,134.84,"original, again, I'm choosing a different name than L just to show you that whatever list"
+134.84,137.72,"object I have, that's the name I need a reference."
+137.72,143.84,"So if I have L original is 4, 5, 6, and memory, if I want to make a copy of my list, I just"
+143.84,148.72,"say L original, square brackets with a colon inside it, that means copy every single element"
+148.72,154.92,"from beginning to end of this list, and bind it to the name L new."
+154.92,160.07999999999998,"So notice in memory, now I have two list objects, they're referenced by different names."
+160.07999999999998,164.24,"And so if I change one of them, the other one will not change, right?"
+165.24,169.04000000000002,They're now completely separate objects.
+169.04000000000002,173.52,"So we're starting this lecture off with a quick little exercise, just to kind of get you to"
+173.52,178.08,remember what we did last time and to practice writing a little bit of code with mutable
+178.08,180.60000000000002,objects.
+180.60000000000002,185.12,So I would like you to write this function called remove all.
+185.12,188.20000000000002,This is going to feel very similar to something we did last lecture.
+188.20000000000002,192.60000000000002,"So last lecture, I asked you to write a similar function which took in a list L and an element"
+192.6,200.35999999999999,E. And that function from last lecture created a new list and then basically populated that
+200.35999999999999,206.48,"new list with all the elements from, it had all the same elements as L except for omitting"
+206.48,209.84,the ones that were equal to E.
+209.84,214.44,This version that I would like you to write for me is not going to create a new list and
+214.44,216.48,return this new list.
+216.48000000000002,225.36,It will mutate my input L such that you're going to only keep the elements from L that do
+225.36,231.88000000000002,not match E. So I'm going to give you a hint for how to do this.
+231.88000000000002,238.48000000000002,So the process for this is going to make use of this thing that we just saw which is I want
+238.48000000000002,242.68,you to first save the list as is into a copy.
+242.68,247.64000000000001,"And then at the end of last lecture, we saw a way for us to mutate a list to empty it"
+247.64000000000001,249.20000000000002,out of all the elements.
+249.20000000000002,253.4,So we still have that object in memory but we're just essentially clearing it out.
+253.4,255.52,We remove all the elements from it.
+255.52,258.40000000000003,So first make a copy and save the elements.
+258.40000000000003,266.76,Then clear the list we want to mutate L and then iterate through the copy and add all
+266.76,270.64,of the elements that do not equal E back into L.
+270.64,272.0,So that should be the process.
+272.0,277.68,"And in the end, when we call this remove all function, the thing that we're passing in will"
+277.68,281.44,"have been mutated, we don't have anything to return."
+281.44,284.64,We're just mutating the thing that's being passed in.
+284.64,290.03999999999996,So I'll give you a couple of minutes to work on that and you can start writing it on around
+290.03999999999996,297.03999999999996,line 30.
+297.04,300.8,Does anyone have some code to start with?
+300.8,303.8,Yes.
+303.8,304.8,Yep.
+304.8,305.8,Initialize a new list.
+305.8,307.8,Yep.
+307.8,308.8,What do you want to call it?
+308.8,309.8,L new.
+309.8,310.8,Good name.
+310.8,311.8,L new equals.
+311.8,312.8,How do we make a copy?
+312.8,313.8,And what?
+313.8,314.8,Do we copy?
+314.8,326.0,"So what we'd like to do is mutate L, right?"
+326.0,330.08,"But L already contains a bunch of items in it, right?"
+330.08,333.12,"So that's why we first want to make a copy of it, right?"
+333.12,336.28,So just like in the syntax from the slides.
+336.28,341.6,This will essentially save for us everything that we already have in L in a new list called
+341.6,343.6,L new.
+343.6,344.6,Okay.
+344.6,347.36,"So now that we have that, does anyone..."
+347.36,351.88,Yeah.
+351.88,355.68,"So L dot clear does not take a parameter in, right?"
+355.68,358.76,It's just a function that empties out L fully.
+358.76,362.76,"So it'll basically drop every single element in L, okay?"
+362.76,367.76,"But we will see some function that will remove elements, okay?"
+367.76,374.04,"So if we do L dot clear, then L becomes the empty list, right?"
+374.04,375.76,L just becomes this.
+375.76,380.76,"So now that I've mutated my object to contain none of my elements in it, how do I add back"
+381.76,385.76,in the elements that satisfy the condition?
+385.76,396.44,"Yeah, so for N in L new, right?"
+396.44,403.0,"So I'm iterating over the list that actually contains stuff, the thing I've copied."
+403.0,404.0,And then...
+404.0,409.71999999999997,"Yeah, exactly, L dot append."
+409.72,419.24,"So notice I am appending to L, but I'm iterating over L new, right?"
+419.24,421.04,L new has all of these elements in it.
+421.04,424.32000000000005,I want to touch each element to see what value it has.
+424.32000000000005,430.48,"If it's not equal to the one from the parameter E, then I add it to my list L, the one that's"
+430.48,433.0,"currently empty, okay?"
+433.0,438.24,And then do I need to return anything?
+438.24,439.48,We don't need to return...
+439.48,445.72,"It won't hurt to return L, but L will already be mutated by virtue of this function."
+445.72,449.04,"So we don't need to return any L, right?"
+449.04,453.24,"L is my parameter that I've passed in, so there's nothing to return."
+453.24,459.08,It's just being mutated in the function.
+459.08,464.68,"So when I make my function call here, right, I'm passing an L in, I'm just making a call"
+464.68,471.44,"to remove L with this L in object, which is this one here."
+471.44,472.44,And notice there's no...
+472.44,476.08,"I'm not saving the return from this function to anything, right?"
+476.08,480.40000000000003,Because this function will just mutate whatever I passed in.
+480.40000000000003,486.56,"And then if I just print the value of L in after this function call, it'll print the mutated"
+486.56,488.56,value.
+489.56,493.76,"Yes, sorry, we should append N, not E."
+493.76,494.76,Thank you.
+494.76,499.56,"Yep, and that looked weird, perfect."
+499.56,504.96,"And so if I run the other two examples, here I'm removing one, so it should just show me a"
+504.96,511.64,"list with all twos, and here I'm removing zero, and zero doesn't even exist, so it doesn't"
+511.64,515.56,mutate that input list at all.
+515.5600000000001,526.1800000000001,"Okay, so now we can start talking about other operations on lists, which deal with removing"
+526.1800000000001,528.6,"lists, making the lists smaller."
+528.6,532.36,So we're actually going to take elements away from the list.
+532.36,538.8000000000001,"And this is similar to kind of what the suggestion was, instead of kind of to clear out an element,"
+538.8000000000001,540.48,"a specific element, right?"
+540.48,545.36,"But the clear function removes all the elements, however these functions will remove certain elements"
+545.36,546.84,from our lists.
+546.84,551.04,"So there's three different ways that are on this slide, and I'm going to show you an example"
+551.04,555.4,"with this list L, and I'm showcasing what each one of these functions do, but first I'll"
+555.4,557.08,just explain them.
+557.08,562.12,"So one option for removing an item from a list is, if you know the index of the item you want"
+562.12,565.6,"to remove, like you want to remove the very first one in the list, or the last one in the"
+565.6,570.04,"list, or the halfway point, or something like that, you can tell Python to remove the"
+570.04,577.3199999999999,"item from list L at a particular index, with this del parentheses, so this function del,"
+577.3199999999999,582.68,and you pass in L at whatever index you want to remove.
+582.68,588.4,"Now sometimes you want to remove the item all the way at the end of the list, so the farthest"
+588.4,596.16,"most right, in that case there's an operation called pop, and you call pop on list L. So if"
+596.16,601.3199999999999,"you just say l.pop with nothing in the parentheses, Python will automatically grab that last value"
+601.3199999999999,605.0,from the list and drop it from the list.
+605.0,610.88,Now pop is a little bit interesting because it has a return value.
+610.88,616.3199999999999,We're using this dot notation which we used with append and clear and a bunch of other things
+616.3199999999999,621.48,"from last lecture, but here this pop not only does it have the side effect of mutating"
+621.5600000000001,626.16,"my list by dropping the last element from it, but it also returns something."
+626.16,632.32,"So this function call here will return for me the value of the element that got dropped,"
+632.32,637.12,just in case you want to do something with it.
+637.12,641.28,"And lastly, if you know the element you'd like to remove specifically, so if you have"
+641.28,645.52,"a list of a bunch of names, and you want to remove Anna from that list, and you know the"
+645.52,651.48,"string A and A is what you'd like to remove, you do that using the function l.remove."
+651.48,656.4399999999999,"So whatever lists your names are part of, you say that list dot remove, and then you'd pass"
+656.4399999999999,663.28,"it in the string Anna, or the number five, or whatever actual element you'd like to remove."
+663.28,669.96,"Now if there are many elements that match that value, if there's many Anna's in my list"
+669.96,674.84,"of names, it will only remove the first one it finds, so from index zero."
+674.84,678.6800000000001,"Now the other ones will remain, you'll have to call that function again."
+678.6800000000001,686.4,"So let's look at this example here, I've got this list of seven elements within it."
+686.4,691.52,"Let's do a few of these operations all in a row, so each one of these operations will mutate"
+691.52,697.12,"my list, so the operation right after it will work on the mutated list."
+697.12,703.08,"So let's start with this l, if we say l dot remove two, Python will look for the element"
+703.08,705.36,whose value is two.
+705.36,709.76,"Well there it is, it's at the front of my list, that's fine, and Python will remove that"
+709.76,715.32,"element, so this list will now be one element less shorter, right, and that two is going"
+715.32,721.12,"to be gone, so the list l will now be mutated to be one, three, six, three, seven, zero."
+721.12,726.6800000000001,"All right, well what if we remove three now, right, so we've done the operation to remove two,"
+726.6800000000001,732.8000000000001,"we've ended up with this mutated list, now what if we remove three from this mutated list?"
+732.8000000000001,738.2400000000001,"There's two of them in there, right, the element that's going to be removed is the first"
+738.2400000000001,744.5200000000001,"one it finds, so just this one here, and again this is an operation that mutates my list,"
+744.5200000000001,752.7600000000001,"so this list here that I've started with would be one less element shorter, and that three"
+752.7600000000001,759.6800000000001,"will have been removed, right, so now I've got one, six, three, seven, zero, all right, what"
+759.6800000000001,764.6400000000001,"if we want to delete an element at a particular index, so now again we're working with the"
+764.6400000000001,773.08,"mutated list, one, six, three, seven, zero, this del function takes an index in a specific"
+773.08,778.0400000000001,"list and removes the element that is there, so in this case I want to remove the element"
+778.0400000000001,784.6,"at index one, so in this list here the element at index one is the six, right, this is zero,"
+784.6,790.24,"this is one, so the six will be removed, and my list will be mutated to just contain"
+790.24,799.72,"these four elements, one, three, seven, and zero, and lastly if we pop that function will"
+799.72,805.72,"just remove the element at the end of the list, the element at the end of the list is the zero,"
+805.72,812.1600000000001,"so the list through this side effect of pop, right, is going to be mutated to contain"
+812.1999999999999,817.8,"just the three elements except for the last one, so it will contain one, three, and seven,"
+817.8,823.4399999999999,and additionally if I'd like to save the value of the element that got removed from the
+823.4399999999999,830.6,"end of the list, the zero, you can, because this function call here, l dot pop, you can"
+830.6,841.6,"save the return value into a variable, none of the other ones, del or remove have any return,"
+841.6,847.12,"right, so if you saved a variable from that function, the function call to a variable,"
+847.12,853.16,"that variable will be none, pop is special because it actually grabs that variable value"
+853.16,860.6,"and returns it, okay, so all of these operations mutate the list, right, so that means as we"
+860.6,869.36,"did operation after operation we were working with the mutated list, okay, yes there was"
+869.36,882.84,"a question, I'm sorry, say again, l dot index one, yeah, so the l dot index one here works"
+882.84,892.6,"on the list we had just mutated, so this one, the element at index one is the six, okay, so"
+892.6,896.6800000000001,let's look at the code we just wrote in the you tried exercise and try to rewrite it using
+896.6800000000001,903.8000000000001,"this remove operation, well the way we can think of it is we'd like to remove the element"
+903.8000000000001,909.24,"that is e, right, so we know the value of the element we'd like to remove, it's you know"
+909.24,915.32,"three or five or one or two or whatever, so that's e and we know of an operation that can"
+915.32,921.1600000000001,"remove the element from the list, it's called remove, unsurprisingly, so what we can do is"
+921.24,927.12,"we can say l dot remove e, right, and that would remove the first instance of the element"
+927.12,933.36,"in the list, but I might have many of these elements in my list, so we can just write a little"
+933.36,940.0,"while loop around this operation and we say while we still have this value in our list, remove"
+940.0,946.76,"it, right, so that's what this while loop is doing, e in l is going to be their true or false,"
+946.76,951.56,"whether you know the number you know five or whatever is in my list, and as long as I still have"
+951.56,961.8,"a five in my list call l dot remove on five or whatever is, so a nice little two liner here to solve"
+961.8,970.52,"the same problem. Now what if we rewrote that code in a slightly different way, again using remove,"
+970.52,975.56,"but let's say maybe we didn't realize we could use a while loop, and instead we used a four loop"
+975.96,984.6,"to iterate over each element in l, and if that element is equal to e remove it, right, seems"
+984.6,994.12,"reasonable, so what would happen, and I can run it for you guys, so if we run it with this code here,"
+994.6800000000001,1002.6,"this is the one from the slides, just to show you that I'm not making it up, so if this is the code"
+1002.6,1009.0,"that we wrote, I tried to remove the two from the list, and when I printed the result it actually"
+1009.0,1016.44,"printed one comma two, so I have two elements left in my list, it looks like it didn't correctly remove"
+1017.08,1029.88,"a two, okay, and at first it's surprising why this is, right, because the code seems to, it looks"
+1029.88,1035.96,"right, it seems to work just fine, but let's step through sort of this memory diagram and see"
+1035.96,1042.8400000000001,"exactly what happens step by step, so with each iteration of our four loop, so originally I've got"
+1042.8400000000001,1048.2800000000002,"l containing one two two two, right, so far so good, that's just us doing this line here,"
+1048.92,1053.72,"and then I make a function called to remove all, so I want to remove the number two from my list,"
+1053.72,1062.84,"I've got a four loop, where my loop variable is called lm, and it will iterate through each element in my"
+1062.84,1070.68,"sequence, right, where my sequence is all the elements in l, so first it'll be one, right, then it'll"
+1070.68,1076.04,"be the next value in the sequence two, and then two, and then two, right, so here I've just got lm"
+1076.04,1081.56,"initialized to the first value in the sequence, if lm equal e, well the one does not equal the two,"
+1082.12,1088.6,"so then we do not remove anything, next the four loop goes on to the next value in my sequence,"
+1088.6,1099.0,"the two, so now lm is two, and if lm equal two, it does equal two, what am I going to do,"
+1099.0,1106.84,"well I need to do l dot remove e, so this is where bad things happen, I'm going to remove an"
+1106.84,1112.1999999999998,"element from my list, right, so I still have those three twos in there, but as soon as I drop one"
+1112.1999999999998,1122.9199999999998,"of the twos all the elements beyond that two, shift over, but Python doesn't know that it should also"
+1122.9199999999998,1130.52,"shift over the pointer, right, it's still pointing to that element that it's currently at, it's not"
+1130.68,1137.56,"going to shift itself backward just because you removed an element, and so Python just finished"
+1138.28,1144.12,"removing the element, and now it says I finished this loop through, so I need to go back up here and"
+1144.12,1152.92,"make element be the next value in my sequence, the next two, so I've essentially skipped over one"
+1152.92,1159.6399999999999,"thing that I needed to remove because when I remove the item everything else shifted over as well,"
+1159.64,1166.92,"but my pointer didn't decrement, okay, so this is a big problem, I mean we can finish off here,"
+1166.92,1174.1200000000001,"but we've already seen the problem, the last time through the loop Python C as well is this"
+1174.1200000000001,1179.8000000000002,"two equal to the thing I want to remove, it is, so it removes it, and this is the end,"
+1179.8000000000002,1184.1200000000001,"it has no more values left to go through in the sequence because it's already, its pointer is"
+1184.1200000000001,1193.96,"already out of the bounds, okay, is everyone okay with that issue, okay, so the problem here with"
+1193.96,1201.0800000000002,"remove is that we're iterating over a list as we're mutating it, right, and so removing these items"
+1201.0800000000002,1207.72,"can cause unpredictable behavior, something like this could still happen if we were adding items,"
+1207.72,1212.7600000000002,"it's to accept that we're usually adding items to the end of the list, right, with append, if we"
+1212.76,1217.48,"were adding items somewhere in the middle or somewhere around where our pointer is supposed to be,"
+1218.2,1222.52,"I think we could theoretically run into the same issue when we're adding items, where we might skip"
+1223.32,1228.68,"elements or we might see an element twice, okay, it's just more apparent when we're removing items,"
+1230.2,1235.16,"okay, so this is the big thing that we're going to talk about in this lecture, so I'm going to go"
+1235.16,1240.2,"through another example, this is trick example number four where we're going to do a very similar"
+1240.2,1246.76,"thing, but we're going to have a loop iterating over L's elements directly, just like we did,"
+1247.8,1251.88,"but doing a different task, just so we're not doing that same remove all task."
+1253.64,1259.0,"So let's look at a slightly different problem, this will be in the context of a function called"
+1259.0,1267.0,"remove duplicates. This function will take in two lists, so as an example here, I've got a list"
+1267.0,1273.72,"with 10, 20, 30 and 40 in it and I've got another list with 10, 20, 50 and 60 in it. The purpose of this"
+1273.72,1285.72,"function is to mutate L1, okay, and the way I want to mutate L1 is such that if an element in L1"
+1285.72,1293.0,"is also in L2, I want to remove it, right, so the 10 and the 20 notice are common to L1 and L2,"
+1293.56,1299.88,"so I would like to remove the 10 and the 20 from L1, the 30 and the 40 stay because there's no"
+1299.88,1310.12,"30 or 40 in L2, okay, so that's our task, and this is the code that supposedly does this, so I've got"
+1310.12,1317.64,"a loop that goes through each element in L1, so 10 and 20 than 30 than 40, and I ask if that element"
+1317.72,1325.0,"is in L2, so here they are, there's two of them here, then remove it from L1, very similar thing to"
+1325.0,1333.48,"what we just did. This code doesn't work because if we actually run it, in the end Python will mutate"
+1333.48,1340.6000000000001,"L1 to contain the 20 and the 30 and the 40, right, whereas we only wanted to keep the 30 and the 40,"
+1340.6000000000001,1346.92,"right, because the 20 also appeared in L2, so why in the world did we keep it? Well we kept it because"
+1346.92,1354.2,"of the same issue that we just saw, we're mutating a list as we're iterating over it, and we're"
+1354.2,1359.4,"doing a removal, so we're again skipping over an element, so let's just step through this one,"
+1359.4,1366.76,"just to show you again what can happen, so here I've got 10, 20, 30, 40 for L1 and 10, 20, 50, 60 for"
+1366.76,1377.96,"L2, in my loop my variable is E, so first it'll be 10, and we ask if 10 is in L2, that's true,"
+1377.96,1385.16,"remove it from L1, so you can see what's going to happen, my 10 is removed, everything else shifts"
+1385.16,1395.08,"over by 1, but my loop index is stays fixed. Next Python says I'm going to increment my"
+1396.84,1405.64,"variable, E, to go to the next item in my sequence, so E becomes the 30, and already I've skipped"
+1405.64,1413.72,"over one element that I was interested in removing. So here when we're pointing to the 30, Python says"
+1413.72,1420.52,"well the 30 is not in L2, so we don't do anything, and then it points to the 40, the 40 is not in L2,"
+1420.52,1427.08,"so we don't do anything, and then the code is done, and we've erroneously finished with mutating L1"
+1427.08,1437.8,"to just be the 20, 30 and the 40. Okay, so let's try to rewrite the code to actually work by using"
+1437.8,1444.76,"copies, so we certainly could use the same trick we did previous, we had the first you tried exercise,"
+1444.76,1452.28,"where we could make a copy, clear L1, and then add the elements back, we could do that, but we can"
+1452.28,1457.4,"also do a slightly different version of that, where again we make a copy, so here I've got L1"
+1457.96,1464.52,"copy equals L1 square bracket colon, and then the key thing here is we're iterating over the copy,"
+1465.16,1472.76,"right? So if we iterate over the copy, we're not going to mutate the copy, but we will mutate L1,"
+1473.4,1481.0,"so for the for loop variable goes over the copy, but the removal is done from L1,"
+1482.92,1490.04,"so to visualize that, this is what happens, so I've got L1 and L2 as before, so when I make my function"
+1490.04,1497.4,"call here, I have L1 copy equals L1 square bracket colon, so this makes for me a new variable inside"
+1497.4,1507.3200000000002,"memory, which is an exact duplicate copy or clone of L1, so every one of my elements is now saved,"
+1507.88,1514.68,"so I can do whatever I'd like to L1, and know that I can still have a way to iterate and look at"
+1514.68,1525.4,"each variable from the original L1, so now my loop variable E goes over elements in L1 copy,"
+1527.64,1535.0800000000002,"so first we look at the 10, and I say if the 10 is in L2 it is remove it from L1, so notice I have"
+1535.0800000000002,1544.3600000000001,"just mutated L1 not the copy to be one element less, then the loop variable E goes to the next value in"
+1544.3600000000001,1550.2,"my sequence, so I'm not skipping anything here, because I didn't mutate L1 copy, so now we look at the 20,"
+1550.2,1556.92,"correctly this time, right, so now we ask is the 20 in L2, it is, so we remove it from L1,"
+1557.8,1566.1200000000001,"and then the 30 and the 40, we do nothing, questions about this, is this okay, is this too fast,"
+1566.1200000000001,1579.8,"is this too slow, okay, so that's using copies or aka clones to help you keep"
+1580.52,1587.4,"track of values in an original list without overriding them, or without removing them accidentally,"
+1587.96,1593.24,"now I want to talk about aliases, because this is a very important topic when we have these mutable"
+1593.24,1601.72,"data structures, so let's do a quick overview of what an aliases, so if we think about city, for"
+1601.72,1607.88,"example Boston, an aliase for Boston is basically any other name that refers to the same city,"
+1607.88,1613.88,"right, the same object, so Boston also known as the hub or bean town or Athens of America,"
+1615.0,1621.5600000000002,"all of these names refer to the same inherent city, right, so if I say Boston is small in tech savvy,"
+1622.2800000000002,1630.1200000000001,"then those two attributes or properties refer to this object itself, right, the city, so the hub is small"
+1630.1200000000001,1636.7600000000002,"in tech savvy, or bean town is small in tech savvy, right, it doesn't matter what name I refer to this"
+1636.76,1643.24,"object as, it's the same set of properties still apply to it, and so if I add an attribute,"
+1643.24,1647.72,"or if I take away an attribute through one of these aliases, through one of these names,"
+1648.28,1654.04,"well, if it's suddenly snowing in Boston, then yes, it's snowing in the hub or it's snowing in"
+1654.04,1662.44,"bean town, right, because these are just names for the same object, and so that idea is also something"
+1662.44,1669.72,"that comes up when we deal with these mutable objects. If you don't explicitly tell Python,"
+1669.72,1677.24,"you'd like to make a copy of a list, and you just use the equal sign between a mutable object"
+1677.96,1684.3600000000001,"and another name for this mutable object, then Python only creates an alias for that object,"
+1685.0800000000002,1689.0800000000002,"okay, so notice we had to say explicitly I want to make a copy with the square brackets colon."
+1690.04,1694.52,"If we write code that looks like this, so here the only difference I've done,"
+1695.48,1701.24,"so the code on the right is the one that worked, the code on the left is me not making a copy of my L1,"
+1701.24,1708.9199999999998,"I'm only using the equal sign directly, and in Python using this assignment operator,"
+1708.9199999999998,1717.96,"the equal sign, it means that you're making an alias for that same object in memory,"
+1718.6000000000001,1724.6000000000001,"so it's just another name to refer to that same object. If you mutate that object through L1,"
+1725.32,1731.16,"L1 copy will also have been mutated because it's pointing to the same object, and vice versa."
+1732.1200000000001,1739.32,"So really, this particular code on the left here is not any better than saying for E in L1,"
+1739.32,1746.44,"because L1 copy is pointing to the exact same object in memory, okay, so let me show you exactly what"
+1746.44,1756.8400000000001,"this means in the Cloud diagram that we've been doing. So this is the code that creates an alias,"
+1756.8400000000001,1763.56,"not a copy, so I've got L1 equals 10, 20, 30, 40, L2 is 10, 20, 50, 60, just like before."
+1765.16,1771.3200000000002,"The code up here, so L1 copy equals L1, I just named a copy, but it's not actually making a copy,"
+1771.3200000000002,1776.04,"right, because I know where did I say explicitly to make a copy using the square brackets colon."
+1776.8400000000001,1784.28,So the alias in memory means that it's just another name pointing to that exact same object.
+1786.2,1793.56,"Okay, so then the for loop for E and L1 copy is iterating through this object here,"
+1793.56,1801.24,"which is being pointed to by L1 copy and L1. Okay, so if I'm iterating through and removing elements"
+1801.24,1807.72,"as I'm doing so, this is just the original buggy code that we had that iterated through L1,"
+1807.72,1814.92,"right, so I'm removing the 10 incrementing the element, the E variable to the next element,"
+1814.92,1818.36,and then not doing anything with the 30 and not doing anything with the 40.
+1820.52,1829.24,"Does that make sense, alias? Is that all right? Okay, so the big idea that we'll kind of tie a"
+1829.24,1835.72,"couple things together is related to functions, formal parameters and actual parameters."
+1836.76,1844.44,"So when we make a function definition, right, the things inside the parameters inside the function"
+1844.44,1848.92,"definition are called formal parameters, right, we're just writing the function assuming that these"
+1848.92,1854.52,"will eventually get some actual values associated with them. When we make a function call,"
+1854.52,1861.08,"that's when we pass actual values. And when we have mutable objects being passed into a function,"
+1862.36,1869.08,the formal parameter actually becomes an alias for the actual parameter in the function call.
+1870.2,1877.24,"So here's our function once again. The difference between what we've been seeing so far,"
+1877.24,1882.76,"this is the code that we had just seen, the difference that I've done in this particular code is"
+1882.76,1888.6,"not name this L1 and L2, like it was named up here, right, because it doesn't have to be named L1"
+1888.6,1897.24,and L2. I named it L-A and L-B. And this will sort of bring the point home. So when I make my function
+1897.24,1904.6,"call to remove duplicates with L-A and L-B, Python takes this object and this object and passes the"
+1904.6000000000001,1911.8000000000002,"min as parameters. So in my memory diagram, I've got L-A is 10, 20, 30, 40, and L-B 10, 20, 50, 60,"
+1911.8000000000002,1919.3200000000002,"right, that's what I have down here. As soon as I make my function call, remember Python maps out,"
+1919.3200000000002,1924.5200000000002,"right, formal parameters to actual parameters. But when we're dealing with these mutable objects,"
+1924.5200000000002,1933.4,"L1 and L2 are aliases for the things being passed in. So L1 will point to,"
+1934.1200000000001,1944.2,"you tell me. Yes, exactly. So here, I've got the same name for the same object and L2 will point"
+1944.2,1951.72,"to L-B, right, two different names pointing to the same object. And that's why when I'm iterating"
+1951.72,1959.5600000000002,"through and doing whatever I am doing to these formal parameters here, Python actually mutates the"
+1959.56,1977.1599999999999,"objects that were passed in. Yes. L-A and L1 will have the same IDs. Yeah, yeah, exactly."
+1978.52,1986.28,"Yeah, using the ID function, we did last time, exactly. I invite you to try it too. But I think they"
+1986.28,1993.0,"should, because they're modifying the same object. Everyone, okay, so far? Two names aliases for"
+1993.0,1999.8,"that same object. And so that's why when we're mutating L1 here, this L-A and L-B that we passed in"
+1999.8,2005.0,"will be mutated, right? So here's my L1 copy as well. So I've got three names for this particular"
+2005.0,2011.32,"object. And then we do the thing where we mutate the thing, right. And then at the end of the function,"
+2011.32,2018.9199999999998,"when it's done, this entire thing has no return, it returns none. But when we print L-A,"
+2020.2,2025.8799999999999,"the thing we're printing is this object here. It's whatever L-A points to, and it's this thing that"
+2025.8799999999999,2037.56,"was mutated through L1. Yes, no, thumbs up, thumbs down. Is it good? This is very cool, you guys."
+2037.96,2051.0,"Okay, this was a nice loosen to tie up. Okay, so the last 10 minutes, I want to talk about what happens"
+2051.0,2059.4,"when we have lists that contain lists themselves, right? So, so far, the examples we've been working with"
+2060.2799999999997,2065.7999999999997,"are lists that just contain, you know, strings or integers or things that are immutable."
+2066.76,2072.44,But what exactly happens behind the scenes when we have elements that are mutable themselves?
+2074.52,2080.76,"So we're going to do an example. We're going to go through, in a lot of, in all of these slides,"
+2081.4,2086.2000000000003,working through an example where we start out with this old list that looks something like this.
+2087.0,2093.6400000000003,"So we have a list that contains three elements, right? The first one is another list."
+2094.44,2100.12,"The second is another list, and the third is another list, right? I don't care what elements"
+2100.12,2105.72,"those lists have for now. All I know is at the top level, old list contains three things."
+2107.4,2113.64,"Okay, so let's do aliasing, and then we'll do a shallow copy of this list, and then we'll do a deep"
+2113.64,2119.64,"copy of this list and show you what happens. So in this example, what we're going to do is just"
+2119.7999999999997,2126.52,"to straight up alias of old list. So we're going to make old list, and new list be aliases for"
+2126.52,2133.3199999999997,"the exact same object, this thing here. So I do that with just the plain old assignment operator."
+2135.0,2139.96,"So inside memory, the way we're going to represent this old list is here is by list with three"
+2139.96,2146.2799999999997,"elements in it, and because each element is itself a list, so a mutable object, I'm not going to"
+2146.28,2155.0,"plop it in here, but instead Python generally tends to make a pointer to that mutable object somewhere"
+2155.0,2161.48,"else in memory. And you'll see why in a couple of slides. But for now, I mean, it will look cluttered"
+2161.48,2167.4,"if I did so, but for now it helps to visualize the structure, so old list contains three elements,"
+2167.4,2173.4,"and each one of those elements are kind of pointed to over here. So if I say new list equals old list,"
+2173.4,2180.6800000000003,Python will make another name for the same thing in memory. When I do this line here where I index
+2180.6800000000003,2190.44,"new list at index 2, so that's 0, 1, 2, and then I follow it to index 1 over here. So this guy here,"
+2190.44,2199.64,"the 6, I have changed the string food to be 6, and now new list and old list both are pointing to"
+2199.64,2204.92,"the same object, so it will have been mutated to contain that 6 in that sum list."
+2208.3599999999997,2216.6,"Okay, so that's aliasing. Now, what we can do is we can create copies of mutable objects, and we can"
+2216.6,2223.4,create either something called a shallow copy or a deep copy. The shallow copy is equivalent to what
+2223.4,2229.8,"we've been doing with the square brackets colon, and that's perfectly okay if we're dealing with"
+2230.76,2238.04,lists that just contain immutable things. But as soon as we create a shallow copy of a list that can
+2238.04,2245.8,"contain other lists or other mutable things, interesting things happen. Only the top level gets copied,"
+2246.44,2252.36,but anything that's mutable at a deeper level than that top level does not get copied.
+2253.48,2257.1600000000003,"Because if it did, and you had many, many levels deep of all these mutable things,"
+2257.1600000000003,2263.1600000000003,"that would be a lot of things for Python to copy. Okay, so what we're doing with this particular code"
+2263.1600000000003,2269.08,"is we're going to create this old list here, so it's 1, 2, as first element, 3, 4, as a second"
+2269.08,2275.32,"element, and 5, 6 as the last element. We're going to create something called a shallow copy, and we"
+2275.32,2281.1600000000003,"could have also said old list square brackets colon, it would be equivalent. And in this shallow"
+2281.16,2291.24,copy Python only creates a copy of the top level. So notice new list is pointing to a list with
+2291.24,2298.6,"three elements in it, but anything that's at a deeper level than that top level does not get copied."
+2300.2,2305.0,"So all these mutable things that are my elements, this list and this list and this list, these are"
+2305.0,2312.28,"three mutable elements. They do not get their own copies, because we've only made a shallow copy."
+2314.52,2321.72,"So what this means is at the top level, sorry, so this is just what it prints out."
+2323.64,2329.56,"So at the top level, we can add elements to old list, and it won't interfere with the top level"
+2329.64,2341.56,"of new list. So as an example here, we're going to add this 7, 8 list to old list. So we follow old list"
+2342.2799999999997,2350.84,"and we add another element to the end of it. So there it is, but that element didn't get added"
+2350.84,2360.6000000000004,"to new list, because we only added it to the top level of old list. So now question is what happens"
+2360.6000000000004,2367.32,if we go in and mutate one of these three shared items. So old list and new list is as we would expect.
+2368.04,2375.08,"So let's do one more operation. So instead of an addition to a pending the 7 and the 8, like we do"
+2375.3199999999997,2381.3199999999997,"over here, let's also mutate one of those shared items. So here it is, this is what we just did on"
+2381.3199999999997,2388.36,"the previous slide, there's my 7 and 8, and now let's go into old list at index 1, so 0, 1, that's"
+2388.36,2396.36,"this middle one here, and at index 1 in that, so that's 0, 1, the 4 over here, let's change the 4"
+2396.36,2407.56,"to the 9. Well, when we print new list, we're going to be printing a list with three things in it,"
+2408.1200000000003,2415.1600000000003,"the first one is the list 1, 2, the second one is 3, 9, we just mutated that, and the last one is 5, 6."
+2418.04,2423.88,"And when we print old list, this one will also have that 9 over there,"
+2424.6,2431.8,"because those middle elements are shared, but we will also have an extra element at the top level,"
+2431.8,2442.84,"the 7, 8 that we just added only to old list. Okay, thoughts on this example, what is confusing?"
+2442.84,2457.56,"Yeah, why does the 9 get added or get changed to the new list? Yeah, so the operation"
+2458.52,2467.08,"called copy from this library, which is also named copy, only creates a shallow copy of the list. So a"
+2467.08,2473.16,"shallow copy means that if you have a list with some elements within it, right, so here in this case,"
+2473.16,2479.56,"you know, we have those three elements in it, all you're doing is copying the top structure,"
+2480.36,2485.7999999999997,"right, so this structure here, but if you have any elements that are themselves mutable,"
+2485.7999999999997,2491.96,"they don't get their own copies, so really inside the memory, if this one is pointing to some object,"
+2491.96,2502.12,"like it does to that list 1 comma 2, the copy is also going to point to that same sub-object,"
+2502.12,2511.16,"substructure. And so if you're mutating this substructure through one name, if you're accessing it"
+2511.16,2517.08,"through the other name, that other name is still accessing the thing that was mutated. Does that make"
+2517.08,2523.56,"sense? Is that okay? Yeah. And so this shallow copy is just copying the top structure here,"
+2523.56,2528.84,"so you can see at the top level we have these two different lists, so that means to this one,"
+2528.84,2535.7999999999997,"I can add another item to the end of it, right, and that item will not be duplicated up here because"
+2535.7999999999997,2541.72,"this is one thing, this is one other thing, but the middle ones or any levels that are beyond that"
+2541.7200000000003,2546.2000000000003,top level are shared. They're not copies. Yeah.
+2546.2000000000003,2553.5600000000004,"So if you edited it through the new list, is it neutral? Yes, yes, exactly. Great question."
+2553.5600000000004,2559.2400000000002,"So if you edited, if we edited this number one here through the new list, then yeah,"
+2559.2400000000002,2566.0400000000004,"the old list will still see the edits, because they're both pointing to these shared things."
+2566.12,2574.52,"But if I edit the 7 and 8, it will only be edited through old list, because that 7-8 is only seen"
+2574.52,2584.12,"by old list. That's basically what I've sent here. And so if you really, really, really want to copy"
+2584.12,2590.2799999999997,"every single mutable object or every single object at all the different levels, we would have to create"
+2590.28,2596.36,something called a deep copy. So we do this using copy.deepcopy. And so this is exact same
+2596.36,2604.2000000000003,"example, except that we've just changed copy.copy to copy.deepcopy. And so here we've got our old list,"
+2604.2000000000003,2611.32,"exactly as we had before, and if we deep copy old list, Python will make copies of every single object"
+2611.32,2620.2000000000003,at every single level from old list. So everything becomes its own object. So now if I
+2620.2000000000003,2627.1600000000003,"mutate old list to pen 7 and 8, that only gets added to old list. And if I mutate old list to"
+2627.1600000000003,2633.88,"have this element be a 9, that only gets mutated through old list. So old list contains the"
+2633.88,2638.84,"changed values, but new list remains untouched, because I've made copies at every level. Yes."
+2638.84,2644.1200000000003,"So this copy.deepcopy kind of like doing old list, square back me with the columns there."
+2645.08,2651.16,"Yes, but then it goes further down at every single level. So the regular copy.copy does the"
+2651.16,2656.68,"square bracket colon, and the deep copy goes further to all the other levels."
+2661.0,2668.68,"Okay, so lots of ideas in this lecture and last, I would highly suggest going through the Python"
+2668.7599999999998,2674.52,"Tutor and all these examples, just so you see them in a kind of different way to see exactly how"
+2674.52,2679.56,"it'll be the same sort of memory diagram that but we've done, except that you know through the Python"
+2679.56,2685.3999999999996,Tutor. So it will be very helpful for you I think. I would give that a try as you're studying for
+2685.3999999999996,2691.16,the quiz. I think what's important to realize is that we have objects in memory and we have names
+2691.16,2696.6,that point to these objects. And so if you kind of get that and keep that straight in your in your
+2696.6,2702.6,"mind, it will be very, very helpful to understanding what's an alias, what's a clone, when you're iterating"
+2702.6,2708.52,"over certain objects, and things like that. And the big idea here is just side effects. Okay,"
+2708.52,2714.52,every one of these operations has some sort of side effect and it's important to make sure that
+2714.52,2721.24,"you're not changing something you don't want to be changing. Okay, I guess I just had one last"
+2721.2400000000002,2726.92,thing to say about lists and tuples. I guess we've seen both of them. When do you want to use tuples
+2726.92,2731.7200000000003,and not lists? When you want something that shouldn't be changed. So if you have something that might
+2731.7200000000003,2740.28,"accidentally get changed, do not save it as a list. Okay, and then on the other side, why would you use"
+2740.28,2749.0000000000005,a list but not a tuple? You would use a list because you don't want to recreating copies all the time.
+2749.08,2752.76,"So when you have, again, these large databases, every time you want to make a change to it,"
+2752.76,2758.28,you don't want to make a copy of everything with that small change in it. And so mutating an object
+2758.28,2765.0,"is good for that respect. Okay, so that wraps up lists and your ability. Next lecture will just tie"
+2765.0,2769.88,up a bunch more loose ends and then we'll get into a new topic.

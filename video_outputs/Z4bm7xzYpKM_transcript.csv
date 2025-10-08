@@ -1,0 +1,1320 @@
+Start Time,End Time,Text
+0.0,17.16,"All right, so, hello, everyone, let's get started."
+17.16,22.080000000000002,"This is lecture 10, so last lecture, we introduced two new data types."
+22.080000000000002,27.64,"We talked about a data type called a tuple, and a data type called a list."
+27.64,31.84,"So today, we're not going to talk about tuples anymore because they were pretty straightforward."
+31.84,34.96,"A lot of operations you could do with strings, you could do with tuples."
+34.96,36.88,They were immutable objects.
+36.88,40.32,"That means once you created them in memory, you couldn't do anything to change them."
+40.32,46.44,"So they were, I guess, pretty boring except that you could populate tuples with objects that"
+46.44,47.96,were of any type.
+47.96,53.64,So you could populate a tuple with integers and floats and bullions and other tuples all at
+53.64,55.8,the same time.
+55.800000000000004,60.68000000000001,We introduced lists last time as well as something that was really similar to tuples and
+60.68000000000001,64.72,strings in terms of manipulations.
+64.72,69.24000000000001,"List were also nice because you could populate them, again, with any kind of data objects,"
+69.24000000000001,71.56,"just like you could tuples, okay?"
+71.56,76.2,"Today, what we're going to focus on, though, is the idea of mutability when talking about"
+76.2,81.2,"lists, okay, which is something new we have never talked about this idea before."
+81.2,85.44,So this lecture is going to be pretty heavy on kind of that idea and a little bit heavy
+85.44,92.2,on syntax and things like that to kind of remind you of how to manipulate these compound
+92.2,93.2,data types.
+93.2,97.88,"So please, if there's any questions, feel free to stop me and then I can go over what I just"
+97.88,100.64,talked about if there was anything confusing.
+100.64,106.88,So this slide is basically a copy of the slide we had on lists last lecture.
+106.88,111.92,It shows a bunch of different operations that you can do with lists.
+111.92,115.36,"They're very similar to operations that you can do with strings, right?"
+115.36,117.8,"So here, I'm just creating an empty list."
+117.8,123.24,"I'm creating a list with a bunch of elements in it, so here we can see that this list contains"
+123.24,127.28,"four elements and they are all of different types, right?"
+127.28,130.68,"This is an integer, this is a string, this is an integer, and this is another list."
+130.68,135.51999999999998,And that's totally okay to do with these data types.
+135.52,140.04000000000002,"Creating all of these operations, getting the length, indexing, slicing, concatenation,"
+140.04000000000002,147.08,"getting the max, all that should be a review as well as iterating a for loop over the elements"
+147.08,148.28,in a list directly.
+148.28,154.84,"So just like we iterated a for loop over characters in a string, this loop basically makes"
+154.84,160.92000000000002,"e, our loop variable, take on the value of every single element in our list L."
+160.92000000000002,167.12,"So what's new, the bolded thing here is something we haven't been able to do before and this"
+167.12,173.96,basically goes into memory and changes the element at index 3 and L.
+173.96,176.28000000000003,So that's kind of how we read that.
+176.28000000000003,180.60000000000002,And it changes that element to have the value on the right hand side.
+180.60000000000002,185.36,"So this is kind of, I mean, we read it in the same way as we do other assignment statements."
+185.36,190.72000000000003,"We look at the right hand side and we evaluate that, in this case it's only a 10."
+190.72,192.48,"But the left hand side looks different, right?"
+192.48,195.04,It's not a variable name as we have seen before.
+195.04,202.72,"But in fact, it's referencing the item in list named L at index 3."
+202.72,206.76,"So that would be index 0, 1, 2, 3."
+206.76,212.32,"This line of code down there, L, square brackets 3 equals 10 basically replaces this entire element"
+212.32,216.92,here with the number 10.
+216.92000000000002,221.88000000000002,"So on the next few slides, we're going to talk about what exactly this means inside memory"
+221.88000000000002,229.56,because it's different than what we've been doing before.
+229.56,238.60000000000002,So what exactly happens when we go into a mutable object like a list and we change an element
+238.60000000000002,240.96,using this exact syntax?
+240.96,245.04000000000002,"All right, well, let's draw our memory diagrams the way we have been in the past."
+245.04,251.6,"Here's a little cloud representing the memory, L equals 243 creates this list for me in memory,"
+251.6,256.96,"this list object, and L is the name that I'm referencing to this list object, right?"
+256.96,260.88,So I'm basically binding the name L to that object in memory.
+260.88,270.56,"L, square brackets 1 equals 5 tells Python to follow the name L to the object in memory."
+270.56,274.48,"And then look up the index in the square brackets, in this case index 1."
+274.48,276.8,"So that's 0, 1, this 4."
+276.8,283.76,And take the element at this location and override it to be whatever the right hand side says.
+283.76,285.16,So the right hand side says 5.
+285.16,291.12,So basically we're going into memory and changing that middle element.
+291.12,293.08000000000004,So this is different than strings and tuples.
+293.08000000000004,297.76,We were not allowed to do anything like this with strings and tuples.
+297.76,302.16,So let's look at an example on the next slide about what this means.
+302.16,310.08000000000004,But the idea here I'm trying to get at is this object that we have changed one of the elements
+310.08000000000004,314.8,"for which we've changed one of the elements, we've changed the object itself."
+314.8,318.52000000000004,"We didn't make a new copy, we didn't make a version of that object."
+318.52000000000004,322.12,We have changed the object itself.
+322.12,330.88,So let's see maybe similar code that you might think does the same thing except with tuples.
+330.88,334.4,"All right, so the first two lines of code are going to be the same."
+334.4,341.71999999999997,"We've got L in memory being the object 2, 4, 3, or the name bound to the object 2, 4, 3,"
+341.71999999999997,342.88,L square brackets 1.
+342.88,350.2,So L at index 1 equals 5 changes that middle element to be a 5.
+350.2,351.8,Same as the previous slide.
+351.8,358.36,Now what if we had these two lines of code T is going to be a variable name that's bound
+358.36,360.32,"to the tuple 2, 4, 3."
+360.32,364.15999999999997,So notice this is now the tuple denoted in parentheses.
+364.15999999999997,369.84,"If I say T is equal to 2, 5, 3, what happens?"
+369.84,374.2,"Basically with this line, I am creating a new object in memory."
+374.2,382.2,So there's my new object and I'm taking the name T and I'm binding it to this new object.
+382.2,387.52,"The old object, 2, 4, 3 as a tuple, still remains in memory."
+387.52,389.88,I have not modified that object at all.
+389.88,390.88,It's still there.
+390.88,393.08,I've just lost the binding to it.
+393.08,399.04,So the name T is separate from the actual object in memory.
+399.04,404.28,"In terms of tuples, what that means for us is we can never change the tuple object in memory"
+404.28,406.04,once we've created it.
+406.04,412.08,"But with lists using the specific operation, this one right here, L square brackets 1 equals"
+412.08,418.4,"5, this does allow us to go into memory and literally change that object."
+418.40000000000003,421.68,That is associated with the name L.
+421.68,423.00000000000006,Is everyone okay with this slide?
+423.00000000000006,424.00000000000006,Does this make sense?
+424.00000000000006,425.72,"This showcases the difference, right?"
+425.72,433.32000000000005,So you need to think about what is the name of the object versus the object itself in memory.
+433.32000000000005,434.32000000000005,Okay.
+434.32000000000005,440.32000000000005,So that shows you how to create a list and then go ahead and change elements to different
+440.32000000000005,442.32000000000005,values within that list.
+442.32000000000005,448.36,"But now that we have a list object, right, that we can mutate, other operations we"
+448.36,452.24,"can do with it is to, let's say, add more items to the end of the list."
+452.24,455.52000000000004,"So we can make the list bigger, right?"
+455.52000000000004,460.44,We can mutate the object by doing that using this append function.
+460.44,465.84000000000003,Now I'm going to talk about the syntax of the append function in a little bit.
+465.84000000000003,470.52000000000004,"But basically, if I want to mutate L to add an item to the end of it, I have to use the"
+470.52000000000004,471.52000000000004,syntax.
+471.52000000000004,475.88,"There isn't a different form, a different function to do this."
+475.88,479.92,So this specific syntax has to be used.
+479.92,483.36,A append is basically the function name.
+483.36,484.36,Okay.
+484.36,491.64,"Element is going to be the parameter, the thing that I want to add on to the end of my list."
+491.64,498.12,"And L, the thing before the dot, is going to be the object I want to add the element to"
+498.12,500.32,"the end of the list, right?"
+500.32,506.92,"So L, in this case, I'm using it generically, but you can imagine creating a list of employees"
+506.92,508.44,"in your company, right?"
+508.44,509.96,Then you might name that list employees.
+509.96,515.08,"In that case, we would say employees dot append, you know, Anna or whatever, right?"
+515.08,519.6,"So that L is just kind of generic for now, but it gets replaced with whatever variable"
+519.6,521.76,name your list is.
+521.76,524.8,So this operation basically mutates the list.
+524.8,525.8,Okay.
+525.8,530.12,So it mutates it to be one extra element longer.
+530.12,533.24,And the element you're adding to the end of the list to the right-hand side of the list
+533.24,537.76,is going to be whatever is in the parentheses to append.
+537.76,539.08,So let's look at an example.
+539.08,543.52,So we're going to create L is equal to 213 in memory.
+543.52,549.08,"And then let's say we do L dot append 5, all right?"
+549.08,555.36,"Well, this line of code says look up L. It's this object in memory here, 213."
+555.36,558.52,And add the object 5 to the end of it.
+558.52,560.52,So I'm going to add the 5 to the end of the list.
+560.52,563.92,"Now it's no longer three elements long, it's four elements long."
+563.92,568.64,"And again, I didn't make a copy, I didn't preserve the original list with just 213 in it."
+568.64,571.36,I have literally changed this list in memory.
+571.36,574.68,That's referenced by L.
+574.68,580.96,Now this function append is being used basically for its side effect.
+580.96,586.56,And the side effect here is mutating the list.
+587.4000000000001,593.24,"After the function adds the 5 in this particular case to the end of the list,"
+593.24,596.5200000000001,the function doesn't need to return anything back.
+596.5200000000001,599.7600000000001,It's basically done its job to do the mutation.
+599.7600000000001,604.9200000000001,And so functions like append and we're going to see other functions later
+604.9200000000001,608.48,"don't have any return value, okay?"
+608.48,614.36,So one really common mistake as we're kind of learning about mutable objects
+614.36,617.28,"and using these functions that mutate is to say, well,"
+617.28,621.24,"I'm going to do L. append 5 and save this,"
+621.24,626.04,"the result of this function, it back into the variable named L."
+626.04,627.28,And this would be incorrect.
+627.28,631.6800000000001,"So let's see if we do this line of code, what exactly will happen?"
+631.6800000000001,633.16,So it's an assignment.
+633.16,637.5600000000001,So the first thing we do is we look at the right hand side and we evaluate that.
+637.5600000000001,640.96,"Well, the right hand side basically says L. append 5,"
+640.96,643.48,which is exactly the same as the previous line.
+643.48,648.48,"So we're going to put another 5 to the end of our currently mutated list,"
+648.48,652.96,"right, just kind of going with these operations in order."
+652.96,656.36,"And then I said this function, this append function,"
+656.36,660.64,has done its job to mutate the list by adding a 5 to the end of it.
+660.64,662.08,So it returns nothing.
+662.08,666.52,There's nothing of value that it could return because it already did its job of mutation.
+666.52,669.96,So it actually returns none.
+669.96,675.48,"So the assignment, the equal sign, then basically says take the name L"
+675.48,679.88,"and bind it to the return of this function, L. append 5."
+679.88,684.0,"Well, the return of the function is none, so basically now we're losing the binding"
+684.0,688.84,"from 2, 1, 3, 5, 5, which was our mutated list,"
+688.84,692.32,"and rebinding it to the return, not."
+692.32,698.2800000000001,So that is an incorrect way to do the mutation of adding an item to the end of the list.
+700.44,702.5600000000001,Everyone okay with that so far?
+702.5600000000001,704.08,"Yes, okay, excellent."
+704.08,706.52,So what should we have done instead?
+706.52,710.76,"Sorry, yes, be careful about the append operation, right?"
+710.76,714.52,"You're doing a mutation and you return none as a result, right?"
+714.52,718.64,So you do not want to re-save this to any variable.
+718.64,724.2800000000001,"So instead, what we would do is we would just do the operation, right?"
+724.2800000000001,728.44,"There's nothing to save, nothing to save in any return variable."
+728.44,733.8000000000001,"So if you wanted to add 2, 5s to the end of that list, you would just say L. append 5 again,"
+733.8000000000001,739.0,"and L would then have been mutated to be 2, 1, 3, 5, 5."
+739.0,743.6,"And so in your code, if you just print L in between these appends,"
+743.6,749.4000000000001,"if you printed L in between, after the first append 5, it would print this 2, 1, 3, 5,"
+749.4000000000001,754.2,"and then if we print L after the second append 5, it would print 2, 1, 3, 5, 5, right?"
+754.2,758.24,"Because it's kind of an ongoing operation, it's mutating this list"
+758.24,762.52,and now you're doing operations on the newly mutated list.
+762.52,764.72,"Everyone, yeah."
+764.72,770.0,"So the element can be only use 1 integer to be 2, 5, 5."
+770.0,772.44,"For the element, do you have to do 1 integer?"
+772.44,774.12,"Can you use 5, 5?"
+774.12,778.44,So the append only works with one thing.
+778.44,783.92,"So if you wanted to append a tuple, you could append 1 tuple object"
+783.92,787.96,"that has many things in it, but it would just append that 1 tuple."
+787.96,791.2800000000001,"And we're going to see towards the end of this lecture, an operation that allows us"
+791.2800000000001,794.76,to extend the list by a bunch of items.
+794.76,798.9200000000001,"But there is a way, just not with append."
+798.9200000000001,799.9200000000001,Yeah.
+799.9200000000001,806.0,"So the other thing, this operation always returns none, right?"
+806.0,809.48,"L dot append 5 or whatever, the append always returns none."
+809.48,812.12,"But here, it's just sitting on a line by itself."
+812.12,814.88,"We're not saving it back to anything, right?"
+814.88,819.36,"In the previous one, we took the return and saved it back into L."
+819.36,822.92,And that's why we lost the binding to the actual list.
+826.4,829.64,So what we usually say is that we use append
+829.64,832.56,and a bunch of these other mutable functions for their side effects.
+832.56,837.52,And the side effect in this case is to mutate the object
+837.52,839.52,"that I'm calling the append on, right?"
+839.52,847.96,"In this case, the list named L. So let's have you think about this problem."
+847.96,851.8,"And while you do it, and then we can write it on the board together."
+851.8,856.8,"So as we go through these lines of code, one at a time,"
+856.8,862.0,what will the values of the lists become?
+862.0,866.12,"So L1 is the string ray, L2 is me, L3 is dou."
+866.12,868.52,"What is L4 going to be, right?"
+868.52,871.52,"With that line, L4 equals L1 plus L2."
+871.52,872.52,Anyone know?
+877.0,878.0,What's the type?
+881.3199999999999,882.52,"It's concatenation, right?"
+882.52,885.48,So concatenation with lists is like concatenation with strings.
+885.48,886.48,Yes?
+886.48,887.48,Yes.
+887.48,888.88,Yep.
+888.88,891.6,What are the elements in it?
+891.6,892.6,Yep.
+895.6,896.6,Yep.
+896.6,897.96,Exactly.
+897.96,901.0400000000001,"I'm not going to do the strings, but you know what I mean."
+901.0400000000001,907.64,"All right, so L4 with that line is just these two elements in a new list."
+907.64,913.48,"Now, what happens to, with the next line, L3 dot append L4?"
+913.48,914.6800000000001,Which one gets mutated?
+914.6800000000001,918.24,L3 or L4?
+918.24,920.0,"L3 gets mutated, exactly."
+920.0,924.0400000000001,And what does it get mutated to?
+924.04,927.28,So L3 originally has dou in it.
+927.28,929.5999999999999,What am I adding to the end of L3?
+935.4399999999999,938.64,You mean that there are little lengths left.
+938.64,939.28,Exactly.
+939.28,941.04,"Yes, I'm adding one item, right?"
+941.04,943.04,And it's linked to the question that was here.
+943.04,944.3199999999999,What am I appending?
+944.3199999999999,945.48,I'm appending one item.
+945.48,948.04,It's whatever L4 is.
+948.04,951.1999999999999,"And L4 is this list, so I'm going to be adding right"
+951.2,954.72,and me within my list here.
+954.72,957.72,"And I've got to close this list here, right?"
+957.72,960.12,"So this is one item, one object, one element,"
+960.12,964.2,and this is another element right here.
+964.2,968.76,"It just happens to be a list, OK?"
+968.76,969.96,What about the next line?
+969.96,972.12,L equals L1 dot append 3.
+972.12,976.6800000000001,What is the right-hand side going to give me?
+976.6800000000001,980.84,Am I mutating L1 or L3?
+980.84,981.72,Yes.
+981.72,983.72,And what am I mutating L1 to be?
+983.72,985.12,L1 is originally ray.
+985.12,986.6,And what am I adding to the end of it?
+991.1600000000001,992.0400000000001,"Yeah, exactly."
+992.0400000000001,994.9200000000001,"This L3, which is this big thing here, right?"
+994.9200000000001,998.36,"So it's a list with two elements,"
+998.36,1002.0,"the first one being a string, and the second one being"
+1002.0,1006.32,another list like that.
+1006.32,1007.6800000000001,So that's the right-hand side.
+1007.6800000000001,1009.5600000000001,And then what is the left-hand side going to be?
+1009.5600000000001,1011.44,And what is L going to be?
+1011.44,1020.12,"Yeah, exactly, yeah, exactly, OK."
+1020.12,1022.5600000000001,"So now that we've introduced mutable objects,"
+1022.5600000000001,1025.0800000000002,"we have to be careful about what functions we're using,"
+1025.0800000000002,1027.24,"some of them mutate the list, right?"
+1027.24,1028.8,And don't return anything.
+1028.8,1030.2,"Append is one of them, and we're going"
+1030.2,1032.8,to see a few more in today's lecture.
+1032.8,1037.0800000000002,"So these functions are just being used for their side effect,"
+1037.08,1040.4399999999998,they mutate the thing you're calling the function on.
+1040.4399999999998,1041.72,And that's it.
+1041.72,1043.8,They don't need to return anything.
+1043.8,1045.04,They don't need to return anything.
+1045.04,1050.32,They have done their job purely by the mutation aspect of it.
+1050.32,1053.9199999999998,So I want to just quickly make an aside
+1053.9199999999998,1060.9199999999998,on this dot notation that we've introduced with this append function.
+1060.9199999999998,1064.32,This is something we haven't actually seen before.
+1064.32,1068.04,But it's something that we will learn about in the future
+1068.04,1070.6399999999999,when we create our own object types.
+1070.6399999999999,1072.3999999999999,"So right now, we're using object types"
+1072.3999999999999,1075.6399999999999,"as somebody else wrote, like a list or a two-bowl or something"
+1075.6399999999999,1076.08,like that.
+1076.08,1078.2,"But in a future class, we're going to learn"
+1078.2,1080.8,how to create our own object types.
+1080.8,1084.6799999999998,"And when we do, we're going to use this dot notation a lot."
+1084.6799999999998,1087.4399999999998,"But for now, you basically just kind of have"
+1087.4399999999998,1091.08,to remember which functions use dot notation and which don't.
+1091.08,1092.6,But I'll give you a little bit of intuition
+1092.6000000000001,1097.5200000000002,for what this dot notation actually means.
+1097.5200000000002,1099.1200000000001,So everything in Python is an object.
+1099.1200000000001,1102.44,And then we have objects in Python.
+1102.44,1108.4800000000002,The idea here is that the objects that you have have data
+1108.4800000000002,1109.6000000000001,associated with them.
+1109.6000000000001,1112.0800000000002,So what kind of what makes up the object?
+1112.0800000000002,1114.2400000000002,And they have certain behaviors.
+1114.2400000000002,1116.96,So we touched upon this on maybe the first lecture
+1116.96,1120.4800000000002,where we said things you can do with integers
+1120.48,1123.28,are different than the things you can do with strings.
+1123.28,1125.24,That's pretty clear.
+1125.24,1129.56,And that's different than the things you can do with lists.
+1129.56,1131.76,And so the kinds of things that you could do
+1131.76,1134.28,with each one of these object types differs depending
+1134.28,1135.68,on the type.
+1135.68,1138.88,"And at its core, everything can be written"
+1138.88,1140.76,in terms of this dot notation.
+1140.76,1143.52,"But some of the more common operations,"
+1143.52,1145.08,like getting the length of something
+1145.08,1149.6,"or adding two numbers together, we do them"
+1149.7600000000002,1152.2,"in this shorthand notation, like using the plus operator"
+1152.2,1153.6000000000001,or using the length.
+1153.6000000000001,1157.16,"But at their core, we can take all of those operations"
+1157.16,1159.16,and convert them to a dot notation.
+1159.16,1160.5600000000002,We're not doing this today.
+1160.5600000000002,1162.96,But that's what we can do.
+1162.96,1164.72,"And so when we see this dot notation,"
+1164.72,1166.64,"the way we usually read it is we say,"
+1166.64,1168.44,"well, what's to the left of the dot?"
+1168.44,1170.0800000000002,"It's going to be our object, the thing"
+1170.0800000000002,1172.4800000000002,that we want to do an operation on.
+1172.4800000000002,1176.16,"In this particular case, it's a list named L."
+1176.16,1179.4,But it could be a list named employees or words
+1179.4,1183.44,or whatever book or whatever the list contains.
+1183.44,1186.0800000000002,Whatever the list name is.
+1186.0800000000002,1189.1200000000001,The dot then comes for the dot notation.
+1189.1200000000001,1190.96,And then the thing on the right hand side
+1190.96,1192.76,is going to be the operation that you
+1192.76,1196.68,want to perform on the object to the left of the dot.
+1196.68,1200.2800000000002,"So the operation, if you basically cover up L dot,"
+1200.2800000000002,1202.44,the operation looks just like a function.
+1202.44,1205.68,It's append parentheses some parameters.
+1205.68,1208.64,And so the operation is basically just a function
+1208.64,1212.2800000000002,"that you want to run on an object of type list,"
+1212.2800000000002,1217.0400000000002,"this specific object named L. And you can see it has a name,"
+1217.0400000000002,1219.76,"append, and it has parameters or arguments."
+1219.76,1224.2,"In this case, it's the thing you want to add to the end of the list."
+1224.2,1226.96,"So again, unfortunately, at this point in the class,"
+1226.96,1230.1200000000001,you just have to remember which functions are dot notation
+1230.1200000000001,1231.48,and which ones are not.
+1231.48,1235.0800000000002,But it will become clear what this dot notation actually
+1235.0800000000002,1238.4,means towards the end of the class.
+1238.4,1242.44,So let's have you work on this little code here.
+1242.44,1244.44,"It's going to use append, obviously,"
+1244.44,1246.76,and it's going to have you create a list.
+1246.76,1249.16,So the name of the function you should make here
+1249.16,1250.4,is called make ordered list.
+1250.4,1253.2800000000002,"And it takes in one parameter, an integer n."
+1253.2800000000002,1254.68,It's positive.
+1254.68,1261.68,And I want you to create for me a list that has all of the integers
+1261.68,1266.6000000000001,from 0 all the way up to an including n inside that list in order.
+1266.6000000000001,1274.92,"So as an example down in here, around 34, right?"
+1274.92,1277.1200000000001,"If we call make ordered list with 6,"
+1277.1200000000001,1282.1200000000001,it's going to create for us this list inside the function
+1282.1200000000001,1286.1200000000001,"and return this list, right?"
+1286.1200000000001,1287.68,"So a couple minutes to work on that,"
+1287.68,1288.8400000000001,and then we can write it together.
+1291.8400000000001,1296.0000000000002,"All right, what's the first thing we should do here?"
+1296.0,1300.36,Or how would you approach this problem?
+1300.36,1302.04,Yes.
+1302.04,1304.44,You want to create an empty list?
+1304.44,1307.36,What do you want to name it?
+1307.36,1310.16,You named it list.
+1310.16,1312.8,"List is an OK name, but notice list is also"
+1312.8,1315.2,the type of the object.
+1315.2,1318.2,So I would refrain from naming anything
+1318.2,1320.84,things that change color.
+1320.84,1325.72,"So we can use l or my list or whatever, something else."
+1325.72,1327.96,"My list is an empty list, all right?"
+1327.96,1329.52,"So it's originally empty, and now we"
+1329.52,1331.28,need to populate it with some stuff.
+1334.64,1335.96,You want to go ahead?
+1335.96,1338.76,Make a for loop that goes over what?
+1342.96,1346.76,"Yep, 0 to n plus 1, exactly, because we need our boundary"
+1346.76,1351.2,"to go up to an including n, perfect."
+1351.2,1356.92,"So now that I've got i changing to be 0 than 1, then 2, then 3,"
+1356.92,1361.1200000000001,what do I need to do to my list?
+1361.1200000000001,1362.64,"Yeah, exactly, append i."
+1362.64,1365.4,"So my list, right, is the name of the list I've created,"
+1365.4,1372.24,"dot append i, OK?"
+1372.24,1374.52,"The last thing, return the list, right?"
+1374.52,1377.0800000000002,So return my list.
+1377.08,1379.4399999999998,So run it.
+1379.4399999999998,1380.8799999999999,Perfect.
+1380.8799999999999,1386.32,"If we change this to 2, still works, OK?"
+1386.32,1389.56,"So just testing it out with a couple different inputs,"
+1389.56,1391.8,just to make sure it works.
+1391.8,1394.6799999999998,Questions about this code?
+1394.6799999999998,1395.6799999999998,Yeah?
+1395.6799999999998,1398.48,Is the 0 necessary for range?
+1398.48,1399.48,Is it 0?
+1399.48,1401.28,The 0 is not necessary in the range.
+1401.28,1403.08,"Yeah, it defaults to 0, exactly."
+1408.08,1412.32,"OK, we're not done yet."
+1412.32,1413.6799999999998,You have more writing to do.
+1413.6799999999998,1418.1599999999999,So let's write a slightly different function now called
+1418.1599999999999,1420.04,removelm.
+1420.04,1421.6,It takes in two parameters.
+1421.6,1424.84,"The first one is a list, right?"
+1424.84,1429.1599999999999,And the second one is going to be just some variable.
+1429.1599999999999,1433.12,"It could be an integer, it could be a string, it could be whatever."
+1433.1200000000001,1437.7600000000002,"And what the function should do is create a new list,"
+1437.7600000000002,1442.88,"populate it with the same elements of l in the same order,"
+1442.88,1446.64,"but exclude the ones that are equal to e, OK?"
+1446.64,1448.72,"So you don't want to include the ones that are equal to e,"
+1448.72,1451.48,otherwise keep everything in the original list
+1451.48,1454.2,"l in the same order, OK?"
+1454.2,1460.5200000000002,"So as an example here, if our input list is 1, 2, 2, 2, 2,"
+1460.52,1464.32,"and I call the function with l and 2,"
+1464.32,1468.2,the list that this function returns to just contain
+1468.2,1470.68,"one element in it, just the one, right?"
+1473.92,1477.4,"So that, try your code for the next couple of minutes"
+1477.4,1479.92,"around line 50, and then we can write it together."
+1482.92,1485.28,All right.
+1485.28,1486.28,How can we start?
+1491.16,1492.16,Yes.
+1497.16,1498.16,Yes.
+1498.16,1500.68,I can't even do this.
+1500.68,1502.92,"Yep, what did you name it?"
+1502.92,1506.16,Cool.
+1506.16,1509.32,"What did you make it be, empty, empty list, OK?"
+1515.32,1516.0,Yep.
+1516.0,1518.4,"So for i in l, OK."
+1518.4,1521.2800000000002,"And at this point, I would make a note for myself,"
+1521.2800000000002,1526.0,"because you use i, which in my brain means index."
+1526.0,1529.8000000000002,"But I would make a note for myself that i is maybe 1,"
+1529.8000000000002,1532.76,"then 2, then 2, then 2, just according"
+1532.76,1534.76,to this first example.
+1534.76,1539.1200000000001,"So if I'm reading the code, I will remember"
+1539.1200000000001,1540.96,"that it's not the index, but go on."
+1540.96,1542.96,So for i in l directly.
+1549.4,1550.4,Like this?
+1550.4,1552.4,Yeah.
+1552.4,1553.4,OK.
+1560.4,1562.4,Yeah.
+1562.4,1563.4,OK.
+1563.4,1568.16,And then that's a good return list.
+1568.16,1569.64,OK.
+1569.64,1570.64,Let's try it.
+1571.64,1572.64,OK.
+1576.64,1577.64,Yeah.
+1577.64,1578.92,So e is not a list.
+1578.92,1583.72,"e is going to be an element, right?"
+1583.72,1585.2800000000002,So that's my bad.
+1585.2800000000002,1586.6000000000001,I should have put this in here.
+1586.6000000000001,1591.76,e is an object or something.
+1591.76,1596.24,"It could be a list, but then I would"
+1596.24,1600.24,be looking for that exact list as a sub element.
+1600.24,1603.76,So maybe we think of e as an object like 5 or something
+1603.76,1604.96,like that.
+1604.96,1606.96,i equals equal to e.
+1606.96,1608.24,Yeah.
+1608.24,1612.24,Not equal to e.
+1612.24,1615.36,"So if I'm just looking for that element directly,"
+1615.36,1618.0,I want i to be not equal to e.
+1618.0,1620.84,"In which case, I keep the element in my new list."
+1620.84,1624.56,"So if we run that, that gives me 1."
+1624.56,1627.4,"According to this, it looks like it's correct."
+1627.4,1630.88,And then we can run it with these other two cases.
+1630.88,1633.88,"So here, I'm removing the element 1, right?"
+1633.88,1638.1200000000001,"So I'm going to keep 2, 2, 2 as my returned list."
+1638.1200000000001,1642.16,"And here, I'm removing 0, which doesn't exist in my list at all."
+1642.16,1646.6000000000001,"So it should just keep, and it does, my original list unchanged."
+1649.8400000000001,1651.92,Any questions about this example?
+1651.92,1653.2,Anyone try it a different way?
+1657.8400000000001,1658.8400000000001,OK.
+1664.8400000000001,1665.3200000000002,All right.
+1665.3200000000002,1669.72,"So other useful list operations, we can convert strings"
+1669.72,1673.0400000000002,to lists and then lists back to strings.
+1673.0400000000002,1678.76,This is very useful when you're reading in text or something
+1678.76,1679.88,like that to a function.
+1679.88,1683.2,"It's going to be useful for problem set 3, so on and so on."
+1683.28,1687.0800000000002,So let's first see how we can take a string of s
+1687.0800000000002,1688.32,and convert it to a list.
+1688.32,1695.0800000000002,"So if we just cast s to a list, the way we used to cast the number"
+1695.0800000000002,1698.3600000000001,"5 to a float, we would just say float parentheses 5."
+1698.3600000000001,1700.92,"Well, we can take a list and cast it to a list"
+1700.92,1704.1200000000001,by saying list parentheses s.
+1704.1200000000001,1708.44,"And if we cast it like this, Python takes every single character"
+1708.44,1712.72,in s and makes it be a separate element in a list.
+1712.72,1716.3600000000001,"So you can see here I've got this string i, heart, cs, and u."
+1716.3600000000001,1719.44,"It makes for me a list where every single character,"
+1719.44,1722.2,"including the space and all the special characters,"
+1722.2,1726.56,becomes a separate entry in my list.
+1726.56,1727.92,That's not that useful.
+1727.92,1730.32,"I mean, it can be, but it's not that useful."
+1730.32,1734.2,What is more useful is to take an input string
+1734.2,1736.92,and split it on a particular character.
+1736.92,1740.52,So one very common character that we would split on is the space.
+1740.52,1743.28,"And if we do something like that, it basically"
+1743.28,1749.48,"extracts from us from our string all of the individual words, which is pretty useful."
+1749.48,1753.24,So here I've got s dot split.
+1753.24,1756.68,"And in parentheses, I've got the character I want to split on,"
+1756.68,1758.84,this particular case of space.
+1758.84,1761.04,"So if I take s and I split on the space,"
+1761.04,1764.0,Python will go from the beginning of the list to the first space.
+1764.0,1767.44,Make that be one element in a list.
+1767.44,1770.48,It'll go from the first paste in the next space in my string
+1770.48,1772.76,and make that be the next element in the list.
+1772.76,1775.08,And so on and so on until it gets to the end of the list
+1775.08,1778.84,and makes that last bit the last element in my list.
+1778.84,1786.64,"So here when I've split on the space, I've got three base words, quote unquote words."
+1786.64,1788.88,I heart is going to be one.
+1788.88,1791.16,And there it is as my first entry.
+1791.16,1795.0,"CS is in between these two spaces, and that's my next entry."
+1795.0,1799.1200000000001,And you question mark is my last entry here.
+1799.1200000000001,1801.48,So this is a very useful function.
+1801.48,1804.1200000000001,We can of course split on any character we'd like.
+1804.1200000000001,1807.0800000000002,So here I am splitting on the less than character.
+1807.0800000000002,1808.3600000000001,"So if I, there's only one."
+1808.3600000000001,1812.8000000000002,"So if I split on the less than character, one element in my resulting list"
+1812.8000000000002,1814.5600000000002,is just the capital I.
+1814.5600000000002,1817.7600000000002,And the remaining element in my resulting list
+1817.7600000000002,1820.68,is the three space CS and U. And there it is right there.
+1825.2,1829.0000000000002,"All right, so once we have a list,"
+1829.0,1830.68,we can also go backward.
+1830.68,1833.72,We can take this list and convert it back to strings.
+1833.72,1838.84,So we use this join function here.
+1838.84,1841.68,And the thing before the dot is going to be what character
+1841.68,1844.52,you want to join the list elements with.
+1844.52,1848.56,And this is the list you want to join back into a string.
+1848.56,1850.2,So let's look at an example.
+1850.2,1857.44,"So let's say I have list L that has three entries in it, A, B, and C."
+1857.44,1860.8,"If I join on the empty string, so here,"
+1860.8,1863.2,"this is just quote, quote, right beside each other."
+1863.2,1865.2,There's no space or anything in there.
+1865.2,1868.64,That's going to take for me all the elements in the list L
+1868.64,1873.4,"and join them together as one, nothing in between the A or A, B, and C."
+1873.4,1876.0800000000002,And that brings this operation here will basically
+1876.0800000000002,1880.76,"make for me A, B, the string A, B, C."
+1880.76,1883.8400000000001,"If I join on an underscore, you might have guessed,"
+1884.5600000000002,1887.88,"join A, B, and C with an underscore in between each character."
+1887.88,1890.4800000000002,"So there it is, A underscore, B underscore, C."
+1890.4800000000002,1893.88,You can join on any character you'd like.
+1893.88,1895.64,"I don't know if you can join on multiple characters,"
+1895.64,1896.8000000000002,but I don't see why not.
+1896.8000000000002,1899.88,You could try this out on your own.
+1899.88,1905.4,Join only works with lists that contain only string elements.
+1905.4,1909.96,So if we try to join a list that has just integers
+1909.96,1913.92,"or floats or booleans, anything that doesn't contain a string in it,"
+1913.92,1916.8,"then you'll get an error, right?"
+1916.8,1919.8,Because it's basically trying to put all these back into a big string.
+1919.8,1922.8,"If you wanted to join non-string elements,"
+1922.8,1926.16,you would have to basically loop through and cast
+1926.16,1929.8400000000001,every one of these to a string first and then join them together.
+1929.8400000000001,1933.3600000000001,"So if you want to join 1, 2, 3, you would have cast them to strings"
+1933.3600000000001,1939.16,"and then you could join them to make the string 1, 2, 3."
+1939.16,1942.0,"OK, so let's have you work on this example."
+1942.0,1947.72,So here we're going to try to split the input.
+1947.72,1949.92,So here's a function called count words.
+1949.92,1953.1200000000001,It takes in one input send for sentence.
+1953.1200000000001,1955.52,"And I wanted to use something that's not s,"
+1955.52,1959.96,just to make it clear that the thing before the dot isn't always s.
+1959.96,1964.3600000000001,It's whatever object you want to split or join or whatever.
+1964.3600000000001,1968.96,"So this function is going to return how many words are in s,"
+1968.96,1971.04,"right, quote unquote words in this case,"
+1971.04,1977.56,because I'm just interested in the elements or the characters between spaces
+1977.56,1979.88,"and between the start and the end of a word, right?"
+1979.88,1982.48,"So if it's a number, I still count that as a word."
+1982.48,1985.0,"If it's a special character dot exclamation point,"
+1985.0,1988.16,"I would still count that as a word as well, right?"
+1988.16,1995.08,So this should be just a couple lines of code down around 99.
+1995.08,1996.8,"OK, so I'll give you about a minute to work on it"
+1996.8,1998.32,and then we can write it together.
+1998.36,2002.2,"OK, so thoughts on how we can do this?"
+2008.72,2010.72,"L1 equals send dot split, yep."
+2013.72,2017.28,"Yep, sorry, parenthesis space, yep."
+2017.28,2024.8,"And then we can return the length of L1, perfect."
+2024.8,2027.48,Let's run it on these two examples
+2027.48,2030.56,and should print 3 and 12 and it does.
+2030.56,2034.1200000000001,"So notice how easy this was with lists, right?"
+2034.1200000000001,2037.92,Because lists are data structure that's just kind of naturally iterative.
+2037.92,2041.6,"And so running L1 on this split list or split string,"
+2041.6,2044.6,"which gave us a list is really easy, right?"
+2044.6,2046.44,It's a two line piece of code.
+2046.44,2050.0,"Without lists, you could imagine creating variables"
+2050.0,2053.12,"that keep track of where you see the first space, right?"
+2053.12,2055.48,And then iterating through one character at a time.
+2055.48,2057.44,"And if it's a space, keep track of the fact"
+2057.44,2061.08,"that you saw a space and then look for the next space, right?"
+2061.08,2063.92,And then resetting things every time you see a space.
+2063.92,2066.48,"And that would be really, really tedious."
+2066.48,2069.36,"It would be a really good quiz one question,"
+2069.36,2071.52,but not once we've introduced lists
+2071.52,2074.8,"because it becomes really, really easy to do it with lists."
+2079.64,2081.76,All right.
+2081.76,2087.12,"So now that we have lists, we can do other really interesting"
+2087.12,2090.56,and useful operations to mutate the list.
+2090.56,2095.88,So we saw the dot notation on a list to do a pen.
+2095.88,2100.52,"So basically to add an item to the end of our list, that was useful."
+2100.52,2103.56,Other things we can do in terms of mutating the list
+2103.56,2106.48,is to sort a list and reverse a list.
+2106.48,2111.12,And these are also very useful operations on lists.
+2111.12,2114.68,"So the first to here, sort and reverse"
+2115.6,2120.3199999999997,is a notation for how we sort a list and how we reverse a list.
+2120.3199999999997,2124.72,And these will mutate the list that you call the functions on.
+2124.72,2130.2799999999997,So if I have list 427 here and I call L dot sort
+2130.2799999999997,2133.6,"and I print L as the next line after this,"
+2133.6,2138.12,"L will have changed in memory to be 24 and 7, right?"
+2138.12,2139.72,In that order.
+2139.72,2141.2799999999997,It didn't make a copy for me.
+2141.2799999999997,2143.08,It didn't preserve the original order.
+2143.08,2148.08,It changed that list to be now in sorted order.
+2148.08,2152.2,"Reverse similarly, so if we do L dot reverse on 427,"
+2152.2,2153.72,it will reverse all the elements.
+2153.72,2156.2,"So the one at the end becomes at the beginning,"
+2156.2,2158.88,"the one second last is the second one, third last"
+2158.88,2161.52,is the third element in the list and so on.
+2161.52,2163.48,"And again, this mutates my list."
+2163.48,2166.92,"So I would have lost my original order with this command,"
+2166.92,2171.4,"L dot reverse and with L dot sort, of course."
+2171.4,2173.64,"Now, there are many situations where"
+2173.64,2175.96,you want to preserve the original order.
+2175.96,2178.8,"Like, I don't know, maybe like the order"
+2178.8,2180.88,that people join a company or the order
+2180.88,2182.6,that people joined a grocery queue.
+2182.6,2183.92,"I don't know, things like that, right?"
+2183.92,2186.2400000000002,"You might want to preserve that original order,"
+2186.2400000000002,2190.56,but you might also get maybe the sorted names of people
+2190.56,2194.44,for a function that does something with those sorted names.
+2194.44,2199.32,"In that case, you don't want to call sort on your original list"
+2199.32,2201.48,because you would lose the original order.
+2201.48,2203.8,"You could, of course, make a copy or you"
+2203.8,2208.2400000000002,could call this sorted function.
+2208.2400000000002,2211.76,And the sorted function is going to keep my original list L
+2211.76,2216.04,"intact in the same order that I had created it in,"
+2216.04,2219.88,"but it would return for me, so this function will actually"
+2219.88,2225.2400000000002,make a copy and return for me the sorted version of L.
+2225.2400000000002,2226.6000000000004,And L remains unchanged.
+2226.6000000000004,2228.92,So this function does not do any mutation.
+2228.92,2232.8,We have to take the return and save it into a new variable.
+2232.8,2236.2000000000003,"This case, I called it L new."
+2236.2000000000003,2240.08,So it might be a little bit sort of hard to keep straight
+2240.08,2243.16,"in your mind, sort of whether to use sort or sorted."
+2243.16,2246.08,"You could, of course, always try it in the console"
+2246.08,2248.04,to see which one does what.
+2248.04,2250.28,The way I sort of remember and think about it
+2250.28,2253.2000000000003,is the sort to me feels like a command.
+2253.2000000000003,2256.2000000000003,"It's like sort this list, right?"
+2256.2000000000003,2258.16,Mutate this list and sort it.
+2258.16,2261.8399999999997,"Whereas sorted is more of a request,"
+2261.8399999999997,2265.7999999999997,"like, can you please get me the sorted version of L, right?"
+2265.7999999999997,2269.2799999999997,And so that's kind of how I keep things in my mind
+2269.2799999999997,2272.3599999999997,as to whether I'm calling sort to do the mutation
+2272.3599999999997,2276.0,or asking to get the sorted version of the list.
+2276.0,2277.08,Yes.
+2277.08,2279.08,What is the sorting type?
+2279.08,2282.8399999999997,It is sorting it by whatever the built-in sort
+2282.8399999999997,2285.72,is for those particular object types.
+2285.7200000000003,2289.92,"So in the case of integers, it's just increasing order."
+2289.92,2295.32,"In the case of strings, it'll be alphabetical."
+2295.32,2298.5600000000004,"You can choose different sorting functions,"
+2298.5600000000004,2300.36,but we don't get into that.
+2300.36,2300.86,Yeah.
+2300.86,2303.84,You don't have to do the same.
+2303.84,2305.1600000000003,That's a good question.
+2305.1600000000003,2308.88,I think they do in order for it to work.
+2308.88,2313.8,So we can try L equals 1.
+2313.8,2316.6800000000003,And then we can give it a tuple or something.
+2316.6800000000003,2319.52,And then we can ask sort L.
+2319.52,2319.7200000000003,Yeah.
+2319.7200000000003,2322.6000000000004,"So in this case, it doesn't know how to resolve."
+2322.6000000000004,2325.32,It's trying to do behind the scenes less than
+2325.32,2327.48,to figure out which one's bigger than which.
+2327.48,2330.2000000000003,"And in this case, it doesn't know how to resolve"
+2330.2000000000003,2333.28,how do you choose whether the tuple's bigger than an integer.
+2333.28,2335.2400000000002,"But you can imagine, again, as I mentioned,"
+2335.2400000000002,2336.44,"this is not something we do, but you"
+2336.44,2338.6800000000003,"could write your own sorting function where, depending"
+2338.6800000000003,2342.32,"on the type, you would decide which one is bigger."
+2344.0800000000004,2347.8,"So yes, question."
+2347.8,2356.7200000000003,"So you would just do L dot sort without parentheses, but L"
+2356.7200000000003,2360.28,has to be a list that contains things that can be sorted.
+2360.28,2364.36,"So all integers, all strings, or something like that."
+2364.36,2367.6400000000003,"So let's look at the memory diagram for how this would look,"
+2367.6400000000003,2371.1600000000003,just to kind of bring the point home about objects that
+2371.1600000000003,2372.04,are being mutated.
+2372.04,2375.64,So original L is 9603.
+2375.64,2380.24,"So in memory, I've got the name L bound to 9603."
+2380.24,2382.96,"Again, let's do an append just for fun."
+2382.96,2387.4,L dot append 5 is going to add a 5 to the end of that list.
+2387.4,2391.2,And append sort and reverse will all be used for a side effect.
+2391.2,2393.4,That means they're going to be mutating the object.
+2393.4,2397.52,Whereas sorted will not do a mutation.
+2397.52,2399.88,So let's do an append to the end.
+2399.88,2403.36,"That's going to put a 5 at the end of the list, something"
+2403.36,2406.32,we already know how it works.
+2406.32,2409.84,Now let's do a equals sorted L.
+2409.84,2412.08,"So again, it's an equality, right?"
+2412.08,2415.76,So the thing on the right hand side is going to be the function
+2415.76,2418.2000000000003,that returns for me the sorted version of L.
+2418.2000000000003,2420.2000000000003,So it's going to create a new object.
+2420.2000000000003,2421.88,"However, it does the sort."
+2421.88,2424.88,It's going to create for me a new list that contains
+2424.88,2426.6400000000003,that sorted order.
+2426.64,2430.3599999999997,"The original L, notice in memory, remains unchanged."
+2430.3599999999997,2433.7999999999997,"So if I want to reference L in my program from here on out,"
+2433.7999999999997,2437.72,I will use this unchanged L.
+2437.72,2442.96,"So now the return of sorted is this list, and I bind it to A."
+2442.96,2447.7999999999997,So name A now points to the sorted list version.
+2447.7999999999997,2450.6,"All right, now what if I do this line here?"
+2450.6,2453.6,B equals L dot sort.
+2453.6,2455.68,"Again, let's look at the right hand side."
+2455.68,2461.04,L dot sort is going to mutate L.
+2461.04,2467.04,"So this function itself will go and change L object,"
+2467.04,2471.7999999999997,"the object that L points to, to be the sorted list."
+2471.7999999999997,2473.6,But it's not done.
+2473.6,2475.56,This function is being used for a side effect.
+2475.56,2478.8399999999997,So what is the return from it?
+2478.8399999999997,2479.44,"None, right?"
+2479.44,2480.8399999999997,It's like the append.
+2480.84,2484.96,So this example here will make B point to the return
+2484.96,2486.6800000000003,"of that function, which is just none."
+2491.92,2494.28,Now please don't ever do this.
+2494.28,2498.32,"All you would have to do to sort L is to just on a line by itself,"
+2498.32,2499.32,say L dot sort.
+2499.32,2501.6000000000004,"I just did this to kind of show you, again,"
+2501.6000000000004,2505.36,"that if you do L equals L dot sort, bad things will happen."
+2505.36,2508.08,You're going to re assign L to be none.
+2508.08,2510.08,"In this case, I saved under a different variable,"
+2510.08,2512.68,but it's an easy mistake to make.
+2515.84,2517.64,And then what about the last one here?
+2517.64,2518.84,L dot reverse.
+2518.84,2522.48,"Again, I'm going to go and grab the object pointed to by L"
+2522.48,2524.2,and I'm going to reverse all the elements.
+2524.2,2527.3199999999997,"So here, doing L dot sort and then L dot reverse"
+2527.3199999999997,2532.2,right afterward makes my list be in reverse sorted order.
+2532.2,2534.24,So biggest number to smallest number.
+2534.24,2538.7599999999998,"So with that command there, I've got 96530."
+2538.76,2542.4,Instead of 03569.
+2542.4,2546.44,"And again, sort and reverse changed my list L directly."
+2546.44,2551.8,So I've lost that initial order of 9603 that I had up here.
+2556.36,2558.28,One last point I want to make.
+2558.28,2562.2400000000002,I know we've usually seen functions that take in parameters.
+2562.2400000000002,2565.0800000000004,Sort and reverse are still functions.
+2565.0800000000004,2568.6000000000004,And they just happen to not need any parameters.
+2568.6,2572.44,You call them on the object L using this dot notation.
+2572.44,2575.8399999999997,"So in effect, it does have sort of a quote unquote parameter,"
+2575.8399999999997,2577.4,the thing before the dot.
+2577.4,2580.72,But it doesn't take anything else in their own respective
+2580.72,2582.2799999999997,"parentheses, right?"
+2582.2799999999997,2584.2799999999997,But they do still need the parentheses there
+2584.2799999999997,2585.92,"because they are functions, right?"
+2585.92,2590.96,They are operations that will do something for us.
+2590.96,2595.2,"Questions about this, is it OK?"
+2595.2,2596.08,"OK, very good."
+2596.08,2598.92,Because now you get a chance to try it out.
+2598.92,2602.7599999999998,So let's have you do something similar to what we did last time.
+2602.7599999999998,2605.12,"Take in a parameter send, which is a string"
+2605.12,2606.6,representing a sentence.
+2606.6,2609.92,I want you to figure out all the words quote unquote
+2609.92,2614.04,the same manner that we did before in the previous example.
+2614.04,2619.92,"But now, return from your list with these words in sorted order."
+2619.92,2624.36,"So if the input was look at this photograph as my sentence,"
+2624.36,2629.2000000000003,then I would return a list which has at look photograph
+2629.2000000000003,2635.84,and this as my four elements in that order.
+2635.84,2644.04,"So here, start writing it down on line 134."
+2644.04,2646.92,"OK, what is the solution?"
+2646.92,2647.76,What do you have so far?
+2655.08,2657.08,Yes?
+2657.08,2661.6,L equals send out split is the parentheses.
+2661.6,2663.1200000000003,L equals send out split.
+2663.1200000000003,2665.92,And we split on a space.
+2665.92,2666.44,Got it?
+2666.44,2666.96,OK?
+2666.96,2670.2400000000002,And then L dot sort parentheses is the way it looks.
+2670.2400000000002,2671.44,Got it?
+2671.44,2672.44,And then return L.
+2672.44,2674.32,Return L. Perfect.
+2674.32,2679.28,"OK, let's see if that worked with our two examples."
+2679.28,2681.84,"Yep, there's my first one."
+2681.84,2683.2400000000002,There's my second one.
+2683.2400000000002,2684.84,Anybody do it a different way?
+2684.84,2686.5600000000004,Did anyone use sorted?
+2686.5600000000004,2687.5600000000004,Yeah.
+2687.5600000000004,2699.2000000000003,Return sorted parentheses L. Yeah.
+2699.2000000000003,2700.96,Is that how you'd?
+2700.96,2704.4,How many times does this consider L is send out split?
+2704.4,2705.0000000000005,Yep.
+2705.0000000000005,2706.2000000000003,We could do it all in one perfect.
+2706.2000000000003,2709.44,"Yeah, this could be a one line or for sure."
+2709.44,2714.8,"Yeah, so this works because this thing here"
+2714.8,2717.56,creates for me a new object.
+2717.56,2719.2400000000002,I could have saved it in a different variable
+2719.2400000000002,2723.68,"and then returned that variable, but this does it all in one."
+2723.68,2727.64,"So just for completion sake, if we"
+2727.64,2730.7200000000003,"comment out the other solution, this way still works."
+2730.7200000000003,2749.0400000000004,"OK, so what we've seen so far is a bunch of these functions,"
+2749.0400000000004,2752.0800000000004,"built-in functions, right, that have these side effects."
+2752.0800000000004,2755.8,They mutate the input list.
+2755.8,2760.2400000000002,So we can actually write our own functions that have a side
+2760.2400000000002,2764.0800000000004,"effect where if we pass in a parameter that's a list,"
+2764.0800000000004,2769.6000000000004,"we can have our functions mutate that list, however we'd like."
+2769.6000000000004,2771.7200000000003,So let's go through this example.
+2771.7200000000003,2775.44,Let's say we were given the task of writing a function
+2775.44,2780.0400000000004,that takes in the input list L and mutates the list L
+2780.0400000000004,2783.7200000000003,such that each element in L is changed
+2783.7200000000003,2786.2000000000003,"to be the element square, right?"
+2786.2000000000003,2793.28,"So 2, 3, and 4, as an input list becomes 4, 9, 16."
+2793.28,2794.6000000000004,And I'm mutating that list.
+2794.6000000000004,2798.1600000000003,I'm not creating a new list and returning the new list.
+2798.1600000000003,2802.76,I want to actually mutate the input list L.
+2802.76,2805.0800000000004,"So if we were faced with this task,"
+2805.0800000000004,2807.32,"the way that we would kind of go about it,"
+2807.32,2810.2400000000002,"maybe based on what we've learned so far is to say, well,"
+2810.2400000000002,2812.44,I'm going to iterate through each element in L
+2812.44,2815.0000000000005,"because that's the very Pythonic way to do this, right?"
+2815.0,2818.16,So I'm grabbing the element in the list L.
+2818.16,2824.04,But then I would be stuck because the syntax for changing
+2824.04,2826.92,"an element at a particular location, right,"
+2826.92,2833.88,is L at i equals whatever the changed thing is.
+2833.88,2838.56,But my loop variable is iterating through the element directly.
+2838.56,2840.96,So what's my index in this particular case?
+2840.96,2843.0,"I don't have it in hand, right?"
+2843.0,2845.96,"I have the element, but I don't have the index."
+2845.96,2848.84,So what are some solutions?
+2848.84,2852.68,"Well, a first solution could be right before the loop"
+2852.68,2856.6,"to create a new variable that keeps track of the index, right?"
+2856.6,2859.32,So you make i equals 0 right before the 4 loop.
+2859.32,2862.48,"And inside the 4 loop, you increment i each time."
+2862.48,2865.6,Now you're keeping track of the index yourself.
+2865.6,2868.24,Option 2 is to change what we iterate over.
+2868.24,2870.88,"So instead of iterating through each element in L directly,"
+2870.88,2873.28,let's iterate over the index.
+2873.28,2878.0,"So iterate over range length L. In that case,"
+2878.0,2882.92,"the range length L basically becomes range 5 or 20,"
+2882.92,2885.6,or whatever the length of my list is.
+2885.6,2890.2400000000002,And the last option is to try to use this thing called
+2890.2400000000002,2894.28,"enumerate, which is a Python keyword."
+2894.28,2897.48,"I guess function, Python function."
+2897.48,2900.88,And the syntax for that would be for tuple i comma e
+2900.88,2905.08,in enumerate L. So I'm basically wrapping l
+2905.08,2907.36,inside this enumerate function.
+2907.36,2910.04,"And Python, each time through the loop,"
+2910.04,2917.08,makes this little tuple i comma e be the index and the element
+2917.08,2919.12,at each location for each time through the loop.
+2919.12,2921.76,And so it gives you a 2 for 1 kind of deal here
+2921.76,2923.64,using this enumerate function.
+2923.64,2925.72,I'm not going to go over option 1 or option 3.
+2925.7200000000003,2927.76,I do encourage you to try to look these up
+2927.76,2929.2400000000002,or try to implement them yourself.
+2929.2400000000002,2934.92,But I will go over option 2 in these slides.
+2934.92,2939.1600000000003,"So if I were to iterate over the index directly,"
+2939.1600000000003,2943.28,the way I do it is I have to change the loop variable.
+2943.28,2947.0000000000005,"For i in, and then the thing I want to loop over"
+2947.0000000000005,2951.28,is all of the indices.
+2951.28,2954.96,"So I want to get the numbers 0, 1, 2, 3, 4 all the way up"
+2954.96,2960.0,"to the, but not including the length of l."
+2960.0,2962.16,"So once I have this index in hand,"
+2962.16,2964.7200000000003,"I can do something like this very easily, right?"
+2964.7200000000003,2969.2,Because this i here is going to be my index.
+2969.2,2970.84,And the thing on the right hand side
+2970.84,2972.76,is just going to be a matter of grabbing
+2972.76,2976.88,the element at that index and squaring it.
+2976.88,2980.76,So here l squared brackets i on the right hand side
+2980.76,2983.88,grabs for me the element at index i.
+2983.88,2985.84,So what's the value of that element
+2985.84,2989.6400000000003,"at that particular location, 23, whatever?"
+2989.6400000000003,2992.6800000000003,"Square it, so star star 2 squares it."
+2992.6800000000003,2995.56,And then the thing on the left hand side
+2995.56,2999.04,is the syntax for changing the element
+2999.04,3000.32,"at a particular location, right?"
+3000.32,3004.44,We saw this way back on slide 2.
+3004.44,3007.32,"So with this line of code, Python goes through each element"
+3007.32,3010.04,in the list and squares it and saves it back
+3010.04,3011.56,into that same list.
+3011.56,3013.4,No new list is created.
+3013.4,3017.56,"It's mutating the original list, right?"
+3017.56,3019.4,No return.
+3019.4,3021.7999999999997,"Nothing to return, this function will return none"
+3021.7999999999997,3025.16,because it does its job of doing the mutation.
+3025.16,3029.84,"So if we go through an example, suppose that l is 23, 4,"
+3029.84,3032.04,what is this loop going to do?
+3032.04,3035.72,"So i, the first time through the loop will be 0."
+3035.72,3039.04,"And then that first time through the loop,"
+3039.12,3044.24,"it will mutate i. So it says l, square bracket 0 equals whatever"
+3044.24,3048.04,"the element at 0 is, the 2 squared."
+3048.04,3051.6,"So l, square bracket 0 will be changed to 4."
+3051.6,3055.52,So we've mutated the first element at index 0 to be a 4.
+3055.52,3057.16,And everything else is the same.
+3057.16,3061.0,"Next time through the loop, I'm mutating the list"
+3061.0,3062.72,"that I had just mutated, right?"
+3062.72,3066.08,So the first element is still the mutated value 4.
+3066.12,3069.52,But now I'm going to change my element at index 1
+3069.52,3071.72,"to be 3 squared, 9."
+3071.72,3076.2799999999997,"Last time through the loop, all the elements up to index 2"
+3076.2799999999997,3079.3199999999997,"are going to be the mutated elements, so 4 and 9."
+3079.3199999999997,3080.6,And then the last time through the loop
+3080.6,3084.68,"I'm mutating the 4 to be 16, the square version of that."
+3088.36,3092.92,"So to check that we did the mutation correctly,"
+3092.92,3096.2000000000003,what we would do is we would create an input list.
+3096.2000000000003,3097.84,I called it l in.
+3097.84,3102.12,"And I've said it to 2, 3, 4, my example."
+3102.12,3105.36,"If I print before the function call, the value of l in,"
+3105.36,3107.7200000000003,"it's 2, 3, 4, as expected."
+3107.7200000000003,3110.2400000000002,It shouldn't be anything different than that.
+3110.2400000000002,3113.96,Then I make a function call to the function that we just wrote.
+3113.96,3117.16,"Note I'm not returning anything here,"
+3117.16,3122.2000000000003,so I'm not saving the function call to any variable.
+3123.2000000000003,3126.2000000000003,"If I print l in after the function call,"
+3126.2000000000003,3128.32,it will print the mutated list.
+3128.32,3133.7200000000003,"So this l in, here, and here, and here is the same object."
+3133.7200000000003,3136.0400000000004,Nothing was returned.
+3136.0400000000004,3139.0000000000005,This function here has nothing to assign its return to.
+3139.0000000000005,3142.6800000000003,"If we assigned it to something, that variable would be none."
+3142.6800000000003,3145.28,"Just like the append, just like the sort, just like the reverse."
+3148.92,3151.4800000000005,"All right, so when you're writing, oh, yeah, question."
+3152.2000000000003,3155.84,"So you created a function that will have a return,"
+3155.84,3159.7200000000003,and it doesn't say none.
+3159.7200000000003,3160.8,We created a function.
+3160.8,3162.2000000000003,It doesn't have a return.
+3162.2000000000003,3163.84,"It doesn't say none, because we didn't"
+3163.84,3167.7200000000003,"save the function call to any variable, right?"
+3167.7200000000003,3172.1200000000003,"If we said a equals this function call,"
+3172.1200000000003,3174.4800000000005,"if we print a, it would show none."
+3174.4800000000005,3177.4800000000005,Yeah.
+3177.4800000000005,3182.0000000000005,"OK, so when we're writing functions that mutate input lists,"
+3182.0,3183.8,"the two likely things you're going to have to do,"
+3183.8,3185.96,and it depends on what your function's actually doing.
+3185.96,3188.44,"But most likely, you're going to have to iterate over the length"
+3188.44,3191.28,"of the list, so for i in range length l,"
+3191.28,3194.56,"to grab the index as well as the element,"
+3194.56,3197.2,to be able to grab the index as well as the element.
+3197.2,3200.24,"And these functions, I mean, they could do other stuff,"
+3200.24,3203.24,"but if you're using them for mutation and things like that,"
+3203.24,3204.8,they're going to return none.
+3204.8,3207.0,"So when you make function calls to them,"
+3207.0,3209.8,those function calls will likely just be on a line
+3209.8,3215.1200000000003,"without saving the return to any variable, right?"
+3215.1200000000003,3218.2400000000002,"OK, so we've talked about mutable objects."
+3218.2400000000002,3221.52,"They're very, very useful."
+3221.52,3224.76,Places where the reason that they're useful
+3224.76,3229.0800000000004,is because they allow you to have basically large databases
+3229.0800000000004,3234.4,"of objects like employees in a company,"
+3234.4,3237.6800000000003,"list of all the students at MIT, things like that."
+3237.6800000000003,3242.36,"And if you want to make a change to something about that list,"
+3242.36,3244.6800000000003,like a student changes their name or their address
+3244.6800000000003,3247.2400000000002,"or something like that, with tuples,"
+3247.2400000000002,3250.28,you'd have to make a new copy of that entire list.
+3250.28,3252.76,"So it could be very space and efficient,"
+3252.76,3255.4,because every time a student changes their address
+3255.4,3257.88,or their name or something about themselves
+3257.88,3259.5600000000004,"or their grades or something like that,"
+3259.5600000000004,3262.8,you're making a new copy of this potentially thousands
+3262.8,3265.76,long data structure.
+3265.76,3268.36,Lists don't have that issue with lists.
+3268.36,3270.5200000000004,You're just mutating the object in place
+3270.5200000000004,3271.0400000000004,and you're done.
+3271.0400000000004,3274.92,"No extra copies are being made, so it's a very efficient data structure."
+3274.92,3277.48,"But with lists, come some unexpected challenges."
+3277.48,3279.8,And we're going to go through three tricky examples today.
+3279.8,3283.0,"In next lecture, we're going to see tricky example number four."
+3283.0,3286.7200000000003,And these three tricky examples involve looping over the list
+3286.7200000000003,3289.6000000000004,"in one way or another, over the range of the length of the list"
+3289.6000000000004,3292.32,or through the list directly.
+3292.32,3293.8,So let's look at the first example.
+3296.6800000000003,3301.0,"In this code down here, we're going to loop over the range"
+3301.0,3304.84,of the length of the L. And then what we're going to do
+3304.84,3309.56,is append the loop variable I to the end of my list.
+3312.2000000000003,3315.76,"Now, what does range length L do?"
+3315.76,3320.6800000000003,"So remember, the thing that our four loop iterates over"
+3320.6800000000003,3323.0400000000004,is a sequence of values.
+3323.0400000000004,3327.88,"Now, range some number creates for us a tuple-like object,"
+3327.88,3331.88,"not a tuple specifically, but you can think of it like a tuple."
+3331.88,3335.32,"So range four, the length of this particular list,"
+3335.32,3338.5200000000004,"would create for us in memory something like a tuple,"
+3338.5200000000004,3341.32,"the sequence 0, 1, 2, 3."
+3341.32,3344.92,And this is the sequence that the loop variable I will go over.
+3344.92,3349.7200000000003,"First, it'll be 0, then it'll be 1, then it'll be 2, then it'll be 3."
+3349.7200000000003,3353.32,"So when we iterate through the sequence, Python says,"
+3353.32,3356.28,"the first time I see this, I encountered this four loop,"
+3356.28,3358.8,I'm going to save this sequence I need to iterate
+3358.8,3361.4800000000005,over as an object in memory.
+3361.4800000000005,3363.4,And then I'm going to have my loop variable iterate
+3363.4,3365.6000000000004,over each one of these elements.
+3365.6000000000004,3369.1200000000003,The thing I'm doing is appending i to the end of a list.
+3369.1200000000003,3370.5200000000004,"So the first time through the list,"
+3370.5200000000004,3372.32,I'm going to append a 0 to the end.
+3372.32,3376.2400000000002,So the 0 being this loop variable here.
+3376.2400000000002,3378.84,"Next time through the list, I'm appending the 1 to the list"
+3378.84,3381.8,I just mutated.
+3381.8,3386.04,Next time I'm appending the 2 to the list I just mutated.
+3386.04,3391.44,"And last time through the list, I'm appending the 3 to the list I just mutated."
+3391.44,3392.96,And we finish.
+3392.96,3394.92,We've gone through four times.
+3394.92,3399.44,"We've appended four items to the end of the list, 0, 1, 2, and 3."
+3399.44,3407.6000000000004,"This thing, the elements of my sequence that I'm iterating over."
+3407.6,3411.4,Let's look at the memory diagram.
+3411.4,3414.6,"So originally, l is 1, 2, 3, 4."
+3414.6,3418.4,What exactly happens when we first encounter range length l?
+3418.4,3422.2,"That gets put as a variable, this tuple-like thing."
+3422.2,3426.12,"I made it be a tuple, but it's not exactly a tuple in memory."
+3426.12,3429.08,And this i will iterate through each one of these values
+3429.08,3429.96,in my sequence.
+3429.96,3437.12,This is the sequence of values that I'm going to iterate over.
+3437.12,3442.72,"So the first time through the loop, Python has i pointing to 0 here."
+3442.72,3444.8399999999997,And so what's it doing inside the loop?
+3444.8399999999997,3449.48,It's going to append the 0 to the end of l.
+3449.48,3453.0,"Next time through the, then it's going to print l, sorry."
+3453.0,3457.3599999999997,"And then next time through the loop, the loop variable increments by 1."
+3457.3599999999997,3459.04,So we've already looked at the 0.
+3459.04,3461.08,Now we're going to do the 1.
+3461.08,3463.0,So the loop variable i is now 1.
+3463.0,3466.3599999999997,"So we're going to append the loop variable 1 to the end of l,"
+3466.36,3472.4,"print l, loop variable becomes 2, append the loop variable to the end of l."
+3472.4,3475.52,"So now it has a 2, print l."
+3475.52,3480.04,"And then the last time we append the loop variable 3 to the end of the list l,"
+3480.04,3482.04,and print l.
+3482.04,3488.4,"Pretty straightforward, the code terminates because we've created this original tuple-like"
+3488.4,3492.6800000000003,"object here, which tells Python what values you need to iterate over."
+3492.6800000000003,3497.92,This is your sequence of values to go through.
+3497.92,3501.0400000000004,So that's basically what I said.
+3501.0400000000004,3503.4800000000005,So let's look at a slightly different example.
+3503.4800000000005,3508.0000000000005,"So in this case, instead of iterating over the range length l,"
+3508.0000000000005,3513.4,"let's iterate over the elements in l directly, so for e in l."
+3513.4,3517.6800000000003,"Now to keep things sort of in parallel to what we had done before,"
+3517.6800000000003,3521.2400000000002,"let's create a loop variable i equals 0 before the for loop,"
+3521.2400000000002,3523.4,and let's increment it by 1 each time through the loop.
+3523.4,3528.44,"So we're going to still append 0 than 1, then 2, then 3 to the end of our list."
+3528.44,3533.8,"So in this particular case, we start out with the memory diagram like this."
+3533.8,3537.6800000000003,"So we have l pointing to 1, 2, 3, 4."
+3537.6800000000003,3541.28,"Loop variable i is going to be 0 originally,"
+3541.28,3545.4,and e will first point to the first element in the list.
+3545.4,3549.2000000000003,That's what the for loop over the elements in the list does.
+3549.2000000000003,3555.2000000000003,"So going into the list, we say l got append i, so at the end of l,"
+3555.2000000000003,3559.6800000000003,I'm going to mutate it to contain a 0.
+3559.6800000000003,3560.84,Good.
+3560.84,3563.0400000000004,I increment i by 1.
+3563.0400000000004,3564.0400000000004,Good.
+3564.0400000000004,3566.2000000000003,"I print l, OK, good."
+3566.2000000000003,3568.92,"And then the next time through the loop, Python says, all right,"
+3568.92,3571.8,what's the next element in my sequence?
+3571.8,3573.84,"Well, I looked at the 1 first."
+3573.84,3576.6000000000004,Now let me look at the 2.
+3576.6000000000004,3577.36,All right.
+3577.36,3580.08,Now I'm looking at the 2 as my next element in the sequence.
+3580.08,3582.8,"I'm going to append i to the end of the list, right?"
+3582.8,3587.32,So I'm going to append 1 to the end of l.
+3587.32,3592.92,"Increment i by 1 to be 2, print l, OK?"
+3592.92,3595.2400000000002,"Next value in my sequence, e increments"
+3595.2400000000002,3599.36,"to the next element in the sequence, the 3."
+3599.36,3601.36,We append i to the end of the list.
+3601.36,3605.7200000000003,"We append 2 to the end of l, increment i by 1, print l."
+3605.7200000000003,3607.36,What do you notice?
+3610.32,3612.76,Is this code going to terminate?
+3612.76,3613.6800000000003,No.
+3613.6800000000003,3616.6000000000004,Because our loop variable will always
+3616.6000000000004,3620.6400000000003,"be four elements away from the list, the end of the list."
+3620.6400000000003,3623.0800000000004,"As I'm adding an item to the end of my list,"
+3623.0800000000004,3625.4,loop variable iterates to the next item.
+3625.4,3627.32,But then I'm adding another item to the end of my list
+3627.32,3629.2400000000002,and my loop variable iterates.
+3629.2400000000002,3632.2400000000002,And so we're always going to be four behind the end of the list.
+3632.2400000000002,3634.5600000000004,So this code will actually never stop.
+3639.0000000000005,3641.48,All right.
+3641.48,3644.2000000000003,So the difference here is what I'm iterating over.
+3644.2000000000003,3647.4,"In the previous example, as soon as Python saw range, length,"
+3647.4,3650.6000000000004,"whatever, it made this predefined sequence of values"
+3650.6000000000004,3652.36,it needed to iterate over.
+3652.36,3654.5200000000004,But here it doesn't do that because it's
+3654.5200000000004,3656.28,iterating over my object l.
+3656.28,3658.6000000000004,There's no predefined sequence to create.
+3658.6000000000004,3661.84,It's supposed to iterate over l directly.
+3661.84,3665.1200000000003,So that's the difference between these two.
+3665.1200000000003,3667.32,"So now I'm going to show you, before I"
+3667.32,3670.0,"do the last trick example involving concatenation,"
+3670.0,3672.6400000000003,"I wanted to mention one thing, which is there"
+3672.6400000000003,3674.8,"was a question earlier, how do we actually"
+3674.8,3677.56,add more than one item to the end of our list?
+3677.56,3681.0,And we do that using this extend operation.
+3681.0,3684.6800000000003,"And this extend operation is kind of like a pinned,"
+3684.6800000000003,3689.2400000000002,but we are going to add all of the elements of some list
+3689.2400000000002,3693.28,as the parameter to the end of our list l.
+3693.28,3697.7200000000003,"So in effect, we're mutating l to be extended by all the elements"
+3697.7200000000003,3700.92,in some underscore list.
+3700.92,3702.32,So here's an example.
+3702.32,3704.7200000000003,"First, let's do concatenation just to remind ourselves"
+3704.7200000000003,3705.28,what it does.
+3705.28,3707.4,So l1 is 213 in memory.
+3707.4,3709.44,l2 is 456 in memory.
+3709.44,3712.6400000000003,l3 is going to be l1 concatenated with l2.
+3712.6400000000003,3714.96,"Pretty straightforward, it's concatenation."
+3714.96,3717.96,"So Python creates for me a new object, which"
+3717.96,3721.4,is all the objects in l1 and l2 put together
+3721.4,3725.08,as this completely new object bound to the name l3.
+3725.08,3729.68,"So l1 and l2 remain unchanged, no problems there."
+3729.68,3736.0,"But the extend is going to mutate, notice a dot notation"
+3736.0,3737.96,format of extend.
+3737.96,3740.52,It's going to mutate l1 to be extended
+3740.52,3743.52,by all the elements in this list.
+3743.52,3747.88,So it's going to add a 0 and a 6 to the end of l1.
+3747.88,3749.2400000000002,So here it is.
+3749.2400000000002,3754.76,I've got l1 mutated to be 213 and then 0 and then 6.
+3754.76,3757.32,"So just to bring the point home, the thing we're extending"
+3757.32,3763.2400000000002,by is all of the elements of this list in the parameter.
+3763.2400000000002,3766.4,"So in this particular case, l2 dot extend"
+3766.4,3770.6,will be extended by how many elements?
+3770.6,3771.7200000000003,2 or 4?
+3771.7200000000003,3777.92,"Yeah, I see 2."
+3777.92,3778.5200000000004,Exactly.
+3778.5200000000004,3779.96,It'll be extended by two elements.
+3779.96,3783.0400000000004,"At the top level, this list has two elements in it,"
+3783.0400000000004,3785.4800000000005,a list and then another list.
+3785.4800000000005,3790.32,"So this command here will extend l2 by these two elements,"
+3790.32,3795.0800000000004,"specifically, 1 comma 2 as a list and 3 comma 4 as a list."
+3795.0800000000004,3796.88,But these are individual objects.
+3796.88,3798.8,They're single objects that are lists.
+3798.8,3801.6400000000003,They happen to have a bunch of elements as part of the list.
+3801.64,3804.44,But they are two objects.
+3804.44,3805.24,Yeah.
+3805.24,3818.2,"When we extended by 0 comma 6, there's no brackets"
+3818.2,3820.18,because we're extending it by the elements
+3820.18,3821.8799999999997,of this top level list.
+3821.8799999999997,3824.24,So it's two integers.
+3824.24,3826.6,"And here, we're extending it by the elements"
+3826.6,3831.3199999999997,"of this top level list, since the outermost parentheses,"
+3831.32,3834.6800000000003,"which are actually, they are lists, right?"
+3834.6800000000003,3835.6400000000003,"So in this, yeah."
+3840.6400000000003,3842.6800000000003,OK.
+3842.6800000000003,3844.04,So that introduces extend.
+3844.04,3846.52,"We're not actually going to use extend for this particular example,"
+3846.52,3847.92,but I did want to mention it.
+3847.92,3850.92,"In this example, we're going to use the plus the concatenation"
+3850.92,3859.56,operator to create for us this new object and bind it to l again.
+3859.56,3862.48,So let's see what this is going to do.
+3862.48,3865.2,"First, I'm going to actually tell you the answer."
+3865.2,3867.36,And then we'll do the memory diagram again
+3867.36,3868.36,to bring the point home.
+3868.36,3874.64,"So this loop will, again, loop through all the elements in l."
+3874.64,3879.52,"Originally, it's 1, 2, 3, 4 in a list."
+3879.52,3884.0,So what is the actual loop going to do?
+3884.0,3888.44,"It's going to take whatever's in l, double it."
+3888.44,3891.12,"So originally, l is 1, 2, 3, 4."
+3891.12,3892.8,The first time through the loop is going
+3892.8,3897.36,"to create a new object, which is just l, 1, 2, 3, 4, doubled."
+3897.36,3900.2400000000002,I've concatenated l with itself.
+3900.2400000000002,3904.76,"And then I'm going to save it in my new, as this new object,"
+3904.76,3908.7200000000003,with the name l again.
+3908.7200000000003,3911.2000000000003,That's the first time through the loop.
+3911.2000000000003,3917.08,"Second time through the loop, I'm going to take whatever l was"
+3917.08,3919.68,"before, sorry, not mutated, but whatever l was before."
+3919.68,3925.92,"So it's 1, 2, 3, 4, 1, 2, 3, 4, double that and save it"
+3925.92,3929.52,under the name l. Second time through the loop.
+3929.52,3931.56,"Now, third time through the loop, I'm"
+3931.56,3934.12,going to take whatever l is right now.
+3934.12,3940.24,"So these two rows of 1, 2, 3, 4, 1, 2, 3, 4, double that"
+3940.24,3944.3199999999997,and save it under the name l.
+3944.36,3947.2000000000003,"And then the last time through the loop,"
+3947.2000000000003,3950.0,"I'm going to take whatever l was before,"
+3950.0,3955.28,"so these four rows of 1, 2, 3, 4, 1, 2, 3, 4, double those"
+3955.28,3957.44,and save that as the new l.
+3957.44,3958.76,And that's it.
+3958.76,3966.1200000000003,This code does not go to infinity.
+3966.1200000000003,3968.36,"Now, let's see why exactly that is."
+3968.36,3970.88,So this will help.
+3970.88,3974.04,"Originally, I've got l is 1, 2, 3, 4, right?"
+3974.04,3976.68,So that's straightforward.
+3976.68,3981.7599999999998,My loop variable E goes through each element in this object.
+3981.7599999999998,3987.12,"So first, it's going to point to the 1, so far the same."
+3987.12,3988.6,l equals l plus l.
+3988.6,3991.64,Let's look at the right-hand side first.
+3991.64,3994.52,This creates for me a new object.
+3994.52,3996.8,"Remember, concatenation creates for me a new object."
+3996.8,3998.84,It doesn't mutate anything.
+3998.84,4003.04,"So in memory, I'm going to get 1, 2, 3, 4, 1, 2, 3, 4."
+4003.04,4006.36,"I've doubled l, l with itself."
+4006.36,4008.36,What is l equals going to do?
+4012.24,4015.2,"Remember, we did a slide like this, very similar to this."
+4015.2,4018.12,It's like when we reassigned the tuple.
+4018.12,4020.88,The l equals will actually take the binding
+4020.88,4025.08,from my original object and put it on the new object
+4025.08,4028.24,"that I had just created, right?"
+4028.24,4031.56,"Exactly that memory diagram with the tuple, right?"
+4031.56,4034.88,"I happened to have the same name, but it's pointing"
+4034.88,4036.08,to a new object.
+4036.08,4037.08,Same here.
+4037.08,4039.16,"I happened to have the same name, l,"
+4039.16,4041.4,but it's now pointing this new object.
+4041.4,4045.2799999999997,"The old object, this thing that I'm iterating over,"
+4045.2799999999997,4048.2,I've lost the binding to it.
+4048.2,4051.32,"And really, the only way I can even reference that old object"
+4051.32,4053.32,"is through this E, because that E is still"
+4053.32,4055.52,going to go through this old object elements.
+4058.04,4060.56,"So that's the first time, yes, question."
+4060.56,4066.7599999999998,Why does it not get about if you define it before you change it?
+4066.7599999999998,4072.4,"Yes, you defined E to be the object in memory, not the name, l."
+4072.4,4076.32,So E is bound to the object in memory that's this thing here.
+4076.32,4078.84,That's why it was so important to separate ourselves
+4078.84,4082.2799999999997,from the object in memory versus the name we give an object.
+4082.2799999999997,4085.7599999999998,Because that name can change to a bunch of other stuff.
+4085.7599999999998,4089.2,"But the object itself remains in memory, right?"
+4089.2000000000003,4092.0400000000004,So then this becomes pretty straightforward.
+4092.0400000000004,4094.5600000000004,"If you understand that piece, right?"
+4094.5600000000004,4095.92,"The first time through the loop, I've"
+4095.92,4098.320000000001,got l assigned to this new object here.
+4098.320000000001,4101.320000000001,I've lost the binding to my original list
+4101.320000000001,4102.8,that I'm iterating over.
+4102.8,4105.280000000001,"So when I print l, I print this."
+4105.280000000001,4112.72,"Next time, E increases to the next element in my sequence."
+4112.72,4114.76,l will double what it currently is.
+4114.76,4116.6,So it's currently this thing here.
+4116.6,4119.280000000001,It's going to double to that.
+4119.280000000001,4121.68,"And I'm going to lose the binding from the original,"
+4121.68,4123.88,"or not the original, but this thing that I had just"
+4123.88,4129.6,bound it to to bind it to the next object that I had just created.
+4129.6,4131.52,And then that's the second time through the loop.
+4131.52,4132.88,It looks like this.
+4132.88,4136.88,"Third time through the loop, E increments by 1,"
+4136.88,4139.200000000001,to the next value in my sequence.
+4139.200000000001,4140.6,I'm going to take l plus l.
+4140.6,4146.08,So double that previous data object.
+4146.08,4150.36,"Take the binding from that previous object to the new one,"
+4150.36,4154.4,increment E by 1 more.
+4154.4,4157.76,And this will be the last time E is going to change.
+4157.76,4161.16,Because after this E will have gone through all the elements
+4161.16,4162.12,in its sequence.
+4162.12,4164.92,It's gone through the end of that list.
+4164.92,4167.72,"So the last time through the loop, I've doubled that l."
+4167.72,4169.6,"And I've lost the binding from the previous one,"
+4169.6,4171.36,"made it to the new one, and then that's it."
+4171.36,4171.88,It's done.
+4176.68,4178.04,Questions?
+4178.04,4179.36,Is it straightforward?
+4179.36,4181.5599999999995,Does the picture help?
+4181.5599999999995,4182.16,All that?
+4182.16,4184.76,OK.
+4184.76,4185.76,OK.
+4185.76,4187.2,One more thing I want to mention.
+4187.2,4188.68,And this is kind of a preview of what
+4188.68,4191.36,we're going to do next time.
+4191.36,4195.48,One very useful operation that you might want to do
+4195.48,4198.28,is to take a list and remove all of its elements.
+4198.28,4200.5599999999995,"But not, yeah, go ahead."
+4200.5599999999995,4200.96,Sorry.
+4201.08,4202.88,Is it clockwise key?
+4202.88,4206.16,Because usually it stops with one last one.
+4206.16,4208.92,"Oh, here it's, that's in range."
+4208.92,4211.32,So here it's just iterating through all the elements
+4211.32,4212.4800000000005,"in the sequence, right?"
+4212.4800000000005,4215.68,Going to every one of them.
+4215.68,4217.68,So one useful operation we might want to do
+4217.68,4219.4,"is to remove all the elements in the list,"
+4219.4,4224.12,"but not, sorry, but by mutating the list."
+4224.12,4227.72,So we want to keep our original list object.
+4227.72,4231.04,We just want to basically clear it out of all of its elements.
+4231.04,4234.72,And so the command for that has a pretty nice name.
+4234.72,4236.360000000001,It's called clear.
+4236.360000000001,4239.320000000001,"So if you want to take a list L and clear it,"
+4239.320000000001,4245.04,"so to remove all the elements inside it, you say L dot clear."
+4245.04,4251.360000000001,And that mutates my original list L to be empty.
+4251.360000000001,4255.84,So one thing that might help with this mutation lecture
+4255.84,4257.64,"and figuring out which object is which,"
+4257.64,4259.4400000000005,"and whether you've created a new object or not,"
+4259.4400000000005,4262.28,"is to figure out, is to ask, how do I"
+4262.28,4265.88,know that this object is the object that I'm mutating?
+4265.88,4267.4400000000005,"And to do that, we're actually going"
+4267.4400000000005,4270.360000000001,to use this function called ID.
+4270.360000000001,4274.04,And ID lets us kind of get the memory location
+4274.04,4279.64,"or memory object, or the ID of the object itself in memory."
+4279.64,4285.64,So the code on the left is code that takes in a list L.
+4285.64,4289.72,"We get its ID to see what is this object in memory,"
+4289.72,4292.08,"what's its number, append an 8 to it."
+4292.08,4294.92,We're going to see that the ID of this
+4294.92,4297.84,"is going to be the same as the ID of this,"
+4297.84,4301.0,because we're mutating L. We're not changing it.
+4301.0,4303.240000000001,We're not creating a new object.
+4303.240000000001,4306.56,"And then lastly, we're going to clear it and check the ID again."
+4306.56,4308.76,And you're going to see that the ID is exactly the same
+4308.76,4311.12,in all of these different cases.
+4311.12,4315.4400000000005,So I'm doing this in the console just to show you real quick.
+4315.4400000000005,4320.000000000001,"So here I have 4, 5, 6 as my L. Here's L, 4, 5, 6."
+4320.000000000001,4324.320000000001,The ID of it is this number here.
+4324.320000000001,4329.120000000001,"We could just look at the last three digits or whatever, 808."
+4329.120000000001,4334.400000000001,Let's append an item to the end of our list.
+4334.400000000001,4337.320000000001,L mutated to contain that item.
+4337.320000000001,4341.160000000001,The ID of L remains the same and is an 808.
+4341.160000000001,4343.200000000001,It's the exact same object in memory.
+4343.200000000001,4345.360000000001,We've mutated it.
+4345.36,4351.24,"L.clear, L, empty list."
+4351.24,4353.4,I've removed all the elements of L.
+4353.4,4355.5199999999995,And the ID of L will show me that it's
+4355.5199999999995,4357.16,the exact same object.
+4357.16,4362.04,I'm just mutating this same object in memory.
+4362.04,4367.08,"Let's do that again, except in the new version,"
+4367.08,4371.16,"instead of using L.clear, I will say L is equal to the empty list."
+4371.16,4375.5599999999995,And this is also a really common mistake to me.
+4375.5599999999995,4378.28,"So here I have L is 4, 5, 6."
+4378.28,4380.96,"Again, this is my L. Let's get the ID of L."
+4380.96,4384.88,"It's going to be a new one, because I've reassigned L to this new list."
+4384.88,4388.2,So this one ends in 312.
+4388.2,4391.8,"Again, let's do an append just for fun."
+4391.8,4398.04,The ID of L is going to be again 312.
+4398.04,4400.5199999999995,"But now, if I say L is equal to the empty list,"
+4400.52,4402.56,this is exactly the same as the situations
+4402.56,4406.92,we've seen before with the 2-pole and with the tricky example number 3.
+4406.92,4410.320000000001,"When I say L is equal to the empty list, Python takes my name L"
+4410.320000000001,4414.360000000001,and assigns it to this object that is the empty list.
+4414.360000000001,4417.72,"My original object, 4, 5, 6, 8, is still in memory."
+4417.72,4420.56,I've just lost the binding to it.
+4420.56,4425.120000000001,So here's L. It's an empty list.
+4425.120000000001,4428.6,But the ID of L is now going to be different.
+4428.6,4432.88,"Originally, I was working with this list at ID 312."
+4432.88,4435.320000000001,"But after I said L is equal to the empty list,"
+4435.320000000001,4438.52,I've lost the binding from that old list
+4438.52,4443.120000000001,and rebound my name L to this new empty list.
+4443.120000000001,4449.4800000000005,"And you can see this using this ID, just pretty cool."
+4449.4800000000005,4450.72,"OK, quick summary."
+4450.72,4454.400000000001,So we saw lists and 2-poles as a way for us
+4454.400000000001,4456.4800000000005,to create these compound data structures that
+4456.4800000000005,4459.52,can contain any kind of object as their elements.
+4459.52,4460.56,2-poles are immutable.
+4460.56,4464.040000000001,"So for things that don't change, they're"
+4464.040000000001,4467.56,"very useful, like country, latitude, longitude."
+4467.56,4469.000000000001,Those things won't change.
+4469.000000000001,4471.92,Or the word that appears on a page number
+4471.92,4475.52,and a line number or something like that.
+4475.52,4477.400000000001,Lists are immutable objects.
+4477.400000000001,4481.200000000001,So you use them in situations where you need that dynamic aspect.
+4481.200000000001,4483.56,"So if you want to maintain a list of employees,"
+4483.56,4485.52,"you want to maintain a list of students,"
+4485.52,4488.120000000001,list of grocery items or things in your fridge.
+4488.120000000001,4490.76,Those are really good situations where you'd want a list
+4490.76,4492.4400000000005,because things are constantly changing.
+4492.4400000000005,4495.240000000001,You don't want to make copies of everything all the time
+4495.240000000001,4499.4400000000005,because it becomes very inefficient to do so.
+4499.4400000000005,4503.360000000001,"So next lecture, we will continue with tricky examples."
+4503.360000000001,4505.200000000001,And we'll also have a quiz.
+4505.200000000001,4507.56,"Remember, quizzes are now on Monday."

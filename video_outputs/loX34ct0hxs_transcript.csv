@@ -1,0 +1,676 @@
+Start Time,End Time,Text
+0.0,14.96,"All right, so let's get started with today's lecture."
+14.96,20.84,We're going to look at a lot more code where we basically figure out the complexity class
+20.84,22.8,of that given code.
+22.8,26.52,So first let's remember what we learned at the end of the last lecture.
+26.52,33.98,So we introduced this theta notation as a notation to mark the order of growth of a particular
+33.98,36.68,"function or a particular piece of code, right?"
+36.68,42.12,And the theta we preferred over big onotation because the theta allowed us to get this
+42.12,47.120000000000005,asymptotic upper bound on the worst case runtime of our function.
+47.120000000000005,50.64,So we wanted an asymptotic bound as opposed to an upper bound because that upper bound
+50.64,53.92,"can be anything that grows faster than our function, right?"
+53.92,58.0,So we prefer this theta as the asymptotic bound.
+58.0,63.0,"So at the end of last lecture we basically said that given some function, the theta for"
+63.0,68.32000000000001,that function is going to be the dominant term of that function.
+68.32000000000001,72.6,"So if we have a whole bunch of terms, we focus on the one that grows the most."
+72.6,78.16,"We drop any additive constants, any multiplicative constants, and all the other terms that don't"
+78.16,82.12,"grow as fast as that one, as that biggest one, okay?"
+82.12,85.84,So we ended up with some classes of algorithms that we're going to go over today.
+85.84,89.24000000000001,We're going to see a bunch of codes that fall within those classes of algorithms.
+89.24000000000001,95.64,"But before we go into that, I wanted to just quickly recap sort of the end of last lecture."
+95.64,101.56,"So we saw an example that was pretty similar to this one, if not the same."
+101.56,106.80000000000001,"So we know that given some function, we can grab the theta of that function by focusing"
+106.80000000000001,108.44,on that dominant term.
+108.44,110.80000000000001,But how do we get at that function?
+110.8,116.84,"So given some piece of code, the idea to get at that function was to first start by looking"
+116.84,118.72,at the inputs to the function.
+118.72,123.92,"So we have three inputs in this particular case, L, L1, and L2, right?"
+123.92,129.24,"Once we figure out the inputs to this function, we go on and look at everything within the"
+129.24,132.24,code that depends on these input parameters.
+132.24,137.76,"So they could be direct like a loop that goes over something related to the input, or"
+137.76,141.64,it could be indirect as we're going to see in some examples later today.
+141.64,148.67999999999998,But we basically look at just the parts of the function that deal with this input.
+148.67999999999998,157.56,"If we want to be exact, we start by finding out the exact number of operations that we do"
+157.56,158.56,within this code.
+158.56,163.32,That's something that we did when we counted the number of operations given some function.
+163.32,170.76,"So we're going to count the number of operations given this code in relation to L1, L2, and L."
+170.76,176.79999999999998,So we've got this relationship that we can come up with that relates the number of operations
+176.79999999999998,180.56,"run as a function of L, L1, and L2."
+180.56,188.24,So the one over here is constant because we just have an assignment here for some variable.
+188.24,191.48000000000002,The next term here is not constant.
+191.48000000000002,197.24,"There are five constant things that we're doing, assigning I to be a value in range, grabbing"
+197.24,199.56,indexing into L at I.
+199.56,205.68,"That's two, indexing until I, L1 at I, that's three, checking the equality that's four, and"
+205.68,208.04000000000002,then setting an L1 to be true that's five.
+208.04000000000002,212.56,"So there's five operations, but these are repeated how many times?"
+212.56,218.0,"Well, they're repeated length L1 times because this loop goes through length L1, right?"
+219.0,225.88,"So this term here, this four loop here, is length L1 times five number of operations."
+225.88,231.48,"Then the one here is this assignment over here, and then this loop down at the bottom is"
+231.48,239.84,"exactly the same as the loop up at the top, except that now this bottom loop repeats length L2 times, right?"
+239.84,244.52,"So as L2 gets bigger, this loop will take longer to run, right?"
+244.52,246.12,That's how we think about that.
+246.28,252.0,"And then lastly, the plus two at the end of that relationship is finding the end of these two variables,"
+252.0,253.88,and then doing a return.
+253.88,260.4,"Okay, so that leads us to simplify it as five times length L1 plus five times length L2 plus three,"
+260.4,265.08,"and this becomes the function that we can then grab the theta, right?"
+265.08,270.44,"So now we just use the regular rules of theta, law of addition and law of multiplication,"
+270.44,274.28000000000003,"if there's anything to add or multiply, in this particular case."
+274.28000000000003,280.92,"So let's say that LL1 and L2 are all the same length, and then we can simplify the above function to 10 length L plus three,"
+280.92,286.44000000000005,"and then the theta of that becomes just theta of length L, because we drop the three."
+286.44000000000005,291.28000000000003,"We drop the 10 multiplying L, and then we just keep length L."
+295.04,299.12,So this is how we get at the theta of a particular function.
+299.12,301.16,This is when we looked at last time.
+301.16,310.04,"But as we look at more functions today, we're going to get better at just identifying the parts of the code that just deal with our inputs, right?"
+310.04,317.08000000000004,"This in L1 equals false, this in L2 equals false, this return this, and those are all constant things that are happening."
+317.08000000000004,319.0,So we don't need to focus in on those.
+319.0,325.88,"We just maybe glance at them really quickly to make sure there's nothing funky going on that's dependent on the length of our lists, right?"
+325.88,333.32,"So we can just basically say, well, we've got our inputs, we've got one for loop that goes through the length, another for loop that goes through the length."
+333.32,339.96,"They're in series, so we use the law of addition to say that this function is theta of length L1 plus length L2, right?"
+339.96,347.44,"And so then we can quickly tell the theta of that function just by looking at the parts that depend on the input, right?"
+347.44,361.04,"So at the end of last lecture, we ended up with looking at these, sorry, deciding that these are the complexity classes that we can categorize a lot of our functions in, right?"
+361.04,375.08,"So theta of 1 is constant, theta of log n is logarithmic, here n is assuming n is the input to my function, theta of n is linear, theta of n log n is log linear, theta of n,"
+375.08,390.36,"if n is my input to some constant, like n squared and cubed, runs in polynomial time, and then theta of some constant to the n, where n is my input, is going to be exponential, like 2 to the n, 3 to the n, those are all considered exponential time algorithms."
+390.36,402.52,"And when we write our algorithms, we want to be up in this maybe top four, maybe top five, though polynomials going to grow pretty quickly as our input gets big, right?"
+402.52,415.68,"So if we can take our code and just quickly glance at it and classify it within one of these algorithms, that can guide us towards deciding whether the algorithm we wrote was good or bad, right?"
+415.68,428.52,"If we glance at it and say, hey, this algorithm is exponential, or this function that I wrote is exponential, maybe we want to rethink our approach to the problem and try to get it into one of the upper complexity classes."
+428.52,445.08,"So what we're going to do the rest of this class is just go through a bunch of these complexity classes, and we're going to see some codes that belong to these complexity classes, and hopefully give you an idea of what code looks like that fits in one of these complexity classes."
+445.08,458.08,"So the first one we'll look at is the constant complexity class. It's pretty simple. It's not really very interesting. If your code belongs in this constant complexity class, that means that it does not depend on the input at all."
+458.08,471.71999999999997,"It always runs in constant time. So your code can have loops, or it can have some sort of recursive structure, but that loop or that recursive structure doesn't depend on the input at all."
+471.72,476.72,So it's fine to have loops. It's just as long as it doesn't depend on the input. It's considered constant.
+476.72,491.72,"So there are some built-in operations that are constant time. So if you see any of these operations, like indexing into a list, appending to a list, grabbing the value associated with the dictionary, key, those are all constant time."
+491.72,506.72,"So if you see them in your code, you don't need to account for them at all. But we're going to see in a few slides that there are some operations on lists and dictionaries that do add some non-constant complexity, so you can't just brush them off."
+506.72,521.72,"So let's look at a couple examples of code. So here's a very simple function, add x, y, so x and y are my inputs. There is no loop or nothing recursive, nothing that takes time here, that nothing that repeats in this code."
+521.72,533.72,"So the complexity of this code is theta of 1. That's it. Here's another example. This is our kilometer example. Taking in miles, all it does is a multiplication. Again, theta of 1."
+533.72,552.72,"Nothing interesting going on here, no loop, no recursive. Here's a function that does have a loop within it. First thing we look at, though, is my input. What variables my input here? It's x, right? So which part of my code here depends on x?"
+552.72,567.72,"Well, there's something that I'm adding here, so I'm adding x onto some number. And I do have a loop, but does the loop depend on x? No, it depends on some number that is just 100 within my function."
+567.72,586.72,"If y equals x here, then this code wouldn't be constant, right? Because this loop will go through x times. But here, y is just 100, so this code is theta of 1 complexity. There's nothing here that depends on x as x grows."
+586.72,607.72,"All right, so not very interesting examples there. So let's move on to the next simplest class of functions, the linear complexity class. And these functions will be usually denoted by one loop, or maybe many loops in series or something like that."
+607.72,625.72,"But these loops all depend just linearly on n. You could also have a recursive function that repeats that's also linearly in n. So we're going to see an example of a recursive function in a little bit, but first we'll start out with just some functions that loop linearly with it."
+626.72,642.72,"There are some built-in operations, though, that are linear in time. So if we ever see these operations within our code, we can't ignore them, because they will contribute a theta of n complexity to our code."
+642.72,656.72,"So we have to account for them. Like if we have some e in n within some other loop, we can't just say this e and n is constant. We'd have to use the law of multiplication or something like that to account for it."
+656.72,665.72,"So checking if an element is in a list, obviously, is linear because you have to look at each element in the list to determine that e is in it or not."
+665.72,688.72,"Making a copy of your list is also linear in time. Even though we're making a copy of half of our list, so the first half of our list, it's still linear because copying 0.5 times length L is still theta of length L. That multiplicative constant on the front of our length L is 0.5."
+688.72,700.72,"If we drop it, that's still theta of length L. Checking for equality between two lists is also constant because you have to look at each element in the list, compare them to make sure that they're the same or not."
+700.72,723.72,"And deleting an item in a list is also linear in time. This deletion is also linear in time just because of the way lists are stored in memory. So if you delete an item in the end of from your list, Python will count that as linear time complexity."
+723.72,730.72,"So let's look at some examples. First, we'll just start out with just some regular functions with loops and then we'll look at one recursive function."
+730.72,744.72,"So here, I've got multiply x by y. It loops through range y. And it just adds x plus x plus x plus x y times. So I've got two parameters here."
+744.72,757.72,So I need to think about the complexity of this function with regards to both of them. So the complexity with respect to y is theta of y because I've got one loop that's a function of y.
+757.72,770.72,"So this loop will repeat however big y is. So if y increases, the time this loop takes will also increase. So the theta complexity of this function is theta of y with respect to y."
+770.72,781.72,"But what's the complexity of this function with respect to x? I have no looping structure here that's with respect to x, right? All I'm doing the x is just adding on to some number."
+781.72,788.72,So the complexity with respect to x is just theta of y. So the overall complexity of this function is just going to be theta of y.
+788.72,795.72,x does not contribute anything to the runtime of this.
+795.72,803.72,So this and the previous sort of loop function from the constant kind of tells us that we need to be careful about what the inputs are.
+803.72,809.72,"When we report the complexity, we have to report it with respect to the inputs to our function."
+809.72,817.72,"We don't always just say theta of n or theta of n squared or theta of length n, whatever it is. We have to relate it to the inputs or a function."
+817.72,827.72,"And if we have more than one input, we have to be careful that to account for all of the inputs that contribute to the complexity."
+827.72,842.72,Let's look at another example. So here's one where you take in a string s. We loop through each character in s. We cast each character to an integer. And then we add on to some value.
+842.72,848.72,So we're essentially just adding on all of the characters in s in the string s.
+848.72,863.72,"So this has one loop that loops through all the elements in s. Now if s is a string, what's going to make this program slower? Is it that the string, so the numerical value of the string is bigger?"
+863.72,875.72,"No, because if I'm looping through the string 1, 0, 0, 0, it's going to take the same amount of time as if I'm looping through the string 9, 9, 9, 9. It's the length of the string that matters."
+875.72,883.72,"That's what this loop is doing. It's taking into account the length of the string. So if my string is longer, then it's going to take longer to run."
+883.72,892.72,So the complexity of this function is just theta of length s. Because that's the length of the string contributes to slowing down my function.
+892.72,906.72,"Everything else that we do is constant. So the overall complexity is theta of length s. Or if it's simpler, you can just say theta of n. But then you have to say where n is, you know, some length of s."
+906.72,913.72,Here's another example. This is a factorial program that does it iteratively.
+913.72,923.72,So it's going to use a loop to keep multiplying on i to calculate the factorial of some n.
+923.72,931.72,"So in this case, my input is n. So now I'm going to look through my function to see what part of my function depends on n."
+931.72,943.72,So here n is just a number. And I'm looping through from two all the way up to n plus one. So I'm going to loop through n minus one times overall.
+943.72,953.72,"Since I'm looping through n minus one times, there's nothing else really that's contributing to the complexity. So theta of n minus one is just theta of n."
+953.72,968.72,"So the complexity of this function is just theta of n. Everyone, okay, so far. So very simple programs that just have one loop that just depends on the input linear."
+968.72,982.72,"Okay, I will make a little note about the factorial because this is kind of something important. It's going to tell us kind of the difference between theory, which is what this class is mostly about, or the set of lectures, and the real world."
+982.72,992.72,"So I actually ran the iterative version of factorial on the computer. And you can see here I've multiplied the input by two. So 40, 80, 163, 20, and so on."
+992.72,1007.72,"So as I'm multiplying the input by two, if I'm expecting this function to be linearly related to the input, I'm expecting that the time that this function takes to run is going to be approximately twice as long."
+1007.72,1022.72,"If the input increases by two, the time it takes for this program to run should just increase by two as well. And it does, right? It does all the way up to somewhere between 640 and 1280."
+1022.72,1038.72,"So if we do the math, that's approximately times two each time, minus, you know, because we're just doing times here. But then, after somewhere within 640 and 1280, the time that it takes to run my program no longer follows this linear pattern."
+1038.72,1058.72,"In fact, it starts to grow faster than linear, and from, you know, at a first glance, it looks like it grows squared, right, polynomially. So instead of, you know, if you increase the input by two, it looks like the time it takes for this program to run increases by four after some point."
+1058.72,1072.72,"And that's because in the real world, I've got, you know, Python running on the machine, there's only some set number of bits that my computer can hold, right, when it deals, when it stores numbers."
+1072.72,1087.72,"And the factorial of some number within between 640 and 1280 becomes so large that when Python and the machine is trying to deal with multiplying these big numbers by these big numbers altogether,"
+1087.72,1096.72,it's just taking a really long time to run because it can't store these big numbers as efficiently as it could store these smaller numbers.
+1096.72,1113.72,"And so in the real world, what ends up happening is after some, you know, after I'm trying to store some really large value in doing the operations with some really large values, the time complexity goes down dramatically, right, and squared is a pretty big jump."
+1113.72,1123.72,"And so this is kind of shows the difference between theory and the real world, right, so in the real world, we can't store these values as efficiently as they get big."
+1123.72,1143.72,"Yeah, so if we use like a machine that had more bits to store values, then we'd be able to be more efficient farther along, right, yeah, exactly."
+1144.72,1156.72,"And we could, I guess we could, if we had a language that was maybe doing some smarter things and storing these big values in a much smarter way, that could also have an impact in the timing as well."
+1157.72,1171.72,"But for the purposes of this class, we're just interested in the theoretical, you know, the theoretical happenings here, right, so as the input increases by x, we expect that the time that it takes to run the program will be x times as long."
+1172.72,1176.72,"Right, because we're looking at values that are really, really big in theory."
+1177.72,1184.72,"Okay, so let's look at another example, so this is a factorial function that does it recursively."
+1185.72,1192.72,"We've seen this function before, we just looked at the iterative version of factorial, now we're looking at the recursive version of factorial."
+1192.72,1200.72,"So what do we have? We have one base case, right, that our code will eventually get down to, and a recursive step,"
+1200.72,1204.72,which is just n times factorial and minus one.
+1205.72,1210.72,So how do we do the analysis of a recursive algorithm?
+1210.72,1214.72,"Because in this recursive algorithm, we don't have a loop, right?"
+1214.72,1226.72,"In the previous examples, we had a loop that we could definitively say, hey, this loop will repeat this many times, so clearly increasing n will increase the time it takes for this loop to run."
+1226.72,1233.72,"So when we're dealing with recursive functions, we think about how many times the recursive function is going to be called, right?"
+1234.72,1245.72,"Because when we call factorial, right, we have factorial of some, you know, five or whatever it is, and this calls factorial of four, and this calls factorial of three, right?"
+1245.72,1255.72,"And so we have this chain of function calls where we get down to the base case, and once we get down to the base case,"
+1255.72,1262.72,"we start to kick off the step that returns the result, one at a time."
+1262.72,1272.72,"So when we're talking about recursive functions, what we really care about is how many times we call the function."
+1272.72,1277.72,"That's our quote-unquote loop for recursive functions, right?"
+1277.72,1284.72,"It's just the function calling itself to ask itself to do the work, and it does the work with a slightly changed parameter."
+1285.72,1291.72,So what we need to do is think about how many times does this function call itself?
+1291.72,1296.72,"And on top of that, is there some sort of overhead that's not constant?"
+1296.72,1304.72,"In this particular case, when we call factorial recursive, we're going to go essentially theta of n times, right?"
+1305.72,1311.72,"Because we start with n, then we do n minus 1, and minus 2, and minus 3 all the way up down to zero, right?"
+1311.72,1315.72,"So effectively, we've called ourselves about n times, so theta of n."
+1315.72,1323.72,"And the overhead for each one of those calls is constant, because all I'm doing to n is subtracting by 1, and that's a constant thing, right?"
+1323.72,1328.72,"And minus 1 is theta of 1, it's just constant."
+1328.72,1335.72,"So the overall complexity of this is just theta of n, where n is just my input."
+1335.72,1342.72,"So what we notice is that the iterative and the recursive versions of factorial are both theta of n, right?"
+1342.72,1350.72,"Which means that, generally speaking, if we were trying to decide whether to implement factorial recursively or iteratively,"
+1350.72,1356.72,"it won't really matter in the long run, because the worst case complexity is theta of n."
+1356.72,1361.72,So we're going for both. So it would be your choice which one to actually use.
+1361.72,1368.72,So then it maybe comes down to readability or other factors.
+1368.72,1373.72,"Alright, another example. So this is compound. We saw this last lecture."
+1373.72,1377.72,"We actually timed it and counted how many, actually, I don't remember."
+1377.72,1383.72,"I don't think we counted the number of operations, or maybe we did, but we definitely timed it."
+1383.72,1390.72,"This function took in three parameters. So we can have to be careful which one of these parameters,"
+1390.72,1394.72,or which parameters of these actually contribute to my complexity.
+1394.72,1408.72,So this function calculates the amount of money I have if I invest some monthly amount at some monthly interest over some number of months.
+1408.72,1415.72,"So the loop here iterates through number of months, and then everything else seems to be constant, right?"
+1415.72,1422.72,"I have got one loop. So the inside of the loop is constant. I do have to double check that, but so far so good."
+1422.72,1427.72,It's not looping anything else. It's not a function of anything else.
+1427.72,1433.72,"The loop itself though is theta of n months, right?"
+1433.72,1441.72,"So the overall complexity of this function is theta of n months, or we could say theta of n, where n is equal to n months."
+1441.72,1448.72,"None of the other parameters contribute to my complexity, and that's exactly what we saw when we ran the code, right?"
+1448.72,1457.72,"We ran it by changing each one of the parameters, and we saw only n months contributed to a slowing program."
+1458.72,1464.72,"If we really wanted to, we could have done this analysis in depth, right?"
+1464.72,1470.72,"As we've done last lecture, to actually count the full number of operations, or as we did at the beginning of this lecture."
+1470.72,1478.72,"So total equals zero is theta of one, the loop is theta of n months multiplied by four operations."
+1479.72,1487.72,"So I, grabbing a value in range, taking multiplication, addition, and then saving that into total."
+1487.72,1493.72,"That's four multiplied by theta of n, where n is n months, plus theta of one to do the return."
+1493.72,1501.72,"So that ends up being theta of one plus four and plus one, which simplifies to theta of n, where n is n months."
+1502.72,1511.72,"What is it that, like, the state of one, will theta of one, and then, like, the two, like, letters, and then, I think, that's interesting."
+1511.72,1516.72,"Yeah, so we're just looking at operations, right?"
+1516.72,1522.72,"We're doing calculations with interest and invest, and multiplying it with total, right?"
+1522.72,1529.72,"But the fact that interest is bigger, like, if the interest is one dollar, or if the interest is a thousand dollars,"
+1529.72,1534.72,is this going to make that line of code much slower?
+1534.72,1538.72,"No, right? Because all we're doing is a multiplication between two numbers, right?"
+1538.72,1547.72,"So that's why the inside is theta one, right? But having a loop, where we repeat this over and over again, is going to slow the program down."
+1550.72,1553.72,"Okay, how about this Fibonacci function?"
+1553.72,1556.72,So this is an iterative version of Fibonacci.
+1556.72,1559.72,"We have, I don't know if we've seen this before."
+1559.72,1576.72,"Again, we could do sort of a rough quick analysis where we just briefly glance at every single line and ask ourselves whether it's contributing theta one, or something worse, to our total run time analysis."
+1576.72,1581.72,"So we've got this first part here, which is just constant, theta one, right?"
+1581.72,1589.72,"Nothing here is loopy, there's no recursive going on, nothing that depends on the input in a non-constant way."
+1589.72,1595.72,"In the else, we've got this constant, again, just assigning two parameters, we've got a loop."
+1595.72,1603.72,"So now this loop is going to be non-constant, the stuff inside the loop is constant, though, right?"
+1604.72,1609.72,"So the loop itself depends on n, my input, so that's going to be theta of n."
+1609.72,1615.72,"But that theta of n is multiplied by theta of 1, like the stuff inside the loop is just constant."
+1615.72,1621.72,"So that's theta of n times theta of 1, which is just theta of n, and then the return, of course, is theta of 1."
+1621.72,1630.72,"So we could do a calculation like this, or you could just quickly scan and say, hey, I've just got a loop that depends on n, and that's theta of n."
+1630.72,1639.72,"So overall complexity of this, if we wanted to be detailed, is this, right, theta of 1 plus theta of 1 plus theta of n times theta of 1 plus theta of 1."
+1639.72,1646.72,"But overall, that just gives us theta of n because that loop is the only thing that depends on my input."
+1646.72,1648.72,"Okay, everyone all right so far."
+1648.72,1658.72,"Okay, perfect, so now let's move on to the second easiest complexity to kind of identify, that's the polynomial complexity."
+1658.72,1665.72,So polynomial complexity generally deals with functions that have nested loops.
+1665.72,1672.72,"So if we have two nested loops that linearly depend on my input, that's going to be a function that's n squared."
+1672.72,1678.72,"If I've got three nested loops that all depend on my input linearly, that's going to be n cubed."
+1679.72,1685.72,"So let's see some examples, so here I have a really simple nested loop situation."
+1685.72,1693.72,"I've got a function called g, and it's going to take in an input n."
+1693.72,1697.72,So I'm going to look for everything that depends on n.
+1697.72,1704.72,"Well, I've got a for loop here that's going to iterate n times, that's theta of n, and I've got an inner for loop."
+1704.72,1712.72,"So for each thing in my outer for loop, I'm going to do the inner thing n times as well."
+1712.72,1716.72,And then the stuff inside my inner for loop is constant.
+1716.72,1726.72,"So that's theta of n, and the stuff inside my inner for loop is theta of 1, and the stuff outside of any of the for loops are theta of 1 as well."
+1726.72,1734.72,"So they contribute nothing to this complexity. So the only thing that I need to account for is my outer loop, which is theta of n,"
+1734.72,1744.72,and law of multiplication says my inner loop is going to be multiplied its complexity to my outer loop's complexity.
+1744.72,1755.72,"So the overall complexity of this function is theta of n squared, because the number of times that I'm going to do this operation is going to be n squared times."
+1755.72,1762.72,"Alright, so now let's look at some examples with lists."
+1762.72,1770.72,"We haven't seen those yet. So now we have to think about the input, in this case it's going to be two lists."
+1770.72,1781.72,"And when we're dealing with lists, one of the things that are the most common thing we're interested in is what happens to the behavior of the function as the lists get bigger."
+1781.72,1794.72,"Alright, as we saw sort of in last lecture, the size of the elements within the list typically don't matter, but the fact that I have more elements to do stuff with does matter."
+1794.72,1802.72,"So if my list now has twice as many elements, this program or most programs will probably be twice as slow."
+1802.72,1808.72,"So here's a function called is subset, takes in two lists, L1 and L2."
+1808.72,1813.72,I've added two little examples up here to help us figure out what this function does.
+1813.72,1819.72,So it's going to tell us whether the elements of L1 are in L2.
+1819.72,1830.72,"So in the first example here, elements in L1 are 3 and 5 and 2, and L2 does have the 3 and the 5 and the 2, but it also has other stuff."
+1830.72,1833.72,"So it's going to be fine, all the elements in L1 are in L2."
+1833.72,1838.72,"So this function will return true for those examples, those L1 and L2."
+1838.72,1847.72,"And then here's an example where it will return false, so the elements of L1 are 3 and 5 and 2, and L2 is missing the 3."
+1847.72,1853.72,"So then that one will return false, right? The elements of L1 are not all in L2."
+1853.72,1855.72,So it's not a subset.
+1855.72,1860.72,"All right, so what's this function doing? Well, it's iterating through all the elements in L1."
+1860.72,1863.72,"So it's going to first look at the 3, then the 5, and the 2."
+1863.72,1868.72,It's going to look through each element in L2 for every one of those L1 elements.
+1868.72,1873.72,"So it's going to look at the 3 and the 2, the 3 and the 3, the 3 and the 5, the 3 and the 9."
+1873.72,1877.72,"Then it's going to look at the 5 and the 2, the 5 and the 3, 5 and 5, 5 and 9."
+1877.72,1879.72,"All right, it's going to keep doing that."
+1880.72,1897.72,"And it's going to keep track of this Boolean matched, called matched, and it's going to, as long as it finds this element E1 within my L2, it's going to save matched to be true."
+1897.72,1906.72,And it's going to keep doing this until it keeps finding matches.
+1906.72,1914.72,"As soon as it finds a match, it breaks because there's no need for it to keep looking at the remaining elements of L2."
+1914.72,1917.72,It already found one that matches.
+1917.72,1923.72,So this code could actually be rewritten by saying kind of the inverse.
+1923.72,1934.72,"If E1 is not equal to L2, we can just immediately return false because we've already found an element that from L1, that's not an L2."
+1934.72,1940.72,"So we could have rewritten this code in many different ways, but the ultimate analysis will be the same."
+1940.72,1944.72,So let's look at the analysis for this function.
+1944.72,1954.72,"Well, we have two inputs, so we have to be careful about both of these inputs, which parts of this function depend on L1 and L2."
+1954.72,1957.72,"Well, we've got an outer for loop."
+1957.72,1964.72,So what happens to the complexity with regards to this loop?
+1964.72,1970.72,"Well, if I have more elements in L1, then this loop will go through more times."
+1970.72,1975.72,So this loop will be executed length L1 times.
+1975.72,1980.72,So the theta for this outer loop is going to be theta of length L1.
+1980.72,1982.72,But there is an inner loop.
+1982.72,1988.72,"So for each element in my outer loop, I'm also going to do everything in this inner loop."
+1988.72,1993.72,"So in the worst case, I need to look through each element in L2 to find a match."
+1993.72,1999.72,"So the inner loop will execute at most length L2 times, again, in the worst case, right?"
+1999.72,2003.72,So the inner loop will be theta of length L2.
+2003.72,2013.72,"So the overall complexity, since I've got this nested loop situation, law of multiplication, says that it's going to be the theta of my outer loop multiplied by the theta of my inner loop."
+2013.72,2018.72,So theta of length L1 times length L2.
+2018.72,2021.72,"Okay. Everyone, yeah, question."
+2021.72,2030.72,"If you think that you have an inner loop situation, then it would be at G."
+2030.72,2035.72,"Yes. So like here, in this if?"
+2035.72,2044.72,"Yes. If the if had something like using an in, right, which where in is linear, then yes."
+2044.72,2050.7200000000003,"There would be another, like, it would be like there was another loop at the third level."
+2050.7200000000003,2058.7200000000003,"Yeah. So then it would be un-cubed. Still polynomial, but un-cubed."
+2058.7200000000003,2072.7200000000003,"So if L1 and L2 are the same length, which, you know, sometimes we put on to simplify the complexity, put this condition on to simplify the complexity, then we say that it's theta of length L1 squared."
+2072.7200000000003,2077.7200000000003,It's still polynomial complexity.
+2077.7200000000003,2082.7200000000003,"Okay. Let's look, sorry, question."
+2082.7200000000003,2089.7200000000003,"Yes. If there were not the same length, you have to denote it in terms of the both."
+2089.7200000000003,2091.7200000000003,Okay. Let's look at another example.
+2091.7200000000003,2097.7200000000003,So here's a function that grabs the intersect of two lists.
+2097.7200000000003,2102.7200000000003,"So again, I've got a little example up here, example L1 and L2."
+2102.7200000000003,2108.7200000000003,"So the intersect are going to be the common elements within L1 and L2, but I'm only going to, I'm not going to do duplicates."
+2108.7200000000003,2111.7200000000003,So I'm just going to keep the unique numbers.
+2111.7200000000003,2116.7200000000003,So here I've got L1 and L2 contained 352 and 2359.
+2116.7200000000003,2122.7200000000003,"So notice the two and the three and the five both occur, all occur in both lists."
+2122.7200000000003,2127.7200000000003,So the intersect of these two lists is 23 and five.
+2127.7200000000003,2133.7200000000003,"This example here on the right side is going to be a little bit trickier, right?"
+2133.7200000000003,2136.7200000000003,"It's kind of a unique edge case, but the code still works for that edge case."
+2136.7200000000003,2142.7200000000003,"It's, if I have L1 that has duplicates of some number and L2 that has duplicates of that same number,"
+2142.7200000000003,2147.7200000000003,"the returned list of the, of the intersect should just be seven, right?"
+2147.7200000000003,2151.7200000000003,"That one number, once."
+2151.7200000000003,2155.7200000000003,So how does the code achieve this?
+2155.7200000000003,2157.7200000000003,So you notice a nice little structure here.
+2157.7200000000003,2160.7200000000003,"I've got kind of two blocks of code, right?"
+2160.7200000000003,2169.7200000000003,I've got something here which is going to actually help us build this list of all of the elements that are common within the two lists.
+2169.7200000000003,2176.7200000000003,And then something down here where I'm going to call that list to keep only the unique values.
+2176.7200000000003,2182.7200000000003,"So up here, this has a nested loop situation, just like in the previous example."
+2182.7200000000003,2190.7200000000003,"I have to look at all of the pairs, right, from L1 and L2 to figure out which are common, right?"
+2190.7200000000003,2195.7200000000003,"So this for loop over L1 is going to go through the three, the five, and the two."
+2195.7200000000003,2202.7200000000003,"And then the inner for loop through L2 is going to basically match, take a look at, does the three match the two?"
+2202.7200000000003,2205.7200000000003,"Does the three match the three, does the three match the five, does the three match the nine, right?"
+2205.7200000000003,2208.7200000000003,"And then the five match the two, five match the three, and so on."
+2208.7200000000003,2210.7200000000003,So that's what those loops are doing.
+2210.7200000000003,2216.7200000000003,"And as soon as we find a match, we're going to append it to this temporary list."
+2216.7200000000003,2219.7200000000003,And it's okay if we have duplicates in this list.
+2219.7200000000003,2226.7200000000003,"So if you look at the example on the right hand side there with the seven duplicated many times,"
+2226.7200000000003,2231.7200000000003,"that's actually going to create a temporary list, right?"
+2231.7200000000003,2235.7200000000003,That's going to contain nine times that seven.
+2235.7200000000003,2240.7200000000003,"So it's going to look at the seven with the seven, and it's going to say, hey, that's a match, let me add it."
+2240.7200000000003,2245.7200000000003,"Then it's going to look at the seven with the middle seven and L2, and it's going to say, let me add that,"
+2245.7200000000003,2250.7200000000003,"and then it's going to look at the first seven in L1 with the last seven and L2, and it's going to say, let me add that, right?"
+2250.7200000000003,2252.88,And then it's going to do that same thing all over again
+2252.88,2255.8,when it looks at the middle 7 and L1 along
+2255.8,2257.28,with each element in L2.
+2257.28,2260.2400000000002,"So it's going to add the 7, 3 more times."
+2260.2400000000002,2263.1600000000003,"And then again, when it looks at the last 7 and L1,"
+2263.1600000000003,2265.44,along with each 7 and L2.
+2265.44,2266.4800000000005,So that's totally fine.
+2266.4800000000005,2268.6800000000003,That's just what this code is doing.
+2268.6800000000003,2270.8,And then the bottom part down here
+2270.8,2276.92,is going to take this temporary list that we created.
+2276.92,2279.6400000000003,And it's going to just keep the unique values within it.
+2279.64,2282.96,So it's going to create that unique list.
+2282.96,2286.16,"And it's going to say, if I haven't seen this value in unique,"
+2286.16,2287.44,add it.
+2287.44,2289.56,"And if I have, don't do anything."
+2289.56,2292.52,"So in the end, this code down here"
+2292.52,2295.0,is going to take that big list here
+2295.0,2296.3199999999997,and just keep the unique values.
+2299.24,2301.44,So let's do the analysis for this.
+2301.44,2304.24,So I've got my outer for loop and my inner for loop
+2304.24,2307.3599999999997,up in the top half of my code here.
+2307.36,2311.2000000000003,"So that generates my long temporary list, potentially"
+2311.2000000000003,2312.6800000000003,long temporary list.
+2312.6800000000003,2314.96,So that we already know from the previous example
+2314.96,2318.0,is theta of length L1 times theta of length L2.
+2318.0,2319.2400000000002,Pretty simple.
+2319.2400000000002,2322.2400000000002,"Now, what about this bottom half here?"
+2322.2400000000002,2325.6,Because we have to be careful about this bottom half.
+2325.6,2330.2400000000002,This one could also contribute to the complexity.
+2330.2400000000002,2333.4,"It's looping through a temporary variable,"
+2333.4,2336.28,a list variable that we created.
+2336.28,2343.28,"But this list is created by doing something to L1 and L2,"
+2343.28,2346.28,by looking at elements in L1 and L2.
+2346.28,2351.1600000000003,So it's actually indirectly related to L1 and L2.
+2351.1600000000003,2355.28,So we can't just cast it aside because it could potentially
+2355.28,2359.7200000000003,contribute to the complexity of my program.
+2359.7200000000003,2364.1600000000003,"And in the worst case, I create this temporary variable"
+2364.1600000000003,2366.0800000000004,that looks like this.
+2366.08,2371.2,"So in the worst possible case, my temporary variables length"
+2371.2,2374.04,is going to be length L1 times length L2.
+2374.04,2376.96,I basically added that character every time
+2376.96,2379.3199999999997,I compared a value.
+2379.3199999999997,2384.96,So this list at worst case is length L1 times length L2 log.
+2384.96,2388.3199999999997,"So if I'm iterating through that list,"
+2388.3199999999997,2390.68,then the complexity of that second half
+2390.68,2394.72,is also theta of length L1 times length L2 in the worst case.
+2396.08,2403.16,So the overall complexity of the function
+2403.16,2407.0,is theta of length L1 times length L2 up here.
+2407.0,2411.2,Plus theta of length L1 times length L2 down here.
+2411.2,2413.48,"So in this particular case, the fact"
+2413.48,2415.92,that I'm iterating over temp didn't actually
+2415.92,2417.56,increase my complexity.
+2417.56,2421.96,But you can imagine code where something doing something funky
+2421.96,2427.12,like this where you indirectly have some loop over something
+2427.12,2429.76,related to the input could affect the complexity.
+2429.76,2431.76,"So in this case, the overall complexity"
+2431.76,2435.92,is still theta of length L1 times length L2.
+2435.92,2437.0,Questions about this one?
+2451.96,2458.44,"Why didn't it not, again, because you're"
+2458.44,2460.96,impending a certain number of them?
+2460.96,2461.96,How do you know this?
+2461.96,2464.4,Like if I just did a very brief problem.
+2464.4,2465.92,"It varies for each problem, right?"
+2465.92,2469.36,"But in the analysis, we're interested in the worst case"
+2469.36,2472.12,"scenario, right?"
+2472.12,2475.08,The asymptotic behavior of the worst case.
+2475.08,2479.32,"And in the worst case, we've added this number length L1"
+2479.32,2481.6,times length L2 times.
+2481.6,2485.3199999999997,"Most of the time, of course, it's not going to be this bad."
+2485.3199999999997,2488.3199999999997,It's just in this one particular case that it is this bad.
+2493.92,2496.4,"OK, let's look at one more function that's polynomial."
+2496.4,2497.48,So here's diameter.
+2497.48,2499.3199999999997,We saw this last lecture.
+2499.3199999999997,2502.48,"Basically, if we have a bunch of points in a 2D plane,"
+2502.48,2508.56,this function tells us the distance between any two points.
+2508.56,2512.04,So I drew that picture in the 2D plane.
+2512.04,2517.96,So this one is going to have nested loops again.
+2517.96,2523.2799999999997,So the outer loop iterates through length L times.
+2523.2799999999997,2526.08,"So remember, our L is just a list of 2 poles"
+2526.08,2528.7999999999997,"representing these x, y coordinates."
+2528.7999999999997,2531.7599999999998,So the outer loop easily goes through length L times.
+2531.7599999999998,2534.72,But what does the inner loop go through?
+2534.72,2538.08,"The inner loop is actually starting at i,"
+2538.08,2539.36,not 0.
+2539.36,2542.88,"If it started at 0, the inner loop would be clearly"
+2542.88,2548.16,theta of length L. But it starts at i.
+2548.16,2553.04,"On average, though, how many times does that inner loop go through?"
+2553.04,2555.72,"Well, the first time it goes through that inner loop,"
+2555.72,2561.92,it's going to look at length L minus 1 elements.
+2561.92,2566.2799999999997,"Next time, it's going to look at length L minus 2 elements."
+2566.28,2570.4,"Next time, it's going to look at length L minus 3 elements"
+2570.4,2574.1600000000003,until we get to the end where it's going to look at 1
+2574.1600000000003,2577.52,and then 0 elements.
+2577.52,2580.88,So if we think about how many times that inner loop actually
+2580.88,2583.92,"iterates, it's going to be what is it?"
+2583.92,2589.6400000000003,length L minus 1 multiplied by length L over 2
+2589.6400000000003,2592.1600000000003,"is at the function, I think, to add all these together,"
+2592.1600000000003,2595.92,"something like that, which is basically"
+2595.92,2598.88,still something that's a function of length L.
+2598.88,2603.48,We can simplify it to be 0.5 length L.
+2603.48,2605.96,"So it's still a function of length L,"
+2605.96,2610.4,because the coefficient in the front of that length L is 0.5.
+2610.4,2612.92,So the overall complexity of the inner loop
+2612.92,2617.08,is still theta of length L.
+2617.08,2621.32,Everything else within this code is constant.
+2621.32,2624.92,So the overall complexity is just theta of length L squared.
+2632.76,2633.2400000000002,Sorry.
+2633.2400000000002,2634.4,Where did the 1.5 come?
+2634.4,2637.36,"Oh, it's the formula to add, like,"
+2637.36,2640.6000000000004,"if you add 1 plus 2 plus 3 plus 4 plus all the way up to n,"
+2640.6000000000004,2641.92,"like, what's the formula to do that?"
+2641.92,2645.52,"I think it's n times n plus 1 over 2, something like that."
+2645.52,2647.7200000000003,"So this is not exactly half, but it's"
+2647.7200000000003,2651.0,"something on the order plus, I don't know, something."
+2651.96,2655.32,"Whatever this calculates, too."
+2655.32,2659.04,"But in effect, it's something that's smaller than length L,"
+2659.04,2661.68,but it's still a function of length L.
+2661.68,2666.56,"And so that front coefficient, right before length L,"
+2666.56,2667.76,just goes away.
+2667.76,2672.52,"Even if it was 10, we would still cast it away."
+2672.52,2675.68,"In this case, it's 0.5 or whatever it is."
+2675.68,2678.64,"So it's still less than 1, but we still cast it away,"
+2678.64,2681.12,because we're interested in the theta of this.
+2681.12,2682.12,Yeah.
+2682.12,2683.12,Is it n?
+2683.12,2687.52,"I would, and that's the forward loop, forward loop."
+2687.52,2691.48,But would it be an n squared for the loop?
+2694.72,2700.52,"I mean, the inner loop could just not depend on the input at all."
+2700.52,2702.7599999999998,Right?
+2702.7599999999998,2705.4,"Like, here, it's n squared because both of the loops"
+2705.4,2707.3599999999997,depend linearly on the input.
+2707.4,2712.6800000000003,"But if the outer loop went through range length L squared,"
+2712.6800000000003,2715.48,"then the overall complexity would be length L cubed,"
+2715.48,2716.48,"in this case, right?"
+2716.48,2720.6800000000003,Because it's length L squared times length L.
+2720.6800000000003,2722.92,"Or if one of the loops doesn't depend on the input at all,"
+2722.92,2727.32,then it contributes nothing constant and it is nothing linear.
+2727.32,2728.6,"So it's constant, yeah."
+2733.1600000000003,2736.28,"OK, let's have you think about this question for a bit."
+2738.36,2742.36,"So think about the input, think about parts of the function"
+2742.36,2747.36,"that depend on the input, and then what is the complexity?"
+2747.36,2752.36,"OK, what's the outer loop theta of?"
+2755.36,2756.36,Yeah.
+2758.36,2762.36,"Yes, numbs is a list, so the outer loop is theta of length of numbs."
+2762.36,2763.36,Correct.
+2764.36,2765.36,Good.
+2765.36,2768.36,What's the inner loop theta of?
+2770.36,2772.36,"Yeah, is that what you're going to say?"
+2772.36,2773.36,Theta of 1.
+2773.36,2774.36,Exactly.
+2774.36,2776.36,"It's the length of digits, but digits is not my input."
+2776.36,2777.36,Right?
+2777.36,2778.36,Nums is my input.
+2778.36,2781.36,So the inner loop will always just iterate through 10 times.
+2781.36,2785.36,"So in the eyes of the inputs to the function, that's just constant."
+2785.36,2786.36,Right?
+2786.36,2787.36,So the input is numbs.
+2787.36,2789.36,The outer loop is theta of numbs.
+2789.36,2792.36,"The inner loop is theta of 1, so the overall complexity is theta of length of numbs."
+2794.36,2795.36,Perfect.
+2795.36,2796.36,How about this one?
+2798.36,2800.36,What are my inputs?
+2800.36,2802.36,Do any loops depend on these inputs?
+2805.36,2807.36,"All right, what's the outer loop complexity?"
+2812.36,2813.36,Yeah.
+2813.36,2815.36,"Yeah, theta of length of 1, exactly."
+2815.36,2818.36,What's the inner loop complexity?
+2823.36,2825.36,"Theta of length of l2, perfect."
+2825.36,2830.36,And is there anything else that contributes to the complexity here?
+2830.36,2831.36,What's that?
+2831.36,2832.36,The if statement.
+2832.36,2833.36,The if statement.
+2833.36,2834.36,Yes.
+2834.36,2841.36,What about it is making you question that the complexity is not constant.
+2841.36,2842.36,Exactly.
+2842.36,2843.36,Yes.
+2843.36,2844.36,Very nice.
+2844.36,2846.36,"So in iterates through the length of l3, right?"
+2846.36,2851.36,"Looking for an element in l3, e1 and l3, is not constant."
+2851.36,2852.36,Right?
+2852.36,2856.36,You have to look through the whole length of l3 to figure out whether it's there or not.
+2856.36,2861.36,"So the, this inner bit here, right, is not constant."
+2861.36,2863.36,It's theta of length l3.
+2863.36,2866.36,"In fact, it's, you know, two times length l3, right?"
+2866.36,2873.36,So the overall complexity of this function is theta of length l1 times theta of length l2 times theta of length l3.
+2873.36,2874.36,Right?
+2874.36,2875.36,Okay.
+2878.36,2879.36,Cool.
+2879.36,2881.36,Let's look at the exponential complexity.
+2881.36,2884.36,"So this is a complexity that grows really, really quickly."
+2884.36,2888.36,We never want the algorithms that we write to land within this class.
+2888.36,2897.36,"Unfortunately, there are just some problems in real life that we have to compute that are just naturally part of this complexity class."
+2897.36,2902.36,There are some techniques to deal with making these algorithms a little bit faster.
+2902.36,2912.36,But inherently there are just exponential algorithms that we just can't do any better than exponential in solving some of these problems.
+2912.36,2913.36,All right.
+2913.36,2918.36,So let's look at Fibonacci again.
+2918.36,2925.36,"We looked at Fibonacci a few slides ago, iterative version, and the iterative version was theta of n."
+2925.36,2930.36,"But if we look at the recursive version of Fibonacci, it's not theta of n at all."
+2930.36,2938.36,"In fact, as you can see, it's in this exponential set of slides, the recursive version of Fibonacci is actually exponential."
+2938.36,2939.36,Okay.
+2939.36,2942.36,So let's recall what this code is doing.
+2942.36,2944.36,"So there's two base cases, right?"
+2944.36,2946.36,Fibonacci of 0 and 1.
+2946.36,2951.36,And then the recursive step is Fibonacci of n minus 1 plus Fibonacci of n minus 2.
+2952.36,2963.36,"So for every level that we go down, there's going to be times two more paths that we need to explore to grab the values from."
+2963.36,2964.36,Right?
+2964.36,2969.36,"So for some, for the very first n, we've got just one value to grab."
+2969.36,2972.36,"For the next n, we've got times two that value to grab."
+2972.36,2979.36,"The next level, for the next n, we've got two times more values to grab, and so on."
+2979.36,2989.36,"So the fact that there are two recursive calls in this recursive step leads us to this little inverted tree kind of structure, right?"
+2989.36,2995.36,"And we even drew this when we looked at how many function calls are being run, right?"
+2995.36,3006.36,"Remember, when we're figuring out the complexity with a recursive function, we need to figure out how many recursive calls are we actually doing?"
+3006.36,3015.36,"So because of this tree structure, every time we add a new level, we basically have two completely separate paths to explore further, right?"
+3015.36,3018.36,And those two paths have their own two paths and so on.
+3018.36,3030.36,"So this leads us to this tree structure, which is actually going to lead to the total number of recursive calls to be exponential, so theta of 2 to the n."
+3030.36,3041.36,"Now, if we looked at the actual recursive call tree, right, we looked at this, and it looked something like this, right, a bunch of lectures ago."
+3041.36,3046.36,"You might notice that the tree actually spins out a little bit to the right, right?"
+3046.36,3050.36,It's not a full tree with the leaves nicely all the way down.
+3050.36,3059.36,"And that's because, well, the left path calculates fib5, but the right path calculates fib4, so n minus 1 of the left path."
+3059.36,3071.36,"But that's fine. It's not that we are actually going to speed up anything by some sort of order of magnitude, right?"
+3071.36,3078.36,Just because the tree spins out a little bit on the right hand side is not going to speed up the overall complexity of this function.
+3078.36,3083.36,It's going to be theta of 2 to the n minus some theta that's less than 2 to the n.
+3083.36,3094.36,"So that subtraction is not going to really decrease the overall complexity of our function, so the order of this is still exponential."
+3094.36,3105.36,Here's another example of an exponential code. So this is a function that is going to generate all the subsets of a list.
+3105.36,3110.36,"So again, I've added a little example here to help us understand what it's doing."
+3110.36,3115.36,"So here I've got three numbers, a list with three numbers, one, two, and three."
+3115.36,3129.36,"And to generate subsets, what this means is that I'm going to create a new list of all of the possible combinations of numbers within my original list of all the possible lengths."
+3129.36,3137.36,"So first, one subset of this list could be just the empty list, so that's not taking any of my original numbers at all."
+3137.36,3144.36,"The next one is a list with just one of the numbers in it, so either the one or the two or the three."
+3144.36,3153.36,"Next subset of my list could be taking just two of the elements, so one and two, one and three and two and three."
+3153.36,3158.36,"And then lastly, I can just grab all the elements, so one and the two and the three. I don't care about the order."
+3158.36,3165.36,I just care that I have all of these different combinations of all of the different lengths in my final list.
+3165.36,3169.36,So does everyone understand the goal of this function?
+3169.36,3171.36,"Okay, so how do we achieve this?"
+3171.36,3180.36,"Well, you might not be surprised. We're going to do it recursively. That's really the only reasonable way to write this code."
+3180.36,3194.36,"Okay, so I'm going to go through this slide kind of just explaining what each line does, but on the next slide I'll have a little animation that shows step by step how the function creates this subset list."
+3194.36,3208.36,"So first thing, it's recursive, so I've got my base case up there. It's if I have a list of length zero, then the subset of an empty list, right, is just going to be this list with the empty thing inside it."
+3208.36,3213.36,"So if I have no elements, there's only one subset that's the empty list."
+3213.36,3224.36,"Then if I have more than one element inside it, I'm going to do the same idea that we saw when we worked with lists back in the recursion lectures."
+3224.36,3235.36,"I'm going to extract one of my elements. I'm going to work on the remaining list, and then I'm going to do something by taking that element and tacking it back on to the result."
+3235.36,3249.36,"So in this particular case, the thing that I'm extracting is the last element in my list. So if my list is one, two, and three, at a step here, I'm going to extract the three and make it into its own list."
+3249.36,3254.36,So that's what that step is doing. It extracts the last element in the list.
+3254.36,3269.36,"Then I make a function call to generate subsets on everything except for that last element. So I say, hey, function, that I'm currently writing right now."
+3269.36,3279.36,"If you can generate for me the subset of all the elements, right, the subset for this list, then you're going to come up with something that looks like this."
+3279.36,3291.36,"It's going to be the empty list, the one, the two, and the one and the two together. So the subset of this list is going to be this group of elements here."
+3291.36,3300.36,"So that's what this is going to do. So this is, again, us trusting that the function we write will generate something that looks like this."
+3300.36,3314.36,We've got to this point. Then smaller is going to be a list that looks like this. So the next part of the code is going to take that little extra thing that I had saved previously.
+3314.36,3319.36,And it's going to tack on that three to every element within this list.
+3319.36,3333.36,"So then I'm going to basically say, I'm going to take this three and make a list with the three in it, a list with the one and the three in it, a list with the two and the three in it, and the list with the one and the two and the three in it."
+3333.36,3343.36,"So I've just taken that three and added it to everything that resulted from this line of code here, from my function calling itself."
+3343.36,3354.36,"And then all it does is return smaller plus new. So if I add these two together, this is going to generate for me my final subset that I was interested in."
+3354.36,3363.36,"I've got the empty thing. I've got the one, the two, and the three by itself. I've got the one, two, the one, three, and the two, three by itself, and then the one, two, three all together."
+3363.36,3378.36,"So that's the big idea here. So let's just go through step by step, recursively calling ourselves. So this is me finding out the my kicking off my function call saying, hey, generate the subsets for the list one, two, three."
+3378.36,3388.36,I'm going to keep the extra side. I need to make another function call because I'm not at my base case. So I'm going to call gen subsets on one comma two.
+3389.36,3398.36,"This is also not my base case. So I'm going to take my last element, put it aside, and I'm going to call gen subsets on just the one."
+3398.36,3411.36,"Still not the base case. I'm going to take this extra, put it aside, and I'm going to call gen subsets on the empty list. And this is where I reach my base case. So far, nothing has been returned at all. No work has been done."
+3411.36,3418.36,"The base case Python will say, I know what this is, is going to be the list with just the empty thing in it."
+3418.36,3434.36,"Next, that gets returned. So this function call goes away. So now what is it going to do? Well, it's going to take that extra I set aside, take the smaller list that I just returned, and basically double that smaller list."
+3434.36,3443.36,"This is my smaller list, and then I'm going to double that by saying, I'm going to put this one to the end of everything in my smaller list."
+3443.36,3448.36,"Maybe this is not so apparent at this step, but let's go one more step and see what happens."
+3448.36,3465.36,"So now this function also terminates, it returns this empty list and one in it, and says, all right, here with this function call, I had saved the two separately, and said, I'm going to now tack on this two to the end of everything that I had just returned."
+3465.36,3475.36,"So this is smaller, this is smaller over here, and all I'm going to do is take this extra thing and tack it on to the end of everything that was in smaller."
+3475.36,3485.36,"So I'm going to tack it on to the end of this empty list, so it just gives me this two, and tack it on to the end of this one, so it gives me the one comma two."
+3485.36,3499.36,"So I've basically doubled my list at this stage. One more step, this gets returned, and now this is my original function call. The thing that I had extracted was the three, so now we're basically at this step here."
+3499.36,3513.36,"I extracted the three, the function just below it, returned this smaller, so that means that this three is going to get appended to the end of everything that was in smaller."
+3513.36,3525.36,"So it's going to be appended to the end of this empty list to give me just the three, to the end of the one, to give me the one and three, to the end of the two, to give me the two and the three, and to the end of the one two, to give me the one, two, three."
+3525.36,3539.36,"Now, this is the final answer, so I basically keep what I had returned from the previous function call, and concatenate that with the thing that I had just created, where I tacked on my three, and this is my final answer."
+3539.36,3548.36,"It's just sort of out of order to what we intuitively would have written by hand, but it hits on all of the elements that I wanted to have anyway."
+3548.36,3556.36,"So I've got the empty list, everything with just one element in it, everything with the two elements in it, and everything with all three elements in it."
+3556.36,3566.36,"So let's look at the complexity analysis of this. We've got two things going on here. One is how many of these function calls are actually being done, right?"
+3566.36,3574.36,"Like with the inverse tree structure, how many of those function calls do we need to do to get to the end of our, to our base case?"
+3574.36,3589.36,"And on top of that, that, sorry, that will tell us how many actual elements in the list we will have, and on top of that, we have actually a time complexity that's not constant, that's to copy our list."
+3589.36,3597.36,"Okay, so copying a list is not constant, right, because it takes some time to take all the elements in a list and make a copy of them."
+3597.36,3610.36,"So if we think about the time it takes to make our list at each step, right, how many of these sub elements were creating? Well, at the very base case, we have one element."
+3610.36,3619.36,"At the case just above it, we had two elements. At the case just above that, we had four elements. At the case just above that, we had eight elements."
+3619.36,3629.36,"So at each step, the number of sub lists that we were generating was basically twice as much as the previous step."
+3629.36,3640.36,So the overall number of subsets was on the order of two to the end. But there was also a time complexity to make a copy of the list within each one of those subsets.
+3640.36,3649.36,So we're multiplying the complexity it takes to make all those function calls and generate all those subsets by the time it takes to make a copy of the list.
+3649.36,3668.36,"So the overall complexity is actually going to be theta of n times 2 to the n, because it's a little bit harder, it's a little bit worse than exponential, just purely for the fact that we're copying the list at each step."
+3668.36,3681.36,"So let's move on to logarithmic complexity. This one's going to be a little bit tricky, because right off the bat, we're not going to be able to see a direct relationship between the input and what loop we actually have."
+3681.36,3698.36,"So here, I've got a function called digit ad. It's going to take in a number. One, two, three, four, something like that. Number 1,234. The code casts it to a string, so it takes in a pure numerical value."
+3699.36,3707.36,"It makes a string out of it, and then iterates through the string."
+3707.36,3719.36,"So the function here, in terms of time complexity, is theta of length s. Here, we're iterating through the string backward, basically, four than three than two than one."
+3719.36,3731.36,"But what's my input? It's n. It's not s, right? So the time complexity of this function, while it's linear in s, s is not linear in n."
+3731.36,3742.36,"Because when my number is 83, my loop only iterates twice. If my number as four digits in it, 4,271, my loop iterates four times."
+3742.36,3762.36,"So this relationship is not linear. So what is it exactly? Well, let's think about what that loop is actually doing. If I have a number with four digits in it, something in the thousands, when I iterate through the number,"
+3762.36,3783.36,"by sort of backward, right? This number has a string. I'm basically taking that one, and keeping it in my running sum. Then, it's kind of like I divided that number by 10, I grabbed the remainder when I divided that number by 10, and that's the thing that I just added."
+3783.36,3796.36,"The whole number left over when I divided by 10 is this bit here. So now, think of it like to take this last element here, it's like I take this number and divide by 10 again."
+3796.36,3804.36,"I grabbed the remainder when I divide by 10 and added to my running total, and the whole number I'm left over when dividing by 10 is just this."
+3804.36,3816.36,"One more time, I take the two, the remainder when I divided that 42, and the whole number I was left over with is four, and then lastly, I can do that last thing again."
+3816.36,3828.36,"So what's the relationship between the magnitude of n, this 4,000 something, or this 80 something, to how many times I have to loop through to get every digit in my number?"
+3828.36,3838.36,"Well, the trick here is to think about taking my magnitude, my n, my magnitude of n, and dividing it by 10 a bunch of times."
+3838.36,3849.36,"How many times do I divide by 10 to basically grab every single element, every single digit in my n? Well, length s times, right?"
+3849.36,3862.36,"That's kind of like taking each character one at a time, right? To take each character one at a time that's like dividing by 10 to grab the remainder, and then I've done that length s times, right? That's what this loop is doing."
+3863.36,3881.36,"So the relationship between the magnitude of n, and how many times I go through the loop, is this? n divided by 10, some number times, length s times is equal to one, that means I've finished going through this entire number, all the digits within the number."
+3881.36,3889.36,So the relationship between n and length s is length s is equal to log of n.
+3890.36,3899.36,"And now that I have this nice relationship, well, I said that this function was linear in length s, so if it's theta of length s, it's going to be theta of log n."
+3899.36,3917.36,"I just mapped those two together. Questions about this? This trick can work in many different ways. What's important to realize is that here there's kind of an indirect relationship between what's actually happening in the code and my input, right?"
+3917.36,3924.36,"This is not as clear-cut, but there is some relationship which is not constant and not linear."
+3932.36,3941.36,"So the overall complexity of this function is theta of log n, where I don't actually care about the base when I report the complexity in terms of log."
+3941.36,3948.36,"In this case, it's base 10, but if it was base 2, it would be the same log."
+3948.36,3964.36,"Okay, so we saw a bunch of examples, just one of logarithmic complexity, but we're going to see next that searching for an element in the list will also be logarithmic complexity."
+3965.36,3976.36,"Before we get to that, I'd like to just put this slide up to remind you that there are several functions built in functions with lists and dictionaries that aren't constant."
+3976.36,3991.36,"So like that example you guys did, where we use the in operator, we had to be careful if you ever see these operations being done in the code, don't just push them aside, you have to account for them within the complexity analysis."
+3994.36,3999.36,"Okay, so next we're going to look at some searching algorithms."
+3999.36,4005.36,"These algorithms, we're going to see a bunch of different codes that implement searching."
+4005.36,4010.36,"Again, they'll be very similar to the ones that we actually timed last lecture."
+4010.36,4014.36,So we're going to look at searching for an element in a list.
+4014.36,4023.36,We're going to look at a bunch of different implementations of the plain brute force searching element in a list.
+4024.36,4034.36,"As long as you just brute force your way from the beginning of the list to the end of the list, you'll be able to find the element you're looking for, or say that it's not there."
+4034.36,4046.36,"So we're going to look at some linear search functions, and then we're going to look at the bisection search, a couple bisection search implementations, and that's where we divide the list in half and discard one of the halves."
+4046.36,4052.36,"Those implementations, though, will need our list to be sorted."
+4052.36,4061.36,"So the brute forcing our way doesn't really matter whether it's sorted or not, but the bisection search only gives the correct answer if the list is sorted to begin with."
+4061.36,4066.36,"Alright, so first let's look at linear search on an unsorted list."
+4066.36,4086.36,"This is code that is going to search for element E in list L. It loops through the length of the list, and keeps this Boolean flag in mind if it finds the element we're looking for just sets the flag, and at the end of iterating through the whole list, it tells us whether it found it or not."
+4086.36,4094.36,So the worst case scenario analysis says that we have to look through the entire list to determine the element is there or not.
+4094.36,4107.360000000001,So the theta of this particular function is theta of length L. There's only one loop depends on the length of L that nothing really special about this function.
+4107.360000000001,4120.360000000001,"Now you might notice that there's something inefficient about this function, and that once it finds an element, let's say at the beginning of the list, this function actually just sets the flag and keeps going through to the end of the list."
+4120.36,4132.36,"So we do a little bit of a speed up with this bit here, and say that, hey, if we find it, just return true right away. No need to keep going to the end of the list."
+4132.36,4148.36,"So what's the analysis for this code? Well, again, we're doing worst case analysis, so in the worst case, the element is not there, so we still have to search through every single element in the list beginning to end to determine it's not there."
+4148.36,4163.36,"So the worst case, you know, theta analysis for this function is that we still have to go through to the end of the list to determine it's not there, so it's still going to be, sorry, it's still going to be theta of, oh, sorry, theta of length L, time."
+4164.36,4170.36,"So this is on an unsorted list, but what if we look at a sorted list?"
+4170.36,4182.36,"So we can do a little something clever in our code. If the list is sorted, we can say, we're going to start at, let's say it's increasing sorted, right?"
+4183.36,4200.36,"We can start at the beginning of the list, look through each element, if we find it, return true, if we reach an element that's bigger than the one we're looking for, the list is sorted, so all the remaining elements in the list are also bigger than the one we're looking for, right?"
+4200.36,4221.36,"And then we can just return false right away. Well, we think we're pretty clever, but the worst case analysis says that the list is, the element is not even in the list at all, so we still have to go through and look to the end of the list to figure out that that element is not there, so we still have to touch each element in the list to determine it's not there."
+4221.36,4228.36,"So the theta worst case theta complexity analysis still says that this is theta of length L, right? Because everything else is constant."
+4233.36,4244.36,"So now let's look at bisection. So as far as we can tell, just doing a linear brute force search way is not going to give us anything better than theta of N."
+4244.36,4258.36,"But when we looked at the timings in last lecture, we saw that this binary search or bisection search on an element in a list was actually much, much faster, right? It grew out of something faster rate than linear, but not quite constant."
+4259.36,4272.36,"So let's remember how that code looked, so we basically had a list with a bunch of elements in it, we looked at the element at the middle of the list, and we said, are you the one we're looking for? In the worst case it's not, right?"
+4272.36,4281.36,"So then we have to ask, are you bigger or smaller than the one we're looking for? If it's bigger, then we know we have to look in the lower half of the list."
+4281.36,4290.36,"If it's smaller, we look in the upper half of the list. And now that we either look in the lower or the upper half, we notice we have the exact same problem to solve."
+4290.36,4302.36,"So this should ring a little bell that says we should use recursion, right? Now we have the same problem to solve, an element e in a slightly smaller list, is it in that list?"
+4302.36,4314.36,"So that's exactly what we're going to implement. So visually speaking, this is what we're going to do. We're going to have an original list with N elements in it."
+4315.36,4322.36,"We're going to look at the halfway point, worst case it's not the one we're looking for, so we're going to decide on one of the sides to next search through."
+4322.36,4331.36,"Now we have N over two elements to look through. Again it's not there, worst case, so we have to decide on which half to look through. Now we have N over four elements to look through."
+4331.36,4343.36,"We keep doing this, we keep sort of having more and more recursive calls until we reach a base case. And the base case is that we now have a list with one element in it."
+4343.36,4354.36,"Either that element is the one we're looking for, or worst case it's not, and we've determined that the element we're looking for is not in these N elements at all, right?"
+4354.36,4371.36,"So our base case is down here, and we started with N elements over here. So the bisection search algorithm will repeat this task of dividing the list in half, let's say i times."
+4371.36,4383.36,"So this is quote unquote how many iterations we would have made, but since this is recursion there's no iterations. This is how many function calls we have until we reach the base case i function calls."
+4383.36,4395.36,"So if we take our original N elements and we divide them by two so many times that we have only one element left to search for, that's when we found our answer."
+4395.36,4414.36,"So we now have a relationship between how many elements we had, originally N elements, and how many times we had to divide our loop to get to our answer, right? How many of these levels we have, right? N divided by two to the i equals one, that's our relationship."
+4414.36,4430.36,"So in the bisection search algorithm, how many times are we calling this recursive function to get to the base case? Well i times, so what is i in terms of N, well the relationship between i and N is similar to the one we had over here, right?"
+4430.36,4451.36,"Where we divided this number by ten each time except that now we're dividing a list of an element by two each time. So the relationship is to logarithmic, right? It relates the number of elements I originally had and N with how many times I had to divide my list to get to one element whether it's the one i'm looking for or not."
+4452.36,4466.36,"So the complexity of just the pure bisection search algorithm is theta of log N, where N is the length of the list, right? That's how many subdivisions I need to do to get to one element to decide to stop the one i'm looking for."
+4467.36,4478.36,"So now we're going to look at two different implementations of the code to do bisection search. One will be more efficient than the other, let's start with the one that's simpler to write but less efficient."
+4479.36,4498.36,"So this code, you can see here it looks for element e and list L has two base cases up there, those are both constant, and one recursive step here, right? So either we do this one or this one, so this one is if we decided we need to look in the lower half and this is if we decided we need to look in the upper half for the element."
+4499.36,4508.36,"So this is just pure bisection search, which on the previous slide we decided is theta of log of length of the list, theta of log N."
+4509.36,4518.36,"Now that's fine, but what do we have as a parameter here? It's half of my list, right?"
+4519.36,4533.36,"So in addition to doing bisection search and just doing the algorithm, having a bunch of bisection search calls that take me to that list of one element, on top of that, each time I make that bisection search call, I'm copying my list."
+4534.36,4541.36,"So this is not constant, it's theta of length L over two, right? I grab half of my list."
+4542.36,4558.36,"So the complexity of that code is theta of N times log N, theta of log N for the bisection search bit, but theta of N tacked on to each one of those calls because I have to grab a copy of my list with each function call."
+4559.36,4566.36,So it's not quite that efficient. Now let's look at a slightly different implementation.
+4566.36,4577.36,"This particular one is going to use integers to keep track of endpoints. So instead of copying my list, let me just keep track of a number for my low endpoint and a number for my high endpoint."
+4578.36,4593.36,"The complexity analysis for the bisection search is going to be exactly the same because even though I'm just keeping track of these high and low endpoints, I'm still dividing the list in half with each call, but I'm doing it by keeping track of integer indices."
+4594.36,4601.36,So the size of the problem is still reduced by two at each step. I'm keeping track of these integer indices. I'm not copying the list at this point.
+4601.36,4607.36,I'm just changing an integer value from 10 to 5 or whatever it is.
+4607.36,4618.36,"So the complexity analysis of the theta of the bisection search is theta of log N. The code looks a little bit messier, but overall it still does the same sort of things."
+4618.36,4629.36,"It's messier because now I want bisection search to look for an element enlist L, but I'd like my recursive call to keep track of two endpoints, right?"
+4629.36,4642.36,"These integers low and the integer high, the thing that I want to search my list between. So I'm going to create another function that I kick off down here, which looks for an element enlist L."
+4642.36,4649.36,But I'm also going to keep track of my low and high endpoints as parameter to my bisection search function.
+4649.36,4662.36,"So bisection search helper here is now going to take in these four parameters. The rest of the code is just details, but what's important is everything is constant except for my two bisection search calls."
+4662.36,4673.36,"Here, I'm changing my high, if I want to look in the lower half of the list, and here I'm changing my low, if I want to look in the upper half of the list."
+4673.36,4680.36,"So the bisection search calls are still going to be theta of log N, but what's the overhead now? The overhead is nothing, right? It's constant."
+4680.36,4693.36,"This L is the same one. I'm not making a copy of it. I'm just passing it through. E is just a number, low is just a number, and mid minus one is just a constant operation. There's nothing being copied here."
+4693.36,4704.36,"So the overall complexity of this code, while it looks a little bit busier, is just theta of log N, right? Because the overhead is constant on each one of those function calls."
+4704.36,4718.36,"So that brings us to this final question, right? Clearly bisection search on a sorted list is faster. It's theta of log N, then pure brute force search on a list. That could be sorted or unsorted."
+4718.36,4735.36,"So the question is, when does it make sense to sort the list for? So given an unsorted list, when do you sort the list and use this fast binary search versus just using a straight up linear search?"
+4736.36,4748.36,"Well, that's when the time it takes to do the sort, right, an initial sort, plus the complexity to do binary search is less than doing the straight up linear search."
+4748.36,4762.36,"Because the list has to be sorted for this to work. Well, when is that true? Well, this implies that the time it takes to do the sort is less than theta of N."
+4762.36,4779.36,"So that means, what, can you sort a list without even looking at all the elements once? No, right? Like you have to look at all the elements once to even say that, hey, this list is already sorted. So this is actually never true."
+4779.36,4787.36,Right? So what does that mean? Does that mean we never want to do binary search on a list unless it's already sorted? Kind of.
+4787.36,4803.36,"But in fact, there are various situations when it does make sense to do the sort first and then use binary search. And that's the case where you're given a data set and you want to do a whole bunch of searches on that data set."
+4803.36,4827.36,"So if you can take that sort, do it once, and then amortize the cost. It took you to do that sort over K different searches, then it makes sense to pay the price to do the sort once and then do it over and then do the binary search over all these searches, all these searches."
+4827.36,4845.36,"And so as K gets really big, the time it takes for you to do the sort becomes irrelevant, right? The theta of doing this thing on the left becomes just the theta to do the search, the search logarithmically, then it does to do the search linear."
+4845.36,4857.36,"Okay, so if you're only doing the search once, please do not sort your list and then do a binary search. That's going to take longer than just looking at the elements in your list straight through using brute force."
+4857.36,4863.36,"But if you're going to do a whole bunch of searches, it makes sense to do the sort and then do the search."
+4863.36,4871.36,"Alright, that's all I've got. Next lecture we're going to look at a bunch of different sorting algorithms and we'll have a quiz."

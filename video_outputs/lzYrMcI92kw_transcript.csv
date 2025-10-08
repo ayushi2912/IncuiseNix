@@ -1,0 +1,803 @@
+Start Time,End Time,Text
+0.0,20.52,"So, let's start today's lecture."
+20.52,24.64,Today we're going to be talking about the idea of iteration and iteration is another
+24.64,29.0,way we're going to add control flow to our programs.
+29.0,36.28,"But before we do that, let's do a little bit of a recap on, sorry, let's do a little bit"
+36.28,40.92,of a recap of what we've done so far last lecture because last lecture we actually introduced
+40.92,44.76,"a different mechanism for control flow, branching."
+44.76,49.28,And the control flow was basically a way for us to tell Python not to go systematically
+49.28,51.400000000000006,through the code.
+51.400000000000006,56.04,"Branching was a way for us to tell Python, hey, based on some condition being true or false,"
+56.04,61.4,"you evaluate some set of code or another set of code, right, which was not going literally"
+61.4,65.12,we were actually kind of skipping around through the code.
+65.12,69.72,"So that's what we learned at the end of the lecture, but we also learned about input and"
+69.72,73.44,"output, so a way for us to write interactive programs."
+73.44,76.03999999999999,"And we learned about a new data type, the string."
+76.03999999999999,80.2,"So the string was a sequence of characters, hopefully you got a chance to do a little bit"
+80.2,88.36,of exercises on MITX as practice for today's quizzes with strings and branching.
+88.36,91.8,"Okay, so in branching, what did we learn?"
+91.8,95.84,We talked about how to actually add a branching point in our program.
+95.84,98.76,So we did that using these particular keywords.
+98.76,102.2,"So when you type them in your program in the file editor, you'll see that they kind of turn"
+102.2,106.12,"a different color, that tells you it's a special word in Python."
+106.12,111.36,And these keywords are how we told Python to put a branching point.
+111.36,117.60000000000001,And the colon kind of ended the branching conditional.
+117.60000000000001,123.44,And then anything that was indented as part of that conditional was code that would be executed
+123.44,125.28,when that condition was true.
+125.28,128.52,So I'm just going to quickly go over each one of these boxes.
+128.52,133.56,So the first one up here was the simplest way that we could add a conditional to our program.
+133.56,138.52,"You basically said, hey, go through the program, when you reach this if condition, Python would"
+138.52,145.0,"check the condition and say if that condition is true, execute the code that's indented"
+145.0,146.6,as part of that block.
+146.6,152.2,"If the condition was not true, don't do anything, just carry on with a remaining program."
+152.2,156.32,"If we wanted to do something else, so if the condition was not true, if we wanted to do something"
+156.32,159.8,"else, we added this else clause here."
+159.8,164.8,And the else also has some sort of code indented as part of its code block.
+164.8,170.76000000000002,And that code would be executed when that condition was false.
+170.76000000000002,175.0,"OK, so that was a really simple if or if else code structure."
+175.0,179.76000000000002,"But sometimes we want to have code that checks for many conditions, right, not just one."
+179.76000000000002,182.16000000000003,That's where the L if structure came in.
+182.16000000000003,186.96,So we would have an if condition that starts our code block.
+186.96,192.0,"If that condition was true, as usual, we execute the code that's part of that block,"
+192.0,195.72,"else if, so L if, we could insert another condition."
+195.72,199.36,"And Python would say, OK, well, if that one wasn't true, let me check if this next one is true"
+199.36,202.36,and then we would execute the code that's part of that code block.
+202.36,207.28,"And we can add, we can chain as many of these L ifs as we want together."
+207.28,214.04000000000002,And Python will evaluate the very first one that it finds true that's part of this chain.
+214.04000000000002,216.68,Even if more than one is true.
+216.68,220.20000000000002,It is possible none of those conditions were true in which case Python would basically
+220.20000000000002,225.56,skip over all of them and do nothing and turn none of those code blocks.
+225.56,229.68,"If you wanted to have a structure where if none of those conditions were true, you wanted"
+229.68,231.08,to do something.
+231.08,236.52,"You could put an else at the end of a whole chain of if L if, L if, L ifs."
+236.52,239.88,And the else would be executed when none of those conditions are true.
+239.88,244.16,"OK, so hopefully this is just recap."
+244.16,248.88,One sort of tricky thing to remember is the ifs starts a code block.
+248.88,253.72,"So the if can have an else associated with it, or it can have an L if, L if, L if, and"
+253.72,255.92,an else associated with it.
+255.92,261.48,"But if you have if condition, and then followed by another if condition, both of those code"
+261.48,264.8,"blocks could potentially be executed because the ifs are independent, right?"
+264.8,266.44,It's not an else situation.
+266.44,272.36,They're just another if code block that gets started.
+272.36,276.04,"So the way we told Python, again, just to reiterate the way you told Python which code"
+276.04,279.28000000000003,"to execute when the condition is true, is by indentation."
+279.28000000000003,282.32,And indentation is something you have to do.
+282.32,284.68,It's not optional in Python.
+284.68,289.82,"OK, so let's take what we've learned so far and code up a really simple game."
+289.82,294.08000000000004,"So this is sort of a very simple variation of the lost woods in Zelda, sort of my version"
+294.08000000000004,295.08000000000004,of it.
+295.08000000000004,299.32,Let's say it's kind of a trick level where you have your character and they enter the lost
+299.32,300.32,woods.
+300.32,302.32,They're presented with this screen.
+302.32,307.12,And the trick here is you ask the user if they want to go left or right.
+307.12,310.96,"If they say right, you're basically going to present them with the exact same screen all"
+310.96,311.96,over again.
+311.96,315.24,So it's kind of representing that they're lost in the woods.
+315.24,318.4,"And as long as they say I want to keep going right, I want to keep going right, I want"
+318.4,322.84,"to keep going right, they're basically going to see the same screen over and over again."
+322.84,328.71999999999997,And the trick to getting out of the woods is to say I want to go left.
+328.72,333.28000000000003,"So no matter how far, how many times they've said right in a row, as long as they type"
+333.28000000000003,336.76000000000005,"in left, they're out of the woods."
+336.76000000000005,340.66,"So let's try to code that up with what we know, just conditionals."
+340.66,345.04,"We have an if else, right?"
+345.04,349.08000000000004,"The if says if the user exits right, we're going to do something."
+349.08000000000004,354.40000000000003,"And otherwise, we're going to say that the user said left or something else or exit."
+354.40000000000003,356.72,And then we're going to tell them that they've exited successfully.
+357.72,359.88000000000005,"All right, now if they said exit right, what do we do?"
+359.88000000000005,362.16,"Well, we're going to show them the exact same thing again."
+362.16,365.16,So we're setting the background to the same woods background.
+365.16,368.16,"And then to present it with a choice all over again, right?"
+368.16,370.0,Do you want to exit right or do you want to exit left?
+370.0,374.04,"So if they say exit right, we would do something."
+374.04,378.88000000000005,"And otherwise, we would tell them they were successfully exited."
+378.88000000000005,380.52000000000004,"Well, what if they exited right?"
+380.52000000000004,384.40000000000003,"If they exited right, then we would do something again, basically present them with the"
+384.40000000000003,386.88000000000005,same situation.
+386.88000000000005,391.28000000000003,So we would set the woods background again and we would ask them if they want to go right
+391.28000000000003,392.28000000000003,or left again.
+392.28000000000003,395.52000000000004,"And otherwise, if they said left, they exit."
+395.52000000000004,397.92,"So we already see a problem, right?"
+397.92,401.44000000000005,"How deep do we make this nested loop situation, right?"
+401.44000000000005,406.24,Here we already have three in case the user said I want to go right three times in a row.
+406.24,408.72,But we don't know how persistent the user will be.
+408.72,414.20000000000005,"So how do we know when we're writing our code, how deep to make this nested loop?"
+414.2,415.52,We don't.
+415.52,419.64,We won't be able to really code this up very well with what we know so far.
+419.64,423.03999999999996,So that's kind of the motivation for introducing iteration.
+423.03999999999996,428.03999999999996,Because the situation on the previous slide fits really well with some task we want to repeat
+428.03999999999996,431.59999999999997,"multiple times, as long as some condition is true."
+431.59999999999997,435.48,"In our case, the condition is the user says I want to exit right."
+435.48,441.03999999999996,"So while the user keeps saying exit right, show them the woods background and ask them again,"
+441.03999999999996,443.03999999999996,which way do you want to go?
+443.04,446.84000000000003,"And so while that's true, just repeat this set of things."
+446.84000000000003,450.88,"Check that they said exit right, show them the woods background, ask them again."
+450.88,454.56,"Check that they said exit right, show them the background, ask them again."
+454.56,460.64000000000004,"And if at any point they'd say I don't want to exit right, we break out of this loop."
+460.64000000000004,462.96000000000004,And we kind of rejoin the rest of the program.
+462.96000000000004,465.52000000000004,"That's kind of the terminology we used with if statements, right?"
+465.52000000000004,470.24,We set the background to the exit background and they're out of the woods.
+470.24,472.68,So this sets the scene for wild loops.
+472.72,476.96,Here's another example of wild loops sort of in the context of watching a show.
+476.96,483.0,"So if we want to start a new show on Netflix and we want to watch all episodes of the show in one shot,"
+483.0,485.56,we're going to tell Netflix we're starting a new show.
+485.56,489.72,"And while there are more episodes to watch in this show,"
+489.72,492.4,"we're going to keep watching the next episode, right?"
+492.4,496.32,"So if there are no more episodes to watch, then we're done."
+496.32,499.96000000000004,"Not Python, Netflix will suggest three more shows like this one."
+499.96000000000004,501.92,"And while there are more episodes to watch,"
+501.92,504.28000000000003,"so yes, there are more episodes to watch."
+504.28000000000003,507.6,We're going to play the next episode in sequence.
+508.84000000000003,511.92,So that's the idea that we're trying to get out with wild loops.
+511.92,513.52,"In Python, this is how we code them."
+513.52,517.08,So we start a wild loop with the keyword while.
+517.08,520.64,"So this, again, will turn blue in Python because it's a special word."
+520.64,523.52,"Some condition is true, okay?"
+523.52,528.72,"So this is against some expression or something that will evaluate to a Boolean,"
+528.72,532.28,"like we talked about in last lecture, okay?"
+532.28,539.48,"Colin, and Colin tells Python we're starting a code block that's part of the wild loop, being true."
+539.48,544.24,"And as usual, the code block means we're going to indent these lines of code, right?"
+544.24,548.88,"So whatever we want to execute when the condition is true, we'll be indented."
+551.36,554.9200000000001,"When the indented statements are finished executing,"
+554.92,560.36,Python automatically goes back and checks the condition.
+560.36,563.64,So it checks whether the condition is true or not.
+563.64,565.5999999999999,"And this is done behind the scenes, right?"
+565.5999999999999,569.36,"When you code up a wild loop, when you type in the keyword while,"
+569.36,572.0799999999999,Python will automatically do this behavior.
+572.0799999999999,575.68,"It'll check the condition, it'll execute the lines of code indented,"
+575.68,578.12,and then it'll go back and check the condition again.
+578.12,581.04,"If it's still true, it'll execute the lines of code indented again,"
+581.04,583.0,and then it'll check the condition again.
+583.0,584.68,So it's not something you have to code up.
+584.6800000000001,588.2800000000001,"You don't have to tell it to go back, as long as you're writing this wild loop,"
+588.2800000000001,593.24,"Python will automatically do that sequence of steps for you, okay?"
+594.5200000000001,596.5200000000001,"So when the condition becomes false,"
+596.5200000000001,601.72,"Python will no longer execute the stuff inside the stuff that's indented inside the wild loop,"
+601.72,607.24,and it'll go rejoin the rest of the program at the same indentation level as the wild loop.
+608.6400000000001,609.6800000000001,Okay.
+609.6800000000001,617.1600000000001,"So notice that the condition is kind of something that's dependent on, or sorry,"
+617.1600000000001,620.8000000000001,"the fact that we're doing this code over and over again,"
+620.8000000000001,622.6,depends on this condition being true.
+623.6800000000001,630.84,"So if the code inside is not ever changing anything related to our condition,"
+630.84,635.08,"then it's very likely, it's actually for sure,"
+635.08,638.32,that this loop will execute infinite number of times.
+638.32,640.5200000000001,So this is kind of the pitfall of wild loops.
+640.5200000000001,646.7600000000001,"It's possible that if you're not careful, your code will execute infinite number of times,"
+646.7600000000001,649.84,"and it'll just never, never terminate."
+649.84,651.8000000000001,And I'll show you how to deal with that in a couple of slides.
+653.6,660.32,"So let's try to code up this, this last woods program in our, just with a wild loop."
+660.32,666.4000000000001,"So here we've got our question that we ask the user,"
+666.4,668.4,do you want to go left or right?
+668.4,673.4,And we're going to grab the user input as a string and save it in a variable called where.
+674.68,678.0,"So whatever the user types in, it'll be saved in a variable called where."
+678.0,681.12,"So in my computer memory, the way this looks like,"
+681.12,685.48,"if the user types in right, that particular sequence of characters,"
+685.48,687.4,that'll be saved as the variable where.
+688.68,693.8,"So then we finish this first line of the code here, and then we check why all the value of where"
+693.8000000000001,697.0000000000001,"is equivalent to right, what are we going to do?"
+697.0000000000001,700.36,"We're going to ask the user again, where do you want to go left or right?"
+701.5200000000001,707.5200000000001,"So I'm going to save right again, and then this memory is going to look exactly the same."
+707.5200000000001,715.5200000000001,"If the user keeps typing in right, I keep reassigning the variable where to have the value RIGHT."
+717.1600000000001,722.2800000000001,"At some point, the user might type in left, in which case we're going to lose the binding"
+722.28,728.88,"from a variable where, from the specific sequence of characters RIGHT,"
+728.88,731.64,we're going to bind it now to the character's LEFT.
+731.64,736.28,"So at some point, after repeating this many times, the user will type in left,"
+736.28,738.8,and we're going to have where is equal to left.
+739.8,743.88,"And at that point, when the condition is being checked again, Python will say,"
+743.88,745.76,"nope, this is not equivalent."
+745.76,748.16,So I'm not going to go inside this code block.
+748.16,751.28,I'm just going to go down here and print you got out of the loss force.
+753.0,757.56,"So in code, the way this looks is this first one here."
+764.68,767.0799999999999,"So you're going to loss force, go left or right."
+767.0799999999999,772.8,"So if I type in right, it just keeps asking me which way to go."
+772.8,775.1999999999999,"And at some point, I can type in left, and I'm out."
+779.0,779.76,"So it's pretty cool, right?"
+779.76,783.2,We just made our own level in this text adventure.
+784.2,786.04,Let's have you think about this question.
+786.04,791.16,What if the user types in capital RIGHT?
+791.16,792.52,What do you think will happen?
+792.52,795.4399999999999,Are we going to ask the user to go left or right again?
+795.4399999999999,798.96,Or are we going to tell them that they got out of the forest?
+801.24,802.0,"Yeah, they got out."
+802.0,803.96,Do you want to say why?
+805.0,807.28,"Yeah, exactly, because it's not lower case."
+807.28,809.3199999999999,"So remember, when we're doing comparison,"
+809.3199999999999,814.24,"so the equal equal on strings, it has to be the same case, right?"
+814.24,815.72,It's case sensitive.
+815.72,819.52,"And so capital RIGHT, or even some combination like just capital R,"
+819.52,827.4399999999999,"lower case RIGHT, is also going to give us that we got out."
+827.4399999999999,829.76,"So this is counterintuitive, right?"
+829.76,836.52,"To what we see as humans, because we see RIGHT no matter what,"
+836.52,839.64,to be right.
+839.64,843.92,So work around for this would be to use sort of a command on the string
+843.92,846.0,"to maybe convert everything to lower case,"
+846.0,848.36,"just so it sees more easily compared, or something like that."
+850.56,855.76,"Okay, so another use of while loops is with numbers, okay?"
+855.76,857.36,Let's look at this example.
+857.36,860.16,"I'm going to ask the user for an integer,"
+860.16,861.76,and then I'm going to do something really simple.
+861.76,866.4399999999999,"I'm going to print x to the screen, however many times the user told me."
+866.44,869.96,"So if the user gives me four, I'm going to print x four times to the screen."
+871.2800000000001,874.8000000000001,So what is this code doing in memory?
+874.8000000000001,877.2800000000001,"Well, the user gives me, let's say, four."
+877.2800000000001,879.36,What happened step by step?
+879.36,883.2800000000001,"First we see our while loop, so I'm going to check whether four,"
+883.2800000000001,885.48,the current value of n is greater than zero.
+885.48,887.0,"Yes, that's true."
+887.0,889.2800000000001,"I'm going to print x to the screen,"
+889.2800000000001,893.44,"and then I'm going to do the next line of code that's part of this indented block,"
+893.44,897.48,"which is to take n, and assign it to whatever n is minus one."
+898.5200000000001,900.44,"So I'm going to lose the binding from the four,"
+900.44,902.84,"and I'm going to take four minus one to be three,"
+902.84,904.9200000000001,"create a new object, and bind n to the three."
+906.5200000000001,909.72,"Okay, next Python, again, it's part of a while loop,"
+909.72,911.72,"so automatically it looks at the condition again,"
+911.72,915.12,"and says, well, now the value of n is still greater than zero."
+915.12,916.9200000000001,"Yeah, three is still greater than zero."
+916.9200000000001,919.0400000000001,"So again, we're going to lose the binding,"
+919.0400000000001,921.0400000000001,"sorry, we're printing x to the screen first,"
+921.04,925.64,"and then we lose the binding from the current value of n, three, two, two."
+927.48,931.16,So we're decarmenting n by one each time through this while loop.
+932.8,934.76,"Then, again, Python checks the condition,"
+934.76,936.88,"it says two is still greater than zero,"
+936.88,939.3199999999999,"so again, we print another x to the screen,"
+939.3199999999999,943.04,"and then we decarment n by one, so we're binding n to one."
+943.04,945.88,"Again, Python checks the condition is one still greater than zero."
+945.88,948.28,"Yes, so we print another x to the screen,"
+948.28,951.0,"so we've printed four x's now to the screen,"
+951.0,954.72,"and then Python says, now I'm going to make n to be zero,"
+954.72,957.04,"and then at this point, Python will do another check,"
+957.04,962.12,"is it's going to say, is zero greater than zero,"
+962.12,963.68,"and that's going to be false,"
+963.68,966.88,"so it's not going to execute the code lock anymore,"
+966.88,968.4,"and the program will be done, right?"
+968.4,971.12,"There's no sort of code to rejoin anymore,"
+971.12,972.92,"there's just the end of the program,"
+972.92,975.64,"so we would have printed four x's to the screen,"
+975.64,977.2,"and this is in the Python file I gave you,"
+977.2,982.12,so you can feel free to run it to double check.
+982.12,983.96,"My question is, what happens,"
+983.96,985.72,"and this is a really common mistake,"
+985.72,988.96,what happens if we forget this last line?
+992.6400000000001,995.96,"We can try it, I can try it in here."
+997.84,1000.12,"Yeah, exactly, it's going to go on forever,"
+1000.12,1002.76,"I'll show you what that looks like,"
+1002.76,1006.6800000000001,so this is the code when we just have it working
+1006.6800000000001,1008.32,"as usual, so if I type in three,"
+1008.32,1010.84,"it prints three of those x's,"
+1010.84,1013.48,"but if I happen to forget to write this last line,"
+1013.48,1015.24,"I'm just going to comment it out,"
+1015.24,1018.6400000000001,"and if I run the program, I can enter any number,"
+1018.6400000000001,1022.9200000000001,"and it'll just keep printing stuff to the console, right?"
+1022.9200000000001,1026.68,"So this is what it's just printing a whole bunch of stuff,"
+1026.68,1029.92,so you can see this is all the stuff it printed.
+1032.0800000000002,1035.6000000000001,"So yeah, we don't have a program that terminates,"
+1035.6,1040.56,"because the condition here is never actually being,"
+1040.56,1042.56,the variable that's part of this condition
+1042.56,1046.4399999999998,"is never actually being changed inside my loop, right?"
+1046.4399999999998,1048.4399999999998,And so that's a big problem.
+1048.4399999999998,1050.7199999999998,"When that happens, what we can do"
+1050.7199999999998,1053.9199999999998,and what I just did here is you can click the shell
+1053.9199999999998,1056.52,"and hit Control-C or Command-C on a Mac,"
+1056.52,1059.52,"and that will just end the program manually,"
+1059.52,1063.24,"or you can just click the red x in the corner,"
+1063.24,1065.68,"so here's another example of it going infinite,"
+1065.68,1068.96,"and there's this little red box in the corner,"
+1068.96,1071.08,"you can click that, or you can click the three lines,"
+1071.08,1074.44,"say, interrupt kernel, all that will stop the program."
+1075.4,1077.76,"So in this class, we're not actually going to write programs"
+1077.76,1080.72,"that take seconds to run, so if you find yourself waiting"
+1080.72,1083.56,"for your program for more than one or two seconds,"
+1083.56,1085.8,"then likely you've entered an infinite loop,"
+1085.8,1088.1200000000001,so you'll want to stop it and try to see
+1088.1200000000001,1089.64,where your program went wrong.
+1093.96,1098.96,"OK, so give this a try if you want,"
+1098.96,1101.52,just so you get the hang-up stopping an infinite program
+1101.52,1104.8,"because you'll very likely run, write a program"
+1104.8,1106.96,that that doesn't terminate.
+1106.96,1111.28,"So while true, what's the condition here?"
+1113.76,1114.88,"It's just true, right?"
+1114.88,1117.16,"So there's no condition that's being checked,"
+1117.16,1121.32,this program will run always an infinite times no matter what.
+1124.2,1126.52,"So that's just this little you try it down here,"
+1126.52,1128.96,"online 44, just run it."
+1128.96,1131.36,"As soon as you run it, it's just going to print that"
+1131.36,1133.48,to the screen over and over again.
+1133.48,1136.16,Be sure to click the shell to put the focus on there
+1136.16,1138.36,and hit Control-C or hit the red X.
+1142.52,1147.08,"All right, so the big idea with while loops"
+1147.08,1150.56,"is that they can repeat the code inside them indefinitely,"
+1150.56,1153.04,so we have to be a little bit careful
+1153.04,1157.28,with what our conditions are and whether we're actually
+1157.28,1160.12,making progress towards having that condition
+1160.12,1162.68,become false at some point.
+1162.68,1164.84,"And when that happens, when they run indefinitely,"
+1164.84,1168.6,you'll have to manually intervene to close the program.
+1170.84,1174.52,"OK, so now that we've seen a loop"
+1174.52,1179.52,"with a little bit of numerical computation inside it,"
+1180.1599999999999,1182.96,"so we were changing the value of an inside our loop,"
+1182.96,1184.92,let's have you work on this little program.
+1184.92,1187.68,It's an extension of the lost woods.
+1188.68,1191.16,This is exactly the same program that I just ran
+1191.16,1196.16,"a few slides ago, but what I want you to add is an extra print out."
+1196.72,1201.72,"So when the user says write more than two times,"
+1204.04,1206.8,"the next time you ask them whether they go left or right,"
+1206.8,1210.3600000000001,I'd like you to print a sad face right before you ask them
+1210.3600000000001,1211.2,that question.
+1211.2,1212.2,"It can be on a different line,"
+1212.2,1213.6000000000001,but it doesn't have to be on the same line.
+1215.3600000000001,1220.04,And the way to do that is to try to create a new variable
+1220.04,1221.64,"that's going to be like your counter,"
+1221.64,1225.72,"that keeps track of how many times the user had,"
+1225.72,1230.3600000000001,how many times this while loop has repeated.
+1230.3600000000001,1232.2,I'll give you a couple of moments to do that
+1232.2,1233.6000000000001,and then we'll write it together.
+1235.8400000000001,1238.52,"As usual, the UTRIID is in here,"
+1238.52,1240.8,so you can just uncomment the code
+1241.8,1245.24,"with an Inspiter, it's Control-1 or Command-1"
+1245.24,1247.1599999999999,to batch uncomment.
+1247.1599999999999,1251.68,And then you can work off of this code to try to improve it.
+1254.6399999999999,1257.2,"Okay, so does anyone have a start for me?"
+1257.2,1258.6399999999999,How can we do this?
+1258.6399999999999,1261.12,You don't have to give it to me in full.
+1261.12,1264.08,"We can work our way up to the final program,"
+1264.08,1266.32,"but what's kind of the first, your first thought here?"
+1271.8,1273.8,"Yes, all right."
+1279.8,1289.48,"Okay, so we can create a variable N at the beginning of our program."
+1289.48,1291.48,What do you want to make it?
+1291.48,1292.22,Zero.
+1292.22,1293.24,"Okay, good."
+1293.24,1298.68,"Zero will keep track, or N will keep track of how many times we've gone through the loop."
+1298.68,1305.76,"So inside our program, when do we want to change n?"
+1305.76,1306.8,Sorry.
+1306.8,1309.1200000000001,"Every time we go through the loop, right?"
+1309.1200000000001,1311.3200000000002,"So every time we want to go through the loop,"
+1311.3200000000002,1314.3600000000001,we want to change n to be a new value.
+1314.3600000000001,1316.8400000000001,So maybe we want to increase it by 1.
+1316.8400000000001,1321.28,So n is equal to n plus 1.
+1321.28,1324.72,So now this will keep track of how many times we've
+1324.72,1325.44,gone to the loop.
+1325.44,1330.2,And we can actually double check this by printing n.
+1330.2,1337.16,"So if we run it, and we say, right, we've gone once, right?"
+1337.16,1338.4,"We've got twice, right?"
+1338.4,1339.96,"We've got three times, right?"
+1339.96,1344.88,So this means we're incrementing it correctly.
+1344.88,1346.96,"Now, what can I do with this variable n?"
+1346.96,1351.48,"Now that I have it, and I know it's incrementing correctly."
+1351.48,1351.98,Yeah.
+1351.98,1354.28,Is that what it's meant to do?
+1354.28,1355.8799999999999,"Yep, we can set up an if statement."
+1355.8799999999999,1361.68,"So we can check if that value of n is greater than 2,"
+1361.68,1364.28,according to the specification here.
+1364.28,1368.16,What do you want to do when if it's greater than 2?
+1368.16,1369.28,"Print something, right?"
+1369.28,1371.04,So we can print the sad face.
+1374.56,1376.8799999999999,And let's try to run it now.
+1376.8799999999999,1380.48,"So if we immediately hit left, it still works."
+1380.48,1384.8,"If we go right one time, nothing, right, another time, nothing,"
+1384.8,1387.04,"right, a last time, sad."
+1387.04,1390.84,"And from now on, it's going to keep showing me the sad face."
+1396.76,1400.04,Questions about this code?
+1400.04,1401.04,Yeah?
+1401.04,1403.08,Is it possible that the test version is something
+1403.08,1404.08,that's non equivalent?
+1404.08,1406.92,"Like, is there a sign that's different than the previous?"
+1406.92,1408.4,Very not equivalent.
+1408.4,1413.72,Can we check for not equivalency here?
+1413.72,1417.8400000000001,So this particular check checks for what the user typed in.
+1421.3600000000001,1425.44,It's possible we can add this if statement that checks for the n
+1425.44,1428.76,in here and something else.
+1428.76,1434.44,"But then we would have to have maybe another, I'd have"
+1434.44,1435.44,to think about it.
+1435.44,1437.3200000000002,"But it is, it might be possible to try"
+1437.32,1439.4399999999998,to combine them inside the while loop.
+1439.4399999999998,1442.04,But there is a simple effect.
+1442.04,1443.32,"Oh, to do not equals."
+1443.32,1445.12,That would be the not equal sign.
+1445.12,1447.28,Yeah.
+1447.28,1450.28,So another thing we can do with while loops
+1450.28,1453.28,is to iterate through numbers in a sequence.
+1453.28,1457.12,"If we do this, there's a really common pattern, which actually"
+1457.12,1459.6799999999998,leads us to the next kind of loop we're
+1459.6799999999998,1460.84,going to see on the next slide.
+1460.84,1464.48,"But the pattern, when you want to iterate through numbers"
+1464.48,1469.2,in a sequence is you first set a loop variable before the while
+1469.2,1470.28,loop.
+1470.28,1474.1200000000001,"Inside the condition for the loop, you do some sort of check"
+1474.1200000000001,1476.08,with that variable.
+1476.08,1478.44,So n was my loop variable outside the loop.
+1478.44,1480.84,And then I test it inside the while loop.
+1480.84,1483.48,So n is less than 5.
+1483.48,1486.24,"And then within the while loop, you can do whatever commands"
+1486.24,1488.52,you want to do with that n.
+1488.52,1492.4,But then you have to remember to change it in some way.
+1492.4,1494.52,"Because if you don't change it in some way,"
+1494.52,1498.48,this while loop condition will always be true.
+1498.48,1503.0800000000002,"So here I'm incrementing n by 1, because it starts from 0."
+1503.0800000000002,1507.4,"I want n to get to something, something above 5, which"
+1507.4,1509.3200000000002,will lead to my condition becoming false.
+1512.0800000000002,1516.8000000000002,So this pattern actually exists in a bunch of different programs.
+1516.8000000000002,1522.0,So here's a program that calculates factorial for me.
+1522.0,1524.16,And here I'm calculating for factorial.
+1524.16,1526.12,I'm not excited about the number 4.
+1526.12,1528.0,That's for factorial.
+1528.0,1529.72,How do we do this?
+1529.72,1533.0,"Well, there's a lot of things I'm initializing here."
+1533.0,1535.4,"But sort of the more you work with loops,"
+1535.4,1541.24,you'll kind of get used to seeing what is the loop variable.
+1541.24,1545.4,So i is actually going to be my loop variable.
+1545.4,1550.44,"Here, it's being set to some value initially outside the loop."
+1550.44,1553.4,"Inside the conditional, I'm doing some sort of condition"
+1553.4,1555.3200000000002,check with it.
+1555.3200000000002,1559.8,"And then inside the body of that conditional,"
+1559.8,1561.88,I'm changing it in some way.
+1561.88,1565.52,"That gives me some sort of, that takes me"
+1565.52,1569.3600000000001,to the end of my conditional here.
+1569.3600000000001,1570.56,So I'm setting i to 0.
+1570.56,1573.56,I'm incrementing i by 1 each time through the loop.
+1573.56,1579.0800000000002,"And I'm making forward progress towards making i greater than x,"
+1579.08,1583.6399999999999,which point my conditional will become false.
+1583.6399999999999,1585.8799999999999,"The rest of the code, x is equal to 4,"
+1585.8799999999999,1589.8799999999999,just sets the thing I want to get the factorial up.
+1589.8799999999999,1593.96,And this factorial variable is kind of my running product.
+1593.96,1595.28,So it's the thing that I'm going to keep
+1595.28,1598.28,both applying to figure out what the factorial is.
+1598.28,1600.4399999999998,"So here, I'm initializing it to 1."
+1600.4399999999998,1602.48,"And inside the loop, I'm multiplying it"
+1602.48,1605.24,by my loop variable every time.
+1605.24,1609.68,So I'm not going to do a memory diagram for this example.
+1609.68,1613.36,But I will do the Python tutor.
+1613.36,1614.68,And I'm going to step through to show you
+1614.68,1615.8,exactly what this is doing.
+1615.8,1619.96,"So x is 4, i is 1, originally, and factorial is 1."
+1619.96,1622.56,So x is the thing I want to get the factorial of.
+1622.56,1627.72,"i is going to be my loop variable, and a factorial is my running"
+1627.72,1629.1200000000001,product.
+1629.1200000000001,1633.28,"So next step, i1 is less than or equal to 4."
+1633.28,1635.48,So I'm going to enter the loop.
+1635.48,1639.24,"Python will calculate the factorial as whatever it is right now,"
+1639.24,1641.2,multiplied by 1i.
+1641.2,1642.92,So it's still 1.
+1642.92,1647.6399999999999,And then I'm going to increment i from whatever it is now to 1.
+1647.6399999999999,1652.84,So I just want to mention this i plus equals 1
+1652.84,1657.2,is equivalent to saying i equals i plus 1.
+1657.2,1660.48,And this is true no matter what variable you have here.
+1660.48,1666.8,"Basically, if you have fact times equals 2"
+1666.8,1671.32,"or something like that, that basically means factorial equals"
+1671.32,1674.76,fact times 2.
+1674.76,1676.52,So that's kind of the pattern here.
+1676.52,1678.68,"These are equivalent, and these are equivalent."
+1678.68,1682.0,This is just a shorthand notation and programming.
+1682.0,1683.3600000000001,So that's what this line here means.
+1683.3600000000001,1688.28,i plus equals 1 means i equals i plus 1.
+1688.28,1690.92,"So at this line here, I'm taking whatever i is"
+1690.92,1693.32,"and adding 1 to it, 2."
+1693.32,1694.84,And then I do the check again.
+1694.84,1696.96,"And remember, Python does this automatically,"
+1696.96,1698.96,because we're using a y-loop.
+1698.96,1701.56,"It goes back to the condition and checks it again,"
+1701.56,1704.28,using these new values for the variables.
+1704.28,1706.36,2 is still less than or equal to 4.
+1706.36,1708.72,"So again, we go inside the loop body."
+1708.72,1714.96,"Factorial is whatever it is right now, 1, multiplied by i, 2."
+1714.96,1718.6000000000001,"i is going to be 2 plus 1, 3."
+1718.6000000000001,1721.24,"And then again, I'm checking that 3 is less than or equal to 4."
+1721.24,1722.1200000000001,It still is.
+1722.1200000000001,1725.6000000000001,"So then we're going to do factorial is whatever it is now, 2."
+1725.6000000000001,1728.04,Multiply by whatever i is 3.
+1728.04,1729.88,So now it's 6.
+1729.88,1732.92,"i is going to be 1 more than what it is right now, 4."
+1732.92,1735.3600000000001,4 is still less than or equal to 4.
+1735.3600000000001,1738.1200000000001,We're going to go inside the body.
+1738.1200000000001,1740.4,Factorial is whatever it is right now.
+1740.4,1743.32,6 multiplied by 4.
+1743.32,1744.56,And then 24.
+1744.56,1748.96,"And then i is going to be whatever it is right now plus 1, 5."
+1748.96,1752.24,"At this point, Python says it's 5 less than or equal to 4."
+1752.24,1753.72,No.
+1753.72,1755.28,And then it breaks the loop.
+1755.28,1759.76,"And it goes to print this statement, 4 factorial is."
+1759.76,1762.52,And then it grabs whatever the value of the factorial is.
+1762.52,1766.48,"So here, I'm using this f string print notation"
+1766.48,1769.28,that we learned about last lecture.
+1769.28,1772.6799999999998,So I encourage you to go through it yourself.
+1772.68,1773.72,Just step by step.
+1773.72,1778.0800000000002,"That's what Python tutors really, really useful for."
+1778.0800000000002,1782.16,So let's look at a different kind of loop called a 4 loop.
+1782.16,1788.24,And the 4 loop is going to allow us to rewrite that special
+1788.24,1791.24,kind of wild loop that we saw where we initialize a variable.
+1791.24,1792.28,We test the variable.
+1792.28,1795.1200000000001,We do something to the variable within the code in a more
+1795.1200000000001,1797.44,"efficient, more readable way."
+1797.44,1801.96,"So in terms of our Netflix example, a 4 loop"
+1801.96,1804.76,"would be equivalent to something like Netflix, right?"
+1804.76,1806.76,"If you're not interacting with it, cuts you off"
+1806.76,1808.08,"after 4 episodes, right?"
+1808.08,1809.64,To save bandwidth.
+1809.64,1812.6000000000001,And so there's a sequence of 4 episodes.
+1812.6000000000001,1814.28,It knows it's going to go through if there's
+1814.28,1817.1200000000001,nothing if you're not interacting with it.
+1817.1200000000001,1821.16,"So if you've already gone through your sequence of 4 episodes,"
+1821.16,1823.92,you're allowed to watch without any interaction.
+1823.92,1824.8,"It's done, right?"
+1824.8,1825.6000000000001,It cuts you off.
+1825.6000000000001,1827.68,"It says, are you still watching?"
+1827.68,1829.92,"But if there are still more episodes,"
+1829.92,1832.64,"if it only showed you 2 out of the 4,"
+1832.64,1835.96,then it's going to keep showing you more episodes
+1835.96,1837.76,until it's shown you the 4.
+1837.76,1840.0,OK.
+1840.0,1845.2,So this is the program we had with wild loops a couple of slides
+1845.2,1847.52,ago.
+1847.52,1849.5600000000002,"And remember, we were initializing a variable."
+1849.5600000000002,1851.92,"We were testing the variable, some condition here."
+1851.92,1854.44,And then we were incrementing the variable or doing
+1854.44,1857.1200000000001,something that gives us nice forward progress
+1857.1200000000001,1860.2800000000002,towards making this condition false.
+1860.2800000000002,1862.48,But it's really verbose.
+1862.48,1864.3200000000002,"Certainly it works, and you can do it."
+1864.3200000000002,1868.4,"But it's very easy to forget to do this, something like this,"
+1868.4,1870.8400000000001,in which case you'll get an infinite loop.
+1870.8400000000001,1874.5200000000002,"With a 4 loop, those 4 lines of code"
+1874.5200000000002,1878.4,just look like these 2 lines of code.
+1878.4,1881.68,"So if there's a sequence of values you ever want to iterate over,"
+1881.68,1885.8400000000001,that's what 4 loops are useful for.
+1885.8400000000001,1889.3200000000002,So the syntax for 4 loop looks a little bit different
+1889.3200000000002,1890.3200000000002,than a wild loop.
+1890.3200000000002,1893.6000000000001,It starts with a 4 keyword.
+1893.6000000000001,1897.44,"This is a variable that you get to name, whatever name you'd like."
+1897.44,1902.1200000000001,"The keyword in tells Python, I'm going to make this variable"
+1902.1200000000001,1907.4800000000002,take on values in this sequence.
+1907.4800000000002,1911.92,"And again, we have a colon that tells Python we're"
+1911.92,1914.88,going to start a code indentation here.
+1914.88,1917.5200000000002,And whatever lines of code you have that are indented
+1917.5200000000002,1920.4,are going to be executed.
+1920.4,1923.92,However many sequence of values you have.
+1923.92,1926.64,"So the first time through the loop, Python"
+1926.64,1930.7600000000002,will make this variable name take on the first value in the sequence.
+1930.7600000000002,1934.5200000000002,And then it's going to execute this code.
+1934.5200000000002,1939.44,"Automatically, Python finishes executing these codes."
+1939.44,1942.44,It will go back and set this variable
+1942.44,1947.24,have the next value in the sequence and execute the same lines of code.
+1947.24,1950.8400000000001,"When it's done, it's going to make the variable here take on the next values"
+1950.8400000000001,1953.48,in the sequence and execute those lines of code.
+1953.48,1956.4,And so these lines of code will effectively be executed.
+1956.4,1962.0800000000002,However many values you have in your sequence.
+1962.0800000000002,1966.0800000000002,"So more practically speaking, here we have a variable."
+1966.0800000000002,1971.92,"So n, in this case, in some sequence of values, in this case,"
+1971.92,1976.76,"I'm saying range 5, we're going to print the value of n."
+1976.76,1978.96,So I'm going to introduce range now.
+1978.96,1987.88,Range is a way for us to grab numerical sequence of values that have some sort of pattern.
+1987.88,1992.28,"So if we just say range some number, the pattern is we start at 0"
+1992.28,1995.0800000000002,and we go up to but not including that number.
+1995.0800000000002,2001.64,"So range 5 means the sequence of values Python will iterate over are 0, 1, 2, 3, and 4."
+2001.64,2004.88,"Range 10 means 0, 1, 2, 3, 4, 5, 6, 7, 8, 9."
+2004.88,2010.2800000000002,So we go up to but not including the value in the range starting from 0.
+2010.2800000000002,2014.5200000000002,So each time through the loop Python will change the value of n
+2014.5200000000002,2018.2800000000002,to be every one of those values automatically.
+2018.2800000000002,2022.4,"So these two lines here for n and range 5 print n,"
+2022.4,2026.1200000000001,"the way they look like behind the scenes, and Python does this for you,"
+2026.1200000000001,2031.4,"is the first time it encounters the for loop it sets n to be 0,"
+2031.4,2034.24,that's the first value in my sequence.
+2034.24,2038.0800000000002,"And then it prints the value of n, 0."
+2038.0800000000002,2045.1200000000001,"Next time through the loop Python will say, OK, I've done what you asked me to do inside the co-loop, print n."
+2045.1200000000001,2048.36,I'm going to make n have the next value in my sequence.
+2048.36,2052.6800000000003,So it loses the binding from the 0 and makes it be 1.
+2052.6800000000003,2054.92,"OK, I've made n1, now what do you want me to do?"
+2054.92,2059.04,"Well, I'm going to execute whatever's in the indented print n."
+2059.04,2061.2000000000003,So I'm going to print 1.
+2061.2,2064.2,"So I've already printed 0, then I've printed 1."
+2064.2,2066.52,I'm finished executing the code inside the loop.
+2066.52,2070.08,"So now n is going to get the next value in the sequence,"
+2070.08,2072.68,"lose the binding from 1, and you get 2."
+2072.68,2080.3199999999997,"And so on and so on, and by the end this program will have printed 0, 1, 2, 3, and 4."
+2080.3199999999997,2084.8399999999997,Every single value in my range.
+2084.8399999999997,2091.08,"So it turns out that we can actually make range have three values inside the parentheses,"
+2091.08,2092.04,not just 1.
+2092.04,2102.3199999999997,1 is sort of shorthand notation if you ever want to start from 0 and go up to not including the value in the parentheses.
+2102.3199999999997,2106.64,"But you can actually give it three values, a start, a stop, and a step."
+2106.64,2112.88,And Python will automatically generate a sequence of values that matches this pattern.
+2112.88,2115.2799999999997,"So this should seem familiar to you, right?"
+2115.2799999999997,2120.3199999999997,"Because we've seen something like this when we were doing strings, right?"
+2120.32,2126.88,"Except that we weren't doing parentheses, we were doing square brackets, and we weren't doing commas, we were doing colonists."
+2126.88,2128.96,But it's the exact same idea.
+2128.96,2136.1200000000003,"Here we're generating numbers, actual integers, that we want a loop variable to take on."
+2136.1200000000003,2141.2400000000002,"So if we will start in step, start by default is 0, and step by default is 1."
+2141.2400000000002,2145.04,"If we will meet step by default, it will be 1."
+2145.04,2152.24,"So here, i and range 4, the variable i will take on the values 0, 1, 2, and 3."
+2152.24,2157.52,"i and range 3, 5, i will take on the values 3 and 4."
+2157.52,2161.6,"So we go up to, but not including the 5."
+2161.6,2163.72,Think about these three questions.
+2163.72,2168.04,So what are the range of values in the first one?
+2168.04,2170.48,And what are we going to print?
+2170.48,2174.32,"So in 1, 4, 1, what range of values are we going to have i b?"
+2174.32,2179.96,So i is going to be 1.
+2179.96,2186.48,"1, 2, 3, yes, and we stop."
+2186.48,2189.88,"We go up to, but not including the stop, which is a 4."
+2189.88,2193.04,And what are we printing?
+2193.04,2196.52,"Yeah, 1, 2, 3, just all over."
+2196.52,2197.52,How about the next one?
+2197.52,2200.48,J. What will the values of j be?
+2200.48,2204.84,"1, 3, and that's it."
+2204.84,2208.6,"Yep, because we're going every other value."
+2208.6,2211.68,And what are we printing here?
+2211.68,2212.56,"Yeah, exactly."
+2212.56,2215.44,So we're doing an operation with each one of these j's.
+2215.44,2218.16,"So we're going to print 2, and then 6."
+2218.16,2219.68,And how about the last one?
+2223.76,2225.44,"We're stepping backward, right?"
+2225.44,2226.88,The negative 1.
+2226.88,2229.0,So what's our start?
+2229.0,2235.88,"4, and then 3, 2, 1, and that's it."
+2235.88,2238.56,"We're going down 2, but not including the end, right?"
+2238.56,2240.48,So we're not going to include the 0.
+2240.48,2244.96,And what are we printing here?
+2244.96,2251.1600000000003,"Yes, $4 signs for the first time, and then $3 signs,"
+2251.16,2254.8799999999997,"and then $2 signs, and then $1."
+2254.8799999999997,2257.04,Exactly.
+2257.04,2260.8799999999997,So the body obviously can do operations
+2260.8799999999997,2262.96,and can manipulate that loop variable.
+2262.96,2268.52,"So each time that variable goes through, it changes,"
+2268.52,2273.04,and then you can use that to your advantage.
+2273.04,2276.56,So here's another example of something useful.
+2276.64,2281.84,We can use four loops to keep track of how many times
+2281.84,2283.4,we're going through a loop.
+2283.4,2285.0,"And in this particular case, we're"
+2285.0,2289.52,writing a program that sums all the values from 0 all the way
+2289.52,2293.2,"up to, but not including whatever is in here."
+2293.2,2295.12,So how are we doing this?
+2295.12,2298.36,Let's do the memory diagram.
+2298.36,2302.92,We've got my sum is equal to 0 as the first line.
+2302.92,2308.96,"So this will be 0 in memory, bound to the name my sum."
+2308.96,2312.64,And then the four loop will generate for me the value 0
+2312.64,2316.6,"through 9, including."
+2316.6,2318.7200000000003,"So I, the first time through the loop,"
+2318.7200000000003,2320.56,will have a value of 0.
+2320.56,2326.0,So we're going to do the code we're asked to do when i is 0.
+2326.0,2330.0,So my sum will be whatever it is right now plus whatever i is 0.
+2330.0,2332.6,So it stays 0.
+2332.6,2334.52,Python's done with the code inside.
+2334.52,2337.36,So now it's going to take i and change it
+2337.36,2341.36,"to the next value in the sequence, 1."
+2341.36,2344.88,"Now we're going to do, again, the stuff inside the loop"
+2344.88,2345.96,with i being 1.
+2345.96,2348.04,So we're going to take my sum whatever it is right now
+2348.04,2350.8399999999997,"and add 1 to it, so it's 1."
+2350.8399999999997,2352.0,And then we're done there.
+2352.0,2355.7999999999997,"So Python will take i to be the next value in the sequence, 2."
+2355.7999999999997,2358.96,"And then we're going to do, again, my sum is whatever it is now 1,"
+2358.96,2361.04,plus whatever i is now 2.
+2361.04,2362.8,So it's 3.
+2362.8,2365.92,"Again, i will increment to 3 automatically."
+2365.92,2367.24,That's the next value in the sequence.
+2367.24,2369.84,So my sum will get a value of 6.
+2369.84,2374.32,"And then i will change to 4, so on and so on and so on until i"
+2374.32,2376.08,becomes 8.
+2376.08,2378.12,That's sort of towards the end.
+2378.12,2382.84,"When i is 8, the value of my sum is 36."
+2382.84,2387.4,"0 plus 1 plus 2, all the way up to 8 is 36."
+2387.4,2390.04,"And then when i becomes 9, Python will"
+2390.04,2393.4,"take my sum whatever it is right now, 36, add 9 to it"
+2393.4,2394.16,to give us 45.
+2398.08,2399.92,"OK, and then that's the end of the program."
+2399.92,2403.92,There's nothing else to do except to print my sum.
+2403.92,2407.8,"So at the end of this loop, it's gone through 10 times,"
+2407.8,2413.08,"adding 0 all the way up to 9, we're going to print 45."
+2413.08,2414.08,Yeah.
+2414.08,2417.6,So i'm not trying to run again for the 45 of your time.
+2417.6,2422.08,"And then just like 0, 1, 2, 3, 4, 3, 4."
+2422.08,2425.24,"Oh, maybe you have another print statement,"
+2425.24,2426.7599999999998,or it might be part of another program
+2426.7599999999998,2428.44,that's being run beforehand.
+2428.44,2430.3199999999997,That you didn't comment out.
+2430.3199999999997,2431.12,Yeah.
+2431.12,2431.92,That's a question.
+2437.44,2439.04,The plus equals what it means.
+2439.04,2442.7999999999997,"Oh, it just means it would be like my sum."
+2444.36,2452.7599999999998,Equals my sum plus i.
+2452.7599999999998,2455.7599999999998,It's just shorthand notation because most of your variable
+2455.7599999999998,2457.36,things might be really long.
+2457.36,2459.52,And it's really annoying to retype them.
+2459.52,2462.2,And so that's generally why that shorthand notation
+2462.2,2463.0,exists.
+2463.0,2463.68,Yeah.
+2463.68,2467.12,But it basically means take whatever my sum is and add i
+2467.12,2473.92,to it and save it back into the variable my sum.
+2473.92,2476.2400000000002,"OK, let's have you try this code real quick."
+2476.2400000000002,2478.6800000000003,So here is code.
+2478.6800000000003,2481.96,It's already on the Python file to start out with.
+2481.96,2485.6800000000003,I want you to have this code.
+2485.6800000000003,2488.4,It's pretty close to working.
+2488.4,2489.76,But there's one issue.
+2489.76,2493.6,So we have this for loop that starts at start at ends at end
+2493.6,2495.6,and we're keeping a running sum.
+2495.6,2496.96,And then we're printing the sum at the end.
+2496.96,2499.2400000000002,So very similar to what we just saw.
+2499.2400000000002,2501.04,But what I want this code to do is I
+2501.04,2504.96,want it to go and sum up the start and the end.
+2504.96,2508.36,"So if I have start as 3 and end as 5,"
+2508.36,2513.04,I want it to add 3 plus 4 plus 5.
+2513.04,2516.16,And so this code is not doing quite that.
+2516.16,2522.04,And I would like you to fix it or to tell me how to fix it.
+2522.04,2525.16,So it's down here on line 140-ish.
+2525.16,2533.64,First thing you should do is run it and maybe see what answer
+2533.64,2535.3199999999997,it actually gives you.
+2535.3199999999997,2536.12,So I just ran it.
+2536.12,2537.12,It gave me a 7.
+2540.7999999999997,2543.7599999999998,"When you're encountering an output, that's not quite what you"
+2543.7599999999998,2544.68,expect.
+2544.68,2546.3999999999996,"One of the first things to do, you can obviously"
+2546.3999999999996,2547.48,use the Python tutor.
+2547.48,2550.6,But another thing you can do is put print statements
+2550.6,2553.0,at various places.
+2553.0,2556.68,Useful places would be inside the for loop.
+2556.68,2560.6,So here we can print I.
+2560.6,2562.52,That's a reasonable thing to print out.
+2562.52,2566.08,And maybe we'll see exactly what values of I we are adding.
+2566.08,2568.92,Because we know the summing works.
+2568.92,2574.72,We just wrote the program on the previous slide.
+2574.72,2577.04,"So we got 3, 4, 7, which is a little confusing."
+2577.04,2579.12,Let's make our print statement be a little bit better.
+2579.12,2585.7599999999998,"I equals comma, and then print the actual value of I."
+2585.7599999999998,2587.0,So what do you guys notice?
+2587.0,2589.7599999999998,"I is 3, I is 4, and then it prints the sum 7."
+2589.7599999999998,2591.0,What's the problem with this code?
+2594.52,2595.52,Yeah?
+2595.52,2598.0,The best version is 5.
+2598.0,2600.0,"Yeah, we're not adding 5, right?"
+2600.0,2605.04,We're just adding 0 originally plus 3 plus 4.
+2605.04,2607.7999999999997,And we've never added 5.
+2607.8,2609.6400000000003,So how can we fix that?
+2609.6400000000003,2612.36,Yeah.
+2612.36,2615.0800000000004,"We can do n plus 1, exactly."
+2615.0800000000004,2617.92,"So the range, remember, grabs the, oh, plus 1."
+2617.92,2624.04,The range grabs these values as numbers that it's working with.
+2624.04,2626.76,"So start is OK, end is OK."
+2626.76,2629.4,"But we go up to, but not including end, right?"
+2629.4,2632.1200000000003,"So if we go to n plus 1, we're going to go up to,"
+2632.1200000000003,2634.5600000000004,but not including n plus 1.
+2634.56,2639.24,"So if we run it now, it looks much better."
+2639.24,2643.68,"So we've got i is 3, i is 4, i is 5, and the sum is 12 per."
+2647.2799999999997,2652.6,So print statements very useful when debugging code.
+2652.6,2655.48,"Questions about this one, or was this, is this makes sense?"
+2658.44,2660.44,OK.
+2660.44,2663.08,The last slide I want to do before we do a summary
+2663.08,2665.88,is just to show you that factorial code we saw
+2665.88,2669.12,using a while loop a few slides back.
+2669.12,2671.16,"So it looks really verbose, right?"
+2671.16,2673.56,We kind of have to think about it for a while before we
+2673.56,2676.64,realize what it's actually doing.
+2676.64,2678.3199999999997,But it was calculating the factorial.
+2678.3199999999997,2681.48,"Obviously, good variable names helped us figure that out."
+2681.48,2686.3199999999997,"That same code in a for loop looks like this,"
+2686.3199999999997,2687.64,where the for loop looks like this.
+2687.64,2690.68,So we still have the initialization of x to 4.
+2690.68,2692.84,"We still initialize our factorial, right?"
+2692.84,2696.7200000000003,We're running product to a 1.
+2696.7200000000003,2701.4,But we're losing those four lines of code that kind of make
+2701.4,2706.6800000000003,up that pattern of changing numbers with while loops into 2.
+2706.6800000000003,2708.7200000000003,So this line i equals 1.
+2708.7200000000003,2711.36,This while loop with the conditional and this incrementing
+2711.36,2716.32,"of i become the for loop, and that's it."
+2716.32,2718.08,The for loop takes care of all of that.
+2718.08,2722.0,"The initialization, the increment and going up to,"
+2722.0,2726.2,"but not including the last value, right, x plus 1."
+2726.2,2730.32,"So we're going to multiply the factorial with 1, then 2, then 3,"
+2730.32,2732.64,"then 4, all the way up to, and including x."
+2736.92,2739.4,"OK, so the big idea about for loops"
+2739.4,2742.24,is they're going to repeat however long the sequence is.
+2742.24,2746.0,"So you're able to repeat certain code a set number of times,"
+2746.0,2748.2,which is really useful in some situations.
+2748.2,2749.88,While loops were useful in situations
+2749.88,2751.6,where you didn't know how many times you might want
+2751.6,2753.6400000000003,to repeat the code.
+2753.6400000000003,2756.88,"So quick summary, we saw some looping mechanisms today."
+2756.88,2759.2000000000003,"It was a lot of syntax, I know."
+2759.2000000000003,2762.08,But the finger exercises for today will certainly help.
+2762.08,2766.84,"MITX also has extra help, extra exercises."
+2766.84,2770.4,It's really important to do them just to get the mental model
+2770.4,2772.96,"for how exactly these loops work, right?"
+2772.96,2777.28,And how they assign variables and how they do the checks
+2777.28,2778.4,"behind the scenes, right?"
+2778.4,2781.84,And it'll help you get faster at writing code
+2781.84,2784.7200000000003,and at doing quizzes as well.
+2784.7200000000003,2786.84,So that's it for today.

@@ -1,0 +1,718 @@
+Start Time,End Time,Text
+0.0,23.0,"So today marks the last lecture on the subject of sorting algorithms, or on the subject"
+23.0,29.16,"of complexity, and specifically we will be talking about sorting algorithms."
+29.16,33.56,So let's remember where we left off at the end of last lecture.
+33.56,39.04,"We tried to look for elements within a list, and this is a really common problem in computer"
+39.04,44.96,"science, where the list is basically a large data set that you might have gathered on,"
+44.96,51.72,"I don't know, biology information, or physical experimental data, some big file of data,"
+51.72,56.36,and one of the most common things you might want to do on such a file is to search for something
+56.36,60.6,"within that file. Basically you'll read it in as a list, and you'll search for something"
+60.6,66.24,of interest within this list. So we saw two algorithms to search for an element within
+66.24,73.6,a list. The first was just a straight-up linear search. That linear search we did on an unsorted
+73.6,79.72,"list, and we also did it on a sorted list. And what we saw was at the worst-case time complexity"
+79.72,85.28,for searching for an element within a list using linear search was theta of n. That's
+85.28,92.4,"the best that we could do. Now, we saw the binary search algorithm as an alternate way"
+92.4,96.88,"to search for an element in a list, but the caveat to using the binary search algorithm was"
+96.88,103.08,that we had to have a sorted list. We can't use this binary search algorithm on an unsorted
+103.08,109.26,"list, because it will give us an incorrect answer. So assuming the list is sorted, binary"
+109.26,114.76,search does a much faster job at finding the element within a list. It does it in theta
+114.76,122.12,"of log n time, which is faster than theta of n. The timings through a code that we did"
+122.12,126.84,"showed this, counting the number of operations showed this, and then the theory also showed"
+126.84,135.32,"this. Alright, so clearly it is better to use binary search because it's faster, but when"
+135.32,141.6,"does it make sense to use binary search? So the idea is, given some sort of data set,"
+141.6,147.96,"write some list of elements, we would have to first sort them in order to do binary search."
+147.96,154.04,"So the question then becomes, the time that it takes for us to do a sort. Plus the time"
+154.04,159.04,that it takes for us to use binary search to look for an element within that list should
+159.04,164.2,"be less than the time that it takes for us to do linear search. In that case, it makes"
+164.2,169.48,sense for us to do a sort and binary search. This implies that the time it takes for us to
+169.48,177.32,"sort is less than the subtraction, so theta of n minus theta of log n. So this implies"
+177.32,183.64,that we can sort a list in less than theta of n time. That means we can sort a list without
+183.64,189.23999999999998,"even looking at each element in the list. And that's not possible, right? We have to at"
+189.23999999999998,193.83999999999997,least go through each element in the list one at a time to determine that that list is
+193.84,200.08,"sorted to begin with, right? So even in the best case scenario to sort a list, that's"
+200.08,207.72,"going to be theta of n time. So clearly, this will never be true. So then the question becomes"
+207.72,212.76,"why do we bother doing binary search in the first place? Well, that's because oftentimes"
+212.76,220.4,"if you download a data set, or you want to do some search on some list or some data set"
+220.4,224.92000000000002,"that you get, most of the time you're not going to want to do it just once. You're going"
+224.92000000000002,231.16,"to want to sort that list one time, and then do a whole bunch of searches for a whole bunch"
+231.16,237.08,of different things within that list. So if we can somehow amortize the cost of doing one
+237.08,245.76,"sort over K different searches, as K gets really, really big, it makes sense to do binary"
+245.76,252.35999999999999,search on the sorted list rather than just to look through using linear search K different
+252.35999999999999,256.96,"times, right? So then that time to do the sort only once kind of gets absorbed and goes"
+256.96,263.58,"to zero as the number, the K number of searches goes to some really big number, right? So"
+263.58,270.28,"clearly, we've shown that if you want to do many searches on a data set, it makes sense"
+270.28,275.15999999999997,"to do the sort only once. All right, so now we're going to look at a bunch of different"
+275.16,279.0,"sorting algorithms. We're going to start with some really bad ones, and then we're going"
+279.0,283.92,to work our way up to what is considered one of the best sorting algorithms the best that
+283.92,290.52000000000004,"we can do. So let's begin by showing a really, really bad sorting algorithm, and there are"
+290.52000000000004,295.36,actually competitions where people can come up with really bad sorting algorithms that kind
+295.36,302.72,"of sort lists in a really weird way while being really bad, still making forward progress,"
+302.72,308.8,"and this is one of them. So this one is called Bogosort, coming from Bogos sort, also called"
+308.8,314.32000000000005,"random sort or monkey sort. So the idea here, and I'm going to use these cards as we look"
+314.32000000000005,319.48,"at these different sorting algorithms, the idea of Bogosort is that we're going to use randomness"
+319.48,328.72,"to help us sort the list. So if we want it to sort a list or a deck of cards, for example,"
+328.72,332.36,"the idea of Bogosort is that we're going to take all our cards, we're going to throw"
+332.48,336.48,"them up in the air, we're going to pick them up as they land, and we're going to check to see"
+336.48,340.72,"if they're sorted. If they are, we're done. If they're not, we're going to repeat the process."
+340.72,344.08000000000004,"We're going to throw them up in the air, let them fall where they may, and then we're going"
+344.08000000000004,351.36,to check if they're sorted. So the code would look something like this. It takes in a list
+351.36,357.56,"L, and it says, while the list is not sorted, we're going to call this shuffle function from"
+357.6,362.8,"the random library, and the shuffle function just re-shuffles or rearranges the elements"
+362.8,369.8,in the list at random. So let me show you how that looks like. So here's the sorted function.
+379.0,386.72,"I'm going to run it. So it starts out with this list of obviously elements not in order,"
+386.72,393.04,and it took about 0.2 seconds to just randomly keep re-shuffling the elements of the list
+393.04,398.04,"to give me, for them, to become in sorted order. So it did about 30,000 shuffles, and if"
+398.04,403.28000000000003,"I run it again, it will take a completely different amount of time each time it's run. So now"
+403.28000000000003,407.92,"it was really fast, but if I keep running it, one time I ran it last night, it took about"
+407.92,414.92,two seconds. So you can see it's just random. So what's the complexity of this function?
+414.92,420.12,"Clearly, it's not going to be very good at best. So in the best case scenario, let's say"
+420.12,426.08000000000004,"my input list is already sorted. So in the best case scenario, the theta would be just theta"
+426.08000000000004,430.88,"of n, where n is the length of the list, because we have to look at each element once to make"
+430.88,436.64,"sure that it's in its rightful place. But in the worst case scenario, the theta complexity"
+436.64,442.08000000000004,"of this is unbounded, so infinity. Because at worst case, we're going to be super unlucky,"
+442.08,448.84,"and we're just never going to get the elements in a sorted order. So clearly, not a very"
+448.84,453.47999999999996,"good sorting algorithm. If you go to the Wikipedia page for this, it'll give you a whole bunch"
+453.47999999999996,461.0,"of other examples of algorithms similar in this spirit of being bad, but making forward"
+461.0,467.28,"progress towards an answer. So next, we're going to look at a different sorting algorithm,"
+467.28000000000003,473.16,"a bubble sort. And it's one of the most popular sorting algorithms, not because it's good,"
+473.16,479.76000000000005,but because people really like to make fun of it. So it's best to understand it. So the idea
+479.76000000000005,486.72,of bubble sort is that we're going to start with an originally un-sorted list. And like
+486.72,494.08000000000004,"I said, I'm going to use this as an example. And we're going to try to compare consecutive"
+494.08,502.68,"elements one at a time. And as we do so, we're effectively going to bubble up the largest"
+502.68,509.56,element towards the end of the list. So we're going to start our first pass on this clearly
+509.56,514.3199999999999,un-sorted list. And we're going to compare the first two elements. If the element at index
+514.3199999999999,522.0,"i is smaller than the element at index i minus 1, then I'm going to do a swap. So here they"
+522.0,526.0,were. So I did a swap. Then I'm going to compare the next set of elements. So these two are
+526.0,531.92,already sorted. These two are not. So I'm going to swap them. These two are not. I'm going to swap
+531.92,536.4,them. These two are not. I'm going to swap them. They're not. I'm going to swap them. And these
+536.4,542.32,two are not. And I'm going to swap them. Okay. Just put it over because that table got in the way.
+543.84,551.04,"All right. So after I finished my first pass, this number 11 effectively bubbled up from wherever it"
+551.04,556.48,"was towards the end of the list, the place where it belongs, basically. It belongs at the end of"
+556.48,562.9599999999999,"the list because it's the biggest number. Since I've done at least one swap on that previous run,"
+563.5999999999999,569.12,"I'm going to go through again. Because in the process of doing a swap, I might have disarranged"
+569.12,574.48,something that was already sort of in order. So now I'm going to start all over again. I'm going
+574.48,579.76,"to say, are these two in sorted order? They are. Are these two? No. So I swap. Are these two"
+579.76,588.16,"no. So I swap. Are these two? No. So I swap. I swap. And I swap. And now after two passes, I have"
+588.16,597.52,"effectively bubbled up the next biggest number. All right. You guys can see. Okay. Next time through,"
+598.72,606.3199999999999,"next time through, I'm going to have to go again because I am, I did one swap last time. So again,"
+606.32,610.4000000000001,"I'm going to compare these two. I need to swap them. These two, I need to swap them. These two,"
+610.4000000000001,614.8000000000001,I need to swap them. Swap them. Swap them. Swap them. And these are in order. And these are in order.
+616.0,620.96,"Again, five in the four needs to swap. Five in the one needs to swap. Five in the zero needs to swap."
+620.96,625.2,Five in the two needs to swap. These are in order. These are in order. These are in order. Four in
+625.2,630.24,the one needs to swap. These two need to swap. These need to swap. Order ordered ordered ordered ordered.
+630.24,636.0,"Next, these two need a swap, these are okay, these are okay, and so on."
+636.0,643.44,"And now that I've not, I'm going to do one final check, these are all in order, right?"
+643.44,650.08,"So now that I haven't done any more swaps, I can say that this list is now in sorted order."
+650.08,655.64,"So with each pass, I'm bubbling up the biggest element towards the end of the list."
+655.64,665.48,"So at the end of n passes, the top, the last n elements, will be in sorted order, okay?"
+665.48,668.4399999999999,So the code looks something like this.
+668.4399999999999,675.8,I've got a Boolean flag here that keeps track of whether or not I have done a swap.
+675.8,680.3199999999999,"If I've done a swap, then I know I need to go through and double check that everything"
+680.32,686.24,is still in order by comparing index i and i minus 1.
+686.24,692.0400000000001,"So to do that, we've got a for loop that goes through from 1 all the way up to the end"
+692.0400000000001,696.4000000000001,of the list because I'm going to compare element at index i with i minus 1.
+696.4000000000001,699.6800000000001,"If I started at 0, we'd get an index out of bounds error."
+699.6800000000001,701.6,So that's why I start with 1 over there.
+701.6,706.32,"And then the inside of the for loop just checks if the element at, I guess j, I use j instead"
+706.32,709.7600000000001,"of i, j and j minus 1 are in the right order."
+709.76,714.08,"Now, obviously they are, but when I first started this demo, they were not, right?"
+714.08,719.24,"So as long as this j minus 1 and j are not in order, do a swap."
+719.24,725.36,"So here I just change, I use this sort of, this, this tuple trick here to do the swap of"
+725.36,728.68,element j minus 1 and j.
+728.68,733.52,"And I also reset the Boolean flag that I did the swap to true, okay?"
+733.52,739.72,"And this goes through until I don't do any more swaps, and then the code will not"
+739.72,743.08,go through the while loop anymore.
+743.08,749.24,So let's print how this actually looks like when we run it on our list.
+749.24,754.5600000000001,So here I have my original list.
+754.5600000000001,764.84,"Each set here, delineated by this line break, represents one loop of my while loop."
+764.84,767.64,"So this thing here, right?"
+767.64,770.08,One iteration of my while loop.
+770.08,777.22,And each line within here represents one iteration of my for loop.
+777.22,783.04,"So what we can see is that as we're comparing the four and the eight, the eight bubbles"
+783.04,791.0,"up one step over, then we compare the eight and the six, the eight bubbles one itself over"
+791.0,795.8,and so on and so on until it encounters the 11 and then the 11 starts to bubble itself
+795.8,797.36,up all the way to the end.
+797.36,803.08,"So at the end of the first while loop pass, my 11 is in its rightful spot at the top"
+803.08,805.64,"of the list, at the end of the list."
+805.64,809.6800000000001,"Next time through the while loop, I'm effectively bubbling up the eight to the end."
+809.6800000000001,814.12,"So over here, next time through the while loop, the six bubbles to the end, next time the"
+814.12,825.88,"five bubbles through the end, then the four, then the two, then the one, and then the zero."
+825.88,832.88,"So what's the, yeah, question?"
+832.88,841.48,"Oh, we don't need the brackets, you can put them in, it won't harm, but if you don't put"
+841.48,842.48,"them, it's okay."
+842.48,847.6,"Python knows that it's doing an assignment, one by one, so this one to that one and that"
+847.6,852.56,one to that one.
+852.5600000000001,856.0400000000001,"Okay, so let's look at the worst case complexity analysis."
+856.0400000000001,860.48,"So the easy one we can already know is this inner four loop, right?"
+860.48,866.08,"This one goes through from one to the length of the list, so that's state of length list."
+866.08,871.5600000000001,"We have another complexity though, because in the worst case scenario, our list is completely"
+871.5600000000001,873.2,backward.
+873.2,879.6,And so this while loop up here will repeat length L times because we're going to bubble
+879.6800000000001,884.44,up every single one of the elements all the way through to the end of the list.
+884.44,889.48,"So the complexity of that while loop will be fate of length L as well, because thinking about"
+889.48,894.88,"the worst case is when our biggest element is here, second biggest element is here, and"
+894.88,895.88,so on.
+895.88,898.9200000000001,"Okay, all right."
+898.9200000000001,903.9200000000001,"So the worst case complexity of this function is state of length L squared, right, or"
+903.9200000000001,908.6400000000001,"state of n squared, where n is the length of the list, just to be less verbose."
+908.6400000000001,913.32,"Okay, clearly not a great sorting algorithm."
+913.32,915.4000000000001,It's pretty inefficient and some of the things it's doing.
+915.4000000000001,920.8800000000001,"I once it's reached, you know, sorted some of the stuff up here, it keeps comparing them"
+920.8800000000001,924.96,"through to the end, so it just always goes through to the length of the list."
+924.96,931.1200000000001,"We can do, we can look at another sorting algorithm called selection sort, which is sort of"
+931.12,936.28,"like bubble sort, but it does things in a little bit of a smarter way."
+936.28,942.4,"So let me start again with a unsorted list, okay."
+942.4,951.64,"And let's see how selection sort will do this, okay, let's put them there."
+951.64,960.64,"Okay, so the idea of selection sort is that with each pass, we're going to decide which one"
+960.64,964.52,of these elements belongs at some index.
+964.52,969.92,"So with my first pass, I'll decide which element belongs at index zero."
+969.92,975.24,"With my second pass, I'll decide which element belongs at index one, with my third which element"
+975.24,977.84,"belongs at index two, and so on."
+977.84,982.28,"Okay, so the way we're going to do that is by saying, all right, I'm going to take this"
+982.28,986.64,"element, it's the first one in the list, it's the one currently at index zero, and I'm going"
+986.64,991.96,to compare it with every single element from the rest of the list.
+991.96,996.48,"And as I find an element that's smaller than the one currently there, I'm going to swap"
+996.48,1000.6,them because I know that smaller one obviously belongs at index zero.
+1000.6,1003.52,"So I'm going to compare the five with the eight, I'm going to say, well, the five is smaller"
+1003.52,1006.68,"than the eight, so it currently belongs at index zero."
+1006.68,1011.04,"I compare the five with the one, the one is smaller, so I'm going to do a swap and say"
+1011.04,1012.84,the one belongs here.
+1012.9200000000001,1019.44,"One with the 11, the one belongs here, one with the six, the one belongs, one with the two,"
+1019.44,1024.52,"the one still there, one with the zero, well, zero smaller than one, so let me swap it."
+1024.52,1026.8,"Zero with the four, we're done."
+1026.8,1031.08,"So now, at the end of the first pass, I've decided that the zero is the smallest out of"
+1031.08,1035.16,"everybody here, so it belongs at index zero."
+1035.16,1039.76,"Next time, my second pass, I'm not going to worry about this one, I know it's already"
+1039.76,1044.82,"the smallest, so I'm going to determine which element belongs at index one, right?"
+1044.82,1048.32,"So the eight is the first one there, it's the one currently at index one, so I'm going"
+1048.32,1052.68,"to start with it being the one that belongs there, and I'm going to successively compare"
+1052.68,1054.48,it with everybody else.
+1054.48,1059.32,"So the eight with the five, the five clearly is smaller than the eight, five with the 11,"
+1059.32,1062.8,"the five is smaller, five with the six, the five is smaller, five with the two needs"
+1062.8,1068.8,"a swap because the two is smaller, two with the one, again, we swap, the one is smaller,"
+1068.8,1071.52,"and then one with the four, done."
+1071.52,1076.3999999999999,"So at the end of the second pass, I've decided that the one belongs at the next index, so"
+1076.3999999999999,1080.8799999999999,"now, these two elements are in their correct place, they're in sorted order."
+1080.8799999999999,1086.48,"Okay, third pass, we're going to decide which element belongs at the next index, right?"
+1086.48,1087.56,The index two.
+1087.56,1092.28,"So eight with the 11 is okay, eight with the six, we need to swap, six with the five, we"
+1092.28,1098.08,"need to swap, five with the two, we need to swap, two with the four, everything's okay."
+1098.6399999999999,1102.84,"Three passes, the first three elements are in sorted order, now, we just need to figure"
+1102.84,1108.1999999999998,"out between these leftovers, which one belongs at the next level."
+1108.1999999999998,1114.04,"So eight with the 11, we do a swap, eight with the six, we do the swap, six with the five,"
+1114.04,1122.0,"we bring the five here, five with the four, we bring it here, okay, again, 11 with the eight,"
+1122.0,1127.52,"we swap these, eight with the six, we swap these, six with the five, we swap them, right?"
+1127.52,1131.8,"So as you can see, as I'm making my way through to figure out which elements belongs at the"
+1131.8,1139.4,"next index, I have fewer elements to decide between which belongs at the next index, right?"
+1139.4,1146.56,"So here, the eight, the 11 needs to swap, eight with the six needs to swap, and then lastly,"
+1146.56,1148.96,"like that, okay."
+1148.96,1156.6,"Okay, so slightly more efficient in that we're not comparing a bunch of pairs all the time"
+1156.6000000000001,1161.68,"all the way through to the length of the list, so the code looks like this, I've got one"
+1161.68,1168.0400000000002,"four loop that goes through the length of the list, and one inner four loop that only"
+1168.0400000000002,1172.1200000000001,"starts at i and goes through to the end of the list, right?"
+1172.1200000000001,1175.8000000000002,"So unlike bubble sort, which started at one and went through to the end of the list all"
+1175.8000000000002,1182.16,"the time, here I'm starting at i and going through to the end of the list, because in selection"
+1182.16,1188.2,"sort, with each pass, I've decided which element belongs at a specific index, so I no"
+1188.2,1192.92,"longer need to worry about comparing that element with everybody else, right?"
+1192.92,1197.68,"So when we were, you know, we were like that, we had decided these were in sorted order,"
+1197.68,1202.8000000000002,I only needed to compare these three amongst themselves to decide which one fit at the next
+1202.8000000000002,1206.72,"spot, everybody else was already sorted."
+1206.72,1208.96,So what's the complexity analysis of this?
+1208.96,1213.76,"This is going to be feel very similar to diameter from last lecture, because diameter also"
+1213.76,1219.56,"had this funky thing where we started from i and went through to the length of the list,"
+1219.56,1225.0,"well it's going to be theta of length L squared again, so there's two ways to think about this,"
+1225.0,1226.0,okay?
+1226.0,1232.2,"The first one is to look at each loop individually, clearly the outer loop goes through theta"
+1232.2,1234.3600000000001,"of length L, right?"
+1234.3600000000001,1237.8,"No question about that, that just goes through range of length L."
+1237.8,1239.9199999999998,"The inner loop is a little bit trickier, right?"
+1239.9199999999998,1245.6399999999999,Because it doesn't always go from some fixed number to the length of the list.
+1245.6399999999999,1250.44,"But what we can think about is on average, right?"
+1250.44,1255.76,"The first time, when we were trying to figure out the element that belongs at the first index,"
+1255.76,1260.84,"or index zero, we went through to the length of the list, we had to compare with everybody else."
+1260.84,1266.04,"The next time we have to compare with lengthless minus one, then lengthless minus two, and then"
+1266.04,1269.44,"at the end, we only had one item to compare."
+1269.44,1274.52,"So on average, that inner loop goes through length L over two times, right?"
+1274.52,1283.24,"On average, we have to look through about half of the elements in the list to do the comparison."
+1283.24,1291.52,"So if the inner loop here on average is theta of length L, is length L over two, right?"
+1291.52,1295.84,Then the theta of length L over two is theta of length L.
+1295.84,1299.84,There's just the 0.5 in front of that.
+1299.84,1303.6399999999999,So that's the first way to think about the complexity analysis of this.
+1303.6399999999999,1311.72,"The other way is to ask yourself, well, what part of this code is doing the repetitions?"
+1311.72,1318.0,"Like if we were to think about what we're counting in terms of units, which part of this code repeats?"
+1318.0,1321.28,"Well, the stuff inside the inner four loop repeats, right?"
+1321.28,1325.24,So you're going to do a whole bunch of comparisons.
+1325.24,1329.4,So how many actual comparisons will you do?
+1329.4,1336.0,"Well, the very first time, from the outer first pass, through to the end of the list,"
+1336.0,1339.44,you're going to do approximately length L comparisons.
+1339.44,1344.32,"The next time, you're going to do length L minus one comparisons, then length L minus two comparisons,"
+1344.32,1347.96,"and so on and so on, down to only one comparison."
+1347.96,1352.52,"So if we do that sum one plus two plus three plus all the way up to length L,"
+1352.52,1356.84,that formula becomes length L times length L plus one over two.
+1356.84,1361.04,"So that becomes length L squared over two plus length L over two,"
+1361.04,1365.84,and that becomes theta of length L squared.
+1365.84,1369.84,So just a couple ways to think about the analysis of this.
+1369.84,1373.8,"And this is a pretty common thing you'll see, but just because we start at I,"
+1373.8,1379.92,doesn't mean that it decreases the complexity of this function dramatically.
+1379.92,1381.6,It doesn't decrease it by some order.
+1381.6000000000001,1384.0400000000002,It just decreases it by half.
+1384.0400000000002,1391.0400000000002,So it's still theta of length L.
+1391.0400000000002,1397.5600000000002,"OK, so we can actually do a little variation on this,"
+1397.5600000000002,1402.4,because you might have noticed it was a little inefficient to do the swap
+1402.4,1406.5600000000002,every time I noticed another element that's smaller.
+1406.5600000000002,1409.2400000000002,I didn't have to do the switch.
+1409.24,1415.0,All I had to do was kind of just keep track through a variable of the smallest number
+1415.0,1420.0,"that I have seen so far, and only do the switch at the end when I've determined"
+1420.0,1422.32,that that's the smallest number.
+1422.32,1425.64,"So the variation, basically, if this is my list, says, hey,"
+1425.64,1429.76,I'm going to look at this element that belongs in this very first slot.
+1429.76,1431.0,Eight is the first one.
+1431.0,1434.72,Then I'm going to look through the elements all the way up to the end of the list
+1434.72,1436.36,and keep track of the smallest one.
+1436.3600000000001,1438.8000000000002,"The four, the one is currently smallest."
+1438.8000000000002,1441.68,"Six is not, five is not, nine is not, two is not."
+1441.68,1443.44,The zero is smaller than the one.
+1443.44,1446.7600000000002,"So if I see it's the zero smallest, then I swap it."
+1446.7600000000002,1449.2400000000002,So I only do one swap at the end.
+1449.2400000000002,1452.4,"Next time through, I'm going to decide which element belongs at this index."
+1452.4,1456.7600000000002,"The one is the smallest I see, so I do the swap only at the end."
+1456.7600000000002,1458.72,Then I decide which element belongs here.
+1458.72,1460.7600000000002,The two is smallest out of everybody left.
+1460.7600000000002,1462.16,The two goes there.
+1462.16,1468.0,"So I'm doing all these comparisons, but I only do the swap at the end."
+1468.0,1470.8000000000002,"When I've decided, hey, this is the smallest element,"
+1470.8000000000002,1474.3200000000002,let me just swap it with the one that's currently there.
+1474.3200000000002,1476.28,So it's just going to go through to the end of that.
+1480.64,1484.68,So I wrote that variation here.
+1484.68,1490.88,So this is selection sort just as we saw it.
+1490.88,1495.3600000000001,"So we can see here that the first pass with the outer loop,"
+1495.3600000000001,1503.44,"we have length L comparisons to make, because we're always comparing these two, right?"
+1503.44,1507.64,"Then the one that's currently at this index, and the next one index over,"
+1507.64,1511.5200000000002,"the one that's currently at this index, and one index over, and so on."
+1511.5200000000002,1516.72,"So the first pass, I've done length L, sorry, length L comparisons."
+1516.72,1520.5200000000002,"The next pass, I've done length L minus one comparisons,"
+1520.52,1522.4,because I don't need to look at the zero anymore.
+1522.4,1524.4,I already know that's in the right place.
+1524.4,1527.52,"Then after that, I do length L minus two comparisons,"
+1527.52,1529.28,then length L minus three comparisons.
+1529.28,1534.28,"So you can see, as we're making progress through our outer loop,"
+1534.28,1536.76,we have fewer and fewer comparisons to do.
+1536.76,1539.84,"So you might think that this is much better,"
+1539.84,1543.6,but the theta complexity analysis says it's not.
+1543.6,1548.6399999999999,"So that's the original selection sort, and the variation on selection sort."
+1551.0,1555.36,"Looks a little more complicated, but it's not doing a swap."
+1555.36,1559.2,"So it's only doing a swap down here, as you can see."
+1559.2,1562.8,It's doing it after it finishes this inner four loop.
+1562.8,1567.08,"And all this inner four loop is doing is checking,"
+1567.08,1571.84,is doing the comparisons and keeping track of the smallest number it sees
+1571.84,1574.8799999999999,in this variable called smallest.
+1574.8799999999999,1579.44,And the index associated with that smallest variable in smallest j.
+1581.52,1584.4,"Now, if we look at the analysis for this,"
+1584.4,1588.36,"well, we still have an outer four loop that goes through length L."
+1588.36,1592.92,We still have an inner four loop that goes from i to length L.
+1592.92,1596.44,All it's doing is eliminating this line here.
+1596.44,1601.2,"It does it only once at the end, but it's still doing all these comparisons."
+1601.2,1603.96,"It still has to look through all of these elements,"
+1603.96,1606.44,one pair by pair to do the comparison.
+1606.52,1611.3200000000002,"So actually, this slight speed up doesn't have a big impact"
+1611.3200000000002,1612.96,"on my theta complexity, right?"
+1612.96,1615.92,It's still going to be theta of length L squared.
+1620.2,1624.3600000000001,Any questions so far on these sorting algorithms?
+1631.16,1634.76,"So clearly, we're not really doing a very good job"
+1634.76,1641.2,"about thinking of a unique way to do the sorting, right?"
+1641.2,1644.12,Because all of these different variations
+1644.12,1646.84,where we're doing slight speed ups here and there
+1646.84,1649.8799999999999,aren't doing a drastic enough job to bring us
+1649.8799999999999,1653.16,"a whole complexity class lower, right?"
+1653.16,1657.16,So we have to think about the problem in a completely different way.
+1657.16,1661.64,"So the iterative approach is not working out for us, right?"
+1661.64,1665.3200000000002,Where we basically have a loop that does something
+1665.3200000000002,1668.0400000000002,"and another loop that does some sort of comparison, right?"
+1668.0400000000002,1673.8400000000001,That's not going to get us a whole complexity class speed up.
+1673.8400000000001,1676.92,"So instead, what we're going to do is approach the problem"
+1676.92,1684.88,from sort of inspired by section search or binary search.
+1684.88,1689.72,"In bi-section search, we weren't looking at each element one at a time."
+1689.72,1694.84,"We were taking our list and dividing it in half, right?"
+1694.84,1697.8,"So we can try to do a similar approach here,"
+1697.8,1700.48,and that's what this merge sort algorithm does.
+1700.48,1703.28,It's going to take an original list
+1703.28,1708.44,and it's going to divide this list in half with each step.
+1708.44,1711.52,And it's going to do this recursively.
+1711.52,1713.28,It's going to be a dividing conquer algorithm.
+1713.28,1716.64,So it's going to recursively divide this list in half each step.
+1716.64,1722.6000000000001,"And then it's going to merge sorted lists in a really smart way,"
+1722.6000000000001,1726.3600000000001,such that it'll give us the speed up that we're interested in.
+1726.3600000000001,1729.2,So let me explain to you how we're going to merge it.
+1729.2,1734.92,And then we'll see how we can write up this whole algorithm.
+1734.92,1740.0400000000002,"So let's say that we have, let's do this."
+1740.04,1749.2,"Let's say that we've done some sort of division of lists, right?"
+1749.2,1751.3999999999999,And let's say that we've written this algorithm
+1751.3999999999999,1754.56,and it works really nicely in such a way
+1754.56,1761.6,that it gives us two sorted lists.
+1761.6,1766.6,"So if somehow my algorithm, where I had one full list"
+1766.6000000000001,1770.92,of all of these eight elements here divided itself
+1770.92,1775.16,"and when it came back together, it gave me two sublists"
+1775.16,1777.16,"that themselves are sorted, right?"
+1777.16,1781.88,So this is a sorted list and this is a sorted list by itself.
+1781.88,1787.7600000000002,Then there's this really smart merge step that we can do.
+1787.7600000000002,1791.64,So we can recognize that if this list is sorted by itself
+1791.64,1794.68,"and this list is sorted by itself,"
+1794.68,1797.44,to determine the element that is the smallest
+1797.44,1800.16,"between both of these lists, all we have to do"
+1800.16,1803.96,"is look at the first element of each list, each sublist, right?"
+1803.96,1805.6000000000001,This is the smallest out of these guys.
+1805.6000000000001,1806.92,This is the smallest out of these guys.
+1806.92,1808.8400000000001,"So if I just compare the zero and the four,"
+1808.8400000000001,1813.92,I know the zero will be smallest out of everything.
+1813.92,1816.44,Then I'm left with this list.
+1816.44,1817.24,It's still sorted.
+1817.24,1818.88,"This list, it's still sorted."
+1818.88,1821.72,I look at the first element of each of these lists.
+1821.72,1823.24,Which one of these is the smallest?
+1823.24,1825.32,"Well, the one is smaller than the four."
+1825.32,1828.72,"So I'm going to take this one and say this one comes next, right?"
+1828.72,1831.44,So we're using the property that these two lists themselves
+1831.44,1832.48,are sorted.
+1832.48,1836.4,So all I need to do is compare the first element of each list.
+1836.4,1837.92,Then I compare the two and the four.
+1837.92,1839.92,I say the two is smaller than the four.
+1839.92,1842.0,"The six and the four, the four goes next."
+1842.0,1845.6,"The six and the five, the five goes here, six and the eight."
+1845.6,1847.88,"Six goes here, eight and the 11."
+1847.88,1851.28,"Well, they're already in sorted order, so we're done."
+1851.28,1855.2,So that really smart merge step touched every element
+1855.2,1859.72,only once to bring it into my master sorted list.
+1859.72,1861.6399999999999,I didn't have to do multiple passes.
+1861.6399999999999,1865.52,I just had to look at the first element of each list.
+1865.52,1869.52,So if we can somehow get to this point
+1869.52,1872.44,"where we have these two sublists that are sorted,"
+1872.44,1874.84,I can just do a little merge by looking
+1874.84,1878.0,at the first element in each of these sorted lists.
+1878.0,1881.52,And that basically gives me a theta of n complexity
+1881.52,1884.68,to do the merge from two smaller sorted lists
+1884.68,1888.16,into one big sorted list.
+1888.16,1890.4,So here's the idea of this merge sorted algorithm.
+1890.4,1893.64,We're going to take an original big unsorted list
+1893.64,1896.36,containing n elements.
+1896.36,1897.48,It's unsorted.
+1897.48,1899.6,We're going to divide it in half.
+1899.6,1902.52,"Of course, these two halves, there's no order to them,"
+1902.52,1905.24,so they are potentially very unsorted.
+1905.24,1906.84,We're going to take each one of those halves
+1906.8400000000001,1910.7200000000003,"and divide them as well in half, more unsorted sublists."
+1910.7200000000003,1914.6000000000001,Now I've got four unsorted sublists of smaller lengths.
+1914.6000000000001,1917.5200000000002,Then I'm going to keep dividing them in half.
+1917.5200000000002,1922.0400000000002,I have now maybe just two elements in each of these unsorted lists.
+1922.0400000000002,1923.92,There's no guarantee that they're sorted.
+1923.92,1925.92,And then I divide it in half once more
+1925.92,1932.16,to have a list with one element in each list with one element.
+1932.16,1936.4,"Maybe some of these will be empty, but you know."
+1936.4,1938.92,"So then, if I can get to this point where I just"
+1938.92,1941.96,"have lists containing one element in each list,"
+1941.96,1944.3200000000002,"those lists themselves are sorted, right?"
+1944.3200000000002,1947.16,"An element with just a one in it, a list with just a one in it,"
+1947.16,1949.72,is sorted.
+1949.72,1954.3200000000002,"So then I can begin a merge step, which says, hey, these two"
+1954.3200000000002,1956.68,"here that were originally unsorted,"
+1956.68,1959.6000000000001,let's just merge the pairs back up.
+1959.6000000000001,1964.24,And we'll do that smart merge way.
+1964.24,1967.64,So these two will merge back in to give me
+1967.64,1972.48,all of these eight sorted lists of length two.
+1972.48,1975.64,"And then we're going to merge these pairs back up,"
+1975.64,1983.4,"again using that smart merge way, to give me four sorted lists."
+1983.4,1987.16,And then we're going to merge these pairs of sorted lists
+1987.16,1989.88,to give me bigger sorted lists.
+1989.88,1992.52,"And finally, we're going to merge these two sorted lists"
+1992.52,1997.04,to give me my final master sorted list.
+1997.04,2002.16,"So let's do the process of doing the sort, right?"
+2002.16,2003.72,Step out of time.
+2003.72,2010.32,So we're going to take our original list like this.
+2010.32,2014.16,I'm actually going to try to do this.
+2014.16,2016.36,I'm going to need some room to move them down.
+2016.36,2019.52,So this is my original unsorted list.
+2019.52,2024.32,"Let's move this here, something like that."
+2024.32,2026.16,So what's the process going to be?
+2026.16,2030.12,Step one is to divide them in half.
+2030.12,2034.56,"Step two, divide each of these in half."
+2034.56,2037.6399999999999,"Step three, divide each of them in half."
+2037.6399999999999,2041.8,So now I've got a bunch of lists with only one element in it.
+2041.8,2044.08,Now I need to merge them back up.
+2044.08,2047.2,So merging these two together to give me a list with two
+2047.2,2049.84,"elements says, I'm just going to compare them."
+2049.84,2051.36,The one that's smaller goes first.
+2051.36,2053.88,The one that's bigger goes second.
+2053.88,2055.92,"Again, these ones compare them."
+2055.92,2057.2,The one that's smaller goes first.
+2057.2,2059.08,The one that's bigger goes second.
+2059.08,2061.44,"Again, compare them."
+2061.44,2063.16,"Again, compare them."
+2063.16,2067.7200000000003,So now I've done one merge where I have four lists that
+2067.7200000000003,2071.2,"are sorted by themselves, right?"
+2071.2,2073.92,So now I'm going to merge these two together and these two
+2073.92,2076.08,together.
+2076.08,2078.6,So I'm only looking at the first element of each.
+2078.6,2080.08,So I compare the zero and the two.
+2080.08,2083.48,And I know the zero is smaller than the two.
+2083.48,2086.4,"Then the two and the eight, the two is smaller."
+2086.4,2089.2,"Then the eight and the 11, and then the 11."
+2089.2,2093.48,So now this list is now sorted by itself.
+2093.48,2094.56,Same process here.
+2094.56,2097.04,Compare only the first element of each list.
+2097.04,2098.56,The one comes first.
+2098.56,2102.2,"Then the four comes next, then the five comes next,"
+2102.2,2104.48,and then the six.
+2104.48,2108.16,So now I've reached the exact same spot I was at when I was
+2108.16,2109.72,"talking about the merge step, right?"
+2109.72,2113.32,When I showed you that we could get to that spot.
+2113.32,2116.32,So I've got these two lists that are themselves sorted to
+2116.32,2116.84,merge.
+2116.84,2119.32,So all I need to do is look at the first element in each list.
+2119.32,2121.64,So there's my zero goes first.
+2121.64,2123.72,"One, compared with the two, the one goes next."
+2123.72,2125.92,"Two, compared with the four, the two goes next."
+2125.92,2128.08,"Four, compared with the eight, the four goes next."
+2128.08,2130.2400000000002,"Five, compared with the eight, the five goes next."
+2130.2400000000002,2132.92,"Six, compared with the eight, the six goes next."
+2132.92,2135.64,And I've removed all the elements in this list.
+2135.64,2138.16,"So I know I just need to grab whatever's left in here,"
+2138.16,2140.4,"in whatever order it's there, because everything's already"
+2140.4,2142.52,sorted.
+2142.52,2143.88,OK.
+2143.88,2147.8,So that's the entire merge sort algorithm.
+2147.8,2151.4,"Now, if I do this demo, this is actually going to show you"
+2151.4,2154.8,the exact steps that the recursive algorithm is doing.
+2154.8,2157.12,And it's not going to be sort of in the same order that I
+2157.12,2157.64,showed you.
+2157.64,2162.16,"It's not going to be dividing this in half, and then dividing"
+2162.16,2163.72,"in half, and so on."
+2163.72,2167.08,"Because when we're doing the recursion,"
+2167.08,2172.6,"first, we're going to figure out how to sort a left sublist."
+2172.6,2175.3599999999997,"So if I have my original unsorted list here,"
+2175.3599999999997,2177.24,we're going to figure out how to sort a left sublist.
+2177.24,2181.64,"First, that's a recursive step that we haven't reached"
+2181.64,2183.04,the base case for yet.
+2183.04,2184.72,We still have to sort this list.
+2184.72,2189.2799999999997,So we're going to try to sort the left sublist of this one.
+2189.2799999999997,2191.56,And then we're going to try to sort the left sublist of this one.
+2191.56,2195.2799999999997,We're going to do something that feels really similar
+2195.2799999999997,2198.36,to the Fibonacci sequence.
+2198.36,2199.6,"Yes, Fibonacci."
+2199.6,2202.92,Fibonacci of n is Fibonacci of n minus 1 plus Fibonacci
+2202.92,2204.84,of n minus 2.
+2204.84,2207.24,"In that particular case, when we were trying"
+2207.24,2210.36,"to find Fibonacci of 6 or something like that,"
+2210.36,2214.32,we were going and exploring the left side
+2214.32,2217.84,until we reached a base case.
+2217.84,2219.7599999999998,And only once we reached a base case
+2219.76,2222.8,could we pop up and do the other half.
+2222.8,2225.7200000000003,And so this algorithm is going to feel very similar to that.
+2225.7200000000003,2227.7200000000003,So here's our my original list.
+2227.7200000000003,2229.7200000000003,I'm splitting the left hand side to try
+2229.7200000000003,2235.4,to figure out how to merge all the way to the left lists.
+2235.4,2237.0400000000004,So the 8 and the 4 will be compared
+2237.0400000000004,2239.28,and the 4 goes before the 8.
+2239.28,2243.84,And then I'm going to merge the 1 and the 6 by themselves.
+2243.84,2246.4,"Those are already sorted, as we know."
+2246.4,2248.88,Then we're going to merge the 4 and the 8 back
+2248.88,2251.44,with the 1 and the 6 using that merge step.
+2251.44,2254.48,And then we're going to do the same thing to that right hand
+2254.48,2257.04,"side, one at a time."
+2257.04,2262.12,We'll do another example where we go step by step.
+2262.12,2264.76,And now we've got our two four elements together.
+2264.76,2266.6800000000003,So now we're just doing our final merge step
+2266.6800000000003,2273.0,where we decide which one belongs next.
+2273.0,2276.48,So let's look at the merge code.
+2276.48,2279.2400000000002,"And this is, not yet, sorry."
+2279.2400000000002,2281.6,Let's look at the merge step once more.
+2281.6,2284.88,"So if I have two lists that I'm trying to merge,"
+2284.88,2288.12,the idea was that you look at the first element of each.
+2288.12,2291.52,"So first, the 1 and the 2 compared means the 1 is smaller."
+2291.52,2293.48,So it goes into my result.
+2293.48,2295.2400000000002,The 5 and the 2 gets compared.
+2295.2400000000002,2298.84,"The 2 is smaller, so the 2 goes into the result."
+2298.84,2300.64,The 5 and the 3 gets compared.
+2300.64,2303.56,"The 3 is smaller, so the 3 goes in the result."
+2303.56,2304.8,And so on and so on.
+2304.8,2306.52,So we keep doing this process where
+2306.52,2309.28,we just keep looking at the first element
+2309.28,2313.8,until we have one of the lists become empty.
+2313.8,2317.0,"So this is my left sublist, this is my right sublist."
+2317.0,2319.04,"When one of these lists becomes empty,"
+2319.04,2322.84,I no longer need to compare 18 with nothing.
+2322.84,2325.2000000000003,All I need to do is grab all these elements
+2325.2000000000003,2329.0,and stick them through at the end.
+2329.0,2332.2000000000003,So let's look at the code for just the merge step.
+2332.2000000000003,2335.4,We don't need to look at the code for the full algorithm yet.
+2335.4,2338.6800000000003,But the merge step code is just the part
+2338.6800000000003,2341.9600000000005,that takes us from two sorted lists
+2341.9600000000005,2344.88,into one bigger sorted list.
+2344.88,2349.84,So it does that step in one.
+2349.84,2352.5200000000004,This is where the main event happens.
+2352.5200000000004,2355.5200000000004,So this is just going to use indices
+2355.5200000000004,2359.76,to compare which element we need to grab next.
+2359.76,2366.0800000000004,"So if I have something like this, like that,"
+2366.0800000000004,2369.4,then I'm not actually going to make a copy of a list
+2369.4,2373.1200000000003,or do any sort of funky stuff with list copying
+2373.1200000000003,2375.2400000000002,because that'll increase the complexity.
+2375.2400000000002,2379.88,But we are going to do that trick where we use an integer index
+2379.88,2385.2000000000003,to decide which element we're going to grab next.
+2385.2000000000003,2387.6800000000003,So that's what this i and j is for.
+2387.68,2393.3599999999997,We've got i is going to be the index from my left sublist.
+2393.3599999999997,2397.16,And j will be the index for my right sublist.
+2397.16,2399.48,And all it does is it says while I still
+2399.48,2401.7999999999997,"have elements in both of these lists,"
+2401.7999999999997,2405.12,just take the pointer and say which one of the elements
+2405.12,2407.7599999999998,at these two pointers i and j is smaller.
+2407.7599999999998,2409.2799999999997,"So if the zero is smaller, I'm going"
+2409.2799999999997,2412.96,to create a new list here that's going to have the zero in it.
+2412.96,2416.0,I'm not actually taking this element and moving it here.
+2416.0,2419.16,All I will do next is say the pointer that tells me
+2419.16,2422.52,which element I should be looking at next moves over one.
+2422.52,2424.88,So this list remains unchanged.
+2424.88,2428.12,Then I'm going to compare the two with the one that one comes next.
+2428.12,2431.08,So I'm going to take the one and put it in my list here.
+2431.08,2434.44,And this pointer moves here to the next element.
+2434.44,2437.52,"So now while this list stays as is,"
+2437.52,2439.72,I'm looking at the element at this pointer
+2439.72,2441.68,and comparing it with the element at this pointer.
+2441.68,2445.2,So then the two comes next and this pointer increments by one.
+2446.0,2448.36,OK.
+2448.36,2449.6,So that's what that code does.
+2449.6,2453.08,These two while loops just deal with the case
+2453.08,2457.92,when we have one list that has finished inserting its elements.
+2457.92,2459.64,"So like in this particular case here,"
+2459.64,2461.68,"when my right sublist became empty,"
+2461.68,2463.24,we've already put on all the elements
+2463.24,2465.48,in it into our master list.
+2465.48,2468.52,Then all we need to do is take everything that's left over
+2468.52,2470.68,and copy them into my master list.
+2470.68,2473.88,And that's what these two while loops are doing.
+2476.72,2479.04,"So the complexity of this merge source,"
+2479.04,2483.24,so that's just what it's doing.
+2483.24,2485.72,So it's just doing one pass.
+2485.72,2487.28,It's not doing multiple passes.
+2487.28,2489.48,So we just look at each element once.
+2489.48,2493.08,"So the complexity of this merge sort, not the sort,"
+2493.08,2497.36,"just the merge step, is theta of length of the list."
+2497.36,2501.56,Because we're just looking at all of these elements once.
+2501.56,2504.2,Now what about the actual algorithm?
+2504.2000000000003,2508.76,So here I've got the merge function down here.
+2508.76,2511.0800000000004,It's going to take a left list and a right list.
+2511.0800000000004,2513.0800000000004,And it's going to do that step that we just did
+2513.0800000000004,2515.7200000000003,where you look at the smallest element in each.
+2515.7200000000003,2516.7200000000003,What about the rest of it?
+2516.7200000000003,2520.2400000000002,"Well, the rest of it is just recursion."
+2520.2400000000002,2522.6400000000003,My base case is when I have a list that's empty
+2522.6400000000003,2524.84,or a list with one element in it.
+2524.84,2526.4800000000005,Then I just grab that list.
+2526.4800000000005,2531.36,That's going to be my merge.
+2531.36,2533.6400000000003,"And else, what we're going to do is we're"
+2533.6400000000003,2536.88,going to do the step where we divide the list in half.
+2536.88,2540.04,So we're doing integer division from the length of the list
+2540.04,2543.84,"because we don't want the middle to be 7.5, for example."
+2543.84,2546.6,So we're going to grab some integer index.
+2546.6,2550.04,"And then we're going to say I'm going to, again,"
+2550.04,2552.0,there's a lot of faith involved in recursion.
+2552.0,2554.84,I'm going to say the left sublist.
+2554.84,2560.08,"So this one here, if my algorithm somehow works correctly,"
+2560.08,2562.4,will now be a sorted list.
+2566.16,2571.04,"And then my right over here, right equals this thing here,"
+2571.04,2573.36,will also somehow be a sorted list.
+2573.36,2576.04,So this is me putting faith in my algorithm
+2576.04,2580.36,that I can get a sorted list from the index 0
+2580.36,2582.6,all the way up to the midpoint and the midpoint all the way
+2582.6,2584.2,up to the end of the list.
+2584.2,2587.7999999999997,So if somehow I can get a left sublist that's sorted by itself
+2587.8,2590.2000000000003,"and a right sublist that's sorted by itself,"
+2590.2000000000003,2594.44,all I need to do to get the final sorted list
+2594.44,2595.6400000000003,is to merge them.
+2595.6400000000003,2599.4,So that's what the merge function is to.
+2599.4,2604.0,"OK, so let's step through."
+2604.0,2606.36,So I've got my original list here.
+2606.36,2609.6400000000003,And this is where we're going to be thinking about how
+2609.6400000000003,2611.84,we kind of step through Fibonacci.
+2611.84,2613.1600000000003,Here's my original list.
+2613.16,2619.12,The first step is to figure out the left part.
+2619.12,2620.44,So we're going to divide it in half.
+2620.44,2624.8399999999997,"And it says, I need to figure out the sorted version of 8 4 1 6."
+2624.8399999999997,2626.16,But it's not my base case.
+2626.16,2628.08,So I need to figure out the sorted version
+2628.08,2630.96,"of the left part of that, the 8 4."
+2630.96,2632.3199999999997,"Again, it's not my base case."
+2632.3199999999997,2634.68,"So I need to figure out the sorted version of the left,"
+2634.68,2635.92,just the 8.
+2635.92,2637.6,It's single by itself.
+2637.6,2639.3999999999996,So that's just going to be the 8.
+2639.3999999999996,2641.68,Then we can figure out the right half of it.
+2641.68,2645.48,"It's 4 by itself, and we merge them."
+2645.48,2649.96,"Then we can figure out the right half of this one here, 8 4 1 6."
+2649.96,2653.24,So we need to figure out what's the sorted version of 1 6.
+2653.24,2654.96,"Well, as humans, we know it's already sorted."
+2654.96,2656.68,But the algorithm goes through.
+2656.68,2658.3599999999997,Looks at the left side.
+2658.3599999999997,2659.7599999999998,Looks at the right side.
+2659.7599999999998,2661.12,Merges them up.
+2661.12,2663.56,Now we merge the 4 8 1 6 according
+2663.56,2667.08,to the loop merge step to give us 1 4 6 8.
+2667.08,2670.48,"And at this point, we've finished just the left half"
+2670.48,2672.72,of 8 4 1 6 5 9 2 0.
+2672.72,2674.68,And now we need to do the right half.
+2674.68,2677.28,So we do the whole process all over again
+2677.28,2681.6,"by taking that 5 9 2 0, looking only at the left piece."
+2681.6,2683.72,Then the left piece of that.
+2683.72,2687.6,"Then the right piece of that base case, merging them back up."
+2687.6,2692.2,"The right step, the left part of that right step,"
+2692.2,2695.4,"the right part of that right step, merging them back up."
+2695.4,2698.96,So then we do the merge step of 5 9 and 0 2.
+2699.04,2703.28,"And then the merge step of these 2 2 lists, 1 4 6 8"
+2703.28,2705.48,and 0 2 5 9.
+2705.48,2707.32,So you can see it has a similar feel
+2707.32,2709.7200000000003,"to exploring one side of the branch first,"
+2709.7200000000003,2712.12,"just like with Fibonacci, for the exact same reason."
+2712.12,2714.52,Because we've got a function called that's recursive.
+2714.52,2717.48,We can't complete it until we've explored all the way down
+2717.48,2719.12,to the bottom.
+2719.12,2721.7200000000003,So the overall complexity of this is going
+2721.7200000000003,2725.7200000000003,"to be the merge step itself is theta of n, like we just"
+2725.7200000000003,2728.6,"talked about, but how many levels do we have?"
+2728.6,2731.7599999999998,"That is, how many times do we take our original list"
+2731.7599999999998,2736.0,and subdivide it until we get to our base case?
+2736.0,2738.12,And the number of times is according
+2738.12,2740.04,to this function very much like when we did
+2740.04,2743.72,"bisection search, we're going to take an original n elements"
+2743.72,2744.3199999999997,in my list.
+2744.3199999999997,2748.12,And I'm going to keep dividing this n elements by 2
+2748.12,2751.3199999999997,"in a bunch of sub lists, i times."
+2751.3199999999997,2753.64,So i times is how many times we're
+2753.64,2756.2799999999997,going to subdivide this list until we get to a base case.
+2756.2799999999997,2758.12,So what is i in terms of n?
+2758.12,2761.96,"Well, i is equal to log of n."
+2761.96,2768.52,"So at each sub level, I've got a merge step."
+2768.52,2773.4,So I've got theta of log of n levels multiplied
+2773.4,2776.3199999999997,by theta of n for my merge step.
+2776.3199999999997,2778.6,So the overall complexity of this function
+2778.6,2781.6,"is theta of n log n, where n is the length of the list."
+2781.92,2784.92,OK.
+2784.92,2786.64,OK.
+2786.64,2790.7999999999997,So it turns out that theta of n log n is actually the fastest
+2790.7999999999997,2792.68,we can have a sort b.
+2792.68,2796.0,You cannot do a sorting algorithm that's faster than that.
+2796.0,2799.12,You can do little tricks here and there based on your data.
+2799.12,2801.7599999999998,Maybe you don't divide the list exactly in half.
+2801.7599999999998,2805.08,Maybe you divide it and you find some sort of pivot point
+2805.08,2807.2,that's a little bit smarter about the data.
+2807.2,2811.16,"But in general, the complexity of this function of a sorting"
+2811.16,2813.6,algorithm is always going to be the fastest
+2813.6,2817.0,it's going to be as theta of n log n.
+2817.0,2819.2799999999997,All right.
+2819.2799999999997,2823.0,We've seen a bunch of different algorithms
+2823.0,2826.48,here to help us design programs.
+2826.48,2829.48,So the reason why we do this complexity analysis
+2829.48,2831.8799999999997,is to guide the design of a program.
+2831.8799999999997,2835.08,So if you already have a bunch of nested for loops
+2835.08,2837.64,"in the program that you're trying to consider writing,"
+2837.64,2839.6,you'll already know it's going to be pretty inefficient
+2839.6,2840.12,and slow.
+2840.2,2843.88,So you might want to rethink the design to begin.
+2843.88,2845.88,OK.
+2845.88,2846.88,All right.

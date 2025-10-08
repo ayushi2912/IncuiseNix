@@ -1,0 +1,1379 @@
+Start Time,End Time,Text
+0.0,15.36,"All right, so let's begin today's lecture."
+15.36,19.52,"We have only two lectures left, this one and next Monday."
+19.52,23.44,"I realize that there are no more deliverables for this class, right?"
+23.44,26.76,"No more quizzes after tonight, no more presets."
+26.76,28.64,So I do appreciate you coming to these lectures.
+28.64,32.44,They're intended to be a little bit more fun.
+32.44,35.76,"No need to take notes, just sit back and enjoy the content."
+35.76,39.92,Today we're going to be talking about library and Python
+39.92,41.6,that can help you do plotting.
+41.6,43.92,And the reason why we talk about this plotting library
+43.92,45.400000000000006,as opposed to something else that's
+45.400000000000006,48.2,maybe more machine learning or something else like that
+48.2,49.760000000000005,"is because at one point or another,"
+49.760000000000005,52.84,if you decide to take any other course that kind of builds
+52.84,56.24,"upon this intro course, you'll probably"
+56.24,59.64,"want to create some graphs or visualize something, right?"
+59.64,61.480000000000004,"Even if you do a Europe, you'll probably"
+61.480000000000004,63.760000000000005,have to visualize some sort of data.
+63.760000000000005,67.52,And it's a really nice next step to show you
+67.52,69.68,how to use a library that already exists.
+69.68,71.48,So somebody already put in the work
+71.48,74.28,in creating this library that can plot things for us.
+74.28,77.2,So let's just try to use it.
+77.2,79.2,"And so it's just a really, really nice way"
+79.2,82.52000000000001,for us to kind of wrap up the course
+82.52000000000001,86.16,by showing this visualization library.
+86.16,89.56,So the library we're going to do to use
+89.56,91.64,is called matplotlib.
+91.64,95.03999999999999,And it's kind of the most basic plotting visualization library
+95.03999999999999,96.47999999999999,that we can have.
+96.47999999999999,98.75999999999999,"And the way that we bring it into our code,"
+98.75999999999999,100.6,"just like we have in the past few lectures,"
+100.6,103.44,is with this import statement.
+103.44,106.67999999999999,"And the actual file that comes into our,"
+106.67999999999999,109.12,"into our, that we would bring into our program"
+109.12,111.92,is called matplotlib.pyplot.
+111.92,113.56,Now that's kind of a mouthful.
+113.56,118.56,"And a lot of times when we want to use this library,"
+118.56,122.92,you'd have to basically say matplotlib.pyplot.functionname
+122.92,124.24000000000001,from that file.
+124.24000000000001,127.2,And so that's a lot of writing and a lot of typing.
+127.2,131.76,"So when we bring in this library into our own file,"
+131.76,133.68,we can actually rename it.
+133.68,138.6,"So as plt tells Python that now, I would like to refer"
+138.6,142.96,to this file and this library as the name plt.
+142.96,146.28,"So if we ever want to call functions,"
+146.28,149.20000000000002,"or maybe objects and things like that from this file,"
+149.20000000000002,151.88,we would do it using plt.
+151.88,154.24,And then the name of whatever we want to use.
+154.24,158.36,"So it's just a much nicer way to grab the contents of the file,"
+158.36,161.24,instead of always writing matplotlib.pyplot.
+161.24,162.16,"Something else, yeah."
+162.16,163.48000000000002,Question.
+163.48000000000002,166.36,You can think of it as a variable name.
+166.36,168.28,It's anything you want it to be.
+168.28,171.60000000000002,So you could import it matplotlib.pyplot as Anna.
+171.6,175.16,"And then from there on, you can say Anna.processname,"
+175.16,176.84,"or plt, or whatever it is."
+176.84,179.2,So it's just whatever name you want to get.
+179.2,182.2,Yeah.
+182.2,186.4,"OK, so there are other visualization libraries"
+186.4,189.44,that exist out there.
+189.44,192.6,A lot of them are all of them build upon this one.
+192.6,195.92,So this is kind of the most basic library that you can get.
+195.92,198.64,And the other ones that exist build upon it
+198.64000000000001,201.76000000000002,by kind of doing some things behind the scenes
+201.76000000000002,207.32000000000002,"to maybe make your lives easier, or to do some really cool visualizations,"
+207.32000000000002,208.60000000000002,"or maybe things where you can like,"
+208.60000000000002,212.72000000000003,hover the mouse over a coordinate and things like that.
+212.72000000000003,215.24,But we don't need to do any of that at this time.
+215.24,220.16000000000003,It's just nice to take a look at this really basic visualization library.
+220.16000000000003,224.32000000000002,"So throughout the lecture, we're going to look a little bit at some code."
+224.32000000000002,227.88000000000002,We're going to run it on the Python file.
+227.88,230.51999999999998,And then we'll just talk about it on the slides.
+230.51999999999998,232.64,"So whenever we're plotting things,"
+232.64,238.76,we need to tell Python a set of x values and a set of y values.
+238.76,239.79999999999998,That's pretty common.
+239.79999999999998,243.4,"If you've used MATLAB, you'll know that that's kind of the way it's done,"
+243.4,245.4,"same, and Python."
+245.4,247.92,So when we're creating the coordinates
+247.92,250.68,"that we'd like to plot in a 2D plane,"
+250.68,253.51999999999998,we're essentially just creating two lists.
+253.51999999999998,257.48,"Where index by index, we're going to have a list containing"
+257.48,260.72,all the values that we want for the x coordinate.
+260.72,264.36,"And in a separate list, all the values"
+264.36,265.88,that we'd like for the y coordinate.
+265.88,268.48,So I'd index 0 in each of these lists.
+268.48,271.92,"You're basically creating x values at index 0,"
+271.92,276.76,"y values at index 0 becomes the coordinate, one coordinate point."
+276.76,279.64000000000004,So one of the very simplest things that we can do
+279.64000000000004,282.88,is we can create a nice list of values that
+282.88,285.08000000000004,will be our x values.
+285.08,290.44,So our x-axis will basically be the number 0 through 29.
+290.44,294.71999999999997,"And then down here, we can create four different lists containing"
+294.71999999999997,298.4,four different y-value coordinates.
+298.4,303.0,"So when we're plotting, we're going to plot this x-value list"
+303.0,305.03999999999996,against all these linear points.
+305.03999999999996,307.91999999999996,"This x-value list against all these quadratic points,"
+307.91999999999996,311.08,"and this x-value list against the cubic points, and so on."
+311.08,313.15999999999997,So the way we're creating these lists
+313.16,317.0,are pretty familiar Python syntax.
+317.0,319.64000000000004,Our n is going through 0 to 29.
+319.64000000000004,323.08000000000004,"And then we're appending to the end of each one of these lists,"
+323.08000000000004,327.88000000000005,"linear quadratic cubic and exponential, some function of that end."
+327.88000000000005,331.08000000000004,So the linear list will just have all the values again.
+331.08000000000004,334.04,"So we're plotting 0, 0, 1, 1, 2, 2, so on."
+334.04,339.24,"The quadratic list will be plotting 0, 0, 1, 1, 2, 4, 3, 9,"
+339.24,340.92,"and so on, same with the cubic."
+340.92,343.8,"And then this exponential, I just"
+343.8,346.32,"chose randomly 1.5 to the power of n,"
+346.32,348.28000000000003,"just because it kind of looked nice in the plot,"
+348.28000000000003,350.36,but you can imagine a different number
+350.36,353.32,for the exponential in there.
+353.32,359.88,So the way we plot some values is by not surprisingly the plot
+359.88,360.76,command.
+360.76,365.36,So PLT was how we decided to import that library as the name
+365.36,370.40000000000003,that we gave it.plot tells Python we'd like to plot some list
+370.40000000000003,372.24,of x and y values.
+372.24,374.24,So the parameters to the plot command
+374.24,377.24,are going to be two sequences of values.
+377.24,379.32000000000005,"They can be lists, typically."
+379.32000000000005,380.72,But they could also be tuples.
+380.72,384.00000000000006,They could also be the keys you get from a dictionary.
+384.00000000000006,386.64000000000004,"That was also an iterable, things like that."
+386.64000000000004,390.16,So we have to pass in a list of numerical things.
+390.16,393.16,So this will be typically the stuff on your x-axis.
+393.16,394.52000000000004,And the second parameter is going
+394.52000000000004,398.08000000000004,to be the function of those values of the x-axis.
+398.08,400.71999999999997,"The lists have to be the same length, obviously."
+400.71999999999997,403.56,So Python knows which coordinates we're plotting.
+403.56,406.64,"If they're not the same length, by accident,"
+406.64,408.59999999999997,then Python will throw an error.
+408.59999999999997,413.0,And then it just won't plot anything.
+413.0,417.59999999999997,"So when we run the code, Python will generally plot"
+417.59999999999997,422.32,the values in either a new window or directly
+422.32,425.76,"in line in the console, so right over here."
+425.76,430.71999999999997,"So right in here, it could put the plot directly in line"
+430.71999999999997,433.12,with a bunch of stuff that you might print out.
+433.12,435.52,"To toggle between that, just out of curiosity,"
+435.52,439.2,"you go to tools, preferences, ipython, console, graphics."
+439.2,441.68,"And then here you can choose either automatic,"
+441.68,443.4,which will make a new window for us.
+443.4,444.24,That's interactive.
+444.24,446.15999999999997,"You can zoom in and out, things like that."
+446.15999999999997,450.24,"Or in line, which will just put the plot that you"
+450.24,453.92,tell Python to generate directly in the console here.
+453.92,456.88,"So I prefer the new window, because it's easier"
+456.88,460.04,"for me to interact with it, so we'll do that."
+460.04,462.2,So let's actually run one of the plot commands.
+462.2,467.36,"So plt.plot, where plotting here, the x-axis"
+467.36,469.56,as just the number 0 through 29.
+469.56,472.76,And the y-axis is just going to also be the value 0 through 29.
+472.76,475.12,So we've made a nice little linear plot.
+475.12,478.28000000000003,And you notice it popped up a little window down here for me.
+478.28000000000003,480.76,And this is the plot that it generated.
+480.76,482.0,"Yay, not surprising."
+482.0,486.64,This is exactly what we expected out of it.
+486.64,491.48,"OK, so what do we notice about that plot?"
+491.48,496.6,We notice how Python nicely fit the line within this frame.
+496.6,498.48,So it added a little bit of wiggle room
+498.48,500.32,to the left and to the right of my line
+500.32,502.76,"and to the below and above my line,"
+502.76,506.44,just so it fits nicely within the frame.
+506.44,510.0,It didn't zoom out to some standard 0 to 100 value.
+510.0,513.36,"It zoomed into this 0 to 30-ish range,"
+513.36,515.12,0 to 30-ish on the y-axis range.
+515.12,521.08,"So really, really nice that it did all that for us."
+521.08,523.96,The order of the points does matter in the list.
+523.96,527.28,So you'll notice one of the other things in this plot here
+527.28,530.96,is we gave it actual points that it needed to plot.
+530.96,535.04,But the plot command doesn't plot the points by default.
+535.04,537.64,"Instead, it just connects all the points by line."
+537.64,541.84,So it connects consecutive indices of points by line.
+541.84,546.4,"So it connected the 0, 0, 1, 1, 2, 2, and so on."
+546.4,548.84,So the order of the points does actually matter.
+548.84,553.24,"If we have a function, for example, in this case,"
+553.24,556.92,"n and n squared, so n being 0 to 29 and n squared"
+556.92,565.0,"being 0, 1, 2, 4, 0, 1, 4, 9, and so on, but they're out of order,"
+565.0,569.0,Python will just take consecutive pairs from those lists
+569.0,571.28,and connect them with a line.
+571.28,572.72,So here's an example.
+572.72,575.88,I've got my x-values lists.
+575.88,577.56,Is this test samples?
+577.56,580.56,It's all the numbers 0 through 29 but out of order.
+580.56,583.36,And the test values associated with each one of those.
+583.36,585.88,"Again, they are correct."
+585.88,587.28,This is 0 squared.
+587.28,588.68,This 25 is 5 squared.
+588.68,590.08,This 9 is 3 squared.
+590.08,592.08,But they're out of order.
+592.08,598.32,"So if we run that, just with a pure plot command,"
+598.32,603.8000000000001,"we're going to get some garbage plot, right?"
+603.8000000000001,605.72,Doesn't look very nice.
+605.72,608.6,"And we already know what's wrong, right?"
+608.6,615.84,"Python just connected 0, 0, 5, 25, and then 3, 9 by a line."
+615.84,618.9200000000001,Not really very nice.
+618.92,625.16,"Instead, what we'd like to do is to just tell Python to plot the points."
+625.16,627.56,So I don't care about connecting them with a line.
+627.56,631.0799999999999,"In this case, I would tell Python instead of just plotting it"
+631.0799999999999,632.8399999999999,to create a scatter plot for me.
+632.8399999999999,637.8,So plt.scatter with the same list of x and y values
+637.8,644.36,is going to just create for me this nice plot where it plots the coordinates.
+644.36,647.1999999999999,Doesn't matter that they're out of order because they just get plotted
+647.2,649.48,without anything connecting.
+649.48,652.6,It's pretty nice.
+652.6,655.2800000000001,So that's this example that we just did here.
+655.2800000000001,660.88,"And then this is us doing a scatter plot, giving us this nice plot."
+660.88,663.6,"OK, one of the other things that you might want to do"
+663.6,669.9200000000001,"is to have a whole bunch of lines being plotted on one window, right?"
+669.9200000000001,675.8000000000001,"So to do that, all you have to tell Python is just a sequence of all the commands,"
+675.8000000000001,680.2400000000001,"all the plotting commands, or everything that you'd like to plot on the one figure."
+680.2400000000001,684.44,"So without telling Python, you'd like to create a new figure."
+684.44,689.72,"Anytime it sees a plot command, it will just keep adding whatever points get generated"
+689.72,693.44,or whatever lines get generated to the current figure that's open.
+693.44,696.32,So we just have one thing that's open right now.
+696.32,700.0000000000001,So it'll just keep adding stuff to our figure.
+700.0000000000001,702.5600000000001,So here I've got four plotting commands in a row.
+702.5600000000001,706.36,I've never explicitly told Python to create a new figure for me.
+706.36,711.12,"So it's just going to add all four of these lines to the same plot, right?"
+711.12,713.0400000000001,So it just doesn't create a new figure.
+713.0400000000001,715.44,It just keeps adding stuff to my plot.
+715.44,717.7600000000001,"So you can imagine if I added a scatter plot as well,"
+717.7600000000001,725.5200000000001,"it would just add the individual dots to this plot, OK?"
+725.5200000000001,728.6,"OK, so again, what do we notice?"
+728.6,733.76,"Well, Python nicely framed everything for me, right?"
+733.76,739.0400000000001,To make sure that every line that I have fits within this graph.
+739.0400000000001,742.08,So my x-axis is comfortably between 0 and 30.
+742.08,746.6,"My y-axis is also comfortably between 0 and 120,000."
+746.6,751.96,So there's a little bit of gap up at that top of that exponential line.
+751.96,755.36,"But this leads us, if we were presented this graph,"
+755.36,761.0,"to kind of mistakenly not know what's going on with these bottom lines here, right?"
+761.0,766.36,"So this is our linear, the blue line, and the orange one is the quadratic."
+766.36,768.4,"We're not really sure what's going on down there, right?"
+768.4,774.6,"Because the scales are just, the y-scale is just too high."
+774.6,779.0,"So in this particular case, it would be better to visualize the data"
+779.0,781.76,"in separate different windows, right?"
+781.76,788.16,"So instead of having everything be plotted in one window,"
+788.16,794.28,we're going to tell Python to create a new window and plot some stuff in it.
+794.28,797.8,So the way we tell Python to create a new window for us
+797.8,801.52,is with the command plt.figure.
+801.52,806.36,"So as soon as Python sees plt.figure, it will create a new window,"
+806.36,809.68,"bring it to the foreground, and any further plotting commands"
+809.6800000000001,812.08,will be added to this new figure.
+812.08,815.08,"So there's a parameter that this figure can take,"
+815.08,817.5200000000001,and that's going to be the name of the figure.
+817.5200000000001,821.48,"So when you have a window at the top, it has a name"
+821.48,823.8000000000001,for the name of the program or whatever's running.
+823.8000000000001,826.84,"Well, the string that you put in there is going to be the name"
+826.84,829.44,that you give to that figure.
+829.44,833.1200000000001,"If Python doesn't have a figure with that name already there,"
+833.1200000000001,835.7600000000001,"it creates a new figure, brings it to the foreground."
+835.7600000000001,839.0400000000001,"But if there's a figure with that name already there,"
+839.04,842.28,"and you just happen to call plt.figure with that same name,"
+842.28,847.16,it'll just re-bring that window up to the foreground again
+847.16,850.88,to re-add more stuff to it.
+850.88,854.3199999999999,So we're going to look at this example here.
+854.3199999999999,857.12,We've got a whole bunch of stuff being plotted.
+857.12,859.64,"So the first two lines of code here,"
+859.64,863.16,"first we've got a new figure being created,"
+863.16,864.92,and we called it expo.
+865.0000000000001,869.6,And then this plot command here coming up right after the figure
+869.6,874.6,will add this exponential that we created to that expo figure.
+874.6,877.72,Then we've got a plt.figure right after that.
+877.72,881.2800000000001,So Python will bring this new figure to the foreground.
+881.2800000000001,884.0000000000001,And the plot command that comes right after that
+884.0000000000001,888.1600000000001,"will add the linear this line to this new figure,"
+888.1600000000001,889.8800000000001,that we called Lynn.
+889.8800000000001,891.5600000000001,"Couple more times we're going to create,"
+891.5600000000001,894.1600000000001,"do the same thing, to create this quad and this cube,"
+894.16,897.7199999999999,and those will each get one line added to them.
+897.7199999999999,900.6,"And then down here, we're going to say, well,"
+900.6,903.1999999999999,let me just go back to that exponential figure
+903.1999999999999,905.7199999999999,and add another different exponential curve to it.
+905.7199999999999,910.36,So we're going to create the exponential curve this time 1.6
+910.36,914.1999999999999,to the power of i instead of 1.5 to the power of i.
+914.1999999999999,917.64,Then we're going to tell Python to bring the figure called expo
+917.64,918.88,back up to the foreground.
+918.88,921.1999999999999,So remember we created it up here.
+921.1999999999999,922.8,So it doesn't create a new figure.
+922.8000000000001,924.84,It'll just bring that one back up and it already
+924.84,926.6,has a curve in it.
+926.6,928.0400000000001,And then we're going to tell Python
+928.0400000000001,932.08,to plot a second curve to it.
+932.08,939.1600000000001,So let's see that that's all this code right here.
+939.1600000000001,942.4000000000001,"Run it, OK?"
+942.4000000000001,947.72,"So not just one figure, one window got created, but 4."
+947.72,949.08,So this is my cube.
+949.08,951.6,"And you can see up in the top here a little hard to see,"
+951.6,953.9200000000001,but that's the name that we gave it.
+953.9200000000001,955.8000000000001,This is my quad.
+955.8000000000001,958.84,This is my linear.
+958.84,961.08,And this is my exponential.
+961.08,965.12,So we see the exponential one has two lines in it
+965.12,967.36,because we added one way at the beginning.
+967.36,969.4,And then we brought it back for processing
+969.4,974.88,"to add another line to it, OK?"
+974.88,980.64,"So again, just so these graphs are actually on the slide."
+980.64,982.6,"This is the quad one, this is the cube one,"
+982.6,985.84,"this is the linear one, and this is the exponential one."
+985.84,989.6,"The blue line was our original curve, 1.5 to the power of x."
+989.6,992.16,And the orange one is 1.6 to the power of x.
+992.16,995.08,So they both got added to the same block.
+995.08,996.08,Cool.
+996.08,998.3199999999999,"So again, just something to note."
+998.3199999999999,1001.08,You'll see how Python nicely framed our line
+1001.08,1004.28,so that it's able to fit everything
+1004.28,1008.88,that it needs to plot within this graph.
+1008.88,1010.36,OK.
+1010.36,1013.84,"So what we're going to do next, I know that was a little bit"
+1013.84,1015.84,"tedious, but what we're going to do next"
+1015.84,1019.6800000000001,is we're going to start looking at some real-world data.
+1019.6800000000001,1022.72,"So first, we're going to do some toy real-world data."
+1022.72,1025.6,"And then soon, we're going to start dealing"
+1025.6,1029.84,with some actual data sets that we're going to read in.
+1029.84,1032.64,"We're going to plot, we're going to investigate,"
+1032.64,1035.92,"try to answer some questions about them, and things like that."
+1035.92,1040.04,"So first, let's look at this real-life example"
+1040.04,1043.44,where we've got months and temperatures
+1043.44,1044.68,for each of those months.
+1044.68,1050.36,So notice the months here is actually the value
+1050.36,1052.92,"that this range returns, which is like an iterable,"
+1052.92,1054.1599999999999,like a tuple.
+1054.1599999999999,1056.0,So it's still a sequence of values.
+1056.0,1061.52,"It's not a list, but totally fine to be passed in as an argument"
+1061.52,1063.1599999999999,to the plot committee.
+1063.1599999999999,1066.6,"And temps, of course, are going to be temperatures corresponding"
+1066.6,1069.8799999999999,to each of those months as a list.
+1069.92,1073.16,"So the plot looks something like this,"
+1073.16,1076.5600000000002,if we actually run that code.
+1076.5600000000002,1077.3200000000002,What do we notice?
+1077.3200000000002,1082.64,"Well, just like before, map plot lived nicely framed our data."
+1082.64,1084.6000000000001,It's got a little bit of wiggle room left and right
+1084.6000000000001,1085.96,top and bottom.
+1085.96,1088.72,"And it automatically selected the scales,"
+1088.72,1094.1200000000001,"how low to go, how high to go, and the tick marks for this."
+1094.1200000000001,1099.64,"But let's say that you're the advisor to a student,"
+1099.64,1103.5200000000002,and they came to you with a plot that looked like this.
+1103.5200000000002,1107.8000000000002,"Would you be able to tell anything about this plot,"
+1107.8000000000002,1111.72,without knowing exactly what the code that generated this plot is?
+1111.72,1113.48,"Not really, right?"
+1113.48,1115.24,It just looks like a bump.
+1115.24,1116.96,It could be any sort of data.
+1116.96,1119.92,"So what we'd like to do before actually,"
+1119.92,1122.3200000000002,"for your ups and things like that in the future,"
+1122.3200000000002,1125.3200000000002,"before presenting a plot to somebody else,"
+1125.3200000000002,1128.24,"you'll want to add a title, and you'll"
+1128.24,1131.04,"want to label your axes, right?"
+1131.04,1136.64,"So what we want to do, in addition to actually plotting the data,"
+1136.64,1142.4,is to tell Python to add for us a title and labels for our axes.
+1142.4,1146.24,So we do this using these three lines of code here.
+1146.24,1149.28,So since we haven't told Python to create a new figure
+1149.28,1152.72,"or anything like that, any commands that we do with regards"
+1152.72,1155.52,to plotting will just get added onto this figure.
+1155.52,1159.6,"So here I've got Python adding this title,"
+1159.6,1164.6399999999999,these two labels to our axes.
+1164.6399999999999,1169.04,So here I've got this and this plot.
+1169.04,1172.6,"So I run it, and tada."
+1172.6,1175.04,"We have something that looks much nicer, right?"
+1175.04,1177.36,"So now we can hand this plot to somebody,"
+1177.36,1179.08,and they'll know what it's about.
+1179.08,1186.48,"Now, that's fine, but since it's temperatures,"
+1186.48,1188.48,"what I'd really like to do is to say,"
+1188.48,1191.36,"well, the lowest temperature I have"
+1191.36,1193.76,"should really start at the y-axis here,"
+1193.76,1195.6,"this intersect with the y-axis,"
+1195.6,1197.48,"and the highest temperature I've got,"
+1197.48,1199.12,I don't really want that wiggle room
+1199.12,1202.1599999999999,because this is my last temperature value.
+1202.1599999999999,1205.8,Let's just have the frame just end there.
+1205.8,1208.28,So we can do that little change
+1208.28,1210.96,by setting limits on our x-axis.
+1210.96,1214.16,So here I'm going to limit the x-axis
+1214.16,1218.76,to say that it starts from 1 and ends at 12.
+1218.76,1221.56,"So if I do that, again, that's just a little command"
+1221.56,1225.0,"we put in continuation with the rest of the commands,"
+1225.0,1227.6,and it gets applied to this plot.
+1227.6,1230.3999999999999,"So as soon as I do that, Python now creates for me"
+1230.3999999999999,1234.92,"the same plot except that the y-axis starts at 1,"
+1234.92,1237.28,"and ends at 12 nicely framed within here, right?"
+1237.28,1239.16,So no more wiggle room.
+1239.16,1244.8,"OK, still some improvements to be made to this plot."
+1244.8,1247.6,"As in, here the months skip, right?"
+1247.6,1254.0,"So Python decided that it's best to just show 2, 4, 6, 8, 10, 12"
+1254.0,1256.76,as the ticks on the x-axis.
+1256.76,1261.84,"But I decide that I would, since I'm showing all the months"
+1261.84,1263.16,"of the year and their temperatures,"
+1263.16,1267.64,I would really like to have ticks for every single month.
+1267.64,1270.6000000000001,"So again, a little command will do that for us."
+1270.6000000000001,1277.28,So plt.x-ticks takes in a tuple of all of the places
+1277.28,1281.0800000000002,where you'd like one of those little ticks to be created.
+1281.0800000000002,1287.0,"So if we do that, just another little command in series here."
+1287.0,1291.48,"If we do that, Python now fills in the ticks for every single spot"
+1291.48,1293.76,"that we told it to fill in, right?"
+1293.76,1298.92,"So it's looking way better already, right?"
+1298.92,1300.52,But still not quite right.
+1300.52,1304.32,"I promise, this will be the last improvement we make."
+1304.32,1308.52,I personally find it hard to map numbers to the months.
+1308.52,1310.76,I still count my fingers.
+1310.76,1317.0,"So what would be nice is to say, well, instead of having"
+1317.0,1319.76,"numbers on my x-axis, I would like to have"
+1319.76,1322.8799999999999,"the actual names of my months, right?"
+1322.8799999999999,1325.4,"Jan, Feb, Mar, and so on."
+1325.4,1327.72,"So to do that, we're going to make one small change"
+1327.72,1331.16,to our x-ticks command here.
+1331.16,1333.76,We're going to give it a second parameter.
+1333.76,1337.68,"So first one is, of course, what we had before saying,"
+1337.68,1340.28,these are all the ticks that I would like to have.
+1340.28,1344.44,And the second parameter is the labels for each one of those ticks.
+1344.44,1346.72,"So one by one, they'll be mapped."
+1346.72,1349.44,"So one will be mapped to Jan, two will be mapped to Feb."
+1349.44,1350.0,And so on.
+1350.0,1352.6000000000001,"So instead of using the numerical values,"
+1352.6000000000001,1359.0,Python will create for us the string values
+1359.0,1360.52,that I've told it to do.
+1360.52,1361.44,So here it is.
+1361.44,1362.72,Run.
+1362.72,1364.96,Creates for me this very nice looking plot.
+1364.96,1368.52,"So this, I would be happy to receive as an advisor"
+1368.52,1370.28,compared to that very first one that we had.
+1373.64,1374.64,All right.
+1374.64,1376.64,Questions so far?
+1376.64,1377.8400000000001,"Let's see, all right."
+1377.8400000000001,1380.2800000000002,OK.
+1380.2800000000002,1381.0,OK.
+1381.0,1384.16,The other thing that you can do is potentially add grid lines
+1384.16,1385.0800000000002,if you wanted to.
+1385.0800000000002,1388.76,So PLT.Grid will either toggle the grid lines on and off.
+1388.76,1391.64,"So if there's already grid lines, it'll toggle them off."
+1391.64,1393.88,"When it sees that command, if there are now grid lines,"
+1393.88,1395.0800000000002,it'll toggle them on.
+1395.0800000000002,1398.2,So you could potentially have a bunch of PLT.Grid commands
+1398.2,1400.5200000000002,that keep toggling things on and off.
+1400.5200000000002,1402.5200000000002,And so on.
+1402.5200000000002,1403.2800000000002,OK.
+1403.28,1409.44,So that was us plotting one city's temperature values
+1409.44,1410.16,for a year.
+1410.16,1412.04,Let's say an average.
+1412.04,1416.44,Let's say that we wanted to plot two different cities.
+1416.44,1418.68,The code to do that is as follows.
+1418.68,1422.12,"So again, we've got months being this range, one through 12,"
+1422.12,1423.12,inclusive.
+1423.12,1425.56,I've got a list of all the Boston temperatures here.
+1425.56,1426.24,I plot that.
+1426.24,1428.36,I list of all the Phoenix temperatures here.
+1428.36,1429.12,And I plot that.
+1429.1200000000001,1433.1200000000001,"And of course, I'm going to add some labels to my graph."
+1439.3600000000001,1446.0000000000002,"So if I run that, we get something that looks like this."
+1446.0000000000002,1450.7600000000002,"Now, of course, I could kind of remove those little wiggle rooms"
+1450.7600000000002,1454.3200000000002,"on the left and right, but for now, it's fine."
+1454.3200000000002,1456.6000000000001,What's missing from this plot?
+1456.6000000000001,1458.8400000000001,"Let's say you didn't see the code, and you were just"
+1458.8799999999999,1459.84,given this plot.
+1463.08,1463.9199999999998,"Yeah, exactly."
+1463.9199999999998,1466.84,"I don't know what, yes, these are different temperatures"
+1466.84,1469.9199999999998,"from the title and the labels, but you"
+1469.9199999999998,1472.72,"don't know which city is which, exactly."
+1472.72,1476.56,So what we'd like to do is tell Python how
+1476.56,1480.32,to label these two lines.
+1480.32,1484.6799999999998,"So to do that, it's just an extra parameter here in the plot"
+1484.6799999999998,1485.1999999999998,command.
+1485.1999999999998,1488.48,"So when you tell it which data to plot,"
+1488.48,1491.88,you can also tell it what label that data should get.
+1491.88,1495.24,"So here, I've got Boston label for the first one, Phoenix label"
+1495.24,1496.76,for the second one.
+1496.76,1501.3600000000001,And then you tell Python to add a legend to your plot.
+1501.3600000000001,1504.2,"So here, the parameter is the location for the legend."
+1504.2,1506.6,And best just means Python should decide where
+1506.6,1509.88,"to put the legend, top left, top right, middle, wherever."
+1509.88,1512.76,So it doesn't really interfere much with the data.
+1512.76,1516.52,Or you can just tell it where to put that legend.
+1516.52,1521.48,So you can force the legend to be in a particular spot.
+1521.48,1523.72,"So here, I've got already labeled data."
+1523.72,1525.6,And then we add the legend.
+1525.6,1527.56,"And now you can see in this particular case,"
+1527.56,1529.32,it decided to put it in the top right.
+1529.32,1531.76,"But again, you could force it to go somewhere else."
+1531.76,1534.0,Bottom middle seemed like a fine choice as well.
+1537.96,1539.56,"OK, very nice."
+1539.56,1544.6799999999998,"So now, we've got Python."
+1544.6799999999998,1548.28,It automatically did the x and y axes for us
+1548.28,1551.36,"as we told it to do, but the colors that it picked were random."
+1551.36,1557.1599999999999,"Now, we can specify a bunch of different details for the plot."
+1557.1599999999999,1561.44,So we're going to do that next just to show you that you can.
+1561.44,1563.44,So we're going to choose different colors
+1563.44,1565.24,and different styles for our plots.
+1565.24,1569.1599999999999,We're going to choose different widths for our lines.
+1569.44,1572.96,And then we'll also add some markers.
+1572.96,1576.64,"So where exactly each data point we have, we're going to mark."
+1576.64,1579.0,And then I'll show you how you can create subplots.
+1579.0,1580.52,"So instead of creating new windows,"
+1580.52,1584.48,you can actually have one window with different little subplots
+1584.48,1586.0800000000002,with it.
+1586.0800000000002,1588.44,"OK, so the first thing we're going to see"
+1588.44,1594.5600000000002,is how to customize the data to have a certain line style
+1594.5600000000002,1596.0400000000002,and a certain color.
+1596.04,1599.2,So there's a shorthand notation to do this.
+1599.2,1602.68,Instead of actually passing in the parameter name
+1602.68,1605.56,"in the plot command, we could do it shorthand notation."
+1605.56,1608.52,So you might have already noticed this little extra bit here.
+1608.52,1612.04,"So more you use it, the more you'll get used to it."
+1612.04,1615.84,"But this basically tells Python that I would like this plot,"
+1615.84,1619.44,"this line corresponding to this data, to be blue,"
+1619.44,1623.52,"that's what the B stands for, and to be a solid line."
+1623.52,1625.48,That's what that little dash means.
+1625.48,1628.04,"The phoenix one, you may have guessed,"
+1628.04,1631.6,"tells Python that I would like this one to be red, R for red,"
+1631.6,1633.76,and to be a dashed line.
+1633.76,1636.44,"And then the last one, I'm going to add one more temperature"
+1636.44,1638.6,"here, temperature data for Minneapolis."
+1638.6,1644.64,I would like this one to be green and a dash dot dash dot line.
+1644.64,1646.4,So we can run that.
+1655.68,1659.08,And it looks something like this.
+1659.08,1661.72,"So if you've got my solid blue line for Boston,"
+1661.72,1664.84,"my dashed line for phoenix, and my dashed out dashed out"
+1664.84,1670.2,"line for Minneapolis, very nice."
+1670.2,1673.44,Now instead of doing that shorthand notation
+1673.44,1676.68,where we've got this one parameter that just somehow magically
+1676.68,1681.64,"knows the color and the style based on just being passed in,"
+1681.64,1686.72,we can actually tell Python the parameter values
+1686.72,1690.0800000000002,"that it should, that correspond to the color."
+1690.0800000000002,1692.64,"So here I've got color equals B for blue,"
+1692.64,1694.88,and then the correspond to the line style.
+1694.88,1697.2800000000002,"So here line style equals, and then you explicitly"
+1697.2800000000002,1700.0800000000002,pass in the line style that you'd like.
+1700.0800000000002,1704.6000000000001,"So this may be more intuitive according to what we've learned,"
+1704.6000000000001,1709.2,but Python does allow you the option to kind of do it all in one.
+1709.2,1714.3600000000001,"So if we run it with these explicit parameters,"
+1714.3600000000001,1716.72,then we'll get the exact same graph as before.
+1716.72,1717.92,No surprise.
+1717.92,1719.64,OK.
+1719.64,1722.1200000000001,So there's a lot of options that we can have here.
+1722.1200000000001,1724.52,"So these are all the line style options,"
+1724.52,1727.16,"so you can also add a dotted line, which I didn't show."
+1727.16,1729.52,"These are all the color options, plus many more."
+1729.52,1732.04,"You could also pass in the RGB values,"
+1732.04,1734.72,or maybe the hex values if you want a very specific shade
+1734.72,1736.8400000000001,of magenta or something.
+1736.8400000000001,1741.2400000000002,And then we can also add markers to our lines.
+1741.2400000000002,1744.5600000000002,"We haven't seen this yet, but let's do that next."
+1744.5600000000002,1748.96,So let's say that I would like to have the actual data points
+1748.96,1751.88,that I've plotted show up in my lines.
+1751.88,1754.5200000000002,"Right now the lines just get connected,"
+1754.5200000000002,1757.1200000000001,"or so the data points just get connected with our lines,"
+1757.1200000000001,1759.1200000000001,"dashed, or dotted, or whatever we chose,"
+1759.1200000000001,1763.3600000000001,but the data points themselves don't show up with markers.
+1763.3600000000001,1766.7200000000003,"So again, in short-hand notation, we can tell Python, hey,"
+1766.72,1767.92,let's add these markers.
+1767.92,1773.0,"So here, I'm telling Python to just do a dot for this blue solid line."
+1773.0,1777.8,"Here, I'm telling Python to do a larger dot for this red dashed line."
+1777.8,1782.08,"And here, I'm telling it to do a star for the green dashed dot, dashed dot line."
+1785.08,1788.08,So that's down here.
+1788.08,1790.28,Run it.
+1790.28,1794.48,And now we see nice little markers for every one of our data points.
+1794.48,1796.08,So we can also do triangles.
+1796.08,1797.28,We could do squares.
+1797.28,1799.32,"There's lots of other marker options,"
+1799.32,1803.76,and there all exist in the documentation for matplotlib.
+1803.76,1804.76,OK?
+1804.76,1806.76,So this is what we got.
+1806.76,1809.0,Perfect.
+1809.0,1814.28,The last thing that we can do is to add thickness to our lines.
+1814.28,1816.92,"So oftentimes it's good to, first of all,"
+1816.92,1821.08,"delineate the lines using dashes or dots and things like that,"
+1821.08,1823.0,but also width.
+1823.0,1825.24,"So here, another parameter passed in."
+1825.24,1827.8,"The line width, this is going to be a skinny line."
+1827.8,1830.12,"This is going to be maybe a thicker line,"
+1830.12,1833.0,and this one's going to be unreasonably thick.
+1833.0,1836.0,So let's see exactly what this will look like.
+1836.0,1838.2,It's going to look super weird.
+1841.6,1844.12,Yeah.
+1844.12,1847.32,"As I said, unreasonably thick line, but there it is."
+1847.32,1851.08,And then you can see that the legend itself also adjusted
+1851.08,1855.3999999999999,to whatever you chose for your line styles.
+1860.1999999999998,1861.52,OK.
+1861.52,1865.12,So that's exactly what I said.
+1865.12,1866.0,Cool.
+1866.0,1869.04,Last thing I want to talk about is subplots.
+1869.04,1873.3999999999999,"So right now, the only things that we've learned about plotting"
+1873.3999999999999,1877.4399999999998,"is you either plot every line that you have on one figure,"
+1877.4399999999998,1880.1999999999998,"or you create a new figure, and then"
+1880.2,1884.04,it becomes a new window that you have to switch between
+1884.04,1887.0800000000002,for whatever you'd like to plot.
+1887.0800000000002,1889.3600000000001,"Oftentimes, what's really nice to do"
+1889.3600000000001,1892.68,is to create only one figure.
+1892.68,1898.2,"So you have only one thing that pops up, like one window."
+1898.2,1902.04,"And within that window, with some name here,"
+1902.04,1903.88,"and within that window, you can create"
+1903.88,1906.72,a bunch of different subplots.
+1906.72,1913.16,"So here, I've created six different subplots."
+1913.16,1917.4,"So we can tell that to Python, and we do that using the subplot"
+1917.4,1918.64,command.
+1918.64,1921.44,"So in this particular case, I've told Python"
+1921.44,1926.52,to create for me a subplot with two rows.
+1926.52,1930.64,"That's what the first parameter says, and one column."
+1930.64,1932.6000000000001,That's what the second parameter says.
+1932.6000000000001,1936.8400000000001,"So here, this is one window with two positions in it."
+1936.8400000000001,1940.3200000000002,The third parameter tells Python which one of these positions
+1940.3200000000002,1945.3200000000002,"to open for adding lines to, or data to."
+1945.3200000000002,1948.1200000000001,"So one means this is the one that you're opening,"
+1948.1200000000001,1950.8400000000001,and two means this is the second one that you're opening.
+1950.8400000000001,1954.7400000000002,"So you can see here, the very top subplot command"
+1954.7400000000002,1960.68,"tells Python to open up this one for editing, basically."
+1960.68,1963.04,So we're going to add to it the Boston temperature.
+1963.04,1965.92,"So this is all the plotting commands and all the labels,"
+1965.92,1970.2,and everything after it belong to this top subplot here.
+1970.2,1973.28,And then subplot command down here tells Python
+1973.28,1976.88,"that on this figure with two rows and one column,"
+1976.88,1980.0,"I would like to now open position number two for editing,"
+1980.0,1982.8400000000001,and then everything that I have thereafter
+1982.8400000000001,1986.96,gets added to the subplot at this position.
+1986.96,1990.0,So the way that this is going to look is as follows.
+1990.0,1994.76,"So I've got, this is just one window that gets created,"
+1994.76,1997.28,"and you can see the top one has the Boston temperature,"
+1997.28,1999.96,and the bottom one has the Phoenix temperature.
+2004.08,2008.08,"At first glance, does this look right in terms of temperatures?"
+2008.08,2014.16,"If you're just to look at the pictures themselves,"
+2014.16,2018.48,"I don't know about you, but at first glance,"
+2018.48,2020.76,I thought that the temperatures for Boston and Phoenix
+2020.76,2027.32,"were the same, because I didn't look closely at the y-axis."
+2027.32,2029.72,"It looked like, hey, they both bottom out in the same way."
+2029.72,2031.08,"They both top out in the same way,"
+2031.08,2033.04,so they look very similar to me.
+2033.04,2035.32,"But if we inspect the y-axis closer,"
+2035.32,2039.32,"we see that the Boston temperature starts at 30 goes to 70,"
+2039.32,2044.72,but the Phoenix one starts at what is this 50 and goes to 90.
+2044.72,2048.48,"So if we're presenting plots in one figure,"
+2048.48,2051.48,what would be really nice to do is to make sure
+2051.48,2054.92,"that the axes are both bounded in a similar way,"
+2054.92,2057.84,"especially if we're plotting similar data,"
+2057.84,2060.2400000000002,temperature in this particular case.
+2060.2400000000002,2066.44,"So in our code, what we'd also like to do"
+2066.44,2070.56,"is set limits on our axes, and just the y-axis,"
+2070.56,2072.28,"because the x-axis is the same, right?"
+2072.28,2076.6800000000003,"So here, I can limit the y-axis from 0 to 100,"
+2076.6800000000003,2080.5600000000004,"the reasonable set of temperatures in Fahrenheit, right?"
+2080.5600000000004,2084.7200000000003,"So if I fix these temperature limits from 0 to 100,"
+2084.7200000000003,2088.52,"and now I plot, I get something that looks like this."
+2088.52,2092.88,"And now, at first glance, this makes a lot more sense to me."
+2092.88,2096.6000000000004,I've got the Phoenix temperatures seem
+2096.6000000000004,2100.84,"to be for this year, on average, higher"
+2100.88,2102.4,than the Boston temperatures.
+2105.6000000000004,2110.0,"Okay, so we can plot now multiple,"
+2110.0,2111.6400000000003,we can create multiple subplots.
+2111.6400000000003,2113.32,"So here, in the previous example,"
+2113.32,2116.04,"I just had two top and bottom,"
+2116.04,2118.92,but I can create as many subplots as I'd like
+2118.92,2121.04,within my window.
+2121.04,2124.6000000000004,"So when I create them, and I tell Python,"
+2124.6000000000004,2126.2000000000003,"how many rows and columns I have,"
+2126.2000000000003,2128.84,"in this particular example I just drew here,"
+2128.84,2133.32,"I have three rows, right, and two columns."
+2133.32,2135.88,So the third parameter that I pass in
+2135.88,2139.32,will basically tell Python which one of these subplots
+2139.32,2141.44,to open up for processing.
+2141.44,2142.6800000000003,"So this will be the first one,"
+2142.6800000000003,2144.92,"this will be the second one, kind of the way we read."
+2144.92,2148.6000000000004,"Third, fourth, fifth, and sixth."
+2148.6000000000004,2151.7200000000003,So that third parameter to these subplot commands
+2151.7200000000003,2154.08,"will be either 1, 2, 3, 4, 5, or 6,"
+2154.08,2156.7200000000003,telling Python which one of these sections
+2156.7200000000003,2159.6400000000003,I'm going to add plots to.
+2159.6400000000003,2162.32,"In this particular case, I had a Boston Phoenix"
+2162.32,2163.6000000000004,and Minneapolis temperature.
+2163.6000000000004,2166.8,So I'm just creating a two by two matrix.
+2166.8,2169.84,"So here, I just have this thing that looks like this,"
+2169.84,2172.36,a figure with these four subplots.
+2172.36,2176.4,"And I am going to add the Boston one over here,"
+2176.4,2182.2400000000002,"the Phoenix one over here, and then the Minneapolis down here."
+2182.2400000000002,2188.6800000000003,"So 1, 2, and 3 as my subplots that I'm opening."
+2188.6800000000003,2192.32,"Nothing in 4, so that fourth spot will just be empty."
+2192.32,2194.48,So the plots will look something like this.
+2194.48,2197.32,And I haven't changed the line widths in this particular case.
+2197.32,2199.5200000000004,"I didn't need to, right?"
+2199.5200000000004,2202.84,"And you can see everything's plotted with the heights,"
+2202.84,2206.84,"again, limited from 0 to 100, just so everything's comparable."
+2206.84,2209.0800000000004,"And notice the empty spot here, because I had nothing"
+2209.0800000000004,2209.6000000000004,to fill in.
+2213.2400000000002,2214.6000000000004,Questions about this?
+2214.6000000000004,2217.6000000000004,This interesting?
+2217.6000000000004,2220.1200000000003,OK.
+2220.1200000000003,2221.1600000000003,All right.
+2221.1600000000003,2227.0800000000004,So that finishes up just some really basic things
+2227.0800000000004,2232.0000000000005,"that we can do with plotting, basic customizations."
+2232.0000000000005,2234.44,Now what I'd like to do is just open up
+2234.44,2237.6800000000003,a few different data sets.
+2237.6800000000003,2240.92,"For processing, we can start by just plotting"
+2240.92,2244.2000000000003,the pure values on a regular plot.
+2244.2000000000003,2246.56,And then we can start to investigate things
+2246.56,2250.04,"that we visualize, ask more questions,"
+2250.04,2252.2400000000002,and see where we go from there.
+2252.2400000000002,2255.52,So the first thing I'd like to do is open up a file
+2255.52,2257.56,on the US population.
+2257.56,2264.48,So this particular file contains 40 different numbers.
+2264.48,2271.12,"So it has a population value, over about 400 years,"
+2271.12,2272.52,every 10 years.
+2272.52,2276.36,"So that's 40 different values for the temperatures,"
+2276.36,2279.64,starting from a really long time ago
+2279.64,2283.44,until about 2010 or something like that.
+2283.44,2286.2400000000002,So the file looks something like this.
+2286.2400000000002,2291.96,So it starts at 1610 and goes down to 2010.
+2291.96,2299.68,"So this is 40 lines for 40 years, every 10 years."
+2299.68,2301.52,Then there's a space in the file.
+2301.52,2305.64,And then I've got the population value.
+2305.64,2307.2,So it starts at 350.
+2307.2,2310.84,"Increases goes down to 300,000 in 20 times."
+2310.84,2312.8,So that's what the file looks like.
+2312.8,2314.48,It's important to know what the file looks like
+2314.48,2317.92,because you're going to have to read in this data
+2317.92,2320.7200000000003,and save it in some sort of data structure
+2320.7200000000003,2322.6400000000003,that's easy to manipulate.
+2322.6400000000003,2324.92,"So in our case, a data structure that's"
+2324.92,2327.32,really easy to manipulate where you have a whole sequence
+2327.32,2330.4800000000005,of values is a list.
+2330.4800000000005,2333.92,"So what we can do is we can open up this file for processing,"
+2333.92,2340.36,"read in the years as a list, and then read in the population"
+2340.36,2342.0000000000005,values as a list as well.
+2342.0000000000005,2344.28,"We could use a dictionary also if we wanted to,"
+2344.28,2348.2000000000003,"but in this case, I just used two lists."
+2348.2000000000003,2350.4,So let's look at the code to do that.
+2350.4,2353.28,"It looks like a lot, but I'll kind of go through it."
+2353.28,2357.44,So here is the function that's going to read in the file.
+2357.44,2360.6,"It just opens up the file, creates two empty lists."
+2360.6,2364.28,"One will contain the dates, the other will contain the populations."
+2364.28,2366.36,It iterates through each line in the file.
+2366.36,2369.56,So I've put up what a line in the file kind of looks like up here.
+2369.56,2374.4,"So it's got some numbers, space, some other number."
+2374.4,2378.88,"But when we read in file, when we read in a line from a file,"
+2378.88,2382.1600000000003,Python actually reads it as a string.
+2382.1600000000003,2385.08,So what that means for us is we're
+2385.08,2389.84,"going to have to take this string, each line being the string,"
+2389.84,2394.6,"1, 6, 4, 0, space, 2, 6, comma, 6, 3, 4, something like that."
+2394.6,2398.56,And somehow separate it so that we have the date and then
+2398.56,2401.48,the number of the population.
+2401.48,2405.4,And then somehow save those two pieces to list.
+2405.4,2409.64,So the first thing to notice is that we
+2409.64,2417.48,"have a pesky comma in our population values, right?"
+2417.48,2419.56,Those values are human readable.
+2419.56,2422.12,So it makes it easy for us to read.
+2422.12,2426.88,"But the computer is not so happy about them, right?"
+2426.88,2432.44,"So if I have a number like 11,345, whatever,"
+2432.44,2436.52,"this is read in as a string, right?"
+2436.52,2441.2000000000003,"And if I just try to cast that as an integer, just straight"
+2441.2000000000003,2446.6,"without doing any sort of processing on it, Python's very unhappy."
+2446.6,2450.36,"So what we need to do is remove that comma,"
+2450.36,2453.44,"because as long as I don't have a comma there,"
+2453.44,2460.08,Python can convert that string number into a regular integer
+2460.08,2463.7999999999997,number for us to then plot.
+2463.7999999999997,2466.7999999999997,So that's what this bit of the code is doing.
+2466.7999999999997,2470.7999999999997,It's doing it in kind of a weird way.
+2470.7999999999997,2475.16,"It's saying, hey, take this entire line of characters"
+2475.16,2480.24,and only keep characters that are either a digit or a space.
+2480.24,2482.7999999999997,"So in doing so, it effectively removes the comma,"
+2482.7999999999997,2487.4,because it creates a new version of that line containing only digits
+2487.4,2490.36,"and spaces, so it'll just take the two, six,"
+2490.36,2492.6,"and then the six, three, four, right after."
+2492.6,2496.36,So it just creates this new line that looks like that.
+2496.36,2498.88,"And then after it has this new line,"
+2498.88,2501.52,"we're going to split on the space, because we"
+2501.52,2507.1600000000003,"note that every single, after every date, every year,"
+2507.1600000000003,2510.52,we've got a space that separates our population value
+2510.52,2511.44,and our date.
+2511.44,2514.92,"So if we split on the space using the split command,"
+2514.92,2519.2400000000002,"the thing before the space, so the line at index 0 gives us"
+2519.2400000000002,2520.28,the date.
+2520.28,2524.28,We'll just cast that to an int and append it to dates.
+2524.28,2527.04,And then the line at index 1 is the thing
+2527.04,2529.7200000000003,"after the space, again, without the comma,"
+2529.7200000000003,2531.12,because we did that trick.
+2531.12,2534.36,And then we cast that to an integer and append that
+2534.36,2538.56,"to our population's value, OK?"
+2538.56,2540.92,"That's what we do there, and that's what we do there."
+2540.92,2542.64,"And then from there on out, we just"
+2542.64,2544.7599999999998,return the dates and the populations.
+2544.7599999999998,2549.0,The dates become my x values for my plot
+2549.0,2554.04,and the populations become the y values for my plot.
+2554.04,2557.24,And then we plot it and it looks something like this.
+2557.24,2561.68,So much easier to read or to tell what's
+2561.68,2564.52,"going on than just looking at pure numbers,"
+2564.52,2567.04,always nicer to visualize things than to just read
+2567.04,2569.7599999999998,"a whole bunch of numbers, even if it's just 40."
+2569.7599999999998,2572.2799999999997,"And in fact, we can tell a couple of things"
+2572.28,2574.5600000000004,"that we weren't able to tell, we"
+2574.5600000000004,2577.32,definitely couldn't have been able to tell from just
+2577.32,2579.2400000000002,looking at pure numbers.
+2579.2400000000002,2585.4,The first is that we notice a little bump right here
+2585.4,2586.88,in the population.
+2586.88,2590.1200000000003,And this is the impact of World War II on the population.
+2590.1200000000003,2593.1200000000003,"Second, a little harder to tell is another little bump down"
+2593.1200000000003,2597.6000000000004,"here, and that's the impact of the Civil War in the population."
+2597.6000000000004,2602.2400000000002,"So nicer to visualize, it exposes some interesting things."
+2602.4,2607.36,"The other thing to notice is, well, what's going on down here?"
+2607.36,2612.96,It kind of looks like the population is not really growing much.
+2612.96,2616.7200000000003,"And then maybe from 1750 onward, it starts to grow exponentially."
+2616.7200000000003,2622.2400000000002,It's hard to tell what exactly is going on in that lower part.
+2622.2400000000002,2627.1200000000003,So let's think about a different way of showing this data
+2627.1200000000003,2630.5600000000004,instead of having a linear scale on our y-axis.
+2630.56,2636.4,Let's see about doing it in a logarithmic scale.
+2636.4,2640.6,So we're going to add a command that tells Python to make
+2640.6,2646.4,our y-axis a logarithmic scale instead of linear.
+2646.4,2653.0,"So if we do that, then that means that every regular increment"
+2653.0,2657.92,in our y-axis is going to imply an exponential increase
+2657.92,2660.8,in the population.
+2660.8,2665.0,"OK, so let's plot that."
+2665.0,2668.2400000000002,"And if we plot that, we get something that looks like this."
+2668.2400000000002,2670.2000000000003,The x-axis remains unchanged.
+2670.2000000000003,2673.4,We're still incrementing the years linearly.
+2673.4,2677.96,But the y-axis is now logarithmic.
+2677.96,2680.12,So what do we notice?
+2680.12,2685.6,"Well, I see linear line here."
+2685.6,2687.6,And I see another line here.
+2692.3199999999997,2696.7599999999998,"Again, linear growth on a log scale means exponential growth"
+2696.7599999999998,2698.7999999999997,on a linear scale.
+2698.7999999999997,2700.6,So what we notice is that there's
+2700.6,2703.8399999999997,sort of these two time periods of exponential growth.
+2703.8399999999997,2707.16,"And in fact, those early years actually"
+2707.16,2708.2799999999997,seem to be growing.
+2708.2799999999997,2711.4,The population seems to be growing at a faster rate
+2711.4,2713.6,than the later years.
+2713.6,2717.16,And that was not readily visible on the previous graph
+2717.16,2718.7999999999997,that we have.
+2718.7999999999997,2721.92,"So the question, I have a question for you, which one of those"
+2721.92,2723.4,did you find more informative?
+2723.4,2727.2799999999997,"Well, it kind of depends on what we're interested in finding out."
+2727.2799999999997,2729.92,"If we're interested in big trends in the data,"
+2729.92,2732.7999999999997,"where in the top left one, we spotted here"
+2732.7999999999997,2736.36,the impacts of wars on the population.
+2736.36,2739.52,"Well, then the top left one is the one to look at."
+2739.52,2742.2,"But if we visualize the data in a slightly different way,"
+2742.2000000000003,2744.32,it gives us different insights into what's
+2744.32,2745.6400000000003,happened to the population.
+2745.6400000000003,2748.5200000000004,That wasn't as apparent in the previous graph.
+2748.5200000000004,2751.0400000000004,So it really kind of just depends
+2751.0400000000004,2756.0800000000004,"on what you're interested in finding out,"
+2756.0800000000004,2759.4,which one of these plots you find more informative.
+2759.4,2763.5600000000004,And sometimes both are probably necessary
+2763.5600000000004,2766.84,to figure out exactly what happened.
+2766.84,2768.36,OK.
+2768.36,2772.0400000000004,So that finishes our example on the US population.
+2772.04,2776.48,Now let's look at a slightly different file.
+2776.48,2781.04,"This particular file, we're going to look at country populations."
+2781.04,2785.44,"So these are the populations in a whole bunch of different countries,"
+2785.44,2788.36,"or sorry, all the countries, ordered"
+2788.36,2791.32,from countries with the highest population up
+2791.32,2793.88,at the top of the file down to the countries
+2793.88,2796.36,with the lowest population at the bottom of the file.
+2796.36,2798.56,So they are basically ranked in this order.
+2798.56,2801.52,So I know that this order is correct.
+2801.52,2806.52,So there's 237 lines in this file.
+2806.52,2807.72,What do we notice about the data?
+2807.72,2809.84,So we need to know what the data looks like in order
+2809.84,2811.0,to read the file in.
+2811.0,2815.88,"And again, we're going to be interested in kind"
+2815.88,2817.64,of extracting certain parts of it.
+2817.64,2821.2,"For the particular analysis, I'm going to do next."
+2821.2,2823.92,I'm actually only interested in the population itself.
+2823.92,2826.24,So I don't care about the rank.
+2826.24,2830.2,And I don't actually care about the country either.
+2830.2000000000003,2834.6000000000004,So all the code that's going to read in the file
+2834.6000000000004,2838.5600000000004,will only be interested in extracting the population value.
+2838.5600000000004,2842.84,"And notice once again, we've got our commas here"
+2842.84,2844.5600000000004,in the population values.
+2844.5600000000004,2848.5200000000004,So we're going to use the same trick to get rid of those.
+2848.5200000000004,2851.1200000000003,"Again, nice human readable format here,"
+2851.1200000000003,2854.0000000000005,but not so good for reading in the file
+2854.0000000000005,2856.0400000000004,and dealing with the data itself.
+2856.0400000000004,2859.76,So we're going to have to take care of that when we read in.
+2859.76,2862.84,So here's the function that reads in the file.
+2862.84,2866.2400000000002,It's going to have a very similar feel to the previous one.
+2866.2400000000002,2868.6800000000003,"Again, I've got a little sample of our file up here"
+2868.6800000000003,2871.5200000000004,just to remind ourselves what it looks like.
+2871.5200000000004,2873.6400000000003,"So this particular file, I'm only"
+2873.6400000000003,2876.0800000000004,interested in grabbing the population value.
+2876.0800000000004,2879.44,And it's actually a tab separated file.
+2879.44,2884.6800000000003,"So I've got rank, tab, country, tab, population, tab,"
+2884.6800000000003,2886.44,and then the date.
+2886.44,2891.64,"So when I take a line of code, what I'm first"
+2891.64,2894.84,going to do is split it on the tab character.
+2894.84,2898.84,And the tab character is this backslash t thing.
+2898.84,2901.64,"So once I split it on the tab character,"
+2901.64,2903.88,the thing at index 0 is by rank.
+2903.88,2905.76,The thing at index 1 is my country.
+2905.76,2908.16,And the thing at index 2 is my population.
+2908.16,2911.32,The thing at index 3 is my date.
+2911.32,2913.7200000000003,"So if I'm only interested in grabbing the population,"
+2913.7200000000003,2916.6800000000003,I'm going to look at the thing at index 2.
+2916.6800000000003,2920.5200000000004,And this gives me the population as a string here.
+2920.5200000000004,2925.6800000000003,And then we do the exact same trick as before to eliminate the comma.
+2925.6800000000003,2927.6800000000003,"There's no space in this particular case, right?"
+2927.6800000000003,2932.6000000000004,Because I've just got the number saved because of my tab split.
+2932.6000000000004,2935.88,So all I need to do is keep digits.
+2935.88,2937.92,"And then if I keep the digits, then"
+2937.92,2941.1600000000003,I'm just going to keep that number as a population.
+2941.1600000000003,2942.92,"Again, I cast it to an integer because I"
+2942.92,2946.7200000000003,would like to work with numbers in my lists as opposed to strings.
+2946.7200000000003,2947.96,That'll be very weird.
+2947.96,2950.76,"And at the end of this function, I've"
+2950.76,2953.2000000000003,got all of the populations in the same order
+2953.2000000000003,2956.92,"that they were in that file, read in as a list, right?"
+2956.92,2959.28,"Numbers, not strings."
+2959.28,2963.6800000000003,"And so if we plot the populations, just pure populations,"
+2963.6800000000003,2966.0,I'm going to have something like this.
+2973.0,2975.0,"If I plot just the pure populations,"
+2975.0,2977.28,I see something that looks like this.
+2977.28,2978.44,Kind of hard to tell.
+2978.44,2980.32,"I mean, it's a big exponential decrease,"
+2980.32,2983.52,but is that really what it is?
+2983.52,2987.6,"So again, we'll do a little semi-log plot on the y-axis"
+2987.6,2992.76,to see exactly if there's any sort of linear action going on on that log plot.
+2992.76,2997.96,"And unsurprisingly, it kind of matches our intuition."
+2997.96,3002.16,There are very few countries that have a really high population.
+3002.16,3005.8799999999997,There are very few countries that have a low population.
+3005.8799999999997,3009.64,"And then a bunch of countries that are kind of in the middle here,"
+3009.64,3015.2799999999997,"where the population just exponentially decreases, OK?"
+3015.2799999999997,3016.64,All right.
+3016.64,3023.3599999999997,But that's not the analysis I would like to do on this data.
+3023.3599999999997,3025.2,Because that's kind of boring.
+3025.2,3028.7999999999997,"So instead, what we're going to analyze is actually"
+3028.8,3035.36,"just the first digits from every country's population, right?"
+3035.36,3038.6400000000003,"So what I'd like to do from that data set is,"
+3038.6400000000003,3043.0,"once I've grabbed a list of all of the country populations,"
+3043.0,3046.1200000000003,I am going to extract that first digit.
+3046.1200000000003,3050.44,"So the way we do it is if we have a population,"
+3050.44,3057.0800000000004,"I don't know, to five, four, two, one, three, six, whatever,"
+3057.08,3060.2799999999997,"I'm going to take this number, cast it to a string."
+3060.2799999999997,3063.56,"That's what this one line of code is doing, all in one."
+3063.56,3068.48,"It's cast it to a string, extracts the element at index zero."
+3068.48,3070.72,This becomes the string two.
+3070.72,3077.6,"And then we cast that to an integer, right, to give us two."
+3077.6,3080.72,So that line of code does all of those steps in order.
+3080.72,3085.72,"So at the end of this loop, I've got this first digit's list"
+3085.7200000000003,3088.7200000000003,that contains all of the first digits of every single one
+3088.7200000000003,3092.0400000000004,of those country populations.
+3092.0400000000004,3094.28,So I'll print that for you just to give you a sense
+3094.28,3095.5600000000004,of what it looks like.
+3095.5600000000004,3097.32,So we see this.
+3097.32,3102.36,"So we had two countries up at the top that had 1 billion people,"
+3102.36,3105.1600000000003,"1 billion people, then the next country down"
+3105.1600000000003,3107.6800000000003,"had 300 million people, then 200 million,"
+3107.6800000000003,3111.0400000000004,"then 200 million, then 200 million, 100 million, and so on."
+3111.0400000000004,3113.1600000000003,"So just extracting that first digit,"
+3113.16,3118.92,we see this pattern of values.
+3118.92,3122.7599999999998,"So if we plot that, so that's exactly what we do down here,"
+3122.7599999999998,3124.48,and I'll just do it in the slides.
+3124.48,3128.08,"If we plot that list in that order,"
+3128.08,3131.72,we get a plot that looks something like this.
+3131.72,3136.0,It's a nice little sawtooth pattern.
+3136.0,3139.2799999999997,"And if we stare at it a bit, it makes sense."
+3139.28,3143.36,Because the numbers that we got from the file
+3143.36,3146.76,"were already in ranked order, highest population"
+3146.76,3149.1200000000003,to the lowest population.
+3149.1200000000003,3155.44,"So here, down here, we had, sorry, down here,"
+3155.44,3159.0800000000004,"this little dot right here had two countries that were 1 billion,"
+3159.0800000000004,3163.1600000000003,"so 1,1, and then had one country that had 300 million,"
+3163.1600000000003,3166.0,"and then it had three countries that had 200 million,"
+3166.0,3169.76,"then a bunch of countries that had 100 million something,"
+3169.76,3171.76,"so 1,1,1,1,1,1."
+3171.76,3174.04,"And then, since we're going in decreasing order"
+3174.04,3176.8,"in terms of rank, once we've finished going"
+3176.8,3179.24,"to that significant digit, when we move down,"
+3179.24,3183.08,"then we're going to start looking at countries that have 90 million,"
+3183.08,3186.48,"90 million, 90 million, 80 million, 80 million, 80 million, so on."
+3186.48,3189.76,"So just the order of all of these values,"
+3189.76,3192.28,"the first digits of every one of these values,"
+3192.28,3194.84,"it makes sense to have that sawtooth pattern, right?"
+3194.84,3198.08,"We basically have, you know, 9, 8, 7, 6, 5, 4, 3, 2, 1."
+3198.08,3204.36,"9, 8, 7, 6, 5, 4, 3, 2, 1, and so on, right?"
+3204.36,3207.1600000000003,So we get this pattern.
+3207.1600000000003,3215.36,"What I'd like to do is ask how many countries have their first digit,"
+3215.36,3216.48,a one?
+3216.48,3217.88,"It seems like there's a lot, right?"
+3217.88,3221.36,"If we count sort of how many of these countries are down here,"
+3221.36,3222.8,it seems to be a lot.
+3222.84,3224.92,How many countries have a first digit of two?
+3224.92,3228.76,"So again, we count how many countries are on this step of my sawtooth."
+3228.76,3232.8,How many countries have the first digit three and so on?
+3232.8,3235.2000000000003,"And it kind of looks like, I don't know,"
+3235.2000000000003,3238.44,"maybe there are more countries that have a first digit of one,"
+3238.44,3241.32,"then there are countries that have a first digit of nine, right?"
+3241.32,3243.92,"There's only a couple here, maybe like five here,"
+3243.92,3246.36,"maybe one here, a couple here, a couple here."
+3246.36,3250.6000000000004,Whereas the number of countries that have a one are actually a lot.
+3250.6,3254.8399999999997,"So let's try to plot this data, the values here."
+3254.8399999999997,3258.7999999999997,So what I'm interested in doing is creating a histogram.
+3258.7999999999997,3264.04,So a histogram on the x-axis has a bunch of bins.
+3264.04,3268.6,"In this particular case, the way I'd like to bin my data is by saying"
+3268.6,3273.92,"my bins are going to be the digits 1, 2, 3, 4, 5, 6, 7, 8, and 9."
+3273.92,3277.64,"That's the x-axis and the y-axis is going to be a count, right?"
+3277.64,3282.24,A frequency of how many of my countries have the number 1
+3282.24,3283.2799999999997,as their first digit?
+3283.2799999999997,3287.08,"How many countries have the number 2 as my first digit, and so on?"
+3287.08,3290.7599999999998,So in terms of this list containing all of the first digits
+3290.7599999999998,3295.96,"in the countries, I essentially have one bin"
+3295.96,3298.6,that counts how many ones I have in this list.
+3298.6,3301.4,Another bin that counts how many 2s I have in this list.
+3301.4,3306.16,"Another bin that counts how many 3s I have in this list, and so on."
+3306.16,3307.24,OK.
+3307.2400000000002,3312.2000000000003,"So if I plot that histogram, it looks like this."
+3312.2000000000003,3318.28,"Now, I would have expected this histogram to be about even, right?"
+3318.28,3322.5600000000004,"Like, why does it matter the first digit?"
+3322.5600000000004,3326.28,"It seems like, in this particular case, the first digit"
+3326.28,3329.76,has a higher probability of being a 1 than being a 9.
+3329.76,3333.1200000000003,"But intuitively, I would have expected every digit"
+3333.1200000000003,3335.0400000000004,"to come out with equal probability, right?"
+3335.04,3337.88,"11%, 1 over 9."
+3337.88,3340.92,"But instead, what we get is this really surprising result,"
+3340.92,3346.72,which is that the first digit seems to be about 30%.
+3346.72,3351.2799999999997,To have the first digit of 1 seems to be about 30%.
+3351.2799999999997,3354.44,To have the first digit being a 2 seems
+3354.44,3358.4,to be about 18% or something.
+3358.4,3359.36,And so on and so on.
+3359.36,3362.04,And then the first digit being a 9 is pretty low.
+3362.04,3364.36,It's going to be about what is this?
+3364.36,3367.68,"12 out of 200 countries, right?"
+3367.68,3371.04,So pretty low probability.
+3371.04,3374.08,"So as it turns out, this graph actually"
+3374.08,3378.0,follows something called Benford's law.
+3378.0,3380.24,And this is a well-proven law.
+3380.24,3382.24,It applies to a bunch of different data
+3382.24,3383.56,sets that we find in nature.
+3383.56,3387.0,"Data sets that don't really have upper or lower bounds,"
+3387.0,3389.8,"like country populations, right?"
+3389.8,3392.6400000000003,So Benford's law effectively says
+3392.6400000000003,3398.84,"the probability of the first digit in some big set of numbers,"
+3398.84,3402.76,"being a 1, a 2, a 3, whatever, this d being the 1, a 2,"
+3402.76,3406.0,"a 3, or whatever, is according to this formula."
+3406.0,3409.92,"So if we find the probability of that first digit being a 1,"
+3409.92,3416.04,"we basically find log base 10 of 2, which is about 0.28."
+3416.04,3418.4,Probability of that first digit being a 2
+3418.4,3423.2000000000003,"is log base 10 of 1 1 1 1 half, which is about 0.17."
+3423.2000000000003,3428.04,"So our data, the country populations, right?"
+3428.04,3431.08,"If we look at just the first digit of our data,"
+3431.08,3436.4,"it also follows this law, just pretty neat, right?"
+3436.4,3440.56,So a lot of data that we deal with on a daily basis
+3440.56,3444.36,"follows this law, number of social media followers,"
+3444.36,3448.0,"number of post people make stock values, grocery prices,"
+3448.0,3452.16,"board statistics, building heights, income taxes,"
+3452.16,3458.48,"things like that, all follow this law, which is pretty cool."
+3458.48,3464.84,"As an aside, one of the ways that people figure out tax fraud"
+3464.84,3468.84,on income taxes is by applying Benford's law
+3468.84,3470.68,to income taxes submitted.
+3470.68,3473.56,"People when they kind of submit fraudulent numbers,"
+3473.56,3475.96,they tend to make every number kind of come up
+3475.96,3477.6,with an equal probability.
+3477.6,3479.44,They forget about Benford's law.
+3479.44,3483.96,And so they run this Benford's law on potentially fraudulent
+3483.96,3485.7999999999997,tax submissions.
+3485.7999999999997,3489.12,And they figure out that whatever those people submitted
+3489.12,3490.3199999999997,don't actually follow this law.
+3490.3199999999997,3492.24,And hence it's fraudulent.
+3492.24,3496.92,"So if you're making up numbers, just remember Benford's law."
+3499.92,3504.44,"So yeah, that's a really interesting thing"
+3504.44,3506.36,that can come out of some data.
+3506.36,3511.28,"And again, we got to visualize it and see the law in action."
+3511.28,3514.6,"OK, one last example I want to go through."
+3514.6,3519.52,This one will show a bunch of different things.
+3519.52,3520.6400000000003,It's going to have a lot of code.
+3520.6400000000003,3522.2400000000002,I'm just going to briefly talk about it.
+3522.2400000000002,3525.4,"But the code is in the slides, or sorry, in the Python file,"
+3525.4,3528.32,if you want to look at it more in depth.
+3528.32,3531.76,I'm going to compare city temperatures again.
+3531.76,3534.0,But we're going to do a more in-depth analysis
+3534.0,3536.64,dealing with a whole bunch more data.
+3536.64,3541.72,"So this particular data set, I've got daily temperatures"
+3541.72,3546.2,for 55 years for 21 different cities.
+3546.2,3549.28,So the amount of data that I have here
+3549.28,3554.4,is going to be 365 times 55 times 21.
+3554.4,3558.44,So that's how many rows would exist in my data set.
+3558.44,3562.0,So that's a lot of numbers to look at manually.
+3562.0,3565.4,"So instead, we're going to rely on aggregating it"
+3565.4,3567.12,with averages and things like that
+3567.12,3570.4,to make sense of all of this data.
+3570.4,3572.32,So this is what the file would look like.
+3572.32,3576.72,I've got three columns effectively separated by commas.
+3576.72,3580.0,So the first one corresponds to the second one
+3580.0,3584.12,corresponds to the temperature in Celsius.
+3584.12,3586.96,And the third one is the date that it was taken.
+3586.96,3588.68,So it's nicely in order.
+3588.6800000000003,3592.2400000000002,So the date is delineated like this.
+3592.2400000000002,3595.32,"So it's got year, year, year, year, month, month, day, day."
+3595.32,3597.6000000000004,"So this is 1961, January 4th."
+3597.6000000000004,3599.28,That's how we would read that.
+3599.28,3602.8,"So later, when we're trying to think about which one"
+3602.8,3607.1600000000003,of grabbing particular temperatures for a specific year
+3607.1600000000003,3610.9600000000005,"or things like that, then we can keep the format in mind"
+3610.9600000000005,3614.5200000000004,and use that to extract relevant information.
+3614.5200000000004,3615.32,OK.
+3615.32,3617.6000000000004,So the first thing we want to do is to grab
+3617.6,3621.64,"this data and save it, again, in a nice data structure"
+3621.64,3624.56,"that allows us to manipulate it, her heart's content."
+3624.56,3626.12,That is a list.
+3626.12,3629.7999999999997,So we're going to open up our file for reading.
+3629.7999999999997,3633.04,"I'm creating two lists here, one for the temperatures,"
+3633.04,3634.52,the other one for the dates.
+3634.52,3636.56,I'm going to loop through each line in my file.
+3636.56,3638.2,"And I know it's comma separated,"
+3638.2,3640.2799999999997,so I'm going to split it on the comma.
+3640.2799999999997,3643.64,The thing at index 0 will be my city.
+3643.64,3646.36,The thing at index 1 will be my temperature value.
+3646.36,3649.4,The thing at index 2 will be my date.
+3649.4,3651.92,I would like to take the temperature value
+3651.92,3656.88,and save it as a number because I want to plot these numbers.
+3656.88,3661.48,This specific function will get a list of all
+3661.48,3663.84,of the temperatures for a particular city.
+3663.84,3666.6,So the city here is going to be a parameter.
+3666.6,3669.32,"So as I'm reading the file, I would only"
+3669.32,3672.44,like to grab the lines that match that city.
+3672.44,3674.56,"So here, I've got this if statement."
+3674.56,3677.6,So I'm only going to do this stuff inside this if statement
+3677.6,3681.24,if the city is matching the one I'm interested in.
+3681.24,3682.36,And then what do we do?
+3682.36,3684.52,"Well, we're going to take our temperature value,"
+3684.52,3688.96,"which is the thing at index 1, because I split on the commas."
+3688.96,3690.04,Convert it to a float.
+3690.04,3693.36,There's no commas or anything weird like that in that number.
+3693.36,3696.64,"So it's just a pure float, 0.55 as a string."
+3696.64,3700.44,"If we cast it to a float, Python will happily do that for us."
+3700.44,3705.76,"Then we're going to run a Celsius to Fahrenheit function,"
+3705.76,3709.44,throw back to lecture 1 to convert that Celsius
+3709.44,3710.96,to a Fahrenheit value.
+3710.96,3713.6,And then we're going to append all of these temperatures
+3713.6,3715.6,in a nice list.
+3715.6,3716.88,"And at the end of the function, we're"
+3716.88,3718.32,going to return all the temperatures.
+3718.32,3721.6,So it's going to be 365 times 55.
+3721.6,3726.2400000000002,That's how many temperature values we have for one city.
+3726.2400000000002,3729.32,And what we'd like to do as a first step
+3729.32,3732.32,is to just get a sense of the average temperatures
+3732.32,3735.0800000000004,for each one of these different cities.
+3735.0800000000004,3740.0,"So over every single data point that we have for a particular city,"
+3740.0,3742.76,what is the average temperature over all these days
+3742.76,3744.0,for all of these years?
+3744.0,3748.84,So I would like one number to represent the temperature per city.
+3748.84,3750.6000000000004,So that's what this code is doing.
+3750.6000000000004,3753.76,"It's going to first get all of the cities that are in my file,"
+3753.76,3755.52,so all the unique values.
+3755.52,3759.08,Then it's going to get the average temperature
+3759.08,3762.88,over all of those 365 times 55 years.
+3762.88,3765.6,Then it's going to grab the name of my city
+3765.6,3767.84,as just the first two characters.
+3767.84,3770.52,And then it's going to create a nice scatter plot.
+3770.52,3774.2,So I don't want to link all of these city values together.
+3774.2,3778.36,I would just like them to be dots in my plot.
+3778.36,3781.12,"If we do that, we get something that looks like this."
+3781.12,3786.08,So this point here represents the temperature in Seattle
+3786.08,3788.52,over every day over 55 years.
+3788.52,3793.12,So one temperature point that represents the Seattle temperature
+3793.12,3797.2,"for all of this data that I've got, what does this tell us?"
+3797.2,3800.7599999999998,"Well, not much that we didn't already know."
+3800.7599999999998,3805.08,I've got these cities down here that are super cold.
+3805.08,3809.44,And those cities up there that are super warm.
+3809.44,3811.48,And then all the rest of my cities
+3811.48,3813.6,are somewhere in the middle on average.
+3813.6,3815.76,"So nothing that we didn't really know,"
+3815.76,3818.12,nothing groundbreaking here.
+3818.12,3820.2000000000003,What would be a nicer thing to look at
+3820.2000000000003,3823.76,is the temperature change over time.
+3823.76,3829.2000000000003,"So here, my one data point tells me the temperature"
+3829.2000000000003,3830.76,that represents that city.
+3830.76,3833.04,But what I would like to do is grab the temperature
+3833.04,3836.4,that represents that city for each year.
+3836.4,3838.48,"So for each year, I would like to get"
+3838.48,3840.2,the average temperature for that year.
+3840.2,3842.96,And maybe I could see a trend for the temperatures
+3842.96,3847.36,"getting warmer over time or cooling over time,"
+3847.36,3850.28,"or something like, or not having any change at all."
+3850.28,3852.48,So this is the code that does that.
+3852.48,3855.48,I've got get temperatures by year for a city.
+3855.48,3857.56,This is the function that gets run.
+3857.56,3859.52,And it calls the one at the top.
+3859.52,3862.96,"So here, I've got the code from the previous slide."
+3862.96,3865.8,It gets a list of all the temperatures for a particular city.
+3865.8,3869.36,So over all those 55 years.
+3869.36,3872.84,And then I'm interested in all of these different years.
+3872.84,3874.32,"So for each one of these years, I'm"
+3874.32,3877.6800000000003,going to get a temperature value.
+3877.6800000000003,3880.6000000000004,"This get temps for years, the function up there."
+3880.6000000000004,3884.96,And all it does is it looks at that third column and grabs the year.
+3884.96,3890.2400000000002,It matches those first four characters of the year entry.
+3890.2400000000002,3891.96,"And as long as it matches that year,"
+3891.96,3894.6400000000003,then it's going to get added to this running sum.
+3894.64,3900.8399999999997,"And at the end, I'm going to get the average for the year."
+3900.8399999999997,3904.56,And let's say that I'm going to compare four different cities.
+3904.56,3909.12,So I've got 55 values for each city representing
+3909.12,3912.6,the average temperature in those 55 years.
+3912.6,3915.04,And I've got four cities to compare.
+3915.04,3917.8799999999997,So this is what one plot would look like for Boston.
+3917.8799999999997,3920.08,"Sorry, so this is what the plot would look like."
+3920.08,3921.8399999999997,I've got one line for Boston.
+3921.8399999999997,3924.52,"That's the blue one line for San Diego, the red one line"
+3924.52,3929.96,"for Phoenix, the orange and one line for Miami, the green."
+3929.96,3930.8,What do we see?
+3930.8,3935.0,"Well, yes, Boston, on average, is a lot colder"
+3935.0,3936.68,than any of the three other cities.
+3936.68,3939.64,"Cool, we do that."
+3939.64,3942.64,Miami and Phoenix are nicely hot there.
+3942.64,3944.16,I'd like to be there right now.
+3944.16,3946.2,And what about trends?
+3946.2,3947.88,This is why we did this analysis.
+3947.88,3949.84,What do we see from the trends here?
+3949.84,3951.56,"Well, the Boston temperature may be"
+3951.56,3954.52,increases a little bit slightly over time.
+3954.52,3957.7999999999997,San Diego seems to say about study.
+3957.7999999999997,3962.2799999999997,"The Phoenix one seems to increase, pretty dramatically,"
+3962.2799999999997,3965.6,as time has gone by on average.
+3965.6,3969.92,And the Miami one may be also slightly increased.
+3969.92,3972.92,But this only tells us average temperatures.
+3972.92,3978.12,So one thing that we can do is check out the extremes.
+3978.12,3980.88,"In addition to plotting the average,"
+3980.88,3987.08,let's also plot the minimum for Boston and the maximum for Boston.
+3987.08,3990.12,And see exactly how close that average is.
+3990.12,3993.4,Is the average in the middle and then the minimum and maximums
+3993.4,3995.4,are super far away from the average?
+3995.4,3998.96,Or are they all pretty much close to the average?
+3998.96,4001.56,So this is the code that does that.
+4001.56,4005.88,The function here is exactly the same as on the previous slide.
+4005.88,4009.08,"The only difference is, instead of returning the average,"
+4009.08,4013.3199999999997,we're also going to grab the max and the min for that list of temperatures.
+4016.3199999999997,4021.7999999999997,And then we've got all of the different cities to plot this for.
+4021.7999999999997,4025.7999999999997,So we get something that looks like this.
+4025.7999999999997,4032.68,"Again, at first glance, I tend to ignore the y-axis at first glance."
+4032.68,4038.2,"So at first glance, again, it looks like the minimums"
+4038.2000000000003,4039.36,are pretty much the same.
+4039.36,4041.0000000000005,The maximums are pretty much the same.
+4041.0000000000005,4043.0000000000005,Averages are pretty much the same.
+4043.0000000000005,4044.76,So misleading to think about that.
+4044.76,4052.5600000000004,"So once again, let's help the reader and set limits on our y-axis."
+4052.5600000000004,4057.1600000000003,So here I've got a limit to my code.
+4057.1600000000003,4062.88,It's going to have every one of my graphs start at zero and top out at 100.
+4062.88,4066.2400000000002,And now the plots are nicely comparable.
+4066.2400000000002,4069.0000000000005,So now I'm plotting the average temperature for each year.
+4069.0000000000005,4071.0800000000004,So there's 55 of these data points.
+4071.0800000000004,4074.7200000000003,The minimum temperature for each year and the maximum temperature for each year.
+4074.7200000000003,4078.48,So 55 data points being plot.
+4078.48,4082.0400000000004,"What can we tell, a lot easier to infer information from this, right?"
+4082.0400000000004,4085.32,So we can see that the average temperature in Boston
+4085.32,4090.2400000000002,is the minimum temperature in Miami and San Diego.
+4090.2400000000002,4091.2400000000002,What else can we see?
+4091.2400000000002,4096.0,"The variation in Boston is pretty high, right?"
+4096.0,4099.52,"The variation in Miami and San Diego is a lot lower, right?"
+4099.52,4104.64,"San Diego goes from 40 to 80, whereas Boston goes from zero to 90."
+4104.64,4106.92,So pretty high variation.
+4106.92,4113.2,"The average for Boston and San Diego seems to be almost the same, right?"
+4113.2,4117.28,But that variation is very different between these two cities.
+4117.28,4120.28,OK.
+4120.28,4123.88,"OK, so yeah, question."
+4123.88,4127.32,So what happened if there's a value lower than the minimum one?
+4127.32,4130.28,"Oh, yeah, then it doesn't get plotted."
+4130.28,4134.84,"Yeah, so that was a tenuous there, but it didn't go down."
+4134.84,4138.8,I could imagine like the minimum in Boston being below zero for one year.
+4138.8,4141.84,"But yeah, then it just wouldn't get plotted."
+4141.84,4147.04,So you could use that to guide your limits.
+4147.04,4153.24,"Like the code here could say, why limit equals minimum of those three lists, right?"
+4153.24,4160.24,And then you'll be sure to make sure that minimum will be hit in the limits.
+4160.24,4163.0,Great question.
+4163.0,4168.28,"OK, so one other thing that we can look at is the distribution of temperatures."
+4168.28,4169.719999999999,So this is a nice plot.
+4169.719999999999,4174.36,It gives us sort of an overview look at what happens year by year.
+4174.36,4178.2,But what if we focus on one specific year?
+4178.2,4182.88,"And now for that year, let's think about what"
+4182.88,4186.08,"the temperature distribution looks like, right?"
+4186.08,4191.24,So what I'm interested in plotting is something like this.
+4191.24,4197.64,So I've got on the x-axis maybe bins that correspond to different temperatures.
+4197.64,4203.28,"So a temperature of zero, temperature of one, temperature of two, three, four, and so on."
+4203.28,4208.0,"And then this is going to be pretty big, because maybe my max temperature will be 100."
+4208.0,4212.76,"So for one particular year, I would like to have 100 bins."
+4212.8,4219.2,And the height of each bin is going to be a count of how many days within that year
+4219.2,4221.4800000000005,we reached a temperature of zero.
+4221.4800000000005,4224.92,How many days within the year we reached a temperature of one?
+4224.92,4227.84,"And we can average things or we can round temperatures, right?"
+4227.84,4231.92,"Because obviously the temperature would be like 20.6 or something like that, right?"
+4231.92,4236.52,And then we can just round it so it fits in one of these bins.
+4236.52,4239.12,So that's exactly what this code is doing.
+4239.12,4245.48,So here it's looping over every single one of the dates.
+4245.48,4249.5599999999995,And we're creating this list of the temperatures.
+4249.5599999999995,4251.8,And the list is for one specific year.
+4251.8,4254.599999999999,"So this year is my parameter here, right?"
+4254.599999999999,4257.12,"So here, this is just going through the data and"
+4257.12,4260.64,ensuring that I'm grabbing only the rows that match that year.
+4262.4,4269.04,"And then down here is where I'm creating a list of 100 elements, right?"
+4269.04,4276.72,"So this down here, you can think of it as a list, I like this."
+4276.72,4281.12,"And the index, nicely, it worked out really nicely."
+4281.12,4285.56,"The index is going to correspond to a temperature value, which is weird to think."
+4285.56,4289.4,It only works in this particular scenario with Fahrenheit temperatures.
+4289.4,4293.28,But the index in this list corresponds to a temperature.
+4293.28,4299.36,"So as I'm iterating through my list of temperatures over 365 days in a year,"
+4299.36,4302.04,I'm going to round that temperature.
+4302.04,4306.8,"And I'm going to add it to the index that I believe it belongs to, right?"
+4306.8,4312.8,"So in this way, I'm going to have, if the temperature was four degrees,"
+4312.8,4316.44,"then at index four, I'm going to increment my count by one."
+4316.44,4320.5199999999995,"And if further on in the list, I've got another temperature that's four,"
+4320.5199999999995,4322.44,"at index four, I'm going to increment it again."
+4322.4400000000005,4330.52,"So I've got this nice, list, these nice counts of all of the temperatures at different,"
+4330.52,4335.120000000001,"sorry, all of the counts at all of these different temperatures, right?"
+4335.120000000001,4339.76,"So out of those 365 days, how many days had a temperature of four?"
+4339.76,4345.320000000001,"365 days, how many days had a temperature of 85?"
+4345.320000000001,4346.68,"OK, and then we can plot it."
+4346.68,4352.240000000001,"And we're not going to plot a regular plot, because we don't want these connected."
+4352.24,4356.8,"We're not going to do a histogram, because we made our own histogram here."
+4356.8,4358.92,"Instead, we're going to do a bar plot."
+4358.92,4363.599999999999,And the bar plot takes in my x-axis and my y-axis.
+4363.599999999999,4369.8,"The x-axis being this list 0 through 100, corresponding temperatures."
+4369.8,4375.96,And the y-axis being the count of how many days had each one of those temperatures.
+4375.96,4378.8,And we get something that looks like this.
+4378.8,4380.92,"So this is only for one year, right?"
+4380.92,4384.4,"So if we count the sum of all of these bars, right?"
+4384.4,4387.4,How many times they appear?
+4387.4,4390.4800000000005,It should add up to 365 days.
+4390.4800000000005,4394.96,"So this is the distribution, I think, in 1961."
+4394.96,4397.36,Left is Boston and right is San Diego.
+4400.96,4403.76,"Already, we can tell some pretty interesting things from this, right?"
+4403.76,4408.2,"So 1961, what does the distribution look like for these two cities?"
+4408.2,4410.64,"Well, it looks like this is something we could already tell"
+4410.68,4412.320000000001,from the minimum and maximum.
+4412.320000000001,4418.08,It looks like temperatures in Boston kind of went from about 0 to 85.
+4418.08,4423.64,But what the distribution tells us that the minimum and maximum couldn't tell us
+4423.64,4426.8,"is how many days were that low, right?"
+4426.8,4429.160000000001,How many days were that high?
+4429.160000000001,4435.0,"Is it that we have some sort of nice looking bell curve type distribution, right?"
+4435.0,4439.360000000001,"Where most of our temperatures land comfortably in this middle range, right?"
+4439.36,4441.32,That's one option.
+4441.32,4449.36,"Or maybe there is some city out there where it just has an even distribution, right?"
+4449.36,4456.12,"So basically, they're going to have temperatures that, sorry,"
+4456.12,4458.5199999999995,the count of the temperatures basically is even.
+4458.5199999999995,4461.48,So it doesn't really matter what temperature you're talking about.
+4461.48,4465.44,"There will be an even number of days throughout the year that are at that temperature, right?"
+4465.44,4467.5599999999995,So this kind of graph can tell us this.
+4467.56,4473.400000000001,So it looks like the temperature in Boston kind of maybe follows a very wide bell shaped curve
+4473.400000000001,4477.080000000001,kind of maybe two bumps by my model.
+4477.080000000001,4483.04,"Temperature in San Diego get much a much lower variability,"
+4483.04,4487.0,"but also seems to follow this bell type curve here,"
+4487.0,4490.72,"where maybe by my model with two bumps here,"
+4490.72,4494.04,"one with temperatures that are just, you know, in the 55s,"
+4494.04,4496.2,"very few temperatures in the middle and then you know,"
+4496.2,4499.56,a bunch of temperatures in the 70s.
+4499.56,4502.76,So this is the distribution for 1961.
+4502.76,4508.68,"And then we can again ask what happens to the distribution in a later year, right?"
+4508.68,4512.64,"So if we take more than one year that we plot here,"
+4512.64,4515.88,I'm going to plot 1961 and 2015.
+4515.88,4518.2,"So just two years, not everything in between."
+4518.2,4521.56,"That would be a very, very cluttered graph."
+4521.56,4530.0,I'm going to label the 1961 temperatures blue and the 2015 temperatures red.
+4530.0,4533.240000000001,So then I get something that looks like this.
+4533.240000000001,4539.4800000000005,"A little hard to tell, so what we can do for this graph is we can actually add something called an alpha value"
+4539.4800000000005,4543.84,"so a transparency, so we can kind of see what's behind the red."
+4543.84,4546.52,Does the blue go all the way down here?
+4546.52,4551.240000000001,"Is the blue just, you know, slightly below the red, hard to tell from this?"
+4551.24,4553.88,"One thing we can do is to add that transparency, like I said,"
+4553.88,4559.5199999999995,another thing that we can do is to just plot them on two separate subplots.
+4559.5199999999995,4567.679999999999,And then we can try to compare them to see exactly what happened from 1961 in terms of the distribution
+4567.679999999999,4570.639999999999,"to 2015, again, in terms of the distribution, right?"
+4570.639999999999,4574.36,"So you can, if you want to play around with different cities, you know, your home city"
+4574.36,4578.16,and see exactly what happened to the temperatures over all those years.
+4578.16,4581.44,So it's kind of a cute thing to try.
+4581.44,4584.44,Any questions?
+4584.44,4587.639999999999,"Okay, so that's the end."
+4587.639999999999,4591.68,"We've really just scratched the surface of the things that you can do with plotting today, right?"
+4591.68,4594.12,We saw how to customize our graphs.
+4594.12,4598.08,"We saw how to create labels, you know, some really, really basic things."
+4598.08,4604.84,"But I hope that sort of throughout all this, you saw how useful it is to visualize the data, right?"
+4604.84,4607.0,"The commands are not so important, right?"
+4607.0,4608.4800000000005,Because you can always look those up.
+4608.4800000000005,4612.04,"But what's important is to take some sort of set of data, right?"
+4612.04,4615.4400000000005,"Which you'll be working with in the real world, if you do a Europe,"
+4615.4400000000005,4619.12,"if you decide to take, you know, the computer science courses in other departments,"
+4619.12,4622.24,"computation courses, you'll be working with data."
+4622.24,4625.4800000000005,"And as soon as you get it, it's important to just visualize it,"
+4625.4800000000005,4628.76,"to see what it looks like, sort of get a general sense of it."
+4628.76,4632.28,"And once you get a sense of it, it can lead to more questions,"
+4632.28,4635.92,"which will cause you to kind of visualize the data in a slightly different way,"
+4635.92,4642.639999999999,which becomes more useful in answering questions and potentially posing new questions to investigate.
+4642.639999999999,4644.08,"So, that's it for today."
+4644.08,4649.36,Next lecture will be just tying up some loose ends regarding dictionaries
+4649.36,4653.12,and just some ideas and hash tables and how dictionaries are stored in memory
+4653.12,4656.88,"as well as doing a little bit of preview of simulations,"
+4656.88,4660.24,"which is something that's a really useful technique, you know,"
+4660.24,4664.04,"again, if you're going to do some more computation courses in other departments,"
+4664.04,4666.84,"a simulation is something that's going to be really, really helpful."

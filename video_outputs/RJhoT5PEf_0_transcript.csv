@@ -1,0 +1,814 @@
+Start Time,End Time,Text
+0.0,13.68,"All right, let's get started."
+13.68,19.72,Last lecture we began talking about an entirely new topic in computer science and we
+19.72,25.72,"have begun learning about how to figure out the runtime of our programs, right?"
+25.72,32.24,So we looked at how to actually time the program by figuring out exactly how long it takes
+32.24,34.8,and then how to count the number of operations in the program.
+34.8,39.08,Today we're going to do very same thing to begin with.
+39.08,42.879999999999995,So for the first half of the lecture we'll time a bunch of programs and we'll count the
+42.879999999999995,47.599999999999994,number of operations just like before but we're going to do them in a context of slightly
+47.599999999999994,53.879999999999995,"different, slightly more interesting programs or functions involving just pure numbers"
+53.88,58.88,as our parameters and then functions that involve lists as our parameters.
+58.88,62.56,That'll be first half of the lecture and then from there on we're going to look at the
+62.56,67.08,idea of order of growth which is kind of what we're building up this set of lectures to.
+67.08,72.12,"And then the order of growth, there'll be a little bit of math, a little bit of graphing,"
+72.12,79.36,but not too much and then we're just going to see how to actually evaluate the order of
+79.36,82.12,growth of functions from there on out.
+82.84,88.2,So let's begin by just figuring out the run time of our programs.
+88.2,93.24000000000001,This was a really quick and easy way to first figure out exactly how long our programs take.
+93.24000000000001,98.76,So last lecture we imported this time module and we're doing that again this time but instead
+98.76,108.84,"of actually running the time function that we had seen last lecture here, instead of running"
+108.84,115.88000000000001,the time function which gave us this sort of global absolute time since some date in the
+115.88000000000001,120.08,"past, we're going to run this slightly different function called performance counter and this"
+120.08,126.4,is what is typically used in the real world to figure out how long an actual program or
+126.4,128.48000000000002,a function takes to run.
+128.48000000000002,133.4,The reason we're using this is because it's more accurate so the time.time function that
+133.4,139.84,we use last lecture gave us maybe precision to one time sent negative three or something
+139.84,142.68,"very, very big like that."
+142.68,148.24,"The performance counter can actually give us precision to something that's a lot, lot smaller"
+148.24,151.64000000000001,so maybe one time sent negative eight or something very small.
+151.64000000000001,158.20000000000002,So we'll be able to see the timings of some functions that were basically zero in the
+158.20000000000002,159.88,last lecture.
+159.88,165.68,"Okay, so just a quick review of how we actually get the time that a function takes to run,"
+165.68,171.16,we run this performance counter time and this one gives us not an absolute time but more
+171.16,176.76,"of a shorter time frame, not from some time in the past."
+176.76,181.35999999999999,"And the performance counter is very useful when we're getting these DTs, right, the difference"
+181.35999999999999,182.96,in some times.
+182.96,187.68,So we're running the performance counter to get the quote unquote starting time.
+187.68,192.56,"We run the function, we run the performance counter again to get the quote unquote stopping"
+192.56,196.12,"time, subtract the starting time to get the DT."
+196.12,202.4,"Okay, so and then we will print that time to see how long the function actually takes to"
+202.4,203.4,run.
+203.4,205.72,"Yeah, that's the way I said."
+205.72,212.44,"Okay, so we're going to look at two different functions than last time, but they're going"
+212.44,216.64000000000001,to have sort of the same overarching themes that we saw last lecture.
+216.64000000000001,220.96,"So the first function we're going to look at is called convert to kilometers, taking"
+220.96,225.4,in some miles and returns the value in kilometers.
+225.4,228.88000000000002,And the second function is a function named compound.
+228.88000000000002,231.88000000000002,So this one should seem very familiar.
+231.88000000000002,235.60000000000002,It will bring flashbacks to problem set one.
+235.60000000000002,241.56,"It's a function that takes in a monthly investment, an interest rate for the month, and some number"
+241.56,244.88000000000002,of months to invest that much.
+244.88,248.72,And it returns how much money you've made over those number of months.
+248.72,254.12,"So you can see here, you have an total initialized, a loop that goes through that many months, and"
+254.12,258.4,"it updates the total based on the interest rate and how much money you have there right now,"
+258.4,261.12,plus whatever you've invested for that month.
+261.12,265.04,"Okay, so the three questions we're going to answer just like we answered last lecture is"
+265.04,270.84,"how long, natural seconds does it take to run these functions, which input parameters does"
+270.84000000000003,273.28000000000003,the function actually depend on?
+273.28000000000003,279.6,"And do these two functions actually run for different amounts of time, and sort of what is"
+279.6,280.6,"that difference, right?"
+280.6,286.16,"Does one run in 12 seconds, and the other one run in 0.5, what is the actual time that it"
+286.16,288.84000000000003,takes for them to run?
+288.84000000000003,293.8,"So this is our code, so these are the two functions before we go on."
+293.8,296.68,Let me just show you how we're creating the inputs.
+296.68,300.72,"So just like before, we're creating a list of all of the different inputs we're going to run"
+300.72,302.64000000000004,the function with.
+302.64000000000004,309.12,"So here I've got this Ln that will contain the numbers 1, 10, 100, 1000, and so on."
+309.12,315.0,"And these are going to be the parameters to my function, one at a time, of course."
+315.0,320.16,"And then I've got my loop here for each one of those inputs, 1, 10, 100, 1000, I'm just"
+320.16,322.52000000000004,"going to run my function, right?"
+322.52000000000004,328.6,"So here I'm measuring the time it takes, and then I'm going to report the time that it"
+328.6,331.44,took to run the program.
+331.44,336.56,"And just for fun, I'm also going to report how many times this program could run in one"
+336.56,337.76000000000005,second.
+337.76000000000005,341.76000000000005,"Because for me, it was a little bit hard to read, you know, one time instead of negative, you"
+341.76000000000005,347.16,"know, 8 or something like that, but it was a lot easier for me to see this big number"
+347.16,351.8,for how many times that function could have run in one second.
+351.8,360.6,"So here I've got a convert to kilometers, so I'm going to run it."
+360.6,367.52000000000004,"And we're going to see, it's this right here, how long the function actually took."
+367.52000000000004,372.28000000000003,"So last time we ran a program that was really simple like this, all of it basically said"
+372.28000000000003,373.6,"it took zero seconds, right?"
+373.6,379.88,It was just so fast that that time.time function wasn't able to pick up that precise time
+379.88,383.88,"difference, but this performance counter can, right, which is a lot nicer."
+383.88,390.15999999999997,"So now we see that no matter what the input, it looks like the time is pretty much the same,"
+390.15999999999997,391.15999999999997,right?
+391.15999999999997,395.96,"Three times ten negative seven seconds, no matter what the input is, right?"
+395.96,399.12,That was expected.
+399.12,402.48,Now what about the compound function?
+402.48,406.12,"This one's going to be a little bit more interesting, because there are actually three parameters"
+406.12,408.24,"to this function, right?"
+408.24,413.64,So what we're going to do is change each one and see which one of those parameters actually
+413.64,416.76,has an effect on the runtime.
+416.76,425.36,"So here, this bit, is going to fix my interest rate and fix the number of months, and I'm going"
+425.36,428.84000000000003,to change the amount I invest every month.
+428.84000000000003,431.16,"So if I run that, that was pretty fast."
+431.16,436.12,"Again, we look at the results here, and no matter how much I invest every month, it looks"
+436.12,439.48,"like the program doesn't really change how long it takes to run, right?"
+439.48,446.4,"It's always about one times ten to the negative six seconds to run, all right?"
+446.4,448.56,What if I change the interest rate?
+448.56,451.36,So this one was a little bit harder to change.
+451.36,458.56,"What I settled on this as the thing I'm varying, sorry, I'm varying it in this way."
+458.56,465.16,"So it's going to be 1.1, or 1.01, or 1.001."
+465.16,469.64000000000004,"That's what I'm going to invest, the interest rate for whatever I'm going to invest in,"
+469.64000000000004,476.24,and I'm going to fix $10 as my investment per month and fix the 12 months again.
+476.24,484.16,"So if I run that same deal, it looks like changing this investment isn't really making much"
+484.16,489.76000000000005,"of a difference in how long it takes the program to run, all right?"
+489.76000000000005,492.08000000000004,One last parameter to try.
+492.08,497.52,"So now I'm going to fix the initial investment to $10 a month, and I'm going to fix my interest"
+497.52,505.2,"rate to this per month, and I'm going to vary how many months I'm going to invest this."
+505.2,511.59999999999997,"So again, this N will be 1, 10, 100, 1,000, 10,000, and so on."
+511.59999999999997,514.04,So let's see what this is going to do.
+514.04,517.76,"All right, it's doing something different than the other two, because it hasn't finished"
+517.76,522.2,"running yet, so it's still working on this last one down here."
+522.2,526.04,"But we can see that more interesting things are happening now, right?"
+526.04,531.76,"So here I've got, initially it's a little bit hard to tell for those small numbers, which"
+531.76,537.24,"is fine, but luckily we're able to run it for a bunch of inputs."
+537.24,544.52,"So starting from about here, when I start investing my money over 1,000 months, 10,000 months,"
+544.52,547.72,"100,000 months, and so on, it looks like we can kind of see"
+547.72,548.72,a pattern.
+548.72,554.84,"Again, for 1,000 months, the program takes about 5 times 10 to negative 5 seconds to run."
+554.84,561.52,"If I increase the number of months by 10, it takes 5 times 10 to negative 4 seconds to run."
+561.52,567.84,"And then as my input increases by 10, the number of months, my time to run seems to increase"
+567.84,569.76,"by 10 as well, right?"
+569.76,577.36,"So 0.005, 0.05, 0.07, 0.8, something like that."
+577.36,582.08,"Okay, so this is from a previous run."
+582.08,587.08,"Of course each run will be different, because we're just purely grabbing the time that the"
+587.08,588.88,program took to run.
+588.88,593.52,"So the actual time will be different, but few things to notice."
+593.52,597.96,"So Python actually reported the time it took the program to run in scientific notation, which"
+597.96,599.12,is kind of cool.
+599.12,603.92,"So this is 4.3 times 10 to the negative 6, so it knew how to show it to me like that, so"
+603.92,608.16,"it's not, it doesn't have a bunch of zeros in there."
+608.16,617.4,"And then the observation, as you might have guessed, for this convert to kilometers, was independent."
+617.4,621.44,"So this is the kilometers, not the compound function."
+621.44,627.08,"But then the compound function here, this is again from a previous run, we can make a"
+627.08,629.08,few observations.
+629.08,639.44,"So the first was that the time only changed with input when we changed end months, right?"
+639.44,644.84,"When we changed the initial investment or the interest rate, the program just basically"
+644.84,646.76,took the same amount of time to run.
+646.76,651.12,So it was only end months that actually made a difference for us.
+651.12,657.6800000000001,"Second observation, again something we noticed, is as we increase the number of runs by 10,"
+657.6800000000001,661.2,the time it takes the program to run also increases by 10.
+661.2,664.2,"Again, something we've talked about."
+664.2,675.24,And the last observation is that we have this relationship very apparent as the input is
+675.24,677.24,"really big, right?"
+677.24,682.98,"As the input is small, I think I mentioned this last time, if for some reason my computer"
+682.98,689.22,updates or decides to dedicate some resources to running an app in the background for
+689.22,690.22,whatever reason.
+690.22,696.22,"As it's trying to figure out the compound function with an input of one, this number could"
+696.22,698.0600000000001,"be changed dramatically, right?"
+698.0600000000001,702.66,Because two times something negative six can be affected a lot by just a little bit of
+702.66,704.98,time dedicated to something else.
+704.98,711.1,"Whereas four seconds or 14 seconds, if my computer dedicates a little bit of time to something"
+711.1,714.9,"else, that four or 14 won't be affected as much, right?"
+714.9,721.02,"So when the numbers are big, that's when we can see the behavior of our function a lot"
+721.02,722.02,"more clearly, right?"
+722.02,726.74,"Not when the numbers are small, okay."
+726.74,732.1,So now I'd like to look at some more functions.
+732.1,737.9,"These functions are going to have the input being a list as opposed to just numbers, right?"
+737.9,741.74,"You've seen a bunch of examples with numbers, but let's see what happens when my input is"
+741.74,743.42,a list.
+743.42,745.98,So here's a very simple function.
+745.98,752.18,"It takes in a list L, and it sums all of the elements in the list L."
+752.18,755.14,So we've seen this a bunch of times already.
+755.14,760.86,"We initialize a total to be zero, we iterate through each element in L, and we keep our running"
+760.86,767.6999999999999,"total by just adding the element to that total, right, pretty simple, and we return it."
+767.7,773.1400000000001,Now how do we actually run this function with a whole bunch of different inputs?
+773.1400000000001,775.46,"Well, that's what we're going to see next."
+775.46,780.4200000000001,So this bit here is exactly the same as before.
+780.4200000000001,787.9000000000001,"It's actually creating for us the list of 1, 10, 100, 1000, 10,000, and so on."
+787.9000000000001,793.94,"But clearly the number 10 cannot be an input to this function, right?"
+793.94,797.5,"Because this function is expecting a list, right?"
+797.5,801.86,"So L cannot be 10, it needs to be a list with some things in it."
+801.86,808.54,"So instead, what we're going to do out of that number, 1, 10, 100, 1000, and so on, we're"
+808.54,812.5,actually going to make a list with just some random dummy numbers in it.
+812.5,814.82,I don't actually care what these numbers are.
+814.82,820.94,"So let's just make them be the number 0 to 9, 0 to 99, 0 to 999."
+820.94,825.42,"And in effect, each one of these lists will then have one element in it, 10 elements in"
+825.4200000000001,829.58,"it, 100 elements in it, 1,000 elements in it, and so on."
+829.58,831.7800000000001,Everyone OK with that?
+831.7800000000001,833.7800000000001,"So the input is now different, it needs to be a list."
+833.7800000000001,838.3800000000001,We're just creating a bunch of lists of varying lengths.
+838.3800000000001,843.1400000000001,So the relationship between these lengths are that the lists are 10 times as big as the
+843.1400000000001,846.34,"previous list, right?"
+846.34,849.0600000000001,So then now I have my input list here.
+849.0600000000001,852.5000000000001,"I do the exact same thing as before, not yet."
+852.5,856.66,I run the performance counter to create my starting time.
+856.66,858.94,"I run my function, and I get the dt."
+858.94,862.22,And I report the exact same thing as before.
+862.22,874.86,"All right, so let's run that down here, running, running, running."
+874.86,876.38,"Again, we have to wait a little bit."
+876.38,880.82,"It looks like it's working, but it's just getting slower and slower, which is fine."
+880.82,883.38,So what do we notice?
+883.38,888.34,"So when we had one element in my list, it took 1 times 10 negative 5 seconds to run."
+888.34,892.4200000000001,"When I had 10, it took 1 times 10 negative 6 seconds to run."
+892.4200000000001,896.0600000000001,It was actually shorter to have more elements in it.
+896.0600000000001,901.5400000000001,"See, this is what I mean when it's very unpredictable for low numbers."
+901.5400000000001,909.5,"But as we get to lists of length 1,000, 10,000, 100,000, a million, and so on,"
+909.5,911.38,we can start to see the pattern.
+911.38,914.94,"So with 10,000, it took 4 times 10 negative 4 seconds to run."
+914.94,918.9,"With 100,000, it took 4 times 10 negative 3 seconds to run."
+918.9,924.26,"And then as the input increases by 10, that is, the length of my list increases by 10,"
+924.26,931.98,"it looks like the program takes 10 times as long to run, a very similar thing as before."
+931.98,939.14,So the first observation that we can make out of this function is that the size of the input
+939.14,942.02,"obviously is now the length of our list, right?"
+942.02,944.34,"It's not just the number 10 or the number 1,000."
+944.34,950.58,"It's a length of length 10 or a list of 1,000."
+950.58,957.46,"Second observation is that, again, just like in the previous case, the average time increases"
+957.46,965.34,"by 10 as the length of our list increases by 10, again, very good."
+965.34,970.26,And just like before this relationship between the size and time is more predictable for
+970.26,973.5,"large sizes than it was for small sizes, right?"
+973.5,979.6600000000001,"As we just saw here, which will surprise me a little bit as well, is for a list that's"
+979.6600000000001,984.6600000000001,"longer, it took a shorter amount of time to run, just counterintuitive, but again, that's"
+984.6600000000001,994.34,"probably because my computer did something here to take a little bit longer to run, okay?"
+994.34,999.5400000000001,"And then the last observation, this is compared to the compound function where we change the"
+999.5400000000001,1000.9,number of months.
+1000.9,1006.7800000000001,"It looks like the time that this program actually takes to run is pretty comparable, just in"
+1006.7800000000001,1012.94,"terms of pure seconds, is comparable to how long it took for the compound to run, right?"
+1012.94,1018.98,"So here when my input was 100 million, I think, yeah, 100 million, it took about 8 seconds"
+1018.98,1025.26,"to run, and when my list had 100 million elements in it, it took about 7 seconds to run,"
+1025.26,1026.26,right?
+1026.26,1034.26,"And then 10 times faster going when we decrease our input by 10, okay?"
+1034.26,1039.26,"So already we're starting to see something that we're going to get, yeah, go ahead."
+1039.26,1050.46,"Oh, some of is just this function that I wrote here, yeah, that's just, yeah, did I name"
+1050.46,1052.46,it something differently in here?
+1052.46,1053.46,"No, it's okay."
+1053.46,1060.3,"Yeah, so already we're starting to get at this idea where I have two functions that do"
+1060.3,1063.42,"wildly different things, right?"
+1063.42,1067.22,"One sums the elements in a list, the other one just loops over some number of months and"
+1067.22,1069.06,does some calculation.
+1069.06,1074.1399999999999,"But it looks like they're sort of in terms of just algorithmically wise, they are very"
+1074.1399999999999,1075.1399999999999,similar.
+1075.1399999999999,1080.54,"They take similar amounts of time, they increase at the same rate, and basically they just"
+1080.54,1084.8999999999999,"have a for loop, right, or some sort of loop that iterates through the input and does something."
+1084.8999999999999,1089.22,"So algorithmically we want to consider both of these functions the same, even though they"
+1089.22,1094.22,implement completely different things.
+1094.22,1097.98,Other questions before we go on to another list function?
+1097.98,1105.9,"Okay, so let's look at a slightly different problem dealing with lists."
+1105.9,1111.54,"So this function, or these three functions, deal with finding an element in a list, and"
+1111.54,1115.54,we're going to compare the runtimes of these three functions.
+1115.54,1121.26,So the first function is going to be a very brute forcey method to find the element in a
+1121.26,1123.06,list.
+1124.06,1133.06,Was there a question?
+1133.06,1140.86,"Okay, so the first function will do a brute force search to find an element x, right here,"
+1140.86,1145.3,one of my parameters within a list of the other one of my parameters.
+1145.3,1152.22,"Basically, given a list of a bunch of elements, this function will just painstakingly look at"
+1152.22,1158.42,each element one at a time and ask whether that element is the one that I'm looking for.
+1158.42,1163.06,"All right, so starting over here, the beginning of my list, and going to the end of my list."
+1163.06,1167.26,That's what is in does.
+1167.26,1173.22,"The next one, binary search, also looks for an element in the list, making sure that the"
+1173.22,1175.06,list is ordered.
+1175.06,1179.26,"But the way that it's going to do it is in a slightly smarter way, so I'm actually going"
+1179.26,1182.86,to draw my list this way.
+1182.86,1186.98,So each one of these is going to be elements in my list.
+1186.98,1191.46,So this is going to do a bisection search to find the element in the list.
+1191.46,1198.46,"So again, we're looking for element x within this list L, and remember bisection search,"
+1198.46,1206.3799999999999,"we start with a beginning endpoint, and an ending endpoint."
+1206.38,1213.1000000000001,"And our first guess for the element, or whatever we're looking for, is to just say, what's"
+1213.1000000000001,1214.1000000000001,the middle element?
+1214.1000000000001,1218.14,"All right, so look at the element in the middle and ask, are you the one I'm looking for?"
+1218.14,1223.0600000000002,"In this particular case, you look at the element in the middle and you say, are you the x I'm"
+1223.0600000000002,1224.0600000000002,looking for?
+1224.0600000000002,1225.0600000000002,Good.
+1225.0600000000002,1230.3000000000002,So that's this one right here.
+1230.3000000000002,1234.38,So the midpoint calculation is right here.
+1234.38,1239.5400000000002,The reason why we're doing slash slash for integer division is in the case where I have
+1239.5400000000002,1244.46,"a list where I would actually look at the midpoint here, right?"
+1244.46,1252.42,"Obviously I can't ask Python for the element at index 3.5, right?"
+1252.42,1253.74,It doesn't work like that.
+1253.74,1255.8200000000002,So I'm just going to round down.
+1255.8200000000002,1256.8200000000002,You could also round up.
+1256.8200000000002,1260.42,"If you wanted to, I just made the choice to round down, just so I'm actually grabbing the"
+1260.42,1264.74,"element at an integer index, right?"
+1264.74,1268.94,"So I've grabbed my middle element and then I ask, are you the one I'm looking for?"
+1268.94,1274.7,"And if not, I ask whether this one is too low or too high."
+1274.7,1282.5,"And then if it's too low, then I know I need to search this part of my list."
+1282.5,1287.1000000000001,"And if it's too high, I need to search this part of my list, right?"
+1287.1000000000001,1291.0600000000002,"So that's what this little if else is doing, right?"
+1291.0600000000002,1298.0200000000002,"And when I make my decision as to which side to look at, then I reset my endpoints."
+1298.0200000000002,1303.22,"And I do the process all over again by asking the midpoint there, are you the one I'm looking"
+1303.22,1304.94,"for, so on and so on."
+1304.94,1312.3000000000002,"So this does a bisection search, also called binary search for the element in a list."
+1312.3000000000002,1316.94,And the last way for us to search whether an element is in the list is one that we've
+1316.94,1318.5,all already been doing.
+1318.5,1325.38,"It's this little one liner here is x in L. So using the keyword in, right?"
+1325.38,1331.22,"So that's, I call that the built-in function, the built-in operator in."
+1331.22,1333.8200000000002,Okay.
+1333.8200000000002,1344.38,"So it would be unfair if we just ask Python to figure out, to just pick a random number and"
+1344.38,1347.94,"ask whether that element was the one we're looking for, okay?"
+1347.94,1352.0600000000002,So instead what we're going to do is to kind of take an average for each one of these three
+1352.0600000000002,1354.8200000000002,"functions, just to make it fair."
+1354.8200000000002,1359.6200000000001,"So we're going to say, when we're searching for an element in the list, I'm going to say"
+1359.6200000000001,1366.18,that I'm going to take the average of the case when the element is the first one in the list.
+1366.18,1371.14,And I can find it maybe right away in this case or maybe not right away in this case.
+1371.14,1376.7800000000002,"The average with that, plus when the element is the last one in the list."
+1376.7800000000002,1382.0200000000002,"And plus when the element is the middle one in my list, right?"
+1382.0200000000002,1387.98,"So in that way, we're actually kind of covering all our bases, kind of best case, worst case,"
+1387.98,1391.0200000000002,"medium case scenarios, right?"
+1391.0200000000002,1397.66,So each one of these three functions will be run with that in mind.
+1397.66,1399.5400000000002,So that's these three functions.
+1399.54,1402.5,So this is my brute force is in.
+1402.5,1406.26,This is my binary search.
+1406.26,1411.5,"And the end, obviously I'm just going to type in in when I run it."
+1411.5,1413.22,So I'll just show you for one of them.
+1413.22,1421.06,So we're going to uncomment this entire bit here and run it.
+1421.06,1426.3799999999999,"But you can see here, so instead of just running the performance counter and making one function"
+1426.38,1432.66,"call, I'm actually going to run three function calls, iterated over this little loop, where"
+1432.66,1439.9,"I'm looking for the element at the zeroth location, the element at the halfway location, and"
+1439.9,1442.5,the element at the end of my list.
+1442.5,1445.42,And I'm just averaging those down here.
+1445.42,1447.18,The time it takes to find those three.
+1447.18,1450.74,Does that make sense?
+1450.74,1451.74,Okay.
+1451.74,1452.74,All right.
+1452.74,1455.94,So this is a lot to look at.
+1455.94,1459.02,Luckily I'm going to summarize it in the next few slides.
+1459.02,1464.5,So we don't have to stare at that Python screen there.
+1464.5,1465.5,Okay.
+1465.5,1467.7,So we have three functions to run.
+1467.7,1471.18,Let's first look at how each of these three functions did individually.
+1471.18,1474.18,And then we can start comparing them to each other.
+1474.18,1477.38,So the first function we ran was the is in.
+1477.38,1479.18,So remember this was the brute force one.
+1479.18,1483.18,We're painstakingly going through each element and asking if it's the one we're looking for.
+1483.18,1487.74,"So no smart way about that, just brute force your way through."
+1487.74,1498.7,"We notice that as the input list grows by 10, the time it takes to find the element in the"
+1498.7,1504.5800000000002,"list, whether it's the first one, last one, or in the middle, on average also grows by"
+1505.58,1507.58,10.
+1507.58,1510.58,Okay.
+1510.58,1513.58,All right.
+1513.58,1514.58,Next.
+1514.58,1517.58,Let's look at the built-in function.
+1517.58,1519.58,We'll worry about the binary one later.
+1519.58,1529.58,"The built-in function, so just using the in operator and you see this was down here."
+1529.58,1530.58,So this in.
+1530.58,1535.58,So basically the function I'm running is purely just asking whether x is in L.
+1535.58,1538.58,And that returns true or false.
+1538.58,1540.58,So I didn't need to make a function for that.
+1540.58,1547.58,But that built-in in operator also has a very similar trend.
+1547.58,1556.58,"As the length of my list increases by 10, the time it takes for my program to run is also ten times as long."
+1556.58,1565.58,I went 0.05 to 0.5 and the next one would be five and so on.
+1565.58,1566.58,Okay.
+1566.58,1572.58,"So those seem to be doing approximately the same sort of, they have the same performance."
+1572.58,1578.58,"Now, what about the bisection search or binary search?"
+1578.58,1582.58,"Well, this one is not so clear, right?"
+1582.58,1585.58,"If we look at the input, right?"
+1585.58,1590.58,The input clearly increases by 10 from here to here.
+1590.58,1597.58,"The time increases 9 times and the negative 6 to 1.1 times and negative 5, right?"
+1597.58,1605.58,"And so the factor, how many more times it took is very unclear, right?"
+1605.58,1607.58,It's not quite one.
+1607.58,1610.58,"If it was one that meant it's independent, right?"
+1610.58,1614.58,"And it doesn't matter what the input size is, it's always going to give us this amount."
+1614.58,1616.58,It's always going to run in this amount of time.
+1616.58,1622.58,"So it's not quite one, so it's almost independent of size, but it's not linear, right?"
+1622.58,1624.58,"Like the other two functions were, right?"
+1624.58,1627.58,It's not 10 when the input grows by 10.
+1627.58,1631.58,"So we're not quite sure what this function is, right?"
+1631.58,1637.58,"But clearly, it's not as bad as the other two, but not as good as no relation."
+1637.58,1639.58,Right?
+1639.58,1645.58,"Observation 3, observation 4 will now compare the function that we wrote, the is in, this one here,"
+1645.58,1649.58,"to the binary search, this one down here."
+1649.58,1659.58,"Well, binary search was orders of magnitude faster than brute force, right?"
+1659.58,1664.58,"Brute force, when the input was, what is this, 10 million, or 100 million, I'm not sure."
+1664.58,1671.58,"When the input was 100 million, brute force took 1.6 seconds."
+1671.58,1678.58,"But the bisection search, the binary search, took 0.0001 seconds."
+1678.58,1684.58,"So it's not like we went from 1.5 seconds to 1.2 seconds, or 2.5 seconds."
+1684.58,1689.58,"So we were orders of magnitude faster, right? 10 to the negative 5, right?"
+1689.58,1696.58,"So there's a really big difference between this algorithm, the one that brute forces its way through,"
+1696.58,1703.58,"and between this algorithm that does something smart about removing half of the search space with each loop, right?"
+1703.58,1706.58,"All right, so that's important to know."
+1706.58,1712.58,"And lastly, just kind of comparing pure time that it takes these programs to run."
+1712.58,1718.58,"Let's compare the function that we wrote, the one that loops one at a time through this list,"
+1718.58,1722.58,and the built-in in function.
+1722.58,1730.58,"The built-in in function, while it's still the same sort of, has the same relationship linear, right, with the input size,"
+1730.58,1738.58,"it seems to do a lot better consistently by about 10 seconds, sorry, 10 times as fast, right?"
+1738.58,1745.58,"So when our function took 0.1 seconds, the built-in 1 took 0.05 seconds,"
+1745.58,1749.58,"when our function took 1 second, the built-in function took 0.5 seconds."
+1749.58,1758.58,"So consistently, it's just faster to use the built-in in function than to make our own."
+1758.58,1763.58,"All right, questions about any of these observations?"
+1763.58,1769.58,They make sense. Are they interesting?
+1769.58,1772.58,"Okay, so what do we see?"
+1772.58,1776.58,"Just a quick recap of those three functions, right?"
+1776.58,1779.58,"The first one, we saw is linear in the size of the argument."
+1779.58,1784.58,"So when the input list size increases by 10, the program takes 10 times as long to run."
+1784.58,1787.58,"But this other one is something less than linear, but not constant."
+1787.58,1790.58,So we're not quite sure what it is.
+1790.58,1792.58,"All right, we'll come back to this in a little bit."
+1792.58,1795.58,We'll end up plotting some of these run times.
+1795.58,1801.58,So we'll actually be able to see the relationship in a few slides.
+1801.58,1807.58,The next thing I actually want to do is do one more sort of function.
+1807.58,1810.58,This one is called the diameter.
+1810.58,1813.58,And I'll explain what it's doing because it looks a little bit scary.
+1813.58,1819.58,But suppose we actually have some points in a 2D plane.
+1819.58,1822.58,"All right, so it looks like this."
+1822.58,1831.58,"Basically, what this function is going to do is it's going to figure out the biggest distance between all of these points."
+1831.58,1835.58,So the distance between these two points is something.
+1835.58,1838.58,This is the distance between these two points is something else.
+1838.58,1841.58,Which two points yield the biggest distance?
+1841.58,1847.58,That's what this function aims to tell us and what that distance is.
+1847.58,1850.58,The way it works is it has nested four loops.
+1850.58,1853.58,So this is different than what we've seen so far.
+1853.58,1858.58,"We saw an example of this last lecture, but now we're seeing it in the context of something actually useful."
+1858.58,1864.58,"So in this particular case, we're going to create an input list."
+1864.58,1870.58,"So again, our input list will just have some dummy values in it."
+1870.58,1872.58,I don't actually care what these numbers are.
+1872.58,1876.58,I just want to populate a whole bunch of points in a 2D plane.
+1876.58,1882.58,So what we're going to do is pretty much just iterate from numbers 0 to 10.
+1882.58,1886.58,"Sorry, 0 to 9, 0 to 99, 0 to 999, so on."
+1886.58,1887.58,Just like we did before.
+1887.58,1893.58,"And to get us a little coordinate in the 2D plane based on those numbers,"
+1893.58,1898.58,"I'm just going to take the cosine of that number, comma the sine of that number."
+1898.58,1907.58,"So that together, so like cosine of 1 or whatever, sine of 1 will be this point here."
+1907.58,1909.58,Set up as a tuple.
+1909.58,1916.58,"And then this one might be cosine of 5, comma sine of 5, something like that."
+1916.58,1924.58,"So I'm just making a whole bunch of coordinates in a 2D plane, ensuring that I have n coordinates."
+1924.58,1930.58,"OK, now the loop, sorry, there's going to be two loops."
+1930.58,1937.58,The outer loop will basically take us through each of these elements.
+1937.58,1940.58,I have 5 in this particular case.
+1940.58,1944.58,And the inner loop will go through every other element.
+1944.58,1946.58,But notice it starts from i plus 1.
+1946.58,1950.58,And I'll tell you why that is instead of starting from 0.
+1950.58,1952.58,So let's just walk through.
+1952.58,1960.58,"Let's say we start out with this element, this logias our first element in our outer for loop."
+1960.58,1965.58,"So right now, we've grabbed the first element in our outer for loop."
+1965.58,1970.58,And what we're going to do is figure out the distance between it and everybody else.
+1970.58,1977.58,"So now we're iterating through the inner for loop, going through each element except for myself."
+1977.5800000000002,1980.5800000000002,So I'm going to get the distance between this one and this one.
+1980.5800000000002,1983.5800000000002,"Since it's the first one, obviously it's the biggest one."
+1983.5800000000002,1987.5800000000002,But then I'm going to get the distance between this one and this one.
+1987.5800000000002,1990.5800000000002,"And I'm going to say, are you bigger than this one?"
+1990.5800000000002,1991.5800000000002,It looks like no.
+1991.5800000000002,1993.5800000000002,So we're still keeping this one as our longest one.
+1993.5800000000002,1997.5800000000002,"Then I'm going to grab the distance between this and this one, and this and this one."
+1997.5800000000002,2003.5800000000002,"And as I'm going through, this little if statement here keeps track of the farther one."
+2003.5800000000002,2006.5800000000002,So the one that has the biggest magnitude.
+2006.5800000000002,2010.5800000000002,"In this case, that's probably the first one we looked at."
+2010.5800000000002,2020.5800000000002,"And after I've gone through each element, each other element, I've concluded my first iteration in my outer for loop."
+2020.5800000000002,2025.5800000000002,So now the outer for loop goes to the next element in the list.
+2025.5800000000002,2027.5800000000002,Let's say it's this one.
+2027.5800000000002,2029.5800000000002,That doesn't actually matter.
+2029.5800000000002,2036.5800000000002,"This one, we'll look at the distance between itself and everybody else except for the one we already looked at."
+2036.5800000000002,2038.5800000000002,Because we already know this distance.
+2038.5800000000002,2041.5800000000002,We kept track of it already when we iterated through this one.
+2041.5800000000002,2047.5800000000002,"So as I'm going through my outer for loop keeping track of this point here,"
+2047.5800000000002,2050.58,it figures out the distance between this one.
+2050.58,2054.58,"This one, which is suddenly bigger than that one which we had kept track of."
+2054.58,2057.58,And then this one right here.
+2057.58,2060.58,Good. So now we're still keeping track of the biggest distance we've seen.
+2060.58,2062.58,It's probably this one here.
+2062.58,2065.58,And I've concluded the second iteration of my outer for loop.
+2065.58,2067.58,And now I go to the next element.
+2067.58,2068.58,Let's say it's this one.
+2068.58,2070.58,It doesn't matter again.
+2070.58,2075.58,Now this one is going to get the distance between itself and everybody else except for the two that we've already seen.
+2075.58,2077.58,This one and this one.
+2077.58,2080.58,So that's why our inner loop starts at i plus 1.
+2080.58,2084.58,So this one will get the distance between itself and this one all the way back there.
+2084.58,2086.58,And this one all the way over here.
+2086.58,2091.58,"And then next iteration in the outer for loop takes a look at this one, let's say."
+2091.58,2094.58,And it finds the distance between itself and everybody else.
+2094.58,2096.58,But you know what? There's only one left.
+2096.58,2098.58,That one there.
+2098.58,2104.58,"And then the last time through, this one doesn't even get a chance to find the distance between itself and anybody else"
+2104.58,2109.58,because everybody else already found the distance between it.
+2109.58,2115.58,"And so in this way, we're basically finding all the possible pairs of all of these points in this 2D plane"
+2115.58,2119.58,and keeping track of the longest of the biggest distance.
+2119.58,2125.58,"So in terms of the list, the input list, the way that looks like, this i plus 1 business here,"
+2125.58,2131.58,"the outer loop basically says, I'm going to start with you and I'm going to get the difference between you"
+2131.58,2139.58,"and the element at index 1, the element at index 2 and the element at index 3."
+2139.58,2141.58,This outer for loop is done.
+2141.58,2146.58,"Next, we're going to get the distance between this one and everybody else, right?"
+2146.58,2149.58,So obviously not the element index 0 because we already know that distance.
+2149.58,2156.58,So we're going to get the distance between element at index 1 and index 2 and index 3 and then we're done.
+2156.58,2164.58,And then the last loop outer loop gets the distance between element at index 2 and index 3 and then it's done.
+2164.58,2173.58,So just these two nested loops just does all of this until it finds all of these pairs.
+2173.58,2178.58,It basically pairs up everybody together.
+2178.58,2184.58,"Okay, so if we run it, what are we going to see?"
+2184.58,2189.58,"So my input for this particular function, you'll notice, first of all,"
+2189.58,2194.58,"is going to be much, much smaller than the inputs for everything we've done so far."
+2194.58,2199.58,"Right? Some of the inputs we had seen in the past were a million, 10 million, 100 million."
+2199.58,2211.58,"In this particular case, I'm only going to go up to 6,000 because it's just going to take way too long to run if I make it go for any longer than that."
+2211.58,2219.58,"So what do we see already? We've got 100 points, so 100 of these, right?"
+2219.58,2226.58,Finding the maximum distance between a bunch of these pairs took about 0.03 seconds.
+2226.58,2231.58,"If we doubled that to 200 points, it took 0.01 seconds."
+2231.58,2236.58,"If we doubled that to 400 points, it took 0.05 seconds and so on and so on."
+2236.58,2242.58,"So just like before, let's take a look at big numbers to see our trend."
+2242.58,2254.58,"So as the numbers increase, right, by 2, if my input increases by 2, it looks like the time that it takes for me to find out the biggest distance increases by 4."
+2254.58,2259.58,"So my input increases by 2, the time increases by 4."
+2259.58,2269.58,"And I'm not going to run this, but you can make a new list on your own and change this to be inputs that are multiples of 10, right?"
+2269.58,2279.58,"Increasing by 10 each time, and you'll see a very similar pattern where the time it takes to run that program will be about 100 times as slow."
+2279.58,2286.58,So the relationship there is a n squared kind of relationship.
+2286.58,2289.58,"All right, so a few observations here as well."
+2289.58,2295.58,First one I already mentioned is this program just takes a lot longer to run in general.
+2295.58,2303.58,So here we were able with the compound and with finding whether an element is in the list and getting the sum of all the elements in the list.
+2303.58,2312.58,"We were able to run 100 million, a list with 100 million elements, and it still took about once something seconds."
+2312.58,2319.58,"Whereas with this diameter function, we can barely get to, you know, 6000, and it's already taking 14 seconds."
+2319.58,2324.58,"So just way, way, way slower program in general, right?"
+2324.58,2332.58,And then the relationship seems to be an n squared kind of relationship relating the input to how long the program takes.
+2332.58,2343.58,"So let's actually plot, well I already did this, but here are the relationships for these sort of three types of algorithms that we've seen so far."
+2343.58,2353.58,"So the, this is the finding the element in a list, those three versions, sorry, those two versions that we saw, and this is the diameter function."
+2353.58,2365.58,"So if we plot how long it takes the program to run when the input increase, sorry, when the input is this size, we can see that there is a linear relationship."
+2365.58,2373.58,So the time it takes for the program to run is linear in the input.
+2373.58,2390.58,"The diameter, we'll talk about the binary search in a bit, the diameter, we again notice this just by looking at the pure numbers, but it's a lot easier to see it visually when the, this is on the x axis, the size of the problem, so how many points we actually are finding the diameter between."
+2390.58,2399.58,"And how long it actually takes the program to run and the relationship is quadratic now that we plot it, we clearly see the quadratic relationship."
+2399.58,2426.58,"And then this binary search, we were very unsure of what it was, right, it wasn't quite constant, it definitely wasn't linear, but now that we've plotted it, so this is the input size, and this is how long it actually takes the program to run, you can see it drastically increases when the input size is very small, but then it kind of sort of asymptotically reaches some sort of value, it's actually a logarithmic relationship."
+2427.58,2440.58,"Last thing I wanted to mention about timing before we move on to counting is just pure running, just purely running these functions on different computers, will just give us different values just right off the bat."
+2440.58,2451.58,"So for my, on this newer-ish computer, how long did it take to run this compound? Well, no, what did it, like three seconds or something, one point something seconds?"
+2451.58,2467.58,"On an older laptop, it took, you know, six, 63 seconds, on an even older desktop, it took 1226 seconds, right, so just, you're just purely timing things, the machine you're running it on is going to make a difference, okay."
+2467.58,2479.58,"And then that's fine, right, it's important to know how long it takes, but if you're just looking at the relationship between input and how long the program takes to run, that's the same."
+2479.58,2491.58,"So it doesn't matter what machine you're running it on, when you increase the input by 10, the program will take 10 times as long to run, no matter whether you're running on a fast laptop, old laptop, or a super old desktop."
+2492.58,2506.58,"Okay, so just timing a program is really important, right, you'd like to know whether the program you wrote, you're going to have to wait, you know, a month for it to finish, or a couple minutes for it to finish, that's an important thing to know."
+2506.58,2519.58,"But what we're going to get at towards the end of this lecture is something that's complementary and that's this idea of asymptotic complexity, so kind of mathematically saying, you know what, this program is not going to be that bad to run."
+2519.58,2528.58,"Right, you're not going to have to wait for months to run, without actually running it, of course, so you'd be able to glance at a program and say this one is reasonable to run."
+2528.58,2536.58,"And so we're going to do that in terms of this idea of order of growth, which we'll get at in a little bit."
+2536.58,2540.58,"Okay, any questions on timing before we get to counting? Oh yeah."
+2540.58,2557.58,"Yes, can you assume that all built-in functions are optimal in terms of running time? Yes, certainly better than when we write them."
+2557.58,2569.58,"Yes, in Python, and then of course in other languages, you know, there would be, there may be take advantage of other speed ups as well, like putting things in memory efficiently."
+2569.58,2576.58,"Generally, it's better to run something that's already been made than to make it yourself."
+2576.58,2583.58,"Okay, so now what we're going to do is we're going to count operations, just like we did last lecture."
+2583.58,2597.58,"Clearly timing is nice, but it doesn't give us a nice relationship besides us spotting it. Right, there's no formula, there's no relationship that relates the input to how long it takes the program to run."
+2597.58,2604.58,"Counting will get us a little bit closer to that, and we saw that last lecture. Let me remind you the idea of counting."
+2604.58,2619.58,"So the idea of counting is that we're going to take a bunch of these operations, like mathematical operations, comparisons, indexing into something, and assigning a value to a variable."
+2619.58,2634.58,"All of these things, right, when we run them, yes, they might run for different amounts of time, one time send negative nine versus two time send negative nine, something like that, but that's not a very big difference."
+2634.58,2644.58,"And so what we're going to say is that every one of these operations will consider to be constant, right, they will take one unit of time."
+2644.58,2660.58,"So if we say that, we can actually come up with a relationship that tells us, according to, that relates the input to how much this, how many operations this program will run."
+2660.58,2673.58,"So here in the convert to kilometers, what do we have? We have one multiplication, and you know, just for the heck of it, this lecture let's say the return also counts as an operation."
+2673.58,2687.58,"So in this convert to kilometer function, we have two operations. Notice that it's not really related to the input at all. So then the amount of operations that this program takes to run is always two."
+2687.58,2696.58,"It matches what our timing said, right, it basically didn't matter what the input was, they always took up approximately the same amount of time to run."
+2697.58,2704.58,"The sum of function, so it takes an input list and it gets the sum of all the elements."
+2704.58,2718.58,"This one will do, we'll have one operation for doing this assignment. It'll have one operation for grabbing an element in my list L and assigning it to I."
+2718.58,2731.58,"It'll have two operations for this total plus equals I. Remember, total plus I on the right hand side is one operation and total equals that is my second operation, so that's two operations."
+2731.58,2741.58,And then let's not forget our for loop. That's kind of the important part of this function. How many times will these three operations repeat this one plus these two?
+2741.58,2748.58,"Well, it's going to repeat however many elements I have an L. So length L times."
+2748.58,2765.58,"And then again, let's say we count the return, the return will also be one operation. So the total number of operations for the sum of function will be one for the total equals zero plus length of L times three, because there's three operations being done for each length of L plus another one for the return."
+2765.58,2780.58,So that's going to be three length L plus two. That's a nice little formula that relates how many units of time we'll have to wait depending on the size of the list.
+2780.58,2790.58,"That's pretty cool. So the way that we're going to count the number of operations, again, I'm going to do it slightly differently in the last lecture just to show you that there's another way to do it."
+2791.58,2799.58,So this is our function is in. It's going to count how many operations we have. And I'm going to use something called a global variable.
+2799.58,2810.58,"I'll show you again the difference between them. So it's just these three lines that I added. And you should never, ever use global variables in your programs except in this situation."
+2810.58,2817.58,The idea of global variables is that you can define variables just in the main program outside of any functions.
+2817.58,2837.58,"And you can access those variables within some function purely by saying, you know, if we define count out here, right, before this function definition, count equals zero or whatever, inside of any function, we can say, hey Python, I would like to access this variable that I defined outside of this function."
+2837.58,2851.58,You say that you tell Python using global and then the name of that variable. And Python will grab that variable that's basically quote unquote shared across the entire program and modify that variable.
+2851.58,2864.58,"So in essence, we're basically saying this is now a shared variable. If I modify it within this counter within this function, it'll be, you know, obviously modified for everything else."
+2864.58,2876.58,"It's very tempting to use global variables because, you know, all the variables you could ever want to create are going to be accessible by everybody, right, no need to pass in parameters, no need to do, but it's very, very bad programming."
+2876.58,2885.58,So we won't ever do it except in this particular case because we'd like to keep a counter of things that are happening or for debugging purposes and things like that.
+2886.58,2898.58,"So the count variable will keep track of, it'll just increment in key places where we have these constant unit of times happening."
+2898.58,2912.58,So I've got count plus equals one here because I've got my return value. I've got count plus equals two here because I grab an element from L and I do the equality check here and then that's it.
+2916.58,2922.58,"So if I run that, let's down here."
+2925.58,2940.58,"What are we going to see? Well, I didn't actually do how much more it ran, but we can see the relationship, right, we go 9 to 37 to 307 to 37 to 37 and so on."
+2941.58,2950.58,"So again, the same relationship where we increase the input by 10, the number of operations we do is 10 times as more, exactly like the formula said it would be."
+2951.58,2959.58,"What about the binary search? So again, we're going to use this global variable and we're going to have the counter keep track of all of these operations."
+2960.58,2971.58,"So this count incrementing by three accounts for setting the load is zero, setting the height is this thing and grabbing this actual value of length."
+2971.58,2982.58,Increasing the count within this while loop will keep track of this subtraction as one operation and the test that it's greater than one is another operation.
+2982.58,3005.58,"So increasing by three here accounts for high plus low, the integer division and assigning that value back to mid count plus three here accounts for indexing into this L, the less than or equal check and then either doing this reassignment of low or this reassignment of high."
+3006.58,3016.58,And then lastly count increases by three once more because I've got these operations here so indexing into the into low checking for equality and then doing the return.
+3018.58,3029.58,So the actual number of operations will be kept track of in right by the counter so all we're doing is just kind of reporting how many times how many operations we've done.
+3030.58,3038.58,"So as we increase the input by 10, just like with timing, we can't quite tell what the relationship is."
+3039.58,3043.58,"Again, it's like one point something with each run."
+3047.58,3057.58,"So these are the results. So the observation one, as I mentioned when we increase the input by 10, this brute force I released it but the brute force is in function also,"
+3057.58,3066.58,"is does 10 times as many operations. The binary search again, we don't know what rate it is at, but we can plot them."
+3067.58,3079.58,So here I have the plots just like when I plotted the input size versus how long the program actually took to run. I'm now plotting the input size versus actually just the number of operations being done.
+3080.58,3095.58,So the is in function that brute force way of finding whether an element is on the list grows linearly no surprise there and how lucky for us the binary search matches the graph matches the one that we had for timing.
+3096.58,3107.58,So as I increase my size in the binary search method the number of operations that I do is logarithmic in in time just like we saw in the actual time.
+3110.58,3121.58,So timing and counting are really nice. Timing gives us pure number of seconds or months or whatever we need to wait for this program to finish.
+3122.58,3130.58,But counting gives us a nice little formula that relates the input to the number of operations that you have to do.
+3130.58,3140.58,You might have noticed I briefly touched upon this that throughout this entire lecture and last lecture we basically just saw something like three different algorithms.
+3141.58,3150.58,"We saw something that's constant, something that's linear, something that's quadratic and something that's binary search, logarithmic in this particular case."
+3151.58,3155.58,So that's four different algorithms but we saw way more functions run.
+3156.58,3162.58,"So what we'd like to do is evaluate the algorithms, not the different implementations."
+3163.58,3168.58,"And what we'd like to do is evaluate these algorithms as the input gets really, really big."
+3169.58,3177.58,So what we're going to do is figure out a relationship between the programs run time and the input.
+3177.58,3184.58,But what we're going to do is focus on the biggest terms that contribute to the programs run time.
+3185.58,3193.58,"So we saw these examples last time, this my sum which basically summed all the elements, sorry, all the numbers from zero to x."
+3194.58,3199.58,"And this silly square function that had nested loops, kind of like this diameter one."
+3200.58,3207.58,"We were able to say something like when the input increases by ten, the program is ten times as long to run."
+3208.58,3216.58,"So the efficiency of that program was on the order of x. When the input increased by x, the program took x times as long to run."
+3217.58,3225.58,"The square had a set in a similar way. When the input increases by x, the program took x squared as long to run."
+3226.58,3232.58,So I don't actually care about all of these differences in the exact timing.
+3233.58,3236.58,"One time send negative six, one point three times send negative six, I don't care."
+3237.58,3243.58,What I do care is the order of growth. How does the program run in relation to the input?
+3245.58,3248.58,"And I care about that when the input is really, really big."
+3248.58,3256.58,So what we're going to do is express the programs run time in an order of not exact kind of relationship.
+3257.58,3266.58,"So while counting was really nice, right, it told us a nice relationship between the input and the number of operations."
+3267.58,3273.58,"When the input is really, really big, like 3x plus 4, when x is really, really big,"
+3273.58,3278.58,I don't care that the number of operations is 3x plus 4.
+3279.58,3284.58,"Because when x is really, really big, that plus 4 might as well be plus 0."
+3285.58,3289.58,"And that 3x is basically like x when the input is really, really big."
+3291.58,3293.58,So that's what we're going to try to do.
+3294.58,3297.58,"Now, before we do that, we need to decide what to measure."
+3297.58,3303.58,"Because when we write functions, we're going to have functions that have a whole bunch of inputs potentially."
+3304.58,3307.58,"So the input could be an integer, like in convert to kilometers."
+3308.58,3312.58,It could be a list in which case we would be interested in maybe the length of the list.
+3313.58,3316.58,"And if you have many parameters, you'd have to decide."
+3317.58,3321.58,What is the parameter that contributes to the growth of this function?
+3321.58,3324.58,So here's an example.
+3325.58,3327.58,This is our is in function.
+3328.58,3330.58,It looks for an element E in list L.
+3331.58,3333.58,So there's two parameters to this one.
+3335.58,3338.58,"We can ask, does the program take longer to run as E increases?"
+3339.58,3340.58,It's one of the parameters.
+3341.58,3342.58,Let's see what happens as we make E bigger.
+3343.58,3344.58,So we can look at a little example.
+3345.58,3348.58,"If we find out whether 0 is in this list containing 1, 2, 3,"
+3348.58,3353.58,"or whether 1,000 is in the list 1, 2, 3, does the program take longer to run?"
+3354.58,3355.58,"No, exactly."
+3356.58,3361.58,So E is not really relevant in my runtime sort of calculation.
+3362.58,3364.58,"Well, let's consider L now."
+3366.58,3370.58,"When we say L is going to change, it could change in two ways."
+3371.58,3374.58,The elements in L could have different values.
+3375.58,3379.58,Or the list length itself could be different.
+3380.58,3386.58,"So in this particular function, let's say that the elements in L are small numbers versus big numbers."
+3387.58,3389.58,That's certainly something that could happen.
+3390.58,3392.58,"And certainly with some functions, that's going to make a difference."
+3393.58,3398.58,"So let's say in this particular function, if the elements in L are big versus small,"
+3399.58,3401.58,is it going to make an impact on my runtime?
+3401.58,3402.58,"Well, here's a little example."
+3403.58,3406.58,"Let's say I'm looking for the number 0 inside a list with 1, 2, 3,"
+3407.58,3410.58,"and the number 0 inside a list with 1,000, 2,000, 3,000."
+3411.58,3412.58,Is that going to make a difference?
+3413.58,3414.58,"No, right?"
+3415.58,3419.58,So the size of the elements themselves don't really matter.
+3420.58,3424.58,And what last thing to ask ourselves is what about the length of the list?
+3425.58,3428.58,"So if L has different lengths, will this big difference in our runtime?"
+3429.58,3433.58,"So if I'm looking for 0 in a list of 3 elements, or 0 in a list with 10 elements,"
+3434.58,3438.58,"where clearly that 0 is nowhere to be found, is that length list that's going to have a difference?"
+3439.58,3441.58,"Yeah, in this case it will, exactly."
+3442.58,3448.58,"So here in this particular function, the input I'd be interested in sort of reporting,"
+3449.58,3452.58,the runtime is the length of the list.
+3453.58,3456.58,"Not the elements in the list, not e itself, but the length of the list."
+3458.58,3462.58,"Okay, so the last thing that I'll mention is for this particular class,"
+3463.58,3465.58,we're going to talk about the worst case scenario.
+3466.58,3468.58,"So you might have noticed in this previous example here, right?"
+3469.58,3471.58,I always looked for an element that wasn't even in the list.
+3472.58,3475.58,"Right, so when you're faced with a function, you ask yourself,"
+3476.58,3479.58,"this particular class at least, what is the worst case scenario?"
+3480.58,3482.58,"And finding out whether a function is in the list,"
+3483.58,3486.58,"the worst case scenario for us is if it's not in the list at all, right?"
+3487.58,3492.58,"So that's sort of another aspect of runtime that we don't actually,"
+3493.58,3496.58,"we won't talk about, because for us, we're always interested in the worst case."
+3497.58,3500.58,"But there are certainly analyses where you could look at the best case scenario,"
+3501.58,3503.58,"which is, well, the element is the first one in the list."
+3504.58,3507.58,"In that case, you're always going to find it right away, so it's constant."
+3508.58,3511.58,"Or an average case scenario, which is kind of what people do in the real world."
+3512.58,3513.58,You're not always encountering the worst case.
+3514.58,3516.58,"But for us, we're going to look at the worst case scenario."
+3517.58,3520.58,So our goal is going to be to describe how the runtime grows
+3521.58,3523.58,as the size of the input grows in a really general way.
+3524.58,3527.58,So we're not going to be interested in figuring out the exact number of operations.
+3528.58,3530.58,No 3x plus 2 kind of deal here.
+3531.58,3534.58,We're just going to focus on terms that grow the fastest.
+3535.58,3538.58,"We're going to eliminate any sort of additive, multiplicative constants,"
+3539.58,3540.58,and things like that.
+3540.58,3543.58,So we're just going to focus on terms that grow the fastest.
+3544.58,3546.58,And that will give us our order of growth.
+3547.58,3551.58,"So the way we're going to denote the order of growth is using this notation called big O,"
+3552.58,3553.58,and big theta.
+3555.58,3556.58,"Now, warning."
+3557.58,3559.58,We're going to have some math coming our way.
+3560.58,3562.58,It's going to be like three slides of just pure math.
+3563.58,3564.58,You can sit back.
+3565.58,3566.58,You won't need to know it.
+3567.58,3568.58,You won't need to know the details.
+3568.58,3574.58,But it will motivate us to kind of give us the idea about this asymptotic order of growth.
+3576.58,3579.58,All right. So this is the mathematical definition of big O.
+3580.58,3583.58,"So what we would like to do, there will be a drawing door."
+3584.58,3589.58,So what we would like to do is figure out an upper bound for our function.
+3590.58,3594.58,"So the function might look like this, and I know this is just an F,"
+3594.58,3598.58,"but we relate this to our class by saying, you know what,"
+3599.58,3604.58,"if we did the order of calculation, sorry, the number of operations analysis, right, for a function,"
+3605.58,3607.58,"we could basically come up with something like this, right."
+3608.58,3609.58,We came up with 3x plus 2.
+3610.58,3615.58,"We could come up with 3x squared plus 20x plus 1 for some random function that we wrote, right."
+3616.58,3617.58,So that we considered the function.
+3619.58,3622.58,"Now, the big O is going to be the upper bound on this function."
+3623.58,3629.58,"So if I plot this function in my xy axis, this is what it looks like."
+3630.58,3637.58,"The big O will be some other function that's going to upper bound this one, the blue one, okay."
+3638.58,3643.58,"And it's going to upper bound it for all values beyond some x, right."
+3644.58,3649.58,"So for all values beyond some x, some number on the x axis, some cross over point,"
+3649.58,3654.58,"this big O of g, this g will always be bigger than my F."
+3655.58,3656.58,That's the idea here.
+3657.58,3662.58,"So clearly x is not going to upper bound it, right, because after this cross over point,"
+3663.58,3665.58,x will be below my function.
+3666.58,3670.58,"No matter how big, how big of a constant I tack onto that x, I could have a thousand x."
+3671.58,3674.58,That's still not going to upper bound my little blue line here.
+3675.58,3679.58,So what we're going to do is we're going to increase the exponential there.
+3680.58,3681.58,So let's take x squared.
+3682.58,3685.58,"Well, x squared is getting closer, it looks like they're both quadratics."
+3686.58,3692.58,But this orange line is not above the blue line for some cross over point.
+3693.58,3703.58,"Two x getting closer, three x getting closer, four x is an upper bound on my F."
+3704.58,3709.58,"Because after this little cross over point here at about 20,"
+3710.58,3716.58,"my orange line, the g, will be always above my blue line, my F."
+3717.58,3720.58,"So far so good, just visually speaking, yeah."
+3722.58,3725.58,"So orange one, so bullets there, does that have it?"
+3726.58,3729.58,"Yeah, the orange one is below it, that's totally fine because what we're interested in"
+3730.58,3732.58,is the behavior when the input is really big.
+3732.58,3735.58,So that's why I don't care about weird stuff happening down there.
+3736.58,3738.58,All I care about is when my x is super big.
+3740.58,3742.58,So now I've found this g.
+3743.58,3749.58,"So I can say that after this point, 20, my orange line will always be above my blue."
+3750.58,3756.58,So I can say that my F is big O of g squared.
+3757.58,3763.58,Because I don't care about this for so much because it's just a multiplicative constant.
+3764.58,3772.58,Because this four x is always greater than my function for all x greater than this cross over point here.
+3775.58,3776.58,That's it.
+3777.58,3778.58,That's the definition.
+3779.58,3785.58,So the g here is basically this function without the multiplicative constant in front of it.
+3786.58,3791.58,So I say 3x squared plus 20x plus 1 is big O of x squared.
+3792.58,3799.58,"So generally speaking, that was just an example, generally speaking, the big O is an upper bound on my function."
+3800.58,3804.58,And this is now just using variables like constants and things like that.
+3805.58,3807.58,But it's exactly the same situation that we had from before.
+3808.58,3813.58,So I'm going to try to map the blue to the blue and the orange to the orange and the purple to the purple to help you
+3813.58,3816.58,kind of match up what we saw in the previous slide.
+3817.58,3822.58,So basically we say that our function F is big O of this orange g.
+3823.58,3840.58,"If we can find some blue constant where this constant was this four here, where that constant multiplied by g, the x squared, is greater than my function for all values beyond that cross over point."
+3840.58,3846.58,So I found my 4 because 4x squared is always greater than my function beyond 21.
+3848.58,3850.58,That's what we saw in the picture.
+3851.58,3858.58,So then we can say that my function F is big O of g of x where that g is x squared.
+3861.58,3866.58,"So in terms of the picture here, this is kind of a little zoom in of what happens."
+3866.58,3878.58,"Anything can happen down here, but beyond the cross over point, which is here, in the big picture, that cross over point, beyond that cross over point, my orange is always greater than my blue."
+3880.58,3886.58,"So what does this mean? We're going to talk about this in a few slides, but you might have thought about this."
+3887.58,3893.58,I can actually pick any function that grows faster than 3x squared.
+3893.58,3901.58,"I can pick x factorial, x factorial grows super fast, or 2 to the x. That also grows super fast."
+3902.58,3909.58,All of those functions that grow way faster than mine are also upper bounds on this function.
+3911.58,3913.58,So that's big O. It's just an upper bound.
+3913.58,3929.58,"Then what is theta? For the reason I just stated, I said x factorial 2 to the x, all of these functions that grow much faster than my function are all upper bounds."
+3930.58,3934.58,"And that's not really helpful for us when we say, oh, this function is big O of whatever."
+3935.58,3942.58,Because you can just pick something that's ludicrously fast that grows ludicrously fast and say that has no meaning.
+3943.58,3950.58,"So instead, what we usually report is the theta, which is actually an upper bound and a lower bound for our function."
+3952.58,3964.58,"So using the exact same reasoning, we're going to find some constant tacked on to that g of x such that function grows underneath our function."
+3964.58,3976.58,"So again, I'll put up a lot of math, but basically these first two lines here, this one here, there exists, blah, blah, blah, blah, blah, that first here, this is the big O definition."
+3977.58,3992.58,"So we've already know what that means. All we're going to do is tack on another condition, which is that we can find another constant for that same g where that function beyond some crossover point is always below."
+3992.58,4002.58,"So here's an example, four x squared, we saw that it grew faster than three x squared beyond the crossover point."
+4003.58,4009.58,"Well, we could say two x squared will always grow slower than its own crossover point."
+4012.58,4019.58,"So the constant four was the same as we had seen before, but this constant two now becomes a lower bound."
+4020.58,4029.58,So I'm basically trying to have that same g both upper bind and lower bound my blue function.
+4032.58,4035.58,And that's the definition of theta.
+4036.58,4048.58,"So now I can no longer say that two to the x, right, an exponential, both upper bounds and lower bounds it because that two to the x will grow faster than my function no matter what constant I tacked on."
+4049.58,4056.58,So now what we see is that really the g of x is going to be the term that grows the fastest.
+4057.58,4065.58,"It's just going to be that term here, right, it's going to be the thing without the fastest growing term in my function without the constant on it."
+4067.58,4075.58,"So yes, we will never remember all that, but we're going to do a bunch of exercises and you're going to see just how easy it is to figure out the order of growth."
+4076.58,4080.58,"But I will mention this just again because it's very important, right."
+4080.58,4085.58,"So when we're talking about upper bounds, you can pick any function that grows faster than yours, right."
+4086.58,4097.58,"F of x, this three x squared thing, is all of x squared, yes, but it's also O of x cubed, O of x to the five, O of x to the hundred, O of two to the x, O of x factorial, all of those things that grow much faster."
+4098.58,4104.58,"But my f of x is only one theta and it's theta of x squared, right."
+4104.58,4109.58,And that's the term that grows the fastest in my function here.
+4110.58,4123.58,"So when we look at a function based on the number of operations or however you know you're given the function, when we look at the order of growth of the function, we just focus on the dominant term."
+4124.58,4135.58,"Right. So in the first one, the input here is n, and the function is n squared plus 2 and plus 2. Which one of these is the dominant term?"
+4135.58,4143.58,"You tell me. Yes, exactly, n squared. So this function is just going to be theta of n squared. That's it."
+4144.58,4148.58,How about in the next one? What's the dominant term here?
+4149.58,4167.58,"Yeah, exactly. Three x squared. Even though 100,000 x is going to be huge for a while, and this constant is also going to be huge for a while, as x gets really, really big, this three x squared, and in fact just x squared will kind of take over everything else, right."
+4167.58,4176.58,So this next one is theta of x squared. How about the next one? What's the term that grows the fastest here?
+4176.58,4187.58,"Yeah, exactly. Right. Log is, is, is, is, is sort of. Right. So this theta of this function is just theta of n."
+4187.58,4199.58,"So notice what we're doing here is just focusing on the dominant term. We're going to drop the multiplicative constants, drop every other term, and relate the theta in terms of the input."
+4199.58,4208.58,"Right. So I don't just use theta of n all the time, right. In the previous one, it's tempting to say the first one's theta of n squared, the next one's theta of n squared, the last one's theta of n."
+4208.58,4220.58,"But n is not always the input to your function, right. If it is great, if it's not, you always have to relate it according to the input of the function. Maybe it's length L. Maybe it's, you know, something else."
+4221.58,4229.58,Okay. So let's have you try a couple more. What is the theta of the first one here? That's the term that grows the fastest.
+4229.58,4243.58,"Yeah. Theta of x. Next one. And cubed, exactly. Theta of n cubed. The advantage is going to be so easy. I know that math was scary. How about the next one?"
+4244.58,4251.58,"That's the term that grows the fastest, but then it's theta of, drop any multiplicative constants, and it's just theta of y."
+4251.58,4264.58,"The last one is going to be tricky. What is the theta if the variable is only b? Yeah, two to the b. What about if the variable is only a?"
+4265.58,4286.58,"A cubed, exactly. And if my function is both a function of a and b and a plus a cube, right. Because both will contribute to the runtime of this function, right. Not just the b."
+4287.58,4300.58,"So if this function, whatever this crazy function is that I wrote that takes so long to run, had both inputs b and a, right. As its parameters, the theta for that function is both in terms of both b and a."
+4300.58,4309.58,"The dominant terms of each. Yeah. No, no need to worry about negative coefficients."
+4310.58,4316.58,"Yeah. Yeah. Yeah, question."
+4328.58,4338.58,"Oh, some different parameter variable that's not even here. Yeah. If the parameter, the function was c, let's say for this last one, but the formula was this."
+4338.58,4355.58,"Then the theta would be just constant, theta of 1. Because it doesn't even depend on these variables. So these are just considered constant time. That's a great question. Yeah. If the parameter was c or something else."
+4355.58,4365.58,"Okay, so now we can actually look at functions that we write and we do the exact same thing. We can first start out with just saying how many operations does this function take."
+4365.58,4377.58,"Come up with that relationship. And just theta that, right. Just like we did on the previous slide. So here's a function that calculates the factorial. What do we have here?"
+4377.58,4391.58,"Well, we've got this is constant here, right. We've got just one while loop where there's five things going on here. There's the comparison. There's this times equals, which is two operations, this minus equals its two operations."
+4391.58,4406.58,"So this function is just five n plus two by the same analysis we did a few slides ago. Right. So if we say what's the theta of this function? Well, what's the theta of this thing five n plus two? Super easy, right. It's just theta of n."
+4406.58,4414.58,"And in this case, the parameter that our function is truly n."
+4414.58,4424.58,"When we have functions that are slightly more complex and we've got things that are in series. Like for example, here I've got two for loops one right after the other."
+4424.58,4433.58,"We basically use this law of addition to take care of that. So that means we figured out what the theta is for the first for loop, the theta for the next for loop."
+4433.58,4444.58,And we just add those two theta's together. Okay. So the first for loop here is theta of n because it's something that depends on parameter n.
+4444.58,4454.58,And the next for loop here is theta of n squared. Right. And this because the parameter here is n times n.
+4454.58,4462.58,The stuff inside the for loops are constant so they don't contribute anything to our theta's right. There's no more things to multiply the complexity there.
+4462.58,4469.58,"So that if this is my entire function here, the theta for this function is theta of n plus theta of n squared. Right."
+4469.58,4479.58,And the law of addition just says theta of n plus theta of n squared is just theta of sticking those two inside as part of my function n plus n squared.
+4479.58,4486.58,"And we know how to do that. That just simplifies to the dominant term, which is n squared."
+4486.58,4496.58,Okay. So that's the law of addition. So that's when we have loops or things like that in series. What about when we have loops that are nested? Right.
+4496.58,4506.58,"Then we use the law of multiplication because for each one of these things, we're going to have to do this that many times. Right."
+4506.58,4517.58,"So in this particular case, we need to be careful. The outer for loop is going to be theta of n. And the inner for loop is also theta of n."
+4517.58,4533.58,"Even though I'm dividing n by two, right. 0.5 times n is still theta of n. Right. That multiplicative constant in front of that n is 0.5, which is just, you know, it's just it still leads me to be a theta of n."
+4533.58,4548.58,The print is constant. So there's nothing else to multiply there. So the law of multiplication just says theta of n times theta of n is theta of n squared inside there.
+4548.58,4561.58,"Okay. So let's look at this program. What is the theta for this? Well, we could do it sort of in very grave detail. We've got x as our parameter."
+4561.58,4572.58,"So we only count loops and things like that that are a function of x. If I had a loop that was a function of, I don't know, n or something, that doesn't count because it's not a function of my input."
+4572.58,4582.58,So only look at things that are a function of x. I've got one outer for loop that goes through x times. So that's theta of x.
+4582.58,4593.58,"I've got an inner for loop that starts from i and goes to x. That's a little bit tricky. But in the end, overall, it's going to be theta of x."
+4593.58,4602.58,"Because it's going to be the first time it's going to go through x times. The next time, it's going to go x minus one, then x minus two, then x minus three."
+4602.58,4610.58,"So we're effectively just kind of adding over all of these runs x plus, sorry, 1 plus 2 plus 3 plus 4 plus 5 all the way up to x."
+4610.58,4620.58,"And that's just some function of x, right? It's definitely not going to be constant. So the inner loop is also theta of x."
+4620.58,4625.58,Everything else is theta of 1. There's nothing else that depends on x.
+4625.58,4639.58,"So this whole function is going to be theta of 1 for this assignment here, theta of x times theta of x for this nested loop here, and theta of 1 for this return down here."
+4639.58,4652.58,"So overall, it's just going to be theta of, sorry, so that's that. And so overall, it's just going to be theta of x squared, just by the laws of multiplication and addition."
+4652.58,4665.58,"Alright, think about this, and then tell me what you think it is. What do you guys think it is?"
+4665.58,4677.58,"Yeah, theta of length of l, absolutely right. So this is constant, this stuff inside the loop is constant, the return is constant, the only thing that depends on l is the length of the nest, right, this loop."
+4677.58,4685.58,"So the answer is theta of length, perfect. How about this one?"
+4685.58,4692.58,So here we're assuming all the inputs are the same length.
+4692.58,4700.58,"Yeah, theta of length of pick your favorite one, theta of length l is reasonable, you could also say theta of length l 1 or theta of length l 2."
+4700.58,4709.58,"Because these are two loops that are in series, right, so this one just loops through the length of l, but inside we're not doing anything that costs more than just constant time, right."
+4709.58,4718.58,"Here we're just comparing two numbers, like 3 and 2, we're just assigning something the true, so nothing else really depends on the length of the list."
+4718.58,4725.58,"So this is theta of length l, this is plus theta of length l, so that's just theta of length l."
+4725.58,4739.58,"Alright, so we saw a bunch of different algorithms, right, sorry, no, we didn't say a bunch, we saw a bunch of different programs, but we could kind of classify them all into one of these categories, right."
+4739.58,4747.58,"And this is all, basically all the different algorithms that you could ever write in general, right."
+4747.58,4759.58,"So something that's constant, theta of 1, something that's logarithmic is theta log n, something that's linear, we saw many of these is theta of n, something that's log linear, we haven't seen any yet, but that's theta of n log n."
+4759.58,4769.58,"Theta of n to some constant, like n squared and cubed is polynomial, and theta of some constant to the n, like 2 to the n, 3 to the n is exponential."
+4769.58,4775.58,"And when we're writing our programs, you can do a quick analysis of the program that you just wrote."
+4775.58,4782.58,"Look at the loops, look at to see how efficient you wrote it, and you could basically classify your program into one of these categories, right."
+4782.58,4787.58,"If you had nested loops that both depend on the input, you probably wrote a polynomial type algorithm."
+4787.58,4793.58,"If you just had one loop that dependent on the input, you probably wrote a linear type algorithm, right."
+4793.58,4798.58,"And when we write these algorithms at a first pass, we want to be somewhere up here."
+4798.58,4808.58,"You don't want to do anything that's polynomial or definitely not exponential, because things get slow really quickly with those numbers, right."
+4808.58,4813.58,"And so we never ever want to be in that situation, although sometimes it's unavoidable."
+4813.58,4815.58,So that's all I've got.
+4815.58,4823.58,"Next lecture, we will be going through a bunch of those different complexity classes, and looking at different programs that land in those classes, right."
+4823.58,4826.58,Especially the logarithmic and the logliners.
+4826.58,4828.58,All right.
